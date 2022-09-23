@@ -1,0 +1,29 @@
+git, vscode, node 설치
+
+cmd 에서
+
+git clone https://github.com/ten-3dev/travel-planner.git
+
+클론을 함
+
+그리고 개발하셈;;
+
+다 했으면
+
+git status 라는 명령어를 통해 현재 새로 만들거나 건드린 파일 목록을 확인
+
+확인 했으면 git add . 로 임시 저장소에 넣음 (. 은 전체 다 넣는다는 의미)
+
+그리고 ㄹㅇ 저장을 함
+
+git commit -m "넣을 메시지"
+
+그리고 git push 를 통해 github에 올림
+
+
+----------------------------------------------------------------
+
+
+다른 사람이 push를 쳤을 때(업데이트를 했을때)
+
+git pull 하면 됨
