@@ -1,1 +1,1 @@
-var ji = "dsdsdsdssdsadassd";
+var ji = "김민재 똥멍청이";
