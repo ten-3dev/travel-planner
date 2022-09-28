@@ -1,1 +1,0 @@
-const minjae = "very handsome11122";
