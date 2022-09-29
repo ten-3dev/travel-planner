@@ -2,15 +2,21 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     width: 100%;
-    height: 80px;
-    background-color: transparent;
     position: fixed;
     z-index: 1;
     display: flex;
+    justify-content: center;
+    top: 0;
+    background: ${props => {
+        return props.main ? "transparent" : "linear-gradient(180deg, rgba(118, 118, 118,1) 5%,  rgba(255,255,255, 0) 100%)"
+    }};
+`
+
+export const Header = styled.div`
+    width: 1600px;
+    height: 80px;
+    display: flex;
     justify-content: space-between;
-    box-sizing: border-box;
-    padding: 0px 40px;
-    /* background: linear-gradient(180deg, rgba(118, 118, 118,1) 5%,  rgba(255,255,255, 0) 100%); */
 `
 
 export const LogSign = styled.div`
@@ -32,5 +38,6 @@ export const Text = styled.span`
 `
 
 export const Img = styled.img`
-
+    cursor: pointer;
+    margin-right: 15px;
 `
