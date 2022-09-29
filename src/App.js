@@ -1,10 +1,14 @@
 import React from "react";
-import TestPage from "./Pages/testPage";
+import Header from "./Components/header";
+import Footer from "./Components/footer";
+import MainPage from "./Pages/mainPage";
 
 const App = () => {
   return (
     <div className="App">
-      <TestPage></TestPage>
+      <Header />
+      <MainPage></MainPage>
+      <Footer />
     </div>
   );
 }
