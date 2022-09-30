@@ -1,22 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as Styles from './style';
 
-const Header = ({main}) => {
+const Header = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const moveMain = () => {
         navigate('/');
     }
+
     const moveLogin = () => {
         navigate('/login');
     }
+
     const moveSign = () => {
         navigate('/sign');
     }
     
     return(
-        <Styles.Wrapper main={main}>
+        <Styles.Wrapper main={location.pathname === '/' ? true : false}>
             <Styles.Header>
                 <Styles.Menu>
                     <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo" onClick={moveMain}/>
