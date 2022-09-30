@@ -5,7 +5,7 @@ const MainPage = () => {
     return(
         <Styles.Wrapper>
             <Styles.Video controls={false} muted autoPlay loop>
-                <source src="http://localhost:8000/video" type="video/mp4" />
+                <source src="http://192.168.52.16:8000/video" type="video/mp4" />
             </Styles.Video>
         </Styles.Wrapper>
     )
