@@ -8,6 +8,12 @@ const Header = ({main}) => {
     const moveMain = () => {
         navigate('/');
     }
+    const moveLogin = () => {
+        navigate('/login');
+    }
+    const moveSign = () => {
+        navigate('/sign');
+    }
     
     return(
         <Styles.Wrapper main={main}>
@@ -19,8 +25,8 @@ const Header = ({main}) => {
                     <Styles.Text>공유된 플랜 보기</Styles.Text>
                 </Styles.Menu>
                 <Styles.LogSign>
-                    <Styles.Text>로그인</Styles.Text>
-                    <Styles.Text>회원가입</Styles.Text>
+                    <Styles.Text onClick={moveLogin}>로그인</Styles.Text>
+                    <Styles.Text onClick={moveSign}>회원가입</Styles.Text>
                 </Styles.LogSign>
             </Styles.Header>
         </Styles.Wrapper>
