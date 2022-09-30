@@ -46,6 +46,7 @@ export const ColorBar = styled.div`
     background-color: rgba(91,189,220,0.9);
     top: 8px;
     right: 0;
+    animation: ${boxFade} 2s 1s infinite linear alternate;
 `
 
 export const InputBox = styled.div`
