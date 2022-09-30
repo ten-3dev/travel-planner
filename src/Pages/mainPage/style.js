@@ -38,6 +38,17 @@ export const Title = styled.div`
     margin-bottom: 40px;
     position: relative;
 `
+const colorChange = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 export const ColorBar = styled.div`
     position: absolute;
@@ -46,7 +57,8 @@ export const ColorBar = styled.div`
     background-color: rgba(91,189,220,0.9);
     top: 8px;
     right: 0;
-    animation: ${boxFade} 2s 1s infinite linear alternate;
+    animation: ${colorChange} 2s 1s infinite linear alternate;
+
 `
 
 export const InputBox = styled.div`
