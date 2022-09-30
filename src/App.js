@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const App = () => {
   return (
     <BrowserRouter>
-      <Header main/>
+      <Header/>
       <Routes>
         <Route path="/" element={<MainPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
