@@ -40,13 +40,13 @@ export const Title = styled.div`
 `
 const colorChange = keyframes`
   0% {
-    opacity: 1;
+    background-color: red;
   }
   50% {
-    opacity: 0;
+    background-color: blue;
   }
   100% {
-    opacity: 1;
+    background-color: purple;    
   }
 `
 
@@ -57,7 +57,7 @@ export const ColorBar = styled.div`
     background-color: rgba(91,189,220,0.9);
     top: 8px;
     right: 0;
-    animation: ${colorChange} 2s 1s infinite linear alternate;
+    animation: ${colorChange} 3s infinite linear alternate;
 
 `
 
