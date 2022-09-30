@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const App = () => {
   return (
     <BrowserRouter>
-      <Header/>
+      <Header main/>
       <Routes>
         <Route path="/" element={<MainPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
