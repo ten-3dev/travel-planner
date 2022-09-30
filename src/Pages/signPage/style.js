@@ -12,8 +12,16 @@ export const ContentBox = styled.div`
     top: 50%;
     left: 50%;
     margin-left: -500px;
-    margin-top: -150px;
+    margin-top: -300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+`
+
+export const SignText = styled.text`
+    font-size: 60px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 40px;
+    position: relative;
 `

@@ -5,8 +5,9 @@ const LoginPage = () => {
     return(
         <Styles.Wrapper>
             <Styles.ContentBox>
-            <div>LOGIN</div>
-            <div>아이디랑 인풋 , 비번이랑 인풋</div>
+            <Styles.LoginText>LOGIN</Styles.LoginText>
+            <Styles.InputBox>아이디랑 인풋</Styles.InputBox>
+            <Styles.InputBox>아이디랑 인풋</Styles.InputBox>
             <div>로그인 버튼</div>
             <div>--- OR ---</div>
             <div>카카오로그인 버튼</div>

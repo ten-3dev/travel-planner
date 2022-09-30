@@ -5,7 +5,7 @@ const SignPage = () => {
     return(
         <Styles.Wrapper>
             <Styles.ContentBox>
-            <div>SIGN UP</div>
+            <Styles.SignText>SIGN UP</Styles.SignText>
             <div>아이디
                 비번
                 비번확인
