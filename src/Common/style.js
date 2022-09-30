@@ -14,7 +14,7 @@ export const UserBlueBtn = styled.div`
     width: 350px;
     height: 35px;
     background-color: #38B7FF;
-    margin-top: 100px;
+    margin-top: 20px;
     color: white;
     display: flex;
     align-items: center;
