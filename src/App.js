@@ -5,6 +5,7 @@ import MainPage from "./Pages/mainPage";
 import LoginPage from "./Pages/loginPage";
 import SignPage from "./Pages/signPage"
 import NotFoundPage from './Pages/notFoundPage';
+import Information from "./Pages/localinformationPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/sign" element={<SignPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
+        <Route path="/Information" element={<Information/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>
