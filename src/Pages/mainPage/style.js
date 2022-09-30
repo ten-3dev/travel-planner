@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
     position: relative;
@@ -38,17 +38,6 @@ export const Title = styled.div`
     margin-bottom: 40px;
     position: relative;
 `
-const colorChange = keyframes`
-  0% {
-    background-color: red;
-  }
-  50% {
-    background-color: blue;
-  }
-  100% {
-    background-color: purple;    
-  }
-`
 
 export const ColorBar = styled.div`
     position: absolute;
@@ -57,7 +46,6 @@ export const ColorBar = styled.div`
     background-color: rgba(91,189,220,0.9);
     top: 8px;
     right: 0;
-    animation: ${colorChange} 3s infinite linear alternate;
 
 `
 
