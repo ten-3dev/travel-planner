@@ -7,14 +7,15 @@ const LoginPage = () => {
         <Styles.Wrapper>
             <Styles.ContentBox>
                 <Styles.LoginText>LOGIN</Styles.LoginText>
+
                 <Styles.LoginText2>이름
-                    <Styles.InputBox>아이디입력</Styles.InputBox>
+                    <Styles.InputBox></Styles.InputBox>
                 </Styles.LoginText2>
+
                 <Styles.LoginText2>비밀번호
-                    <Styles.InputBox>비밀번호입력</Styles.InputBox>
+                    <Styles.InputBox></Styles.InputBox>
                 </Styles.LoginText2>
                 
-                        
                 <UserBlueBtn>로그인 버튼</UserBlueBtn>
                         <div>--- OR ---</div>
                 <Styles.KakaoBtn>카카오로그인 버튼</Styles.KakaoBtn>
