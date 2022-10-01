@@ -145,5 +145,4 @@ export const Im5 = styled.img`
     height: 50px;
     margin-left: 6%;
     border-radius: 20px;
-
 `
