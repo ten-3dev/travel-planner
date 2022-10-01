@@ -44,7 +44,7 @@ export const InformationBox = styled.div`
 `
 export const TalkMessageBox = styled.div`
     margin-bottom: 5%;
-    background-color: rgba(49, 49, 49, 0.5);
+    background-color: rgba(49, 49, 49, 0.2);
     /* opacity: 0.5; */
     border-radius: 20px;
     box-sizing: border-box;
@@ -62,13 +62,12 @@ export const Sources = styled.div`
 `
 export const Talk = styled.div`
     font-size: 25px;
-    //margin-bottom: 20px;
-    //margin-right:87%;
     font-weight: bold;
 `
 export const Msg = styled.div`
     font-size: 10px;
     font-weight: bold;
+    margin-top: 10px;
     margin-bottom: 10px;
 `
 export const InformationBar = styled.div`
@@ -99,7 +98,7 @@ export const MessageCommentBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #9ea4aa;
     box-sizing: border-box;
     padding: 15px 0;
     width: 90%;
@@ -136,10 +135,48 @@ export const Map = styled.div`
     height:200px;
     background-color:grey;
 `
-export const DetailedInfor = styled.div`
-    margin-bottom: 3%;
-    height:200px;
-    background-color:green;
+export const DetailedInforBox = styled.div`
+    margin-bottom:40px;
+    background-color:wheat;
+    align-items: center;
+    display: flex;
+    //justify-content: space-between;
+`
+export const DetaBox = styled.div`
+    //display: flex;
+    //justify-content: space-between;
+    //align-items: center;
+    width: 50%;
+    border: 3px solid darkblue;
+`
+export const DetaBoxrightBox = styled.div`
+    //display: flex;
+    width: 50%;
+    justify-content: space-between;
+    border: 3px solid darkblue;
+    box-sizing: border-box;
+    //padding: 21px 0px;
+` 
+export const DetaFontBox = styled.div`
+    //font-size: 20px;
+    //font-weight: bold;
+    //margin-bottom: 50px;
+    //margin-bottom:40px;
+    //background-color:wheat;
+    align-items: center;
+    display: flex;
+    //padding-right: 5%;
+    //justify-content: space-between;
+`
+export const DetaFont = styled.div`
+   // width: 10%;
+   margin-right: 180px;
+   font-weight: bold;
+
+`
+export const DetainforMation = styled.div`
+    
+
 `
 export const Img1 = styled.img`
     width: 35px;
@@ -154,13 +191,13 @@ export const Profile = styled.img`
     align-self: flex-start;
 `
 export const MymessageBox = styled.div`
-    border-top: 1px solid black;
+    border-top: 3px solid #9ea4aa;
 `
 export const Reviewcomment = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 `
 export const MyWriting = styled.div`
-    margin-bottom:40px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;

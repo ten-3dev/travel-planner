@@ -31,9 +31,47 @@ const InformationPage = () => {
                     [출처: 쮸짱이의 브이로그 히힛]
                     </Styles.Sources>
                     <Styles.Map>지도</Styles.Map>
-                    <Styles.DetailedInfor>
-                        정보내용적기
-                    </Styles.DetailedInfor>
+
+                    <Styles.DetailedInforBox>
+                        <Styles.DetaBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 문의 및 안내</Styles.DetaFont>
+                                <Styles.DetainforMation>043-844-0741</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 주소</Styles.DetaFont>
+                                <Styles.DetainforMation>충청북도 충주시 양성면 가곡로 1434</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 휴일</Styles.DetaFont>
+                                <Styles.DetainforMation>매주 월요일 휴관(공휴일 월요일 제외)</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 이용요금</Styles.DetaFont>
+                                <Styles.DetainforMation>
+                                    3212321321
+                                    321321321
+                                    5546545
+                                </Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 장애인주차요금</Styles.DetaFont>
+                                <Styles.DetainforMation>장애인 주차장있음,무장애 편의시설</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont>● 휠체어</Styles.DetaFont>
+                                <Styles.DetainforMation>대여가능(100대)</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                        </Styles.DetaBox>
+                        <Styles.DetaBoxrightBox>
+                            <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
+                            <Styles.DetaFont>● 이용시간</Styles.DetaFont>
+                            <Styles.DetaFont>● 주차</Styles.DetaFont>
+                            <Styles.DetaFont>● 출입통로</Styles.DetaFont>
+                            <Styles.DetaFont>● 접근로</Styles.DetaFont>
+                        </Styles.DetaBoxrightBox>
+                    </Styles.DetailedInforBox>
+
                     <Styles.Talk>톡톡</Styles.Talk>
                     <Styles.InformationBar />
                     <Styles.TalkMessageBox>
@@ -41,6 +79,16 @@ const InformationPage = () => {
                             <Styles.MessageCommentBox>
                                     <Styles.MessageCommentIcon />
                                     <Styles.Comment>데이트코스로 너무 좋아요!</Styles.Comment>
+                                    <Styles.Days>2022.06.24</Styles.Days>
+                            </Styles.MessageCommentBox>
+                            <Styles.MessageCommentBox>
+                                    <Styles.MessageCommentIcon />
+                                    <Styles.Comment>가지마셈 ㅈㄴ 불친절</Styles.Comment>
+                                    <Styles.Days>2022.06.24</Styles.Days>
+                            </Styles.MessageCommentBox>
+                            <Styles.MessageCommentBox>
+                                    <Styles.MessageCommentIcon />
+                                    <Styles.Comment>너무 피곤해 잠온다</Styles.Comment>
                                     <Styles.Days>2022.06.24</Styles.Days>
                             </Styles.MessageCommentBox>
                         </Styles.MessageCommentsBox>
