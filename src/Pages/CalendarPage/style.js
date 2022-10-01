@@ -4,11 +4,8 @@ export const Wrapper = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
-    overflow: auto;
-
     height: 100vh;
     width: 100%;
-    
 `
 
 export const ContentBox = styled.div`
@@ -17,8 +14,7 @@ export const ContentBox = styled.div`
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-item: center; 
-    overflow: auto;
+    align-items: center; 
 
     width: 1200px;
     top: 50%;
@@ -32,7 +28,6 @@ export const ImageBox = styled.div`
 
     position: relative;
     display: flex;
-    flex-direction: column;
 
     width: 100%;
     height:700px;
@@ -66,9 +61,7 @@ export const ShareBtn = styled.div`
 `
 
 export const Menu = styled.div`
-    border: 1px solid blue;
-
-    position: absolute;
+    border: 7px solid blue;
     
     width: 100%;
     height: 100px;
@@ -76,7 +69,37 @@ export const Menu = styled.div`
 
 `
 
-export const Information = styled.div`
+export const PlanInfoList = styled.div`
+
+
+`
+
+export const PlanInfo = styled.div`
+
+
+`
+
+export const Day = styled.div`
+
+
+`
+
+export const PlanImage = styled.div`
+
+
+`
+
+export const Title = styled.div`
+
+
+`
+
+export const Content = styled.div`
+
+
+`
+
+export const MapBtn = styled.div`
 
 
 `
@@ -86,9 +109,7 @@ export const Map = styled.div`
 `
 
 export const Comment = styled.div`
-    position: absolute;
-
-    border: 1px solid yellow;
+    border: 5px solid yellow;
 
     width: 100%;
     height: 200px;
@@ -100,6 +121,18 @@ export const ReviewBox = styled.div`
 `
 
 export const Review = styled.div`
+
+`
+
+export const ReImage = styled.div`
+
+`
+
+export const ReContent = styled.div`
+
+`
+
+export const ReDate = styled.div`
 
 `
 
