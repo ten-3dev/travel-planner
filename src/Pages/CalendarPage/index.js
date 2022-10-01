@@ -10,12 +10,24 @@ const calendarPage = () =>{
                     <Styles.ShareBtn/>
                 </Styles.ImageBox>
                 <Styles.Menu>
-                    <Styles.Information/>
+                    <Styles.PlanInfoList>
+                        <Styles.PlanInfo>
+                            <Styles.Day/>
+                            <Styles.PlanImage/>
+                            <Styles.Title/>
+                            <Styles.Content/>
+                            <Styles.MapBtn/>
+                        </Styles.PlanInfo>
+                    </Styles.PlanInfoList>
                     <Styles.Map/>
                 </Styles.Menu>
                 <Styles.Comment>
                     <Styles.ReviewBox>
-                        <Styles.Review/>
+                        <Styles.Review>
+                            <Styles.ReImage/>
+                            <Styles.ReContent/>
+                            <Styles.ReDate/>
+                        </Styles.Review>
                     </Styles.ReviewBox>
                     <Styles.InputBox>
                         <Styles.InputBoxText/>
