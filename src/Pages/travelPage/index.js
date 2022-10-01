@@ -11,39 +11,43 @@ const travelPage = () => {
             </Styles.InputBox>
             <Styles.Bar/>
             <h2>69건 임시</h2>
-            <Styles.TravelWrapper2>
-            <Styles.Bar2/>
-            <Styles.TravelWrapper>
-                <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
-                <Styles.Btn>+찜하기</Styles.Btn>
-            </Styles.TravelWrapper>
-            <Styles.Bar2/>
-            <Styles.Bar2/>
-            <Styles.TravelWrapper>
-                <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
-                <Styles.Btn>+찜하기</Styles.Btn>
-            </Styles.TravelWrapper>
-            <Styles.Bar2/>
-            <Styles.Bar2/>
-            <Styles.TravelWrapper>
-                <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
-                <Styles.Btn>+찜하기</Styles.Btn>
-            </Styles.TravelWrapper>
-            <Styles.Bar2/>
-            <Styles.Bar2/>
-            <Styles.TravelWrapper>
-                <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
-                <Styles.Btn>+찜하기</Styles.Btn>
-            </Styles.TravelWrapper>
-            <Styles.Bar2/>
-            <Styles.Bar2/>
-            <Styles.TravelWrapper>
-                <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
-                <Styles.Btn>+찜하기</Styles.Btn>
-            </Styles.TravelWrapper>
-            <Styles.Bar2/>
-            </Styles.TravelWrapper2>
-            
+            <Styles.ContentBox>
+                <Styles.TravelWrapper2>
+                    <Styles.Bar2/>
+                    <Styles.TravelWrapper>
+                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
+                        <Styles.Btn>+찜하기</Styles.Btn>
+                    </Styles.TravelWrapper>
+                    <Styles.Bar2/>
+                    <Styles.Bar2/>
+                    <Styles.TravelWrapper>
+                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
+                        <Styles.Btn>+찜하기</Styles.Btn>
+                    </Styles.TravelWrapper>
+                    <Styles.Bar2/>
+                    <Styles.Bar2/>
+                    <Styles.TravelWrapper>
+                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
+                        <Styles.Btn>+찜하기</Styles.Btn>
+                    </Styles.TravelWrapper>
+                    <Styles.Bar2/>
+                    <Styles.Bar2/>
+                    <Styles.TravelWrapper>
+                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
+                        <Styles.Btn>+찜하기</Styles.Btn>
+                    </Styles.TravelWrapper>
+                    <Styles.Bar2/>
+                    <Styles.Bar2/>
+                    <Styles.TravelWrapper>
+                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`}/>
+                        <Styles.Btn>+찜하기</Styles.Btn>
+                    </Styles.TravelWrapper>
+                    <Styles.Bar2/>
+                </Styles.TravelWrapper2>
+                <Styles.TravelWrapper3>
+                    
+                </Styles.TravelWrapper3>
+            </Styles.ContentBox>
 
         </MarginTopWrapper>
       );

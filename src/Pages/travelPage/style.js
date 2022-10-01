@@ -19,6 +19,10 @@ export const Bar2 = styled.div`
     opacity: 0.2;
 `
 
+export const ContentBox = styled.div`
+    display: flex;
+`
+
 export const InputBox = styled.div`
     width: 1000px;
     height: 48px;
@@ -55,6 +59,13 @@ export const TravelWrapper2 = styled.div`
     width: 1100px;
     height: 850px; 
     padding: 0 0 0 7px;  
+`
+
+export const TravelWrapper3 = styled.div`
+    width: 100%;
+    height: 850px; 
+    padding: 0 0 0 7px;  
+    background-color: red;
 `
 
 export const Img = styled.img`
