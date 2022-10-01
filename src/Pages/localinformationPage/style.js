@@ -22,7 +22,7 @@ export const Like = styled.button`
     margin-left: 15px;
     cursor: pointer;
 `
-export const TopBar = styled.div` //크기자동조절 찾기
+export const TopBar = styled.div` 
     width: 100%;
     height: 3px;
     margin-top: 1%;
@@ -136,47 +136,40 @@ export const Map = styled.div`
     background-color:grey;
 `
 export const DetailedInforBox = styled.div`
-    margin-bottom:40px;
-    background-color:wheat;
-    align-items: center;
-    display: flex;
-    //justify-content: space-between;
-`
-export const DetaBox = styled.div`
-    //display: flex;
-    //justify-content: space-between;
-    //align-items: center;
-    width: 50%;
-    border: 3px solid darkblue;
-`
-export const DetaBoxrightBox = styled.div`
-    //display: flex;
-    width: 50%;
-    justify-content: space-between;
-    border: 3px solid darkblue;
-    box-sizing: border-box;
-    //padding: 21px 0px;
-` 
-export const DetaFontBox = styled.div`
-    //font-size: 20px;
-    //font-weight: bold;
-    //margin-bottom: 50px;
-    //margin-bottom:40px;
+    margin-bottom:30px;
     //background-color:wheat;
     align-items: center;
     display: flex;
-    //padding-right: 5%;
-    //justify-content: space-between;
+`
+export const DetaBox = styled.div`
+    width: 50%;
+`
+export const DetaBoxrightBox = styled.div`
+    width: 50%;
+` 
+export const DetaFontBox = styled.div`
+    align-items: center;
+    display: flex;
+`
+export const DetaFontrightBox = styled.div`
+    display: flex;
+    align-self: flex-start;
 `
 export const DetaFont = styled.div`
-   // width: 10%;
-   margin-right: 180px;
-   font-weight: bold;
-
+    font-size: 20px;
+    font-weight: bold;
+    align-self: flex-start;
+    width: 40%;
 `
 export const DetainforMation = styled.div`
-    
-
+    margin-bottom: 30px;
+    width: 70%;    
+    align-items: center;
+`
+export const DetainfoRight = styled.div`
+    margin-bottom: 30px;
+    width: 70%;    
+    align-items: center;
 `
 export const Img1 = styled.img`
     width: 35px;
@@ -202,3 +195,5 @@ export const MyWriting = styled.div`
     align-items: center;
     justify-content: space-between;
 `
+
+//상세정보 홈페이지 박스를 문의안내 줄 위치에 나오게 하기

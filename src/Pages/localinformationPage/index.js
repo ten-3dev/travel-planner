@@ -48,11 +48,11 @@ const InformationPage = () => {
                             </Styles.DetaFontBox>
                             <Styles.DetaFontBox>
                                 <Styles.DetaFont>● 이용요금</Styles.DetaFont>
-                                <Styles.DetainforMation>
-                                    3212321321
-                                    321321321
-                                    5546545
-                                </Styles.DetainforMation>
+                                <Styles.DetainforMation>대인 32123원</Styles.DetainforMation>
+                            </Styles.DetaFontBox>
+                            <Styles.DetaFontBox>
+                                <Styles.DetaFont/>
+                                <Styles.DetainforMation>소인32123원</Styles.DetainforMation>
                             </Styles.DetaFontBox>
                             <Styles.DetaFontBox>
                                 <Styles.DetaFont>● 장애인주차요금</Styles.DetaFont>
@@ -64,14 +64,28 @@ const InformationPage = () => {
                             </Styles.DetaFontBox>
                         </Styles.DetaBox>
                         <Styles.DetaBoxrightBox>
-                            <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
-                            <Styles.DetaFont>● 이용시간</Styles.DetaFont>
-                            <Styles.DetaFont>● 주차</Styles.DetaFont>
-                            <Styles.DetaFont>● 출입통로</Styles.DetaFont>
-                            <Styles.DetaFont>● 접근로</Styles.DetaFont>
+                            <Styles.DetaFontrightBox>
+                                <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
+                                <Styles.DetainfoRight>043-844-0741</Styles.DetainfoRight>
+                            </Styles.DetaFontrightBox>
+                            <Styles.DetaFontrightBox>
+                                <Styles.DetaFont>● 이용시간</Styles.DetaFont>
+                                <Styles.DetainfoRight>충청북도 충주시 양성면 가곡로 1434</Styles.DetainfoRight>
+                            </Styles.DetaFontrightBox>
+                            <Styles.DetaFontrightBox>
+                                <Styles.DetaFont>● 주차</Styles.DetaFont>
+                                <Styles.DetainfoRight>매주 월요일 휴관(공휴일 월요일 제외)</Styles.DetainfoRight>
+                            </Styles.DetaFontrightBox>
+                            <Styles.DetaFontrightBox>
+                                <Styles.DetaFont>● 출입통로</Styles.DetaFont>
+                                <Styles.DetainfoRight>대인 32123원</Styles.DetainfoRight>
+                            </Styles.DetaFontrightBox>
+                            <Styles.DetaFontrightBox>
+                                <Styles.DetaFont>● 접근로</Styles.DetaFont>
+                                <Styles.DetainfoRight>장애인 주차장있음,무장애 편의시설</Styles.DetainfoRight>
+                            </Styles.DetaFontrightBox>
                         </Styles.DetaBoxrightBox>
                     </Styles.DetailedInforBox>
-
                     <Styles.Talk>톡톡</Styles.Talk>
                     <Styles.InformationBar />
                     <Styles.TalkMessageBox>
