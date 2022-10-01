@@ -39,12 +39,11 @@ const Information = () => {
                     <Styles.Infor4>톡톡</Styles.Infor4>
                     <Styles.ColorBar1></Styles.ColorBar1>
                     <Styles.Cont2>
-                        dsffsdfsdfsdfsdf
-
-
-
-
-                        
+                        <Styles.CoBar3></Styles.CoBar3>
+                        <Styles.Infor5>응원메시지</Styles.Infor5>
+                        <Styles.Im5 src={process.env.PUBLIC_URL + "assets/임시프로필사진.png"} ></Styles.Im5>
+                        <Styles.Input placeholder="소중한댓글을 남겨주세요."></Styles.Input>
+                        <Styles.Btn2>글쓰기</Styles.Btn2>
                     </Styles.Cont2>
                 </Styles.Cont>
         

@@ -26,18 +26,18 @@ export const Cont = styled.div`
     width: 1000px;
 `
 export const Cont2 = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 800px;
+    width: 950px;
+    height: 500px;
+    margin-top: 1%;
+    margin-bottom: 3%;
     background-color: grey ;
-    margin-bottom: 50%;
+    opacity: 0.4;
+    border-radius: 20px;
 `
 export const Infor2 = styled.div`
     font-size: 20px;
     margin-bottom: 20px;
     margin-left: 2.5%;
-    //text-align: center;
 `
 export const Infor3 = styled.div`
     font-size: 15px;
@@ -51,7 +51,12 @@ export const Infor4 = styled.div`
     margin-right:87%;
     font-weight: bold;
 `
-
+export const Infor5 = styled.div`
+    font-size: 10px;
+    margin-bottom: 1px;
+    margin-left:5%;
+    font-weight: bold;
+`
 export const ColorBar1 = styled.div`
     width: 600px;
     height: 3px;
@@ -59,6 +64,13 @@ export const ColorBar1 = styled.div`
     margin-right: 35%;
     background-color: grey ;
     opacity: 0.2;
+`
+export const CoBar3 = styled.div`
+    width: 600px;
+    height: 3px;
+    margin-top:35%;
+    margin-left: 5%;
+    background-color:Black;
 `
 export const ColorBar2 = styled.div` //크기자동조절 찾기
     width: 900px;
@@ -68,13 +80,18 @@ export const ColorBar2 = styled.div` //크기자동조절 찾기
     background-color: grey ;
     opacity: 0.2;
 `
-export const Input = styled.input` //댓글사용
+export const Input = styled.input` 
     border: 0;
     flex: 1;
-    font-size: 10px;
+    width: 600px;
+    height: 100px;
+    font-size: 18px;
     background-color: white ;
-    margin-left: 70%;
+    padding-left: 9px;
+    margin-left:15px;
+    margin-top:20px;
 `
+
 export const Btn = styled.button`
     border: 0;
     flex: 1;
@@ -84,14 +101,22 @@ export const Btn = styled.button`
     margin-left: 50%;
     border-radius: 10px;
 `
+export const Btn2 = styled.button`
+    border: 0;
+    flex: 1;
+    width: 10%;
+    height: 20%;
+    background: rgba(0, 50, 100, 1);
+    color: white;
+    margin-left: 1%;
+    border-radius: 5px;
+`
 export const Hrr1 = styled.div`
     width: 50px;
     height: 10px;
     margin-left: 40%;
 `
 export const Hrr2 = styled.div`
-    //height: 400px;
-    //margin-left: 50%;
    margin-bottom: 3%;
 `
 export const Hrr3 = styled.div`
@@ -114,4 +139,11 @@ export const Img3 = styled.img`
 export const Img4 = styled.img`
     width: 1000px;
     height: 400px;
+`
+export const Im5 = styled.img`
+    width: 50px;
+    height: 50px;
+    margin-left: 6%;
+    border-radius: 20px;
+
 `
