@@ -2,36 +2,24 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     position: relative;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
+    height: 350vh;
     width: 100%;
-`
+    overflow: hidden;
 
-export const ContentBox = styled.div`
-    border: 5px solid green;
-    
-    position: absolute;
+    background-color: gray;
+
     display: flex;
     flex-direction: column;
-    align-items: center; 
-
-    width: 1200px;
-    top: 50%;
-    left: 50%;
-    margin-left: -600px;
-    
 `
 
 export const ImageBox = styled.div`
     border : 1px solid red;
 
-    position: relative;
+    position: absolute;
     display: flex;
 
     width: 100%;
-    height:700px;
-    margin-bottom:200px;
+    margin-top:100px;
      
     
 `
@@ -60,22 +48,57 @@ export const ShareBtn = styled.div`
 
 `
 
+export const ContentBox = styled.div`
+    border: 5px solid green;
+    
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    width: 100%;
+    height: 341vh;
+    // top: 50%;
+    //left: 50%;
+    //margin-left: -700px;
+    //margin-top: -1650px;
+   
+
+    
+`
+
 export const Menu = styled.div`
     border: 7px solid blue;
+
+    display:flex;
+    position: relative;
     
     width: 100%;
-    height: 100px;
+    height: 900px;
+
+
+`
+
+export const Title = styled.div`
+    border:5px solid black;
+
 
 
 `
 
 export const PlanInfoList = styled.div`
+    border: 7px solid orange;
 
+    position: absolute;
+    width:55%;
 
 `
 
 export const PlanInfo = styled.div`
+    border: 3px solid pink;
 
+    width: 80%;
+    height: 100px;
 
 `
 
@@ -89,7 +112,7 @@ export const PlanImage = styled.div`
 
 `
 
-export const Title = styled.div`
+export const PlaceTitle = styled.div`
 
 
 `
@@ -105,15 +128,21 @@ export const MapBtn = styled.div`
 `
 
 export const Map = styled.div`
+    border: 7px solid skyblue;
+
+    position: absolute;
+    width:45%;
 
 `
 
 export const Comment = styled.div`
     border: 5px solid yellow;
 
+    display:flex;
+
     width: 100%;
-    height: 200px;
-    
+    height: 700px;
+    margin-top: 1300px;
 `
 
 export const ReviewBox = styled.div`
