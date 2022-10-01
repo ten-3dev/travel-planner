@@ -1,6 +1,5 @@
 import React from "react";
 import * as Styles from './style';
-import Header from "../../Components/header";
 import { MarginTopWrapper } from "../../Common/style";
 
 

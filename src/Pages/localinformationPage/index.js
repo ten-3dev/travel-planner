@@ -2,17 +2,17 @@ import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
-const Information = () => {
+const InformationPage = () => {
     return(
         <MarginTopWrapper margin>
             <Styles.Contentbook>
                 <Styles.Title>
                     관광지이름(임시)
                 </Styles.Title>
-                <Styles.Hrr1>
+                <Styles.BtnBox>
                     <Styles.Img1 src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Img1>
-                </Styles.Hrr1>
-                <Styles.Btn>+찜하기</Styles.Btn>
+                    <Styles.Btn>+찜하기</Styles.Btn>
+                </Styles.BtnBox>
                 <Styles.ColorBar2></Styles.ColorBar2>
                 <Styles.Hrr2>
                     <Styles.Img2 src={process.env.PUBLIC_URL + "assets/baka.png"}></Styles.Img2>
@@ -52,4 +52,4 @@ const Information = () => {
 
     );
 }
-export default Information;
+export default InformationPage;

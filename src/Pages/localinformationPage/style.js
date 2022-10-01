@@ -24,6 +24,7 @@ export const Cont = styled.div`
     flex-direction: column;
     align-items: center;
     width: 1000px;
+    width: 100%;
 `
 export const Cont2 = styled.div`
     width: 950px;
@@ -73,7 +74,7 @@ export const CoBar3 = styled.div`
     background-color:Black;
 `
 export const ColorBar2 = styled.div` //크기자동조절 찾기
-    width: 900px;
+    width: 100%;
     height: 3px;
     margin-top: 1%;
     margin-bottom: 3%;
@@ -92,15 +93,23 @@ export const Input = styled.input`
     margin-top:20px;
 `
 
+export const BtnBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+`
+
 export const Btn = styled.button`
     border: 0;
-    flex: 1;
-    width: 5%;
+    width: 70px;
     background: rgba(0, 150, 100, 0.5);
     color: white;
-    margin-left: 50%;
     border-radius: 10px;
+    margin-left: 15px;
+    cursor: pointer;
 `
+
 export const Btn2 = styled.button`
     border: 0;
     flex: 1;
@@ -111,11 +120,7 @@ export const Btn2 = styled.button`
     margin-left: 1%;
     border-radius: 5px;
 `
-export const Hrr1 = styled.div`
-    width: 50px;
-    height: 10px;
-    margin-left: 40%;
-`
+
 export const Hrr2 = styled.div`
    margin-bottom: 3%;
 `
