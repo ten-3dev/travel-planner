@@ -154,6 +154,7 @@ export const DetaFontBox = styled.div`
 export const DetaFontrightBox = styled.div`
     display: flex;
     align-self: flex-start;
+    margin-bottom: 22px;
 `
 export const DetaFont = styled.div`
     font-size: 20px;
@@ -196,4 +197,6 @@ export const MyWriting = styled.div`
     justify-content: space-between;
 `
 
-//상세정보 홈페이지 박스를 문의안내 줄 위치에 나오게 하기
+//상세정보 홈페이지 박스를 문의안내 줄 위치에 나오게 하기 임시방편해둠
+//DetaFontrightBox 안에  margin-bottom: 22px; 대칭 맞춰놨지만 수정해야할듯
+//칸이 넓혀서 맞춘거임 한번 컨펌받구 수정할거 해보기
