@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Slider from "react-slick";
 
 export const Wrapper = styled.div`
     position: relative;
@@ -86,4 +87,143 @@ export const Btn = styled.div`
 
 export const Img = styled.img`
     width: 35px;
+`
+
+export const BottomBox = styled.div`
+    width: 100%;
+    background-color: ${props => {
+        return props.color ? props.color : "white"
+    }};
+`
+
+export const BottomContentBox = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 120px;
+    box-sizing: border-box;
+    padding: ${props => {
+        return props.padding ? `${props.padding} 40px 0 40px` : "0 40px"
+    }};
+    padding-bottom: ${props => {
+        return props.paddingBottom ? props.paddingBottom : "0"
+    }};
+    flex-direction: ${props => {
+        return props.column ? "column" : "row"
+    }}
+`
+
+export const BottomContentImg = styled.img`
+`
+export const BottomContentWords = styled.div`
+    text-align: center;
+`
+
+export const BottonContentTitle = styled.div`
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 15px;
+`
+
+export const BottomContentText = styled.div`
+    width: 350px;
+    word-break: keep-all;
+`
+
+export const BottomContentSBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+`
+
+export const BottomContentBtn = styled.div`
+    background-color: #8397FF;
+    width: 200px;
+    height: 45px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`
+
+export const CarouselTitle = styled.div`
+    font-size: 35px;
+    margin-bottom: 25px;
+`
+
+export const SliderCustom = styled(Slider)`
+    width: 930px;
+    margin-bottom: 80px;
+`
+
+export const SliderBox = styled.div`
+    height: 370px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 25px;
+    cursor: pointer;
+`
+
+export const SliderImg = styled.img`
+    width: 240px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+`
+
+export const SliderInfo = styled.div`
+    width: 100%;
+    height: 140px;
+    border: 0.5px solid black;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 15px 15px 0;
+    display: flex;
+    flex-direction: column;
+`
+
+export const SliderInfoText = styled.div`
+    font-weight: bold;
+    font-size: ${props => {
+        return props.size ? props.size : "16px"
+    }}
+`
+
+export const SliderInfoBottomBox = styled.div`
+    width: 100%;
+    flex: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
+
+export const SliderInfoBox = styled.div`
+    display: flex;
+`
+
+export const SliderInfoImg = styled.img`
+    width: 25px;
+    margin-right: 5px;
+`
+
+export const EventImg = styled.img`
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 60px;
+`
+
+export const SliderArrow = styled.img`
+    width: 20px;
+    height: 40px;
+    transform: ${props => {
+        return props.prev ? "rotate( 180deg )" : ""
+    }};
 `

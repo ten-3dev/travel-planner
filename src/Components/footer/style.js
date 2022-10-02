@@ -24,6 +24,8 @@ export const Img = styled.img`
 `
 
 export const IconBox = styled.div`
+    display: flex;
+    justify-content: center;
     margin: 20px 0;
 `
 
