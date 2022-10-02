@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 
 export const ContentBox = styled.div`
+    width: 100%;
     display: flex;
 `
 
@@ -59,25 +60,25 @@ export const TravelListBox = styled.div`
 `
 
 export const TravelFilterTag = styled.div`
-    width: 70%;
+    width: 80%;
     height: 80%; 
     background: rgba(0, 150, 100, 0.5);
-    margin: 30px 50px 100px 90px;
+    margin: 40px 50px 0 40px;
     border-radius: 20px;
     
 `
 export const TravelFilterBox = styled.div`
-    width: 100%;
+    width: 70%;
     margin-top: 75px;   
 `
 
 export const TravelWrapper5 = styled.div`
-    width: 900px;
+    width: 700px;
     display: flex;  
 `
 
 export const Text = styled.div`
-    width: 640px; 
+    width: 100%; 
     font-size: 30px;
     text-align: center;
     font-weight: bold
