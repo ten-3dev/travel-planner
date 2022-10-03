@@ -13,7 +13,7 @@ const InformationPage = () => {
                     <Styles.Img1 src={"assets/hrr.png"}></Styles.Img1>
                     <Styles.Like>+찜하기</Styles.Like>
                 </Styles.LikeBox>
-                <Styles.TopBar></Styles.TopBar>
+                <Styles.TopBar />
                 <Styles.TitleImgBox>
                     <Styles.Titleimage src={"assets/baka.png"}></Styles.Titleimage>
                 </Styles.TitleImgBox>
@@ -21,7 +21,7 @@ const InformationPage = () => {
                     <Styles.InformationTitle>
                         상세정보
                     </Styles.InformationTitle>
-                    <Styles.InformationBar></Styles.InformationBar>
+                    <Styles.InformationBar />
                     <Styles.InformationContnet>
                     제 1 관광명소 남산서울타워
                     국내외 관광객들이 년 1,200만 명 방문하는 서울 제1의 관광명소인 남산서울타워

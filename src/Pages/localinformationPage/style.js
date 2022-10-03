@@ -53,6 +53,7 @@ export const TalkMessageBox = styled.div`
 export const InformationContnet = styled.div`
     font-size: 20px;
     margin-bottom: 20px;
+    word-break: keep-all;
 `
 export const Sources = styled.div`
     font-size: 15px;
@@ -90,6 +91,7 @@ export const MessageInput = styled.textarea`
     font-size: 18px;
     background-color: white ;
     margin: 0 40px;
+    resize: none;
 `
 export const MessageCommentsBox = styled.div`
     margin-bottom: 200px;
