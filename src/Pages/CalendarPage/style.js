@@ -2,154 +2,199 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     position: relative;
-    height: 350vh;
+    height: 200vh;
     width: 100%;
     overflow: hidden;
-
-    background-color: gray;
-
     display: flex;
     flex-direction: column;
 `
 
 export const ImageBox = styled.div`
     border : 1px solid red;
-
-    position: absolute;
     display: flex;
-
     width: 100%;
-    margin-top:100px;
-     
+    height: 470px;
+    margin-top:150px;
     
 `
 
 export const Image = styled.img`
-    position: absolute;
-
     width: 100%;
-
-
 `
 
 export const ShareBtn = styled.div`
-
-    position: absolute;
-
     width: 100px;
     height: 30px;
-    right:0;
-    margin-top: 650px;
-    
+    margin: 5px 5px 5px -90%;
     border-radius: 5px;
     background-color: #ABE4C7; 
-
-
 
 `
 
 export const ContentBox = styled.div`
-    border: 5px solid green;
-    
+    border: 3px solid green;
+    box-sizing: border-box;
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-
+    margin-top: 200px;
     width: 100%;
-    height: 341vh;
-    // top: 50%;
-    //left: 50%;
-    //margin-left: -700px;
-    //margin-top: -1650px;
-   
-
+    height:80%;
     
 `
 
 export const Menu = styled.div`
-    border: 7px solid blue;
-
-    display:flex;
-    position: relative;
+    border: 3px solid blue;
     
+    display:flex;
+    flex-direction: column;
     width: 100%;
-    height: 900px;
+    height:800px;
 
 
 `
 
 export const Title = styled.div`
-    border:5px solid black;
+    border: 3px solid black;
+    display: inline-block;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    font-size: 30px;
+`
+export const Box = styled.div`
 
-
+    border: 3px solid gray;
+    display: flex;
+    height: calc(100% - 50px);
 
 `
 
 export const PlanInfoList = styled.div`
-    border: 7px solid orange;
-
-    position: absolute;
-    width:55%;
+    border: 3px solid orange;
+    
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: ${props =>{
+        return props.height ? `${props.height}` : "300px"
+    }};
+    margin: ${props => {
+        return props.margin ? `${props.margin}` : ""
+    }};
+    overflow-y: scroll;
 
 `
 
-export const PlanInfo = styled.div`
+export const DayList = styled.div`
     border: 3px solid pink;
-
-    width: 80%;
-    height: 100px;
+    display: flex;
+    padding: 10px 0 10px 0;
+    margin: 0 0 50px 0;
 
 `
 
 export const Day = styled.div`
-
+    border: 3px solid purple;
+    
+    overflow: hidden;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
 `
 
-export const PlanImage = styled.div`
+export const PlaceInfo = styled.div`
+    border: 4px solid darkblue;
+    height: 100px;      
+    display: flex;
+    margin-bottom: 50px;
 
+`
 
+export const PlanImage = styled.img`
+    border: 1px solid gold;
+    width: 20%;
+
+`
+
+export const Text = styled.div`
+    border: 1px solid gray;
+    display: flex;
+    width: 65%;
+    height: 100%;
+    margin-left: 15px;
+    flex-direction: column;
+    
 `
 
 export const PlaceTitle = styled.div`
-
-
+    border: 1px solid darkblue;
+    
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    
 `
 
 export const Content = styled.div`
+    border: 1px solid saddlebrown;
+    width: 100%;
+    padding: 0;
+    display: block;
+    margin-top: 3px;
+    overflow: hidden;
+    display: -webkit-box;
+    max-height: 48px;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    
+`
 
+export const MapBtn = styled.img`
+    border: 3px solid skyblue;
+    height: 50%;
+    margin: 25px;
 
 `
 
-export const MapBtn = styled.div`
-
-
-`
-
-export const Map = styled.div`
-    border: 7px solid skyblue;
-
-    position: absolute;
+export const Map = styled.img`
+    border: 3px solid skyblue;
+    display: flex;
     width:45%;
 
 `
 
 export const Comment = styled.div`
-    border: 5px solid yellow;
-
+    border: 3px solid yellow;
     display:flex;
-
+    box-sizing: border-box;
     width: 100%;
-    height: 700px;
-    margin-top: 1300px;
+    margin-top: 20px;
+    height: 400px;
 `
 
 export const ReviewBox = styled.div`
 
 `
 
-export const Review = styled.div`
+export const Review = styled.div`   
 
 `
 
@@ -184,3 +229,4 @@ export const Input = styled.div`
 export const InputBtn = styled.div`
 
 `
+ 
