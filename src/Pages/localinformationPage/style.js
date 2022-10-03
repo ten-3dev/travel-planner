@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.div`
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 500px;
     margin-bottom: 40px;
     text-align: center;
     font-weight: bold;
@@ -25,15 +25,14 @@ export const Like = styled.button`
 export const TopBar = styled.div` 
     width: 100%;
     height: 3px;
-    margin-top: 1%;
-    margin-bottom: 3%;
+    margin-top: 10px;
+    margin-bottom: 30px;
     background-color: grey ;
     opacity: 0.2;
 `
 export const TitleImgBox = styled.div`
-   margin-bottom: 3%;
+   margin-bottom: 30px;
 `
-
 export const InformationTitle = styled.div`
     font-size: 20px;
     margin-bottom: 20px;
@@ -43,7 +42,7 @@ export const InformationBox = styled.div`
     width: 100%;
 `
 export const TalkMessageBox = styled.div`
-    margin-bottom: 5%;
+    margin-bottom: 50px;
     background-color: rgba(49, 49, 49, 0.2);
     /* opacity: 0.5; */
     border-radius: 20px;
@@ -58,7 +57,7 @@ export const InformationContnet = styled.div`
 export const Sources = styled.div`
     font-size: 15px;
     margin-bottom: 20px;
-    margin-right:75%;
+    margin-right:75px;
     font-weight: bold;
 `
 export const Talk = styled.div`
@@ -74,8 +73,8 @@ export const Msg = styled.div`
 export const InformationBar = styled.div`
     width: 600px;
     height: 3px;
-    margin-bottom: 1%;
-    margin-right: 35%;
+    margin-bottom: 10px;
+    margin-right: 35px;
     background-color: grey ;
     opacity: 0.2;
 `
@@ -114,8 +113,8 @@ export const MessageCommentIcon = styled.div` // 나중에 img 로 바꿀꺼
 `
 export const Comment = styled.div`
     font-size: 15px;
-    margin-bottom: 1%;
-    margin-top:1%; 
+    margin-bottom: 1px;
+    margin-top:1px; 
     flex: 1;
 `
 export const Days = styled.div`
@@ -133,7 +132,7 @@ export const MessageBtn = styled.button`
     cursor: pointer;
 `
 export const Map = styled.div`
-    margin-bottom: 3%;
+    margin-bottom: 30px;
     height:200px;
     background-color:grey;
 `
@@ -175,7 +174,7 @@ export const DetainfoRight = styled.div`
     align-items: center;
 `
 export const Img1 = styled.img`
-    width: 35px;
+    width: 2%;
 `
 export const Titleimage = styled.img`
     width: 100%;
@@ -202,3 +201,4 @@ export const MyWriting = styled.div`
 //상세정보 홈페이지 박스를 문의안내 줄 위치에 나오게 하기 임시방편해둠
 //DetaFontrightBox 안에  margin-bottom: 22px; 대칭 맞춰놨지만 수정해야할듯
 //칸이 넓혀서 맞춘거임 한번 컨펌받구 수정할거 해보기
+//페이지네이션 댓글 나의 글쓰기 밑에 만들기 라이브러리 사용예정

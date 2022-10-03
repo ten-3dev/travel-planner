@@ -31,7 +31,6 @@ const InformationPage = () => {
                     [출처: 쮸짱이의 브이로그 히힛]
                     </Styles.Sources>
                     <Styles.Map>지도</Styles.Map>
-
                     <Styles.DetailedInforBox>
                         <Styles.DetaBox>
                             <Styles.DetaFontBox>
@@ -119,7 +118,6 @@ const InformationPage = () => {
                     </Styles.TalkMessageBox>
             </Styles.InformationBox>
         </MarginTopWrapper>
-
     );
 }
 export default InformationPage;
