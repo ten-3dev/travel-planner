@@ -56,3 +56,16 @@ export const KakaoBtn = styled.div`
     justify-content: center;
     cursor: pointer;
 `
+
+export const Input = styled.input`
+    margin: 0;
+    padding: 0;
+    border: 0;
+    flex: 1;
+    outline: none;
+    font-size: 15px;
+    box-sizing: border-box;
+    padding-left: 9px;
+    font-weight: 450;
+    background-color: #F3F3F3;
+`

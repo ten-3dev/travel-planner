@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 
 const LoginPage = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     return(
+        <Modal isOpen={true}>
         <Styles.Wrapper>
             <Styles.ContentBox>
                 <Styles.LoginText>LOGIN</Styles.LoginText>
 
                 <Styles.LoginText2>이름
-                    <Styles.InputBox></Styles.InputBox>
+                    <Styles.InputBox>
+                    <Styles.Input placeholder="아이디를 입력하세요"></Styles.Input>
+                    </Styles.InputBox>
                 </Styles.LoginText2>
 
                 <Styles.LoginText2>비밀번호
-                    <Styles.InputBox></Styles.InputBox>
+                    <Styles.InputBox>
+                        <Styles.Input placeholder="비밀번호를 입력하세요"></Styles.Input>
+                    </Styles.InputBox>
                 </Styles.LoginText2>
                 
-                <UserBlueBtn>로그인 버튼</UserBlueBtn>
+                <UserBlueBtn>로그인</UserBlueBtn>
                         <div>--- OR ---</div>
-                <Styles.KakaoBtn>카카오로그인 버튼</Styles.KakaoBtn>
+                <Styles.KakaoBtn>카카오 로그인</Styles.KakaoBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
+        </Modal>
     )
 }
 
