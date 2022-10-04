@@ -2,18 +2,17 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
     position: relative;
-    height: 200vh;
     width: 100%;
+    height: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 `
 
 export const ImageBox = styled.div`
-    border : 1px solid red;
     display: flex;
     width: 100%;
-    height: 470px;
+    height: 700px;
     margin-top:150px;
     
 `
@@ -32,20 +31,16 @@ export const ShareBtn = styled.div`
 `
 
 export const ContentBox = styled.div`
-    border: 3px solid green;
     box-sizing: border-box;
-    position: absolute;
     display: flex;
     flex-direction: column;
     margin-top: 200px;
     width: 100%;
-    height:80%;
-    
+    justify-content: space-between;
 `
 
 export const Menu = styled.div`
-    border: 3px solid blue;
-    
+    //border: 3px solid blue;
     display:flex;
     flex-direction: column;
     width: 100%;
@@ -55,44 +50,46 @@ export const Menu = styled.div`
 `
 
 export const Title = styled.div`
-    border: 3px solid black;
     display: inline-block;
     line-height: 50px;
-    width: 100%;
-    height: 50px;
     font-weight: bold;
     font-size: 30px;
+    border-bottom: 1px solid #000;
+    border-bottom-width: 2.3px;
+    width: 36%;
+    padding: 25px 0 10px 20px;
+    margin-bottom: 10px;
 `
 export const Box = styled.div`
-    border: 3px solid gray;
     display: flex;
     height: calc(100% - 50px);
 
 `
 
 export const PlanInfoList = styled.div`
-    border: 3px solid orange;
+    //border: 3px solid orange;
     
     display: flex;
     overflow-y: auto;
+        // 스크롤 디자인
         ::-webkit-scrollbar {   // 스크롤 전체
             width: 15px;
         }
         ::-webkit-scrollbar-thumb { // 스크롤바
-            background-color: #2f3542;
+            background-color: #807E7E;
             border-radius: 10px;
             background-clip: padding-box;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
         }
         ::-webkit-scrollbar-track { //스크롤 여백
-            background-color: grey;
+            background-color: #CBCBCB;
             border-radius: 10px;
             box-shadow: inset 0px 0px 5px white;
         }
     flex: 1;
     flex-direction: column;
     height: ${props =>{
-        return props.height ? `${props.height}` : "300px"
+        return props.height ? `${props.height}` : ""
     }};
     margin: ${props => {
         return props.margin ? `${props.margin}` : ""
@@ -101,16 +98,16 @@ export const PlanInfoList = styled.div`
 `
 
 export const DayList = styled.div`
-    border: 3px solid pink;
+   // border: 3px solid pink;
     display: flex;
     padding: 10px 0 10px 0;
-    margin: 0 0 50px 0;
+    border-bottom: 1px solid #eeeeef;
+    padding: 25px 0 23px 0;
 
 `
 
 export const Day = styled.div`
-    border: 3px solid purple;
-    
+    //border: 3px solid purple;
     overflow: hidden;
     display: inline-block;
     width: 100px;
@@ -122,25 +119,28 @@ export const Day = styled.div`
     color: #000;
     text-overflow: ellipsis;
     white-space: nowrap;
-
+    background-color: #D7D7D7;
+    border-radius: 10px;
+    margin-right: 10px;
 `
 
 export const PlaceInfo = styled.div`
-    border: 4px solid darkblue;
+    //border: 4px solid darkblue;
     height: 100px;      
     display: flex;
-    margin-bottom: 50px;
+    border-bottom: 1px solid #eeeeef;
+    padding: 0 0 23px 0;
 
 `
 
 export const PlanImage = styled.img`
-    border: 1px solid gold;
+    //border: 1px solid gold;
     width: 20%;
-
+    border-radius: 10px;
 `
 
 export const Text = styled.div`
-    border: 1px solid gray;
+    //border: 1px solid gray;
     display: flex;
     width: 65%;
     height: 100%;
@@ -150,7 +150,7 @@ export const Text = styled.div`
 `
 
 export const PlaceTitle = styled.div`
-    border: 1px solid darkblue;
+    //border: 1px solid darkblue;
     
     overflow: hidden;
     display: inline-block;
@@ -165,7 +165,7 @@ export const PlaceTitle = styled.div`
 `
 
 export const Content = styled.div`
-    border: 1px solid saddlebrown;
+   // border: 1px solid saddlebrown;
     width: 100%;
     padding: 0;
     display: block;
@@ -181,37 +181,59 @@ export const Content = styled.div`
 `
 
 export const MapBtn = styled.img`
-    border: 3px solid skyblue;
+   // border: 3px solid skyblue;
     height: 50%;
     margin: 25px;
 
 `
 
 export const Map = styled.img`
-    border: 3px solid skyblue;
+    //border: 3px solid skyblue;
     display: flex;
     width:45%;
 
 `
 
 export const Comment = styled.div`
-    border: 3px solid yellow;
+    //border: 3px solid yellow;
     display:flex;
+    flex-direction: column;
     box-sizing: border-box;
     width: 100%;
+    height: 800px;
     margin-top: 200px;
-    height: 400px;
+    
 `
 
-export const ReviewBox = styled.div`
+export const CommentBox = styled.div`
+    background-color: rgba(49, 49, 49, 0.2);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 50px 70px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
 export const Review = styled.div`   
+    //border: 2px solid black;
+    display: flex;
+    width: 60%;
+    height: 20px;
 
+    border-bottom: 1px solid #eeeeef;
+    padding: 25px 0 23px 0;
+
+    
 `
 
 export const ReImage = styled.div`
+
+    opacity: .1;
 
 `
 
@@ -224,10 +246,13 @@ export const ReDate = styled.div`
 `
 
 export const InputBox = styled.div`
-
+    display: flex;
+    flex-direction: column;
 `
 
-export const InputBoxText = styled.div`
+export const InputText = styled.textarea`
+    width: 800px;
+    height: 200px;
 
 `
 
