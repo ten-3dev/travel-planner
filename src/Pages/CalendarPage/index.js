@@ -6,7 +6,7 @@ const calendarPage = () =>{
     return(
         <>
         <Styles.ImageBox>
-            <Styles.Image src="assets/image 32.png"/>
+            <Styles.Image src="assets/image32.png"/>
         </Styles.ImageBox>
             <MarginTopWrapper>
                 <Styles.Wrapper>
@@ -19,7 +19,7 @@ const calendarPage = () =>{
                                         <Styles.Day>Day1</Styles.Day>
                                         <Styles.PlanInfoList>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -31,10 +31,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -46,10 +46,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -61,10 +61,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -76,10 +76,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -91,10 +91,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -106,10 +106,10 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         <Styles.PlaceInfo>
-                                            <Styles.PlanImage src= "assets/image 32.png"/>
+                                            <Styles.PlanImage src= "assets/image32.png"/>
                                             <Styles.Text>
                                                 <Styles.PlaceTitle>
                                                     여기는 여행장소 제목
@@ -121,7 +121,7 @@ const calendarPage = () =>{
                                                     만남은 쉽고 이별은 참 어려워 
                                                 </Styles.Content> 
                                             </Styles.Text>
-                                            <Styles.MapBtn src= "assets/image 35.png"/>
+                                            <Styles.MapBtn src= "assets/image35.png"/>
                                         </Styles.PlaceInfo>
                                         </Styles.PlanInfoList>
                                     </Styles.DayList>
@@ -129,7 +129,7 @@ const calendarPage = () =>{
                                         <Styles.Day>Day2</Styles.Day>
                                         <Styles.PlanInfoList>
                                             <Styles.PlaceInfo>
-                                                <Styles.PlanImage src= "assets/image 32.png"/>
+                                                <Styles.PlanImage src= "assets/image32.png"/>
                                                 <Styles.Text>
                                                     <Styles.PlaceTitle>
                                                         여기는 여행장소 제목
@@ -141,7 +141,7 @@ const calendarPage = () =>{
                                                         만남은 쉽고 이별은 참 어려워 
                                                     </Styles.Content> 
                                                 </Styles.Text>
-                                                <Styles.MapBtn src= "assets/image 35.png"/>
+                                                <Styles.MapBtn src= "assets/image35.png"/>
                                             </Styles.PlaceInfo>
                                         </Styles.PlanInfoList>
                                     </Styles.DayList>
@@ -149,7 +149,7 @@ const calendarPage = () =>{
                                         <Styles.Day>Day3</Styles.Day>
                                         <Styles.PlanInfoList>
                                             <Styles.PlaceInfo>
-                                                <Styles.PlanImage src= "assets/image 32.png"/>
+                                                <Styles.PlanImage src= "assets/image32.png"/>
                                                 <Styles.Text>
                                                     <Styles.PlaceTitle>
                                                         여기는 여행장소 제목
@@ -161,12 +161,12 @@ const calendarPage = () =>{
                                                         만남은 쉽고 이별은 참 어려워 
                                                     </Styles.Content> 
                                                 </Styles.Text>
-                                                <Styles.MapBtn src= "assets/image 35.png"/>
+                                                <Styles.MapBtn src= "assets/image35.png"/>
                                             </Styles.PlaceInfo>
                                         </Styles.PlanInfoList>
                                     </Styles.DayList>
                                 </Styles.PlanInfoList>
-                                <Styles.Map src="assets/image 30.png" />
+                                <Styles.Map src="assets/image30.png" />
                             </Styles.Box>
                         </Styles.Menu>
                         <Styles.ShareBtn/>

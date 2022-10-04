@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import React from 'react';
 import * as Styles from './style';
 
 const SignPage = () => {
     return(
-      <Modal isOpen={true}>
         <Styles.Wrapper>
             <Styles.ContentBox>
             <Styles.SignText>SIGN UP</Styles.SignText>
@@ -43,7 +41,6 @@ const SignPage = () => {
                 <Styles.UserGreenBtn>가입하기</Styles.UserGreenBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
-        </Modal>
     )
 }
 export default SignPage;
