@@ -5,6 +5,9 @@ export const ContentBox = styled.div`
     width: 100%;
     display: flex;
 `
+export const ContentBox1 = styled.div`
+    width: 1200px;
+`
 
 export const InputBox = styled.div`
     width: 100%;
@@ -60,27 +63,46 @@ export const TravelListBox = styled.div`
 `
 
 export const TravelFilterTag = styled.div`
-    /* width: 80%; */
     width: 330px;
-    height: 700px;
-    /* height: 80%;  */
+    height: 590px;
     background: rgba(0, 150, 100, 0.5);
-    /* margin: 40px 50px 0 40px; */
     margin: 20px auto 0 auto;
     border-radius: 20px;
-    
+    padding: 30px 0 30px 0;
+      
+`
+
+export const GridTagBoxItem = styled.div`
+    grid-column : 1;
+    grid-row: 1;
+    background-color: white;
+    margin: 10px 10px 10px 10px;
+    border-radius: 20px;
 `
 
 export const FilterBoxSticky = styled.div`
     position: sticky;
     top: 90px;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-bottom: 20px;
 `
 
 export const TravelFilterBox = styled.div`
     width: 70%;
     margin-top: 15px;   
+`
+export const TravelFilterTagBox = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(9, minmax(60px, auto));
+    grid-gap: 20px;
+   
+`
+export const SteamListButtonBox = styled.div`
+    width: 1200px;
+    height: 100px;
+    text-align: end;
+   
 `
 
 export const TravelWrapper5 = styled.div`
@@ -111,6 +133,16 @@ export const Img1 = styled.img`
     width: 20px;
     height: 20px;
     display: flex;
+    cursor: pointer;
+`
+
+export const SteamListButtonImg = styled.img`
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    position: sticky;
+    top: 80%;
+    left: 100%;
 `
 
 export const Like = styled.button`
