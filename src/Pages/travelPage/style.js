@@ -60,16 +60,40 @@ export const TravelListBox = styled.div`
 `
 
 export const TravelFilterTag = styled.div`
-    width: 80%;
-    height: 80%; 
+    width: 330px;
+    height: 700px;
     background: rgba(0, 150, 100, 0.5);
-    margin: 40px 50px 0 40px;
+    margin: 20px auto 0 auto;
     border-radius: 20px;
-    
+    padding: 30px 0 30px 0;
+      
 `
+
+export const GridTagBoxItem = styled.div`
+    grid-column : 1;
+    grid-row: 1;
+    background-color: white;
+    margin: 10px 10px 10px 10px;
+    border-radius: 20px;
+`
+
+export const FilterBoxSticky = styled.div`
+    position: sticky;
+    top: 90px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+`
+
 export const TravelFilterBox = styled.div`
     width: 70%;
-    margin-top: 75px;   
+    margin-top: 15px;   
+`
+export const TravelFilterTagBox = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(9, minmax(60px, auto));
+    grid-gap: 20px;
+   
 `
 
 export const TravelWrapper5 = styled.div`

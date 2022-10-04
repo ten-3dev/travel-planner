@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from '../../Common/style';
+import { getAddressData } from "../../Data";
 
 const MainPage = () => {
+    const [addressData, setAddressData] = useState(null);
+    const [filterAddressData, setFilterAddressData] = useState([]);
+    const searchInput = useRef("");
 
     const NextArrow = props => {
         const { className, onClick } = props;
@@ -36,7 +40,18 @@ const MainPage = () => {
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />
-      };
+    };
+
+    const onPreview = async (e) => {
+        if(addressData === null){
+            const data = await getAddressData();
+            setAddressData(data);
+            return;
+        }
+
+        const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
+        setFilterAddressData(filterData);
+    }
 
     return(
         <>
@@ -47,13 +62,20 @@ const MainPage = () => {
                 <Styles.ContentBox>
                     <Styles.Title>
                         TRAVEL PLANNER
-                        <Styles.ColorBar></Styles.ColorBar>
+                        <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>
-                        <Styles.Input placeholder="어디로 여행가시나요?"/>
+                        <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput}/>
                         <Styles.Btn>
                             <Styles.Img src="assets/search_icon.png"/>
                         </Styles.Btn>
+                        <Styles.InputPreView display={(searchInput.current.value && filterAddressData.length > 0) ? "true" : undefined}>
+                            {searchInput.current.value && filterAddressData.map((el, idx) => {
+                                return(
+                                    <Styles.InputPreItem key={idx}>{el.name}</Styles.InputPreItem>
+                                )
+                            })}
+                        </Styles.InputPreView>
                     </Styles.InputBox>
                 </Styles.ContentBox>
             </Styles.Wrapper>
@@ -83,7 +105,7 @@ const MainPage = () => {
                                 <Styles.BottomContentText>간단하게 원하는 여행지를 찾아보고 간단하게 원하는 계획을 세울 수 있습니다.</Styles.BottomContentText>
                             </Styles.BottomContentWords>
                         </Styles.BottomContentSBox>
-                        <Styles.BottomContentBtn>플랜 모두 보기</Styles.BottomContentBtn>
+                        <Styles.BottomContentBtn>플랜 작성하기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                     <Styles.BottomContentBox column paddingBottom="50px">
                         <Styles.CarouselTitle>인기플랜</Styles.CarouselTitle>
@@ -148,7 +170,6 @@ const MainPage = () => {
                         <Styles.BottomContentBtn>플랜 모두 보기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                 </Styles.BottomBox>
-                <Styles.EventImg src="assets/eventBanner.png"/>
             </MarginTopWrapper>
         </>
     )
