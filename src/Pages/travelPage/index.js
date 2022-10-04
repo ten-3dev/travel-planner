@@ -3,7 +3,7 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 
-const travelPage = () => {
+const TravelPage = () => {
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
@@ -96,4 +96,4 @@ const travelPage = () => {
         </MarginTopWrapper>
       );
 }
-export default travelPage;
+export default TravelPage;
