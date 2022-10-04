@@ -12,7 +12,7 @@ const calendarPage = () =>{
                 <Styles.Wrapper>
                     <Styles.ContentBox>
                         <Styles.Menu>
-                            <Styles.Title>상세정보</Styles.Title>
+                            <Styles.Title>상세 정보</Styles.Title>
                             <Styles.Box>
                                 <Styles.PlanInfoList height="100%" margin="0px">
                                     <Styles.DayList>
@@ -171,19 +171,20 @@ const calendarPage = () =>{
                         </Styles.Menu>
                         <Styles.ShareBtn/>
                         <Styles.Comment>
-                            <Styles.ReviewBox>
+                            <Styles.Title>톡톡</Styles.Title>
+                            <Styles.CommentBox>
                                 <Styles.Review>
                                     <Styles.ReImage/>
                                     <Styles.ReContent/>
                                     <Styles.ReDate/>
                                 </Styles.Review>
-                            </Styles.ReviewBox>
-                            <Styles.InputBox>
-                                <Styles.InputBoxText/>
-                                <Styles.Profile/>
-                                <Styles.Input/>
-                                <Styles.InputBtn/>
-                            </Styles.InputBox>
+                                <Styles.InputBox>
+                                    <Styles.InputText/>
+                                    <Styles.Profile/>
+                                    <Styles.Input/>
+                                    <Styles.InputBtn/>
+                              </Styles.InputBox>
+                            </Styles.CommentBox>
                         </Styles.Comment>
                     </Styles.ContentBox>
                 </Styles.Wrapper>
