@@ -3,7 +3,7 @@ import Header from "./Components/header";
 import Footer from "./Components/footer";
 import MainPage from './Pages/mainPage';
 import CalendarPage from "./Pages/CalendarPage";
-import InformationPage from './Pages/localInformationPage';
+import InformationPage from './Pages/locallnformationPage';
 import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
