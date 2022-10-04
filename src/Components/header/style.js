@@ -41,3 +41,41 @@ export const Img = styled.img`
     cursor: pointer;
     margin-right: 15px;
 `
+
+export const MyProfile = styled.div`
+    width: 40px;
+    height: 40px;
+    background-color: #565656;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+`
+
+export const MyProfileListBox = styled.div`
+    position: absolute;
+    width: 140px;
+    background-color: #a9a9a9;
+    top: 50px;
+    left: -50px;
+    border-radius: 5px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    display: ${props => {
+        return props.clicked ? "block" : "none"
+    }};
+`
+
+export const MyProfileItem = styled.div`
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    text-align: center;
+    color: whitesmoke;
+    font-weight: 400;
+    border-bottom: ${props => {
+        return props.last ? "" : "1px solid gray"
+    }};
+    :hover{
+        text-decoration: underline;
+    }
+`
