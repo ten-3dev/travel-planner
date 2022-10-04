@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
-import Modal from '../modal/Modal'
 
 const Header = () => {
     const navigate = useNavigate();
