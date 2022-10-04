@@ -23,7 +23,7 @@ export const Video = styled.video`
 export const ContentBox = styled.div`
     width: 1000px;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     margin-left: -500px;
     margin-top: -150px;
@@ -56,9 +56,39 @@ export const InputBox = styled.div`
     background-color: white;
     border-radius: 5px;
     box-sizing: border-box;
-    padding: 0 0 0 7px;
     display: flex;
     background-color: #F3F3F3;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+`
+
+export const InputPreView = styled.div`
+    width: 650px;
+    height: 330px;
+    background-color: #F5F5F5;
+    position: absolute;
+    top: 60px;
+    border-radius: 5px;
+    padding: 15px 30px 30px 30px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: ${props => {
+        return props.display ? "block" : "none"
+    }};
+`
+
+export const InputPreItem = styled.div`
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    :hover{
+        text-decoration: underline;
+    }
 `
 
 export const Input = styled.input`
@@ -72,6 +102,7 @@ export const Input = styled.input`
     padding-left: 9px;
     font-weight: 450;
     background-color: #F3F3F3;
+    margin-left: 7px;
 `
 
 export const Btn = styled.div`
@@ -149,6 +180,7 @@ export const BottomContentBtn = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-top: 60px;
 `
 
 export const CarouselTitle = styled.div`
@@ -158,7 +190,7 @@ export const CarouselTitle = styled.div`
 
 export const SliderCustom = styled(Slider)`
     width: 930px;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
 `
 
 export const SliderBox = styled.div`
@@ -212,12 +244,6 @@ export const SliderInfoBox = styled.div`
 export const SliderInfoImg = styled.img`
     width: 25px;
     margin-right: 5px;
-`
-
-export const EventImg = styled.img`
-    width: 100%;
-    cursor: pointer;
-    margin-bottom: 60px;
 `
 
 export const SliderArrow = styled.img`
