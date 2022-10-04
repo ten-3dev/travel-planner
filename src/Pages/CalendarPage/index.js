@@ -12,7 +12,7 @@ const calendarPage = () =>{
                 <Styles.Wrapper>
                     <Styles.ContentBox>
                         <Styles.Menu>
-                            <Styles.Title>상세정보</Styles.Title>
+                            {/* <Styles.Title>상세정보</Styles.Title> */}
                             <Styles.Box>
                                 <Styles.PlanInfoList height="100%" margin="0px">
                                     <Styles.DayList>

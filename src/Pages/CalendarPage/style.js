@@ -64,7 +64,6 @@ export const Title = styled.div`
     font-size: 30px;
 `
 export const Box = styled.div`
-
     border: 3px solid gray;
     display: flex;
     height: calc(100% - 50px);
@@ -75,6 +74,21 @@ export const PlanInfoList = styled.div`
     border: 3px solid orange;
     
     display: flex;
+    overflow-y: auto;
+        ::-webkit-scrollbar {   // 스크롤 전체
+            width: 15px;
+        }
+        ::-webkit-scrollbar-thumb { // 스크롤바
+            background-color: #2f3542;
+            border-radius: 10px;
+            background-clip: padding-box;
+            border: 3px solid transparent;
+        }
+        ::-webkit-scrollbar-track { //스크롤 여백
+            background-color: grey;
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 5px white;
+        }
     flex: 1;
     flex-direction: column;
     height: ${props =>{
@@ -83,8 +97,7 @@ export const PlanInfoList = styled.div`
     margin: ${props => {
         return props.margin ? `${props.margin}` : ""
     }};
-    overflow-y: scroll;
-
+   
 `
 
 export const DayList = styled.div`
@@ -186,7 +199,7 @@ export const Comment = styled.div`
     display:flex;
     box-sizing: border-box;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 200px;
     height: 400px;
 `
 
