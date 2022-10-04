@@ -8,8 +8,8 @@ import LoginPage from './Pages/loginPage';
 import SignPage from './Pages/signPage';
 import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MyPage from "./Pages/myPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
