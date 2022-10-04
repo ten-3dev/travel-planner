@@ -47,7 +47,7 @@ const MainPage = () => {
                 <Styles.ContentBox>
                     <Styles.Title>
                         TRAVEL PLANNER
-                        <Styles.ColorBar></Styles.ColorBar>
+                        <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>
                         <Styles.Input placeholder="어디로 여행가시나요?"/>

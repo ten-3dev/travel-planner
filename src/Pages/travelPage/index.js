@@ -83,14 +83,14 @@ const TravelPage = () => {
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
                 </Styles.TravelListBox>
-
                 <Styles.TravelFilterBox>
+                <Styles.FilterBoxSticky>
                     <Styles.Text>필터</Styles.Text>
                     <Styles.TravelFilterTag>
                     
                     </Styles.TravelFilterTag>
+                </Styles.FilterBoxSticky>
                 </Styles.TravelFilterBox>
-                
             </Styles.ContentBox>
 
         </MarginTopWrapper>

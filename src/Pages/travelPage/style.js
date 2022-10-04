@@ -60,16 +60,27 @@ export const TravelListBox = styled.div`
 `
 
 export const TravelFilterTag = styled.div`
-    width: 80%;
-    height: 80%; 
+    /* width: 80%; */
+    width: 330px;
+    height: 700px;
+    /* height: 80%;  */
     background: rgba(0, 150, 100, 0.5);
-    margin: 40px 50px 0 40px;
+    /* margin: 40px 50px 0 40px; */
+    margin: 20px auto 0 auto;
     border-radius: 20px;
     
 `
+
+export const FilterBoxSticky = styled.div`
+    position: sticky;
+    top: 90px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+`
+
 export const TravelFilterBox = styled.div`
     width: 70%;
-    margin-top: 75px;   
+    margin-top: 15px;   
 `
 
 export const TravelWrapper5 = styled.div`
