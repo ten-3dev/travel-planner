@@ -2,7 +2,7 @@ import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
-const myPage = () => {
+const MyPage = () => {
     return (
         <MarginTopWrapper margin>
             <Styles.ProfileBox>
@@ -133,4 +133,4 @@ const myPage = () => {
     )
 }
 
-export default myPage;
+export default MyPage;
