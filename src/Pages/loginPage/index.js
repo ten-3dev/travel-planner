@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import Modal from 'react-modal';
+import React from 'react';
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 
 const LoginPage = () => {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
     return(
-        <Modal isOpen={true}>
         <Styles.Wrapper>
             <Styles.ContentBox>
                 <Styles.LoginText>LOGIN</Styles.LoginText>
@@ -28,7 +25,6 @@ const LoginPage = () => {
                 <Styles.KakaoBtn>카카오 로그인</Styles.KakaoBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
-        </Modal>
     )
 }
 

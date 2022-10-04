@@ -4,8 +4,6 @@ import Footer from "./Components/footer";
 import MainPage from './Pages/mainPage';
 import CalendarPage from "./Pages/CalendarPage";
 import InformationPage from './Pages/localInformationPage';
-import LoginPage from './Pages/loginPage';
-import SignPage from './Pages/signPage';
 import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
@@ -19,8 +17,6 @@ const App = () => {
         <Route path="/" element={<MainPage/>}/>
         <Route path="/calendar" element={<CalendarPage/>}/>
         <Route path="/information" element={<InformationPage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/sign" element={<SignPage/>}/>
         <Route path="/travel" element={<TravelPage/>}/>
         <Route path="/myPage" element={<MyPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>

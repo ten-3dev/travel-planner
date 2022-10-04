@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import Modal from '../modal/Modal'
 
 const Header = () => {
     const navigate = useNavigate();
@@ -9,16 +10,7 @@ const Header = () => {
 
     const moveMain = () => {
         navigate('/');
-    }
-
-    const moveLogin = () => {
-        navigate('/login');
-    }
-
-    const moveSign = () => {
-        navigate('/sign');
-    }
-    
+    }    
     return(
         <Styles.Wrapper main={location.pathname === '/' ? true : false}>
             <MarginTopWrapper>
@@ -30,8 +22,8 @@ const Header = () => {
                         <Styles.Text>공유된 플랜 보기</Styles.Text>
                     </Styles.Menu>
                     <Styles.LogSign>
-                        <Styles.Text onClick={moveLogin}>로그인</Styles.Text>
-                        <Styles.Text onClick={moveSign}>회원가입</Styles.Text>
+                        <Styles.Text>로그인</Styles.Text>
+                        <Styles.Text>회원가입</Styles.Text>
                     </Styles.LogSign>
                 </Styles.Header>
             </MarginTopWrapper>
