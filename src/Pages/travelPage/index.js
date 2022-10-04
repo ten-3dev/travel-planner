@@ -87,7 +87,9 @@ const TravelPage = () => {
                 <Styles.FilterBoxSticky>
                     <Styles.Text>필터</Styles.Text>
                     <Styles.TravelFilterTag>
-                    
+                        <Styles.TravelFilterTagBox>
+                            <Styles.GridTagBoxItem/>
+                        </Styles.TravelFilterTagBox>
                     </Styles.TravelFilterTag>
                 </Styles.FilterBoxSticky>
                 </Styles.TravelFilterBox>
