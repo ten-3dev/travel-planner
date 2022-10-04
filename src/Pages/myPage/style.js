@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const ProfileBox = styled.div`
-    width: 100%;
+    width: 1000px;
     display: flex;
-    padding: 150px 0 50px 50px;
+    margin: 150px 0 50px 450px;
+    background-color: green;
 `
 
 export const SettingBox = styled.div`
     width: 22%;
     display: flex-end;
+    align-items: center;
 
 `
 export const MyWritingBox = styled.div`
@@ -109,10 +111,11 @@ export const Profile = styled.img`
     border-radius: 100%;
     margin-bottom: 50px;
     cursor: pointer;
+    
 `
 
 export const Text = styled.div`
-    width: 100%; 
+    width: 300px; 
     height: 150px;
     font-size: 30px;
     margin: 100px 0 0 0;
