@@ -10,12 +10,12 @@ export const MapBox = styled.div`
     width: 100%;
 `
 export const MapImg = styled.div`
-    width: 1200px;
     height: 1200px;
     background-color: yellow;
 `
 export const ScheduleBox = styled.div`
-    width: 100%;
+    width: 500px;
+    margin-left: 100px;
 `
 export const ScheduleContentBox = styled.div`
     width: 500px;
@@ -41,5 +41,13 @@ export const ScheduleBtnBox = styled.button`
     cursor: pointer;
     color: white;
 `
-
-//버튼 선색깔 없애기
+export const TitleInput = styled.input`
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 100px;
+    font-size: 20px;
+    //font-weight: 500px;
+    text-align: center;
+    //font-weight: bold;
+`
+//버튼 선색깔 없애기, input 스타일 물어보기
