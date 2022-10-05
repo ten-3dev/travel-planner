@@ -29,14 +29,24 @@ export const MemberEdit = styled.div`
     font-size: 25px;
     font-weight: bold;
 `
-export const MemberConrent = styled.input` //칸박스 수정해야함 rgba로 변경하고 아이디~비번까지는 글씨 투명 나머지는 글씨 잘보이게 
+export const MemberConrent = styled.div` //칸박스 수정해야함 rgba로 변경하고 아이디~비번까지는 글씨 투명 나머지는 글씨 잘보이게 
+    width: 500px;
+    height: 50px;
+    font-size: 25px;
+    text-align: center; 
+    border-radius: 9px;
+    background-color: #F5F5F5;
+    border: none;
+`
+export const Content = styled.input`
     width: 500px;
     height: 50px;
     font-size: 25px;
     text-align: center; 
     cursor: pointer;
     border-radius: 9px;
-    background-color: #F5F5F5;
+    background-color: #DEDEDE;
+    font-weight: bold;
     border: none;
 `
 export const GenderCheck = styled.input` 
