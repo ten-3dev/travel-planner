@@ -19,18 +19,14 @@ const InformationPage = () => {
                 <Styles.Titleimage src={"assets/baka.png"}></Styles.Titleimage>
             </Styles.TitleImgBox>
             <Styles.InformationBox>
-                <Styles.InformationTitle>
-                    상세정보
-                </Styles.InformationTitle>
+                <Styles.InformationTitle>상세정보</Styles.InformationTitle>
                 <Styles.InformationBar />
             <Styles.InformationContnet>
                 제 1 관광명소 남산서울타워
                 국내외 관광객들이 년 1,200만 명 방문하는 서울 제1의 관광명소인 남산서울타워
                 최근 한류 바람을 몰고 각종 예능, 드라마의 촬영지로 등등
             </Styles.InformationContnet>
-            <Styles.Sources>
-            [출처: 쮸짱이의 브이로그 히힛]
-            </Styles.Sources>
+            <Styles.Sources>[출처: 쮸짱이의 브이로그 히힛]</Styles.Sources>
             <Styles.Map>지도</Styles.Map>
             <Styles.DetailedInforBox>
                 <Styles.DetaBox>
@@ -38,32 +34,26 @@ const InformationPage = () => {
                         <Styles.DetaFont>● 문의 및 안내</Styles.DetaFont>
                         <Styles.DetainforMation>043-844-0741</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont>● 주소</Styles.DetaFont>
                         <Styles.DetainforMation>충청북도 충주시 양성면 가곡로 1434</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont>● 휴일</Styles.DetaFont>
                         <Styles.DetainforMation>매주 월요일 휴관(공휴일 월요일 제외)</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont>● 이용요금</Styles.DetaFont>
                         <Styles.DetainforMation>대인 32123원</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont/>
                             <Styles.DetainforMation>소인32123원</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont>● 장애인주차요금</Styles.DetaFont>
                         <Styles.DetainforMation>장애인 주차장있음,무장애 편의시설</Styles.DetainforMation>
                     </Styles.DetaFontBox>
-
                     <Styles.DetaFontBox>
                         <Styles.DetaFont>● 휠체어</Styles.DetaFont>
                         <Styles.DetainforMation>대여가능(100대)</Styles.DetainforMation>
