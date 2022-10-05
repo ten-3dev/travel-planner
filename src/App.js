@@ -9,6 +9,7 @@ import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
 import SchedulePage from "./Pages/scheduleBoxPage";
 import PopularPlanPage from "./Pages/popularPlanPage";
+import EditmemberPage from"./Pages/EditmemberPage";
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/schedule" element={<SchedulePage/>}/>
         <Route path="/myPage" element={<MyPage/>}/>
         <Route path="/popular" element={<PopularPlanPage/>}/>
+        <Route path="/Editmember" element={<EditmemberPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
       <Footer />
