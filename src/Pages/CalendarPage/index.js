@@ -1,6 +1,7 @@
 import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import Map from "../../Components/kakaoMap";
 
 const calendarPage = () =>{
     return(
@@ -166,7 +167,11 @@ const calendarPage = () =>{
                                         </Styles.PlanInfoList>
                                     </Styles.DayList>
                                 </Styles.PlanInfoList>
-                                <Styles.Map src="assets/image30.png" />
+                                <Styles.MapBox>
+                                   <Map/>
+                                </Styles.MapBox>
+                                
+
                             </Styles.Box>
                         </Styles.Menu>
                         <Styles.ShareBtn/>
@@ -189,7 +194,6 @@ const calendarPage = () =>{
                     </Styles.ContentBox>
                 </Styles.Wrapper>
             </MarginTopWrapper>
-        
         </>
     )
 }

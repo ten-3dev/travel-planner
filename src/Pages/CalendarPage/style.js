@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -58,7 +58,7 @@ export const Title = styled.div`
     border-bottom-width: 2.3px;
     width: 36%;
     padding: 25px 0 10px 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `
 export const Box = styled.div`
     display: flex;
@@ -187,10 +187,11 @@ export const MapBtn = styled.img`
 
 `
 
-export const Map = styled.img`
+export const MapBox = styled.img`
     //border: 3px solid skyblue;
     display: flex;
-    width:45%;
+    width:500px;
+    height: 500px;
 
 `
 
