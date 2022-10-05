@@ -41,5 +41,4 @@ export const ScheduleBtnBox = styled.button`
     cursor: pointer;
     color: white;
 `
-
 //버튼 선색깔 없애기
