@@ -40,6 +40,7 @@ export const ScheduleBtnBox = styled.button`
     margin: 30px 170px;
     cursor: pointer;
     color: white;
+    border: none;
 `
 export const TitleInput = styled.input`
     width: 300px;
