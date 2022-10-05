@@ -37,10 +37,12 @@ const SignPage = () => {
                 </Styles.SignText2>
 
                 <Styles.SignText2>성별
+                  <Styles.RadioWrap>
                   <Styles.RadioLabel htmlFor="male">남</Styles.RadioLabel>
                   <Styles.RadioBtn type="radio" name='gender' id="male"/>
                   <Styles.RadioLabel htmlFor="female">여</Styles.RadioLabel>
                   <Styles.RadioBtn type="radio" name='gender' id="female"/>
+                  </Styles.RadioWrap>
                 </Styles.SignText2>
 
                 <Styles.UserGreenBtn>가입하기</Styles.UserGreenBtn>
