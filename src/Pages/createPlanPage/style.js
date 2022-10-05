@@ -92,89 +92,68 @@ export const CalendarCustom = styled(Calendar)`
   }
 `
 
-export const AllBox = styled.div`
+/////////////////////////////////////////////////////////////////
+
+export const Wrapper = styled.div`
     width: 100%;
-    margin-top: 300px;
-    margin-bottom: 500px;
+    height: 100vh;
+    display: flex;
 `
-export const MapBox = styled.div`
-    width: 900px;
-    margin-left: 300px;
+
+export const Map = styled.div`
+    width: 100%;
+    height: 100vh;
+    background-color: green;
+    position: relative;
 `
-export const MapImg = styled.div`
-    height: 1000px;
-    background-color: yellow;
+
+export const ControlBox = styled.div`
+    width: 300px;
+    height: 100vh;
+    background-color: red;
+    position:fixed;
+    top: 0;
+    left: ${props => {
+        return props.open ? "0" : "-300px"
+    }};
+    z-index: 1;
+    transition: all .5s;
 `
-export const CalenderDay = styled.div`
-    font-size: 20px;
-    font-weight: 500px;
-    font-weight: bold;  
-`
-export const CalenderImg = styled.img`
-    width: 100px;
-    margin: 0 30px;
-    cursor: pointer;
-`
-export const ContentBox = styled.div`
-   // align-items: center;
-   display: flex;
-`
-export const ContentImg = styled.img`
-    width: 50px;
-    cursor: pointer;
-`
-export const ContentTitle = styled.div`
-    font-size: 20px;
-    font-weight: bold; 
-`
-export const ContentText = styled.div`
-    font-size: 15px;
-   // flex-direction: row;
-    //font-weight: bold; 
-`
-export const ContentTextBox = styled.div`
+
+export const TravelBox = styled.div`
+    width: 500px;
+    height: 100vh;
+    background-color: blue;
+    top: 0;
+    position:fixed;
+    margin-right: ${props => {
+        return props.open ? "0" : "-500px"
+    }};
+    right: 0;
+    z-index: 1;
+    transition: all .5s;
 
 `
-    
-export const CalenderBox = styled.div`
+
+export const ContentBox = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    position: relative;
+`
+
+export const OpenBtn = styled.div`
+    width: 50px;
+    height: 50px;
+    background-color: blanchedalmond;
+    position: absolute;
+    ${props => {
+        if(props.right) return "right: -50px;"
+        if(props.left) return "left: -50px;"
+    }}
+    font-size: 25px;
     display: flex;
-   // align-items: center;
-`
-export const ScheduleBox = styled.div`
-    //display: flex;
-    width: 700px;
-    margin: 50px 50px 50px;
-`
-export const ScheduleContentBox = styled.div`
-    width: 500px;
-    margin-top: 30px;
-    font-size: 20px;
-    font-weight: 500px;
-    text-align: center;
-    font-weight: bold;  
-`
-export const ScheduleDayBox = styled.div`
-    width: 500px;
-    margin-top: 30px;
-    font-size: 35px;
-    font-weight: 500px;
-    text-align: center;
-    font-weight: bold;
-`
-export const ScheduleBtnBox = styled.button`
-    width: 150px;
-    background: rgba(0, 150, 100, 0.5);
-    border-radius: 5px;
-    margin: 30px 170px;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    color: white;
-`
-export const TitleInput = styled.input`
-    width: 300px;
-    margin-top: 30px;
-    margin-left: 100px;
-    font-size: 20px;
-    //font-weight: 500px;
-    text-align: center;
-    //font-weight: bold;
 `

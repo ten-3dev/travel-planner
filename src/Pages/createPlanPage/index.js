@@ -11,13 +11,20 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => {
         const dateN = Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
 
         const dateArr = [(value[0])];
+        
+        // 오늘보다 이전 날짜면 끝냄
+        if(dateArr[0] < new Date().setHours(0, 0, 0, 0)){ // 시간을 0으로 초기화
+            alert("현재 날짜 이후로 선택해주세요.");
+            onChange(new Date());
+            return;
+        }
 
         // 반복문을 이용해 내일을 구하고 또 내일내일을 구하는 식으로 리스트를 만듦
         for(let i = 0; i < dateN - 1; i++){
             const date = dateArr[dateArr.length - 1];
             const tomorrow = new Date(date);
             tomorrow.setDate(tomorrow.getDate() + 1);
-            
+
             dateArr.push(tomorrow);
         }
         
@@ -39,44 +46,51 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => {
 const CreatePlanPage = () => {
     const [isModelOpen, setIsModelOpen] = useState(true); //로그인용 모달
     const [dateList, setDateList] = useState();
+    
+    //박스를 움직이게 하는 state
+    const [controlOpen, setControlOpen] = useState(false); // Control
+    const [travelOpen, settravelOpen] = useState(false); // Travel
 
     const context = useContext(UserContext);
     const { setLayoutOpen } = context;
 
-    useEffect(() => {
+    useEffect(() => { // 헤더, 푸터 없앰
         setLayoutOpen(false);
     });
 
-    useEffect(() => {
+    useEffect(() => { // 임시. 이따 지우셈
         console.log(dateList);
     }, [dateList])
+
+    window.onbeforeunload = (event) => { // 리로드/뒤로가기 트리거
+        const e = event || window.event;
+        e.preventDefault();
+        if (e) {
+          e.returnValue = '';
+        }
+        return '';
+    };
 
     return(
         <>
             <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
-            <Styles.AllBox>
-                <Styles.ScheduleBox>
-                    <Styles.CalenderBox>
-                        <Styles.CalenderDay>2022-03-21 ~ 2022-09-18</Styles.CalenderDay>
-                        <Styles.CalenderImg src={"assets/달력.png"}></Styles.CalenderImg>
-                    </Styles.CalenderBox>
-                    <Styles.ScheduleDayBox>DAY1</Styles.ScheduleDayBox>
+            {isModelOpen ? null : 
+            <Styles.Wrapper>
+                <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
-                        <Styles.CalenderImg src={"assets/plan_ex1.png"} ></Styles.CalenderImg>
-                        <Styles.ContentTitle>낙동강 경천대(경천대 전망대)</Styles.ContentTitle>
-                        <Styles.ContentTextBox>
-                            <Styles.ContentText>경주 상주시</Styles.ContentText>
-                            <Styles.ContentText>054-536-7040</Styles.ContentText>
-                            <Styles.ContentText>#2021대한민국안심여행캠페인#가족여행#경천대</Styles.ContentText>
-                        </Styles.ContentTextBox>
+                        <Styles.OpenBtn right onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                     </Styles.ContentBox>
-                    <Styles.ScheduleBtnBox>일정추가</Styles.ScheduleBtnBox>
-                    <Styles.ScheduleDayBox>DAY2</Styles.ScheduleDayBox>
-                    <Styles.ScheduleBtnBox>일정추가</Styles.ScheduleBtnBox>
-                    <Styles.ScheduleDayBox>DAY3</Styles.ScheduleDayBox>
-                    <Styles.ScheduleBtnBox>일정추가</Styles.ScheduleBtnBox>
-                </Styles.ScheduleBox>
-            </Styles.AllBox>
+                </Styles.ControlBox>
+                <Styles.Map>
+
+                </Styles.Map>
+                <Styles.TravelBox open={travelOpen}>
+                    <Styles.ContentBox>
+                        <Styles.OpenBtn left onClick={() => {settravelOpen(!travelOpen)}}>{travelOpen ? ">>" : "<<"}</Styles.OpenBtn>
+                    </Styles.ContentBox>
+                </Styles.TravelBox>
+            </Styles.Wrapper>
+            }
         </>
     )
 }
