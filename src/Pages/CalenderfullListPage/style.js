@@ -45,7 +45,7 @@ export const ContentTextBox = styled.div`
 
 `
     
-export const calenderBox = styled.div`
+export const CalenderBox = styled.div`
     display: flex;
    // align-items: center;
 `

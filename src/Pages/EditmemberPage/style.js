@@ -18,6 +18,7 @@ export const TitleBar = styled.div`
 `
 export const MemberInforBox = styled.div`
     width: 100%;
+    background: rgba(0, 100, 100, 0.1);
 `
 export const MemberContentBox = styled.div`
     margin: 0 50px 100px;

@@ -5,10 +5,10 @@ export const CalenderfullListPage = () =>{
     return(
         <Styles.AllBox>
              <Styles.ScheduleBox>
-                <Styles.calenderBox>
+                <Styles.CalenderBox>
                     <Styles.CalenderDay>2022-03-21 ~ 2022-09-18</Styles.CalenderDay>
                     <Styles.CalenderImg src={"assets/달력.png"}></Styles.CalenderImg>
-                </Styles.calenderBox>
+                </Styles.CalenderBox>
                 <Styles.ScheduleDayBox>DAY1</Styles.ScheduleDayBox>
                 <Styles.ContentBox>
                     <Styles.CalenderImg src={"assets/plan_ex1.png"} ></Styles.CalenderImg>
