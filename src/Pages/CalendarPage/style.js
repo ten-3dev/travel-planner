@@ -187,11 +187,10 @@ export const MapBtn = styled.img`
 
 `
 
-export const MapBox = styled.img`
-    //border: 3px solid skyblue;
-    display: flex;
-    width:500px;
-    height: 500px;
+export const MapBox = styled.div`
+    border: 1px solid black;
+    width: 600px;
+    height: 750px;
 
 `
 

@@ -167,9 +167,9 @@ const calendarPage = () =>{
                                         </Styles.PlanInfoList>
                                     </Styles.DayList>
                                 </Styles.PlanInfoList>
-                    
-                                <Map/>
-
+                                <Styles.MapBox>
+                                    <Map/>
+                                </Styles.MapBox>
                             </Styles.Box>
                         </Styles.Menu>
                         <Styles.ShareBtn/>
