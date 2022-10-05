@@ -10,7 +10,7 @@ export const EditmemberPage = () => {
             <Styles.MemberInforBox>
                 <Styles.MemberContentBox>
                    <Styles.MemberEdit>아이디</Styles.MemberEdit>
-                   <Styles.MemberConrent placeholder="jjijju" ></Styles.MemberConrent>
+                   <Styles.MemberConrent placeholder="jjijju"></Styles.MemberConrent>
                 </Styles.MemberContentBox>
                 <Styles.MemberContentBox>
                     <Styles.MemberEdit>비밀번호</Styles.MemberEdit>

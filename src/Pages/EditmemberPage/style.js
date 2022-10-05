@@ -10,7 +10,7 @@ export const EditTitle = styled.div`
 `
 export const TitleBar = styled.div` 
     width: 100%;
-    height: 3px;
+    height: 7px;
     margin-top: 10px;
     margin-bottom: 100px;
     background-color: black ;
@@ -20,26 +20,26 @@ export const MemberInforBox = styled.div`
     width: 100%;
 `
 export const MemberContentBox = styled.div`
-    margin: 40px 40px 100px;
-    width: 900px;
+    margin: 0 50px 100px;
     display: flex;
 `
 export const MemberEdit = styled.div`
     width: 200px;
+    margin-right: 100px;
     font-size: 25px;
     font-weight: bold;
 `
 export const MemberConrent = styled.input` //칸박스 수정해야함 rgba로 변경하고 아이디~비번까지는 글씨 투명 나머지는 글씨 잘보이게 
-    width: 400px;
+    width: 500px;
     height: 50px;
     font-size: 25px;
     text-align: center; 
     cursor: pointer;
     border-radius: 9px;
     background-color: #F5F5F5;
-
+    border: none;
 `
-export const GenderCheck = styled.input` //성별버튼 만들어야함 어려워
+export const GenderCheck = styled.input` 
     width: 30px;
     height: 30px;
 `
@@ -64,6 +64,7 @@ export const DeleteBtn = styled.div`
     height: 40px;
     margin: 30px 10px;
     font-size: 25px;
+    text-align: center;
     background-color: red;
     //background: rgba(0, 50, 100, 1);
     color: white;
