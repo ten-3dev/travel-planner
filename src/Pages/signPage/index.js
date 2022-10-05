@@ -37,9 +37,9 @@ const SignPage = () => {
                 </Styles.SignText2>
 
                 <Styles.SignText2>성별
-                  <Styles.RadioLabel for="male">남</Styles.RadioLabel>
+                  <Styles.RadioLabel htmlFor="male">남</Styles.RadioLabel>
                   <Styles.RadioBtn type="radio" name='gender' id="male"/>
-                  <Styles.RadioLabel for="female">여</Styles.RadioLabel>
+                  <Styles.RadioLabel htmlFor="female">여</Styles.RadioLabel>
                   <Styles.RadioBtn type="radio" name='gender' id="female"/>
                 </Styles.SignText2>
 
