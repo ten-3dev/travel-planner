@@ -4,7 +4,6 @@ export const Title = styled.div`
     font-size: 30px;
     font-weight: 500px;
     margin-bottom: 40px;
-    //margin-top: 40px;
     text-align: center;
     font-weight: bold;
 `
@@ -12,7 +11,6 @@ export const TitleBox = styled.div`
     width: 100%;
     margin-top: 200px;
 `
-
 export const LikeBox = styled.div`
     display: flex;
     align-items: center;

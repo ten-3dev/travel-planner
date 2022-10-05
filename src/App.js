@@ -8,6 +8,7 @@ import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
 import PopulanityPage from "./Pages/popularityplanPage";
+import ShedulePage from "./Pages/scheduleBoxPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/travel" element={<TravelPage/>}/>
         <Route path="/myPage" element={<MyPage/>}/>
         <Route path="/popularity" element={<PopulanityPage/>}/>
+        <Route path="/Schedule" element={<ShedulePage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
       <Footer />
