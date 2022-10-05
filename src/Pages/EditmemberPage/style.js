@@ -85,8 +85,9 @@ export const DeleteBtn = styled.button`
     cursor: pointer;
 `
 export const BtnBox = styled.div`
-    width: 400px;
-    margin: 30px 400px 200px;
-    width: 900px;
+    /* margin: 30px auto 200px auto; */
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
 `

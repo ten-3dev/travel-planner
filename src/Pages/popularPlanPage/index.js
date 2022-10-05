@@ -99,7 +99,6 @@ const PopularPlanPage = () =>{
                     </Styles.ContentListBox>
                 </Styles.PlansecondContentBox>
             </Styles.PlansecondBox>
-            <Styles.Pagination> 1 2 3 4 </Styles.Pagination>
         </MarginTopWrapper>
     );
 }
