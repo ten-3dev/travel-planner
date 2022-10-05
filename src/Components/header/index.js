@@ -33,13 +33,11 @@ const Header = () => {
                             <Styles.Text onClick={()=> setLoginOpen(true)}>로그인</Styles.Text>
                             <Modal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)}>
                                 <LoginPage/>
-                            <Styles.Text onClick={()=> setLoginOpen(false)}>나가기</Styles.Text>
                             </Modal>
 
                             <Styles.Text onClick={()=> setSignOpen(true)}>회원가입</Styles.Text>
                             <Modal isOpen={signOpen} onRequestClose={() => setSignOpen(false)}>
                                 <SignPage/>
-                            <Styles.Text onClick={()=> setSignOpen(false)}>나가기</Styles.Text>
                             </Modal>
                         </> 
                         : 
