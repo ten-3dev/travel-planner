@@ -10,12 +10,12 @@ export const MapBox = styled.div`
     width: 100%;
 `
 export const MapImg = styled.div`
-    width: 1200px;
     height: 1200px;
     background-color: yellow;
 `
 export const ScheduleBox = styled.div`
-    width: 100%;
+    width: 500px;
+    margin-left: 100px;
 `
 export const ScheduleContentBox = styled.div`
     width: 500px;
