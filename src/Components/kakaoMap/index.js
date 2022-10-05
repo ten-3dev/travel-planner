@@ -9,7 +9,7 @@ const Map=()=>{
       center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
       level: 3
     };
-    var map = new kakao.maps.Map(container, options);
+    var map = new kakao.maps.Map(container, options);//eslint-disable-line no-unused-vars
     }, [])
 	
     return (
