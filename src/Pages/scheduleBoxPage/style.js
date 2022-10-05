@@ -41,4 +41,13 @@ export const ScheduleBtnBox = styled.button`
     cursor: pointer;
     color: white;
 `
-//버튼 선색깔 없애기
+export const TitleInput = styled.input`
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 100px;
+    font-size: 20px;
+    //font-weight: 500px;
+    text-align: center;
+    //font-weight: bold;
+`
+//버튼 선색깔 없애기, input 스타일 물어보기

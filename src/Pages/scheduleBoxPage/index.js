@@ -5,7 +5,7 @@ const SchedulePage = () => {
     return(
         <Styles.AllBox>
             <Styles.ScheduleBox>
-                <Styles.ScheduleContentBox>플랜제목</Styles.ScheduleContentBox>
+                <Styles.TitleInput placeholder="플랜제목을 입력해주세요."></Styles.TitleInput>
                 <Styles.ScheduleContentBox>2022-10-01 - 2022-10-07</Styles.ScheduleContentBox>
                 <Styles.ScheduleDayBox>DAY1</Styles.ScheduleDayBox>
                 <Styles.ScheduleBtnBox>일정추가</Styles.ScheduleBtnBox>
