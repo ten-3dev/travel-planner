@@ -12,6 +12,10 @@ import PopularPlanPage from "./Pages/popularPlanPage";
 import EditmemberPage from"./Pages/EditmemberPage";
 import CreatePlanPage from "./Pages/createPlanPage";
 import UserStore from "./Store/users";
+import MyComments from "./Pages/myBarPage/myComment/index";
+import MyPlan from "./Pages/myBarPage/myPlan";
+import SharedPlan from "./Pages/myBarPage/sharedPlan/index";
+import Like from "./Pages/myBarPage/like/index";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -30,6 +34,10 @@ const App = () => {
           <Route path="/popular" element={<PopularPlanPage/>}/>
           <Route path="/editmember" element={<EditmemberPage/>}/>
           <Route path="/createPlanPage" element={<CreatePlanPage/>}/>
+          <Route path='/myComments' element={<MyComments/>} />
+          <Route path='/myPlan' element={<MyPlan/>} />
+          <Route path='/sharedPlan' element={<SharedPlan/>} />
+          <Route path='/like' element={<Like/>} />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
         <Footer open={true}/>
