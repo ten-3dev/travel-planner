@@ -1,4 +1,29 @@
 import styled from "styled-components";
+import Modal from 'react-modal';
+
+
+export const LoginModal = styled(Modal)`
+    position: absolute;
+    width: 700px;
+    height: 650px;
+    background: rgb(255 255 255);
+    border-radius: 4px;
+    outline: none;
+    padding: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+`
+
+export const SignModal = styled(Modal)`
+    position: absolute;
+    inset: 142px;
+    border: 1px solid rgb(0 0 0);
+    background: rgb(255 255 255);
+    border-radius: 4px;
+    outline: none;
+    padding: 0px;
+`
 
 export const Wrapper = styled.div`
     width: 100%;

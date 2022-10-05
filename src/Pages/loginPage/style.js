@@ -11,7 +11,7 @@ export const ContentBox = styled.div`
     top: 50%;
     left: 50%;
     margin-left: -500px;
-    margin-top: -300px;
+    margin-top: -260px;
     display: flex;
     flex-direction: column;
     align-items: center;

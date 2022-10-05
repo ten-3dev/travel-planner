@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as Styles from './style';
-import Modal from 'react-modal';
 import LoginPage from '../../Pages/loginPage/index'
 import SignPage from '../../Pages/signPage/index'
 import { useNavigate, useLocation } from "react-router-dom";
@@ -31,14 +30,14 @@ const Header = () => {
                         {true ? 
                         <>
                             <Styles.Text onClick={()=> setLoginOpen(true)}>로그인</Styles.Text>
-                            <Modal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)}>
+                            <Styles.LoginModal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)} style={{overlay: {zIndex: "1"}}} >
                                 <LoginPage/>
-                            </Modal>
+                            </Styles.LoginModal>
 
                             <Styles.Text onClick={()=> setSignOpen(true)}>회원가입</Styles.Text>
-                            <Modal isOpen={signOpen} onRequestClose={() => setSignOpen(false)}>
+                            <Styles.SignModal isOpen={signOpen} onRequestClose={() => setSignOpen(false)} style={{overlay: {zIndex: "1"}}}>
                                 <SignPage/>
-                            </Modal>
+                            </Styles.SignModal>
                         </> 
                         : 
                         <>
