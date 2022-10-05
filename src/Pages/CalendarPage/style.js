@@ -191,6 +191,7 @@ export const MapBox = styled.div`
     border: 1px solid black;
     width: 600px;
     height: 750px;
+    z-index: 0;
 
 `
 
