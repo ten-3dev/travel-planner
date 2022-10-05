@@ -38,7 +38,10 @@ export const EditmemberPage = () => {
                 </Styles.MemberContentBox>
                 <Styles.MemberContentBox>
                     <Styles.MemberEdit>성별</Styles.MemberEdit>
-                   <Styles.GenderCheck> ○ 남 ● 여</Styles.GenderCheck>
+                    <Styles.GenderLabel htmlFor="m">남</Styles.GenderLabel>
+                    <Styles.GenderCheck type="radio" name="gender" id="m"/>
+                    <Styles.GenderLabel htmlFor="g">여</Styles.GenderLabel>
+                    <Styles.GenderCheck type="radio" name='gender' id="g"/>
                 </Styles.MemberContentBox>
             </Styles.MemberInforBox>
             <Styles.BtnBox>

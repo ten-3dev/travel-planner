@@ -39,11 +39,13 @@ export const MemberConrent = styled.input` //칸박스 수정해야함 rgba로 �
     background-color: #F5F5F5;
 
 `
-export const GenderCheck = styled.div` //성별버튼 만들어야함
-    width: 400px;
+export const GenderCheck = styled.input` //성별버튼 만들어야함 어려워
+    width: 30px;
+    height: 30px;
+`
+export const GenderLabel = styled.label`
     font-size: 25px;
-    cursor: pointer;
-    border-radius: 12px;
+    margin-left: 15px;
 `
 export const Btn = styled.button`
     border: 0;
@@ -56,7 +58,7 @@ export const Btn = styled.button`
     border-radius: 5px;
     cursor: pointer;
 `
-export const DeleteBtn = styled.button`
+export const DeleteBtn = styled.div`
     border: 0;
     width: 150px;
     height: 40px;
