@@ -49,6 +49,7 @@ export const EditmemberPage = () => {
                 <Styles.EditBtn>이전</Styles.EditBtn>
                 <Styles.DeleteBtn>탈퇴하기</Styles.DeleteBtn>
             </Styles.BtnBox>
+            
         </MarginTopWrapper>
     );
 }
