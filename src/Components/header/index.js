@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import * as Styles from './style';
-import LoginPage from '../../Pages/loginPage/index'
-import SignPage from '../../Pages/signPage/index'
+import LoginPage from '../../Modals/login/index'
+import SignPage from '../../Modals/sign/index'
 import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
 import { UserContext } from "../../Store/users";
