@@ -29,7 +29,7 @@ export const MemberEdit = styled.div`
     font-size: 25px;
     font-weight: bold;
 `
-export const MemberConrent = styled.div` //칸박스 수정해야함 rgba로 변경하고 아이디~비번까지는 글씨 투명 나머지는 글씨 잘보이게 
+export const MemberConrent = styled.div`
     width: 500px;
     height: 50px;
     font-size: 25px;
@@ -57,10 +57,10 @@ export const GenderLabel = styled.label`
     font-size: 25px;
     margin-left: 15px;
 `
-export const Btn = styled.button`
+export const EditBtn = styled.button`
     border: 0;
     width: 150px;
-    height: 40px;
+    height: 60px;
     margin: 30px 10px;
     font-size: 25px;
     background: rgba(0, 100, 100, 0.5);
@@ -68,22 +68,21 @@ export const Btn = styled.button`
     border-radius: 5px;
     cursor: pointer;
 `
-export const DeleteBtn = styled.div`
+export const DeleteBtn = styled.button`
     border: 0;
     width: 150px;
-    height: 40px;
+    height: 60px;
     margin: 30px 10px;
     font-size: 25px;
-    text-align: center;
+    //text-align: center;
     background-color: red;
-    //background: rgba(0, 50, 100, 1);
     color: white;
     border-radius: 5px;
     cursor: pointer;
 `
 export const BtnBox = styled.div`
     width: 400px;
-    margin: 30px 400px;
+    margin: 30px 400px 200px;
     width: 900px;
     display: flex;
 `

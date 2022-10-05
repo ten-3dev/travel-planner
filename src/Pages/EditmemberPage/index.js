@@ -45,8 +45,8 @@ export const EditmemberPage = () => {
                 </Styles.MemberContentBox>
             </Styles.MemberInforBox>
             <Styles.BtnBox>
-                <Styles.Btn>수정하기</Styles.Btn>
-                <Styles.Btn>이전</Styles.Btn>
+                <Styles.EditBtn>수정하기</Styles.EditBtn>
+                <Styles.EditBtn>이전</Styles.EditBtn>
                 <Styles.DeleteBtn>탈퇴하기</Styles.DeleteBtn>
             </Styles.BtnBox>
         </MarginTopWrapper>
