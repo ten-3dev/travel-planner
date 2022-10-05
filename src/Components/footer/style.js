@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
     background-color: #151515;
     display: flex;
     align-items: center;
+    display: ${props => {
+        return props.open ? "flex" : "none"
+    }};
 `
 
 export const LogoBox = styled.div`

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MarginTopWrapper } from '../../Common/style';
 import * as Styles from './style';
+import { UserContext } from "../../Store/users";
+
 
 const Footer = () => {
+    const context = useContext(UserContext);
+    const { layoutOpen } = context;
     return(
-        <Styles.Wrapper>
+        <Styles.Wrapper open={layoutOpen}>
             <MarginTopWrapper>
                 <Styles.LogoBox>
                     <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo"/>

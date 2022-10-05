@@ -9,15 +9,11 @@ const LoginPage = () => {
                 <Styles.LoginText>LOGIN</Styles.LoginText>
 
                 <Styles.LoginText2>이름
-                    <Styles.InputBox>
                     <Styles.Input placeholder="아이디를 입력하세요"></Styles.Input>
-                    </Styles.InputBox>
                 </Styles.LoginText2>
 
                 <Styles.LoginText2>비밀번호
-                    <Styles.InputBox>
                         <Styles.Input placeholder="비밀번호를 입력하세요"></Styles.Input>
-                    </Styles.InputBox>
                 </Styles.LoginText2>
                 
                 <UserBlueBtn>로그인</UserBlueBtn>

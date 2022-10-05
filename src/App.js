@@ -10,26 +10,31 @@ import MyPage from "./Pages/myPage";
 import SchedulePage from "./Pages/scheduleBoxPage";
 import PopularPlanPage from "./Pages/popularPlanPage";
 import EditmemberPage from"./Pages/EditmemberPage";
-
+import CreatePlanPage from "./Pages/createPlanPage";
+import UserStore from "./Store/users";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
+
   return (
-    <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path="/" element={<MainPage/>}/>
-        <Route path="/calendar" element={<CalendarPage/>}/>
-        <Route path="/information" element={<InformationPage/>}/>
-        <Route path="/travel" element={<TravelPage/>}/>
-        <Route path="/schedule" element={<SchedulePage/>}/>
-        <Route path="/myPage" element={<MyPage/>}/>
-        <Route path="/popular" element={<PopularPlanPage/>}/>
-        <Route path="/Editmember" element={<EditmemberPage/>}/>
-        <Route path="*" element={<NotFoundPage/>}/>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <UserStore>
+      <BrowserRouter>
+        <Header open={true}/>
+        <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/calendar" element={<CalendarPage/>}/>
+          <Route path="/information" element={<InformationPage/>}/>
+          <Route path="/travel" element={<TravelPage/>}/>
+          <Route path="/schedule" element={<SchedulePage/>}/>
+          <Route path="/myPage" element={<MyPage/>}/>
+          <Route path="/popular" element={<PopularPlanPage/>}/>
+          <Route path="/editmember" element={<EditmemberPage/>}/>
+          <Route path="/createPlanPage" element={<CreatePlanPage/>}/>
+          <Route path="*" element={<NotFoundPage/>}/>
+        </Routes>
+        <Footer open={true}/>
+      </BrowserRouter>
+    </UserStore>
   );
 }
 

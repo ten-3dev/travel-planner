@@ -19,13 +19,15 @@ export const SignModal = styled(Modal)`
     position: absolute;
     width: 700px;
     height: 650px;
+    overflow-y: scroll;
     background: rgb(255 255 255);
     border-radius: 4px;
     outline: none;
-    padding: 0px;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
+    box-sizing: border-box;
+    padding: 20px 20px;
 `
 
 export const Wrapper = styled.div`
@@ -37,6 +39,9 @@ export const Wrapper = styled.div`
     top: 0;
     background: ${props => {
         return props.main ? "transparent" : "linear-gradient(180deg, rgba(118, 118, 118,1) 5%,  rgba(255,255,255, 0) 100%)"
+    }};
+    display: ${props => {
+        return props.open ? "block" : "none"
     }};
 `
 
