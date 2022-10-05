@@ -46,14 +46,7 @@ export const PlansecondBox = styled.div` // 두번째 전체박스
     margin-bottom: 200px;
     display: flex;
 `
-export const Pagination = styled.div` //임시 페이지네이션
-    width: 100%;
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-`
+
 export const PlanImg = styled.img`
     width: 300px;
     border-radius: 12px;

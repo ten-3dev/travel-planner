@@ -12,16 +12,19 @@ export const TitleBar = styled.div`
     width: 100%;
     height: 7px;
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     background-color: black ;
     //opacity: 0.2;
 `
 export const MemberInforBox = styled.div`
     width: 100%;
-    background: rgba(0, 100, 100, 0.1);
+    height: 1200px;
+    border-radius: 9px;
+    background-color: #E9E9E9;
 `
 export const MemberContentBox = styled.div`
-    margin: 0 50px 100px;
+    margin: 0 50px 70px;
+    padding: 20px;
     display: flex;
 `
 export const MemberEdit = styled.div`
@@ -46,7 +49,7 @@ export const Content = styled.input`
     text-align: center; 
     cursor: pointer;
     border-radius: 9px;
-    background-color: #DEDEDE;
+    background-color: #C7C5C5;
     font-weight: bold;
     border: none;
 `
@@ -82,8 +85,9 @@ export const DeleteBtn = styled.button`
     cursor: pointer;
 `
 export const BtnBox = styled.div`
-    width: 400px;
-    margin: 30px 400px 200px;
-    width: 900px;
+    /* margin: 30px auto 200px auto; */
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
 `
