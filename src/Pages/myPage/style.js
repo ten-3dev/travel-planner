@@ -5,16 +5,21 @@ import { NavLink as Link } from 'react-router-dom';
 
 
 export const ProfileBox = styled.div`
-    width: 1000px;
+    width: 1200px;
     display: flex;
-    margin: 150px 0 50px 450px;
-    background-color: green;
+    margin: 150px 0 50px 0;
+    
 `
 
 export const SettingBox = styled.div`
-    width: 22%;
+    width: 400px;
     display: flex-end;
-    align-items: center;
+    text-align:right;
+    margin-left: 200px;
+    margin-top: 50px;
+    
+    
+    
 
 `
 export const MyWritingBox = styled.div`
@@ -67,16 +72,20 @@ export const Box1 = styled.div`
 `
 export const Box2 = styled.div`
     width: 100%;
-    border-bottom: 1px solid #000000 ;
+    height: 70px;
+    margin-top: 15px;
+    
 `
 export const Box3 = styled.div`
-    width: 100%;
-    height: 120px;
+    width: 1200px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid #000000 ;
+    
 `
 
 export const Box4 = styled.div`
-    width: 100%;
-    display: flex;
+    width: 50%;
+    
 `
 
 export const ModifyDeleteBox = styled.div`
@@ -102,8 +111,8 @@ export const MySharingPlanBox = styled.div`
 
 export const Setting = styled.img`
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     align-items:flex-end ;
     justify-content: flex-start;
     
@@ -120,9 +129,9 @@ export const Profile = styled.img`
 
 export const Text = styled.div`
     width: 300px; 
-    height: 150px;
+   
     font-size: 30px;
-    margin: 100px 0 0 0;
+    margin: 100px 0 0 20px;
 `
 export const Text1 = styled.div`
     width: 100%; 
@@ -132,7 +141,7 @@ export const Text1 = styled.div`
 
 export const Text2 = styled.div`
     width: 100%; 
-    font-size: 30px;
+    font-size: 16px;
     font-weight: bold;
 `
 
@@ -198,74 +207,36 @@ export const Img1 = styled.img`
 
 
 export const Nav = styled.nav`
-  background: #63D471;
-  height: 85px;
+  width: 1200px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
-  //padding: 0.2rem calc((100vw - 1000px) / 2);
-  z-index: 12;
-  /* Third Nav */
-  /* justify-content: flex-start; */
+  margin-left: 157px;
+  
 `;
   
 export const NavLink = styled(Link)`
   color: #000000;
   display: flex;
-  align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
+  text-align: center;
+  border-radius: 10px;
   height: 100%;
   cursor: pointer;
   &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
+    //transition: all 0.2s ease-in-out;
+    background: #BEBEBE;
     color: #808080;
   }
 `;
-
-export const NavBtnLink = styled(Link)`
-  border-radius: 4px;
-  background: #808080;
-  padding: 10px 22px;
-  color: #000000;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  /* Second Nav */
-  margin-left: 24px;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #808080;
-  }
-`;
-  
   
 export const NavMenu = styled.div`
-  display: flex;
+  width: 200px;
+
   align-items: center;
-  margin-right: -24px;
-  /* Second Nav */
-  /* margin-right: 24px; */
-  /* Third Nav */
-  /* width: 100vw;
-  white-space: nowrap; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  background: #ECECEC;
+  border-radius: 10px;
+  margin: 0 30px 0 0;
 `;
   
-export const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-  /* Third Nav */
-  /* justify-content: flex-end;
-  width: 100vw; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
+
   
