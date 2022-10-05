@@ -2,7 +2,7 @@ import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
-const PopulanityPage = () =>{
+const PopularPlanPage = () =>{
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -103,4 +103,4 @@ const PopulanityPage = () =>{
         </MarginTopWrapper>
     );
 }
-export default PopulanityPage;
+export default PopularPlanPage;
