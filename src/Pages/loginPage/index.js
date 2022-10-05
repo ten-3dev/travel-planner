@@ -1,10 +1,13 @@
-import React,{ useState } from "react";
+import React from "react";
 import * as Styles from './style';
-import SignPage from '../../Pages/signPage/index'
 import { UserBlueBtn } from "../../Common/style";
 
-const LoginPage = () => {
-    const [signOpen, setSignOpen] = useState(false); //회원가입용 모달
+const LoginPage = ({setLoginOpen, setSignOpen}) => {
+
+    const gotoSign = () => {
+        setLoginOpen(false);
+        setSignOpen(true);
+    }
     
     return(
         <Styles.Wrapper>
@@ -25,12 +28,9 @@ const LoginPage = () => {
                 <div>---- OR ----</div>
 
                 <Styles.FindSignWrap>
-                    <Styles.FindSignText>비밀번호 찾기</Styles.FindSignText>
+                    <Styles.FindSignText >비밀번호 찾기</Styles.FindSignText>
                     <div> │ </div>
-                    <Styles.FindSignText onClick={()=> setSignOpen(true)}>회원가입</Styles.FindSignText>
-                    <Styles.SignModal isOpen={signOpen} onRequestClose={() => setSignOpen(false)} style={{overlay: {zIndex: "1"}}} ariaHideApp={false}>
-                        <SignPage/>
-                    </Styles.SignModal>
+                    <Styles.FindSignText onClick={gotoSign}>회원가입</Styles.FindSignText>
                 </Styles.FindSignWrap>
 
             </Styles.ContentBox>

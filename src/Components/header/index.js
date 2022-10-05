@@ -44,7 +44,7 @@ const Header = () => {
                         <>
                             <Styles.Text onClick={()=> setLoginOpen(true)}>로그인</Styles.Text>
                             <Styles.LoginModal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)} style={{overlay: {zIndex: "1"}}} ariaHideApp={false}>
-                                <LoginPage/>
+                                <LoginPage setLoginOpen={setLoginOpen} setSignOpen={setSignOpen}/>
                             </Styles.LoginModal>
 
                             <Styles.Text onClick={()=> setSignOpen(true)}>회원가입</Styles.Text>
