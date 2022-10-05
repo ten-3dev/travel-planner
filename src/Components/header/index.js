@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import * as Styles from './style';
+import Modal from 'react-modal';
+import LoginPage from '../../Pages/loginPage/index'
+import SignPage from '../../Pages/signPage/index'
+import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
 
 const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isOpenList, setIsOpenList] = useState(false);
+
+    const [loginOpen, setLoginOpen] = useState(false); //로그인용 모달
+    const [signOpen, setSignOpen] = useState(false); //회원가입용 모달
 
     const moveMain = () => {
         navigate('/');
@@ -22,10 +28,19 @@ const Header = () => {
                         <Styles.Text>공유된 플랜 보기</Styles.Text>
                     </Styles.Menu>
                     <Styles.LogSign>
-                        {false ? 
+                        {true ? 
                         <>
-                            <Styles.Text>로그인</Styles.Text>
-                            <Styles.Text>회원가입</Styles.Text>
+                            <Styles.Text onClick={()=> setLoginOpen(true)}>로그인</Styles.Text>
+                            <Modal isOpen={loginOpen} onRequestClose={() => setLoginOpen(false)}>
+                                <LoginPage/>
+                            <Styles.Text onClick={()=> setLoginOpen(false)}>나가기</Styles.Text>
+                            </Modal>
+
+                            <Styles.Text onClick={()=> setSignOpen(true)}>회원가입</Styles.Text>
+                            <Modal isOpen={signOpen} onRequestClose={() => setSignOpen(false)}>
+                                <SignPage/>
+                            <Styles.Text onClick={()=> setSignOpen(false)}>나가기</Styles.Text>
+                            </Modal>
                         </> 
                         : 
                         <>
