@@ -7,7 +7,10 @@ import {
     NavLink,
     NavMenu,
   } from './style';
-
+const activeStyle={
+    background:'green',
+    color:'white'
+}
 
 const MyPage = () => {
     return (
@@ -26,7 +29,7 @@ const MyPage = () => {
         
             <Nav>
                 <NavMenu>
-                    <NavLink to="/myComments" activeStyle>
+                    <NavLink to="/myComments" activeStyle={activeStyle}>
                         <Styles.Box2>
                             <Styles.Text2>내가 쓴 댓글</Styles.Text2>
                             <Styles.Text2>3</Styles.Text2>

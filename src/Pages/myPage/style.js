@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link as ReactRouterDomLink } from "react-router-dom";
 
 import { NavLink as Link } from 'react-router-dom';
 
@@ -222,27 +221,31 @@ export const NavLink = styled(Link)`
   text-align: center;
   border-radius: 10px;
   height: 100%;
+  background: #ECECEC;
   cursor: pointer;
-  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
   &:hover {
     //transition: all 0.2s ease-in-out;
     background: #BEBEBE;
     color: #808080;
+    &.active {
+    color: ${props => props.theme.orange };
+    background: #BEBEBE;
   }
-  &:active{
-  background-color:green;
-}
+  }
+  
+ 
 `;
+
+
   
 export const NavMenu = styled.div`
   width: 200px;
 
   align-items: center;
-  background: #ECECEC;
+  
   border-radius: 10px;
   margin: 0 30px 0 0;
   
 `;
   
 
-  
