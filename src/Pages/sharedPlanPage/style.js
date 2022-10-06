@@ -31,10 +31,6 @@ export const PlanContentBox = styled.div` //첫번째 내용박스
     margin: 50px 50px 50px;
     cursor: pointer;
 `
-export const PlansecondContentBox = styled.div` // 두번째 내용박스 
-    margin: 50px 50px 50px;
-    cursor: pointer;
-`
 export const PlanImg = styled.img`
     width: 300px;
     border-radius: 12px;
@@ -43,7 +39,7 @@ export const LikeImg = styled.img`
     width: 25px;
     margin-right: 5px;
 `
-export const LikeListfontBox = styled.div` //아직
+export const LikeListfontBox = styled.div` 
     width: 100%;
     flex: auto;
     display: flex;
