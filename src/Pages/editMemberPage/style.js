@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const EditTitle = styled.div`
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 500px;
     margin-bottom: 15px;
     margin-top: 200px;
@@ -10,63 +10,74 @@ export const EditTitle = styled.div`
 `
 export const TitleBar = styled.div` 
     width: 100%;
-    height: 7px;
+    height: 2px;
     margin-top: 10px;
     margin-bottom: 30px;
     background-color: black ;
     //opacity: 0.2;
 `
 export const MemberInforBox = styled.div`
-    width: 100%;
-    height: 1200px;
+    width: 900px;
+    height: 800px;
+    margin-left: 150px;
     border-radius: 9px;
     background-color: #E9E9E9;
 `
 export const MemberContentBox = styled.div`
-    margin: 0 50px 70px;
-    padding: 20px;
-    display: flex;
+    margin: 0 150px 0;
+    padding: 15px 130px;
 `
 export const MemberEdit = styled.div`
-    width: 200px;
+    width: 150px;
     margin-right: 100px;
-    font-size: 25px;
+    margin-bottom: 10px;
+    font-size: 15px;
     font-weight: bold;
 `
 export const MemberConrent = styled.div`
-    width: 500px;
-    height: 50px;
-    font-size: 25px;
-    text-align: center; 
-    border-radius: 9px;
-    background-color: #F5F5F5;
-    border: none;
+    margin: 0;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    font-weight: 450;
+    display: block;
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 0 0 0 9px;
+    background-color: #F3F3F3;
+    margin-top: 7px;
 `
 export const Content = styled.input`
-    width: 500px;
-    height: 50px;
-    font-size: 25px;
-    text-align: center; 
-    cursor: pointer;
-    border-radius: 9px;
-    background-color: #C7C5C5;
-    font-weight: bold;
-    border: none;
+    margin: 0;
+    border: 0;
+    outline: none;
+    font-size: 15px;
+    font-weight: 450;
+    display: block;
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 0 0 0 9px;
+    background-color: #F3F3F3;
+    margin-top: 7px;
 `
 export const GenderCheck = styled.input` 
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 `
 export const GenderLabel = styled.label`
-    font-size: 25px;
+    font-size: 15px;
     margin-left: 15px;
 `
 export const EditBtn = styled.button`
     border: 0;
-    width: 150px;
-    height: 60px;
+    width: 100px;
+    height: 40px;
     margin: 30px 10px;
-    font-size: 25px;
+    font-size: 15px;
     background: rgba(0, 100, 100, 0.5);
     color: white;
     border-radius: 5px;
@@ -74,18 +85,16 @@ export const EditBtn = styled.button`
 `
 export const DeleteBtn = styled.button`
     border: 0;
-    width: 150px;
-    height: 60px;
+    width: 100px;
+    height: 40px;
     margin: 30px 10px;
-    font-size: 25px;
-    //text-align: center;
+    font-size: 15px;
     background-color: red;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 `
 export const BtnBox = styled.div`
-    /* margin: 30px auto 200px auto; */
     width: 100%;
     display: flex;
     align-items: center;
