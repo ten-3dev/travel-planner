@@ -6,7 +6,7 @@ import { MarginTopWrapper } from "../../../Common/style";
 const MyComments = () => {
   return (
     < >
-      <MyPage />
+      <MyPage isAction1="myComment"/>
       <MarginTopWrapper>
         <Styles.BigBox>
           <Styles.Box>
@@ -17,7 +17,7 @@ const MyComments = () => {
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...</Styles.ContentText>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>

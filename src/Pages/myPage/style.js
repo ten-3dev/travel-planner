@@ -222,8 +222,9 @@ export const NavLink = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isAction === "myPlan" ? "red" : "#BEBEBE"
-  }};
+    return props.isAction === "myPlan" ? "#BEBEBE" :"#ECECEC"
+  }
+  };
   cursor: pointer;
   &:hover {
     //transition: all 0.2s ease-in-out;
@@ -234,9 +235,77 @@ export const NavLink = styled(Link)`
     background: #BEBEBE;
   }
   }
-  
- 
 `;
+
+export const NavLink1 = styled(Link)`
+  color: #000000;
+  display: flex;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  height: 100%;
+  background: ${props => {
+    return props.isAction === "myComment" ? "#BEBEBE" :"#ECECEC"
+  }
+  };
+  cursor: pointer;
+  &:hover {
+    //transition: all 0.2s ease-in-out;
+    background: #BEBEBE;
+    color: #808080;
+    &.active {
+    color: ${props => props.theme.orange };
+    background: #BEBEBE;
+  }
+  }
+`;
+
+export const NavLink2 = styled(Link)`
+  color: #000000;
+  display: flex;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  height: 100%;
+  background: ${props => {
+    return props.isAction === "sharedPlan" ? "#BEBEBE" :"#ECECEC"
+  }
+  };
+  cursor: pointer;
+  &:hover {
+    //transition: all 0.2s ease-in-out;
+    background: #BEBEBE;
+    color: #808080;
+    &.active {
+    color: ${props => props.theme.orange };
+    background: #BEBEBE;
+  }
+  }
+`;
+
+export const NavLink3 = styled(Link)`
+  color: #000000;
+  display: flex;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  height: 100%;
+  background: ${props => {
+    return props.isAction === "like" ? "#BEBEBE" :"#ECECEC"
+  }
+  };
+  cursor: pointer;
+  &:hover {
+    //transition: all 0.2s ease-in-out;
+    background: #BEBEBE;
+    color: #808080;
+    &.active {
+    color: ${props => props.theme.orange };
+    background: #BEBEBE;
+  }
+  }
+`;
+
 
 
   
@@ -244,7 +313,6 @@ export const NavMenu = styled.div`
   width: 200px;
 
   align-items: center;
-  
   border-radius: 10px;
   margin: 0 30px 0 0;
   

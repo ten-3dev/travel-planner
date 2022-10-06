@@ -7,7 +7,7 @@ import { MarginTopWrapper } from "../../../Common/style";
 const Like = () => {
   return (
     <>
-      <MyPage />
+      <MyPage isAction3 ="like" />
       <MarginTopWrapper>
         <Styles.BigBox>
           <Styles.Box>

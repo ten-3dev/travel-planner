@@ -6,13 +6,12 @@ import {
     Nav,
     NavLink,
     NavMenu,
+    NavLink1,
+    NavLink2,
+    NavLink3,
   } from './style';
-const activeStyle={
-    background:'green',
-    color:'white'
-}
 
-const MyPage = ({isAction}) => {
+const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
     return (
         <MarginTopWrapper margin>
             <Styles.Box3>
@@ -29,13 +28,13 @@ const MyPage = ({isAction}) => {
         
             <Nav>
                 <NavMenu>
-                    <NavLink to="/myComments" activeStyle={activeStyle}>
+                    <NavLink1 to="/myComments" activeStyle isAction={isAction1}>
                         <Styles.Box2>
                             <Styles.Text2>내가 쓴 댓글</Styles.Text2>
                             <Styles.Text2>3</Styles.Text2>
                         </Styles.Box2>
                         
-                    </NavLink>
+                    </NavLink1>
                 </NavMenu> 
                 <NavMenu>
                     <NavLink to='/myPlan' activeStyle isAction={isAction}>
@@ -46,20 +45,20 @@ const MyPage = ({isAction}) => {
                     </NavLink>
                 </NavMenu> 
                 <NavMenu>
-                    <NavLink to='/sharedPlan' activeStyle>
+                    <NavLink2 to='/sharedPlan' activeStyle isAction={isAction2}>
                         <Styles.Box2>
                             <Styles.Text2>공유한 플랜</Styles.Text2>
                             <Styles.Text2>5</Styles.Text2>
                         </Styles.Box2>
-                    </NavLink>
+                    </NavLink2>
                 </NavMenu> 
                 <NavMenu>
-                    <NavLink to='/like' activeStyle>
+                    <NavLink3 to='/like' activeStyle isAction={isAction3}>
                         <Styles.Box2>
                             <Styles.Text2>좋아요</Styles.Text2>
                             <Styles.Text2>7</Styles.Text2>
                         </Styles.Box2>
-                    </NavLink>
+                    </NavLink3>
                 </NavMenu> 
             </Nav>
             </Styles.Box3>

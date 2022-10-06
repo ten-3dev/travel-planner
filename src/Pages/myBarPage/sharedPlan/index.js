@@ -7,7 +7,7 @@ const SharedPlan = () => {
   return (
     
     < >
-      <MyPage />
+      <MyPage isAction2 ="sharedPlan"/>
       <MarginTopWrapper>
         <Styles.BigBox>
           <Styles.Box>
