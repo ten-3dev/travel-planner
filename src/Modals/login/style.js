@@ -66,11 +66,10 @@ export const FindSignText = styled.span`
     cursor: pointer;
 `
 
-export const SignModal = styled(Modal)`
+export const FindPassModal = styled(Modal)`
     position: absolute;
     width: 700px;
-    height: 650px;
-    overflow-y: scroll;
+    height: 600px;
     background: rgb(255 255 255);
     border-radius: 4px;
     outline: none;
@@ -79,4 +78,5 @@ export const SignModal = styled(Modal)`
     transform: translate( -50%, -50%);
     box-sizing: border-box;
     padding: 20px 20px;
+    box-shadow: 0px 0px 10px 4px black;
 `

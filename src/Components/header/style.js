@@ -13,6 +13,7 @@ export const LoginModal = styled(Modal)`
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
+    box-shadow: 0px 0px 10px 4px black;
 `
 
 export const SignModal = styled(Modal)`
@@ -28,6 +29,7 @@ export const SignModal = styled(Modal)`
     transform: translate( -50%, -50%);
     box-sizing: border-box;
     padding: 20px 20px;
+    box-shadow: 0px 0px 10px 4px black;
 `
 
 export const Wrapper = styled.div`

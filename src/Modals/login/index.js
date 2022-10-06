@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import FindPass from "../findPass/index"
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 
+
+
+
 const LoginPage = ({setLoginOpen, setSignOpen}) => {
+    const [findPassOpen, setFindPass] = useState(false); // 비번찾기용 모달
 
     const gotoSign = () => {
         setLoginOpen(false);
@@ -28,8 +33,13 @@ const LoginPage = ({setLoginOpen, setSignOpen}) => {
                 <div>---- OR ----</div>
 
                 <Styles.FindSignWrap>
-                    <Styles.FindSignText >비밀번호 찾기</Styles.FindSignText>
-                    <div> │ </div>
+                    <Styles.FindSignText onClick={()=>{setFindPass(true)}}>비밀번호 찾기</Styles.FindSignText>
+                    <Styles.FindPassModal isOpen={findPassOpen} onRequestClose={()=> setFindPass(false)} style={{overlay: {zIndex: "1"}}} ariaHideApp={false}>
+                        <FindPass/>
+                    </Styles.FindPassModal>
+
+                <div> │ </div>
+
                     <Styles.FindSignText onClick={gotoSign}>회원가입</Styles.FindSignText>
                 </Styles.FindSignWrap>
 
