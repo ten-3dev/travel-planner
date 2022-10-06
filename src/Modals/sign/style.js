@@ -56,3 +56,11 @@ export const RadioWrap = styled.div`
     margin: 0 130px 100px;
     display: flex;    
 `
+
+export const RadioBtn = styled.input`
+
+`
+
+export const RadioLabel = styled.label`
+    
+`
