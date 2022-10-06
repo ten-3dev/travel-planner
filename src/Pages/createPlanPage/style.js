@@ -108,16 +108,18 @@ export const Map = styled.div`
 `
 
 export const ControlBox = styled.div`
-    width: 300px;
+    width: 350px;
     height: 100vh;
-    background-color: red;
+    background-color: white;
     position:fixed;
     top: 0;
+    bottom:0;
     left: ${props => {
-        return props.open ? "0" : "-300px"
+        return props.open ? "0" : "-350px"
     }};
-    z-index: 1;
+    z-index: 2;
     transition: all .5s;
+    overflow-y: scroll;
 `
 
 export const TravelBox = styled.div`
@@ -132,14 +134,16 @@ export const TravelBox = styled.div`
     right: 0;
     z-index: 1;
     transition: all .5s;
+    overflow-y: scroll;
 
 `
 
 export const ContentBox = styled.div`
     width: 100%;
-    height: 100%;
-    background-color: aqua;
+    height: auto;
     position: relative;
+    box-sizing: border-box;
+    padding: 40px 20px;
 `
 
 export const OpenBtn = styled.div`
@@ -147,13 +151,216 @@ export const OpenBtn = styled.div`
     height: 50px;
     background-color: blanchedalmond;
     position: absolute;
-    ${props => {
-        if(props.right) return "right: -50px;"
-        if(props.left) return "left: -50px;"
-    }}
+    left: 0%;
     font-size: 25px;
+    display: ${props => {
+        return props.open ? "none" : "flex"
+    }};
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+`
+
+export const DateBox = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+`
+
+export const TravelDate = styled.div`
+    font-size: 14px;
+`
+
+export const TravelCalendar = styled.div`
+    width: 25px;
+    height: 25px;
+    background-color: black;
+    margin-left: 10px;
+    cursor: pointer;
+`
+
+export const DayTitle = styled.div`
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 15px;
+`
+
+export const DayItem = styled.div`
+    height: 70px;
+    width: 100%;
+    /* background-color: red; */
+    box-sizing: border-box;
+    padding: 5px 0;
+    display: flex;
+    border-bottom: 2px solid gray;
+    cursor: pointer;
+`
+
+export const DayItemImg = styled.div`
+    height: 100%;
+    width: 90px;
+    background-color: blue;
+    margin-right: 5px;
+`
+
+export const DayItemTextBox = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+export const DayItemTitle = styled.div`
+    font-size: 13px;
+    font-weight: bold;
+    width: 100%;
+`
+
+export const DayItemText = styled.div`
+    font-size: 12px;
+    width: 100%;
+`
+
+export const PlanAddBtnBox = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+`
+
+export const PlanAddBtn = styled.div`
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: ${props => {
+        return props.updated ? "#FF5757" : "#6FCB71"
+    }};
+
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    margin-top: 20px;
     cursor: pointer;
+`
+
+export const CloseBtn = styled.div`
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    ${props => {
+        if(props.right) return "right: 20px;"
+        if(props.left) return "left: 20;"
+    }}
+`
+
+export const TravelInputBox = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    margin-bottom: 30px;
+`
+
+export const TravelInput = styled.input`
+    width: 100%;
+    height: 40px;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    font-size: 17px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-radius: 5px;
+`
+
+export const TravelInputBtn = styled.div`
+    width: 70px;
+    height: 100%;
+    background-color: #6FCB71;
+    margin-left: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+`
+
+export const ListBox = styled.div`
+    width: 100%;
+    height: 650px;
+    background-color: azure;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+`
+
+export const ScrollBox = styled.div`
+    overflow-y: scroll;
+`
+
+export const ListTitleBox = styled.div`
+    display: flex;
+    border-bottom: 2px solid gray;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+`
+
+export const ListTitle = styled.div`
+    width: 100%;
+    font-size: 25px;
+    font-weight: 550;
+`
+
+export const ListFilter = styled.div`
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #6FCB71;
+    cursor: pointer;
+    font-size: 17px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const ItemBox = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+`
+
+export const LikeImg = styled.img`
+    width: 15px;
+    height: 15px;
+`
+
+export const ItemBtn = styled.div`
+    width: 60px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #6FCB71;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-left: 10px;
+`
+
+export const ListItemBox = styled.div`
 `
