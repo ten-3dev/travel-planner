@@ -4,9 +4,6 @@ import { Link as ReactRouterDomLink } from "react-router-dom";
 import { NavLink as Link } from 'react-router-dom';
 
 
-const Link = ({ isActive, children, ...props }) => {
-	return <ReactRouterDomLink {...props}>{children}</ReactRouterDomLink>;
-};
 
 export const ProfileBox = styled.div`
     width: 1200px;

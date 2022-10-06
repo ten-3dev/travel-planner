@@ -8,6 +8,7 @@ import {
     NavMenu,
   } from './style';
 
+
 const MyPage = () => {
     return (
         <MarginTopWrapper margin>
@@ -34,7 +35,7 @@ const MyPage = () => {
                     </NavLink>
                 </NavMenu> 
                 <NavMenu>
-                    <NavLink to='/myPlan' className={({isActive}) => "NavLink" + (isActive? "a" : "")} >
+                    <NavLink to='/myPlan' activeStyle>
                         <Styles.Box2>
                             <Styles.Text2>나의 플랜</Styles.Text2>
                             <Styles.Text2>4</Styles.Text2>
