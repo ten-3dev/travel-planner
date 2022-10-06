@@ -23,26 +23,18 @@ export const TopBar = styled.div`
 `
 export const PlanBox = styled.div` //전체박스
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
     margin-bottom: 100px;
 `
 export const PlanContentBox = styled.div` //첫번째 내용박스
-    height: 300px;
-    margin: 50px 50px 50px;
-    cursor: pointer;
-
-`
-export const PlansecondContentBox = styled.div` // 두번째 내용박스
-    height: 300px;
     margin: 50px 50px 50px;
     cursor: pointer;
 `
-export const PlansecondBox = styled.div` // 두번째 전체박스
-    width: 100%;
-    margin-bottom: 150px;
-    display: flex;
+export const PlansecondContentBox = styled.div` // 두번째 내용박스 
+    margin: 50px 50px 50px;
+    cursor: pointer;
 `
-
 export const PlanImg = styled.img`
     width: 300px;
     border-radius: 12px;

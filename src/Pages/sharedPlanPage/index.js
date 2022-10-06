@@ -54,51 +54,49 @@ const SharedPlanPage = () =>{
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>
+                <Styles.PlanContentBox>
+                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
+                    <Styles.ContentListBox>
+                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
+                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
+                        <Styles.LikeListfontBox>
+                            <Styles.LikefontBox>
+                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.ContentBox>1</Styles.ContentBox>
+                            </Styles.LikefontBox>
+                            <Styles.ContentBox>By.JD</Styles.ContentBox>
+                        </Styles.LikeListfontBox>
+                    </Styles.ContentListBox>
+                </Styles.PlanContentBox>
+                <Styles.PlanContentBox>
+                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
+                    <Styles.ContentListBox>
+                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
+                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
+                        <Styles.LikeListfontBox>
+                            <Styles.LikefontBox>
+                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.ContentBox>1</Styles.ContentBox>
+                            </Styles.LikefontBox>
+                            <Styles.ContentBox>By.JD</Styles.ContentBox>
+                        </Styles.LikeListfontBox>
+                    </Styles.ContentListBox>
+                </Styles.PlanContentBox>
+                <Styles.PlanContentBox>
+                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
+                    <Styles.ContentListBox>
+                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
+                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
+                        <Styles.LikeListfontBox>
+                            <Styles.LikefontBox>
+                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.ContentBox>1</Styles.ContentBox>
+                            </Styles.LikefontBox>
+                            <Styles.ContentBox>By.JD</Styles.ContentBox>
+                        </Styles.LikeListfontBox>
+                    </Styles.ContentListBox>
+                </Styles.PlanContentBox>
             </Styles.PlanBox>
-            <Styles.PlansecondBox>
-                <Styles.PlansecondContentBox>
-                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
-                    <Styles.ContentListBox>
-                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
-                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
-                        <Styles.LikeListfontBox>
-                            <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
-                                <Styles.ContentBox>1</Styles.ContentBox>
-                            </Styles.LikefontBox>
-                            <Styles.ContentBox>By.JD</Styles.ContentBox>
-                        </Styles.LikeListfontBox>
-                    </Styles.ContentListBox>
-                </Styles.PlansecondContentBox>
-                <Styles.PlansecondContentBox>
-                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
-                    <Styles.ContentListBox>
-                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
-                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
-                        <Styles.LikeListfontBox>
-                            <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
-                                <Styles.ContentBox>1</Styles.ContentBox>
-                            </Styles.LikefontBox>
-                            <Styles.ContentBox>By.JD</Styles.ContentBox>
-                        </Styles.LikeListfontBox>
-                    </Styles.ContentListBox>
-                </Styles.PlansecondContentBox>
-                <Styles.PlansecondContentBox>
-                    <Styles.PlanImg src={"assets/plan_ex1.png"}></Styles.PlanImg>
-                    <Styles.ContentListBox>
-                        <Styles.ContentBox>JD의 서울 여행</Styles.ContentBox>
-                        <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
-                        <Styles.LikeListfontBox>
-                            <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
-                                <Styles.ContentBox>1</Styles.ContentBox>
-                            </Styles.LikefontBox>
-                            <Styles.ContentBox>By.JD</Styles.ContentBox>
-                        </Styles.LikeListfontBox>
-                    </Styles.ContentListBox>
-                </Styles.PlansecondContentBox>
-            </Styles.PlansecondBox>
         </MarginTopWrapper>
     );
 }
