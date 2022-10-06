@@ -20,6 +20,12 @@ const Header = () => {
     const moveMain = () => {
         navigate('/');
     }
+    const moveTravel = () => {
+        navigate('/travel');
+    }
+    const moveCreatePlan = () => {
+        navigate('/CreatePlanPage');
+    }
 
     useEffect(() => {
         if(loginOpen || signOpen){
@@ -35,8 +41,8 @@ const Header = () => {
                 <Styles.Header>
                     <Styles.Menu>
                         <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo" onClick={moveMain}/>
-                        <Styles.Text>여행지</Styles.Text>
-                        <Styles.Text>플랜 생성</Styles.Text>
+                        <Styles.Text onClick={moveTravel}>여행지</Styles.Text>
+                        <Styles.Text onClick={moveCreatePlan}>플랜 생성</Styles.Text>
                         <Styles.Text>공유된 플랜 보기</Styles.Text>
                     </Styles.Menu>
                     <Styles.LogSign>

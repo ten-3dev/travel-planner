@@ -23,29 +23,38 @@ export const TopBar = styled.div`
 `
 export const PlanBox = styled.div` //전체박스
     width: 100%;
+    margin-bottom: 50px;
+    cursor: pointer;
     display: flex;
     margin-bottom: 100px;
 `
 export const PlanContentBox = styled.div` //첫번째 내용박스
+    width: 400px;
     height: 300px;
     margin: 50px 50px 50px;
     cursor: pointer;
+
 `
 export const PlansecondContentBox = styled.div` // 두번째 내용박스
+    width: 400px;
     height: 300px;
     margin: 50px 50px 50px;
     cursor: pointer;
 `
 export const PlansecondBox = styled.div` // 두번째 전체박스
     width: 100%;
-    margin-bottom: 150px;
+    margin-bottom: 200px;
     display: flex;
 `
+
 export const PlanImg = styled.img`
     width: 300px;
     border-radius: 12px;
 `
 export const LikeImg = styled.img`
+    /* width: 35px;
+    margin-top: 25px;
+    display: flex; */
     width: 25px;
     margin-right: 5px;
 `
@@ -64,13 +73,14 @@ export const ContentBox = styled.div`
     font-weight: bold;
 `
 export const ContentListBox = styled.div`
-    width: 300px;
+    width: 100%;
     height: 140px;
-    margin-top: 10px;
+    //margin-top: 10px;
     border: 0.5px solid black;
     border-radius: 15px;
     box-sizing: border-box;
     padding: 15px 15px 0;
     display: flex;
     flex-direction: column;
+    //margin-bottom: 30px;
 `

@@ -8,7 +8,7 @@ import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
 import SchedulePage from "./Pages/scheduleBoxPage";
-import PopularPlanPage from "./Pages/popularPlanPage";
+import SharedPlanPage from "./Pages/sharedPlanPage";
 import EditMemberPage from"./Pages/editMemberPage";
 import CreatePlanPage from "./Pages/createPlanPage";
 import UserStore from "./Store/users";
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/travel" element={<TravelPage/>}/>
           <Route path="/schedule" element={<SchedulePage/>}/>
           <Route path="/myPage" element={<MyPage/>}/>
-          <Route path="/popular" element={<PopularPlanPage/>}/>
+          <Route path="/shared" element={<SharedPlanPage/>}/>
           <Route path="/editMember" element={<EditMemberPage/>}/>
           <Route path="/createPlanPage" element={<CreatePlanPage/>}/>
           <Route path='/myComments' element={<MyComments/>} />

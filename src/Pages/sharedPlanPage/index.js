@@ -2,12 +2,12 @@ import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
-const PopularPlanPage = () =>{
+const SharedPlanPage = () =>{
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
                 <Styles.Title>
-                    인기 플랜
+                    공유된 플랜
                 </Styles.Title>
             </Styles.TitleBox>
             <Styles.TopBar/>
@@ -102,4 +102,4 @@ const PopularPlanPage = () =>{
         </MarginTopWrapper>
     );
 }
-export default PopularPlanPage;
+export default SharedPlanPage;
