@@ -1,12 +1,17 @@
 import React from 'react';
+import {useForm} from "react-hook-form";
 import * as Styles from './style';
 
 const SignPage = () => {
+  const { resgister, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
     return(
-        <Styles.Wrapper>
+  
+        <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <Styles.ContentBox>
             <Styles.SignText>SIGN UP</Styles.SignText>
-
+          
                 <Styles.SignText2>아이디
                   <Styles.Input/>
                   <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn>
@@ -24,7 +29,9 @@ const SignPage = () => {
                   <Styles.Input/>
                 </Styles.SignText2>
 
-                <Styles.SignText2>이메일
+                <Styles.SignText2
+                
+                >이메일
                   <Styles.Input/>
                 <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
 

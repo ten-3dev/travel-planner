@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
     width: 100%;
     overflow: hidden;
 `
@@ -17,7 +17,7 @@ export const SignText = styled.div`
     margin-bottom: 40px;
 `
 
-export const SignText2 = styled.div`
+export const SignText2 = styled.label`
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 30px;
