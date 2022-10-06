@@ -83,16 +83,18 @@ export const Box3 = styled.div`
 `
 
 export const Box4 = styled.div`
-    width: 500px;
+    width: auto;
     //align-items: center;
-    margin-left: 500px;
+    //margin-left: auto;
     text-align: center;
-    display: flex;
+    
+    margin-left: 120px;
 `
 export const Box5 = styled.div`
-    width: 100%;
-    align-items: center;
-    text-align: center;
+    width: 1200px;
+    //align-items:center;
+    //text-align: center;
+    justify-content: center;
     display: flex;
 `
 
@@ -136,7 +138,7 @@ export const Profile = styled.img`
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     cursor: pointer;
     
 `
