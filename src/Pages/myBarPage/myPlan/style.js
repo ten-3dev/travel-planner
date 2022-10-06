@@ -21,12 +21,12 @@ export const SmallBox = styled.div`
     margin-bottom: 30px;
    
 `
-export const lineBox = styled.div`
+export const LineBox = styled.div`
     width: 885px;
     padding: 30px 0 20px 10px;
     display: flex;
 `
-export const contentBox = styled.div`
+export const ContentBox = styled.div`
     width: 650px;
     height: 120px;
     background-color: #ECECEC;
@@ -34,13 +34,13 @@ export const contentBox = styled.div`
     
     border-radius: 10px;  
 `
-export const contentBox2 = styled.div`
+export const ContentBox2 = styled.div`
     width: 100%;
     height: 50%;
     display: flex;
    
 `
-export const dayBox = styled.div`
+export const DayBox = styled.div`
     width: 120px;
     font-size: 16px;
     margin-top:20px;
@@ -93,7 +93,7 @@ export const Text = styled.div`
     font-weight: bold;
     
 `
-export const contentText = styled.div`
+export const ContentText = styled.div`
     width: 430px; 
     font-size: 16px;
     margin-left: 20px;

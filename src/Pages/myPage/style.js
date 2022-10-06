@@ -1,8 +1,12 @@
 import styled from "styled-components";
-
+import { Link as ReactRouterDomLink } from "react-router-dom";
 
 import { NavLink as Link } from 'react-router-dom';
 
+
+const Link = ({ isActive, children, ...props }) => {
+	return <ReactRouterDomLink {...props}>{children}</ReactRouterDomLink>;
+};
 
 export const ProfileBox = styled.div`
     width: 1200px;
@@ -222,11 +226,15 @@ export const NavLink = styled(Link)`
   border-radius: 10px;
   height: 100%;
   cursor: pointer;
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
   &:hover {
     //transition: all 0.2s ease-in-out;
     background: #BEBEBE;
     color: #808080;
   }
+  &:active{
+  background-color:green;
+}
 `;
   
 export const NavMenu = styled.div`
@@ -236,6 +244,7 @@ export const NavMenu = styled.div`
   background: #ECECEC;
   border-radius: 10px;
   margin: 0 30px 0 0;
+  
 `;
   
 

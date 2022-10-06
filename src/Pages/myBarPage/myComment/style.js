@@ -22,20 +22,20 @@ export const SmallBox = styled.div`
     margin-bottom: 30px;
    
 `
-export const lineBox = styled.div`
+export const LineBox = styled.div`
     width: 885px;
     padding: 30px 0 20px 10px;
     display: flex;
     cursor: pointer;
 `
-export const contentBox = styled.div`
+export const ContentBox = styled.div`
     width: 600px;
     margin-left: 50px;
     margin-top:10px;
     margin-bottom: 10px;
     
 `
-export const dayBox = styled.div`
+export const DayBox = styled.div`
     width: 100px;
     font-size: 12px;
     margin-top:50px;
@@ -63,7 +63,7 @@ export const Text = styled.div`
     font-weight: bold;
     
 `
-export const contentText = styled.div`
+export const ContentText = styled.div`
     width: 100%; 
     font-size: 16px;
     padding-top: 5px;

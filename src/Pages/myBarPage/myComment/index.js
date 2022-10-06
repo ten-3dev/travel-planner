@@ -13,30 +13,31 @@ const MyComments = () => {
             <Styles.Text>공유한 플랜 댓글</Styles.Text>
           </Styles.Box>
           <Styles.SmallBox>
-            <Styles.lineBox>
+            <Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
-            <Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox>
+            <Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
-            <Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox>
+            <Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox>
+            
           </Styles.SmallBox>
           <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
         </Styles.BigBox>
@@ -46,30 +47,28 @@ const MyComments = () => {
             <Styles.Text>관광지 댓글</Styles.Text>
           </Styles.Box>
           <Styles.SmallBox>
-            <Styles.lineBox>
+            <Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
-            <Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox><Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
-            <Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox><Styles.LineBox>
               <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
-              <Styles.contentBox>
-                <Styles.contentText>김광석 길</Styles.contentText>
-                <Styles.contentText>볼거없다 가지말자...ㅠ</Styles.contentText>
-              </Styles.contentBox>
-              <Styles.dayBox>1995-05-09</Styles.dayBox>
-            </Styles.lineBox>
+              <Styles.ContentBox>
+                <Styles.ContentText>김광석 길</Styles.ContentText>
+                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+              </Styles.ContentBox>
+              <Styles.DayBox>1995-05-09</Styles.DayBox>
+            </Styles.LineBox>
           </Styles.SmallBox>
           <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
         </Styles.BigBox>

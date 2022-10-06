@@ -21,12 +21,12 @@ export const SmallBox = styled.div`
     margin-bottom: 30px;
    
 `
-export const lineBox = styled.div`
+export const LineBox = styled.div`
     width: 885px;
     padding: 30px 0 20px 10px;
     display: flex;
 `
-export const contentBox = styled.div`
+export const ContentBox = styled.div`
     width: 620px;
     height: 180px;
     background-color: #ECECEC;
@@ -34,16 +34,16 @@ export const contentBox = styled.div`
     
     border-radius: 10px;  
 `
-export const contentBox2 = styled.div`
+export const ContentBox2 = styled.div`
     width: 100%;
     height: 50%;
     display: flex;
    
 `
-export const contentBox3 = styled.div`
+export const ContentBox3 = styled.div`
     width: 520px;
 `
-export const dayBox = styled.div`
+export const DayBox = styled.div`
     width: 520px;
     font-size: 12px;
     margin-top: 40px;
@@ -59,7 +59,7 @@ export const NameBox = styled.div`
     margin-left: 90px;
     
 `
-export const heartSumText = styled.div`
+export const HeartSumText = styled.div`
     width: 100px;
     font-size: 16px;
     margin-top:35px;
@@ -111,7 +111,7 @@ export const Text = styled.div`
     font-weight: bold;
     
 `
-export const contentText = styled.div`
+export const ContentText = styled.div`
     width: 430px; 
     font-size: 16px;
     margin-left: 20px;
