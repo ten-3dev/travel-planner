@@ -6,7 +6,7 @@ import { MarginTopWrapper } from "../../../Common/style";
 const MyPlan = () => {
   return (
     <>
-    <MyPage />
+    <MyPage isAction="myPlan"/>
     <MarginTopWrapper>
       <Styles.BigBox>
           <Styles.Box>

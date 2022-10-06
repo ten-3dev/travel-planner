@@ -221,7 +221,9 @@ export const NavLink = styled(Link)`
   text-align: center;
   border-radius: 10px;
   height: 100%;
-  background: #ECECEC;
+  background: ${props => {
+    return props.isAction === "myPlan" ? "red" : "#BEBEBE"
+  }};
   cursor: pointer;
   &:hover {
     //transition: all 0.2s ease-in-out;

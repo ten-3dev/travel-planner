@@ -12,7 +12,7 @@ const activeStyle={
     color:'white'
 }
 
-const MyPage = () => {
+const MyPage = ({isAction}) => {
     return (
         <MarginTopWrapper margin>
             <Styles.Box3>
@@ -38,7 +38,7 @@ const MyPage = () => {
                     </NavLink>
                 </NavMenu> 
                 <NavMenu>
-                    <NavLink to='/myPlan' activeStyle>
+                    <NavLink to='/myPlan' activeStyle isAction={isAction}>
                         <Styles.Box2>
                             <Styles.Text2>나의 플랜</Styles.Text2>
                             <Styles.Text2>4</Styles.Text2>
