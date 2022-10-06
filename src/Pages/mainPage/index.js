@@ -1,12 +1,21 @@
 import React, { useState, useRef } from "react";
 import * as Styles from './style';
+import { useNavigate } from "react-router-dom";
 import { MarginTopWrapper } from '../../Common/style';
 import { getAddressData } from "../../Data";
 
 const MainPage = () => {
+    const navigate = useNavigate();
     const [addressData, setAddressData] = useState(null);
     const [filterAddressData, setFilterAddressData] = useState([]);
     const searchInput = useRef("");
+
+    const moveCreatePlan = () => {
+        navigate('/CreatePlanPage');
+    }
+    const moveSharedPlan = () => {
+        navigate('/shared');
+    }
 
     const NextArrow = props => {
         const { className, onClick } = props;
@@ -105,7 +114,7 @@ const MainPage = () => {
                                 <Styles.BottomContentText>간단하게 원하는 여행지를 찾아보고 간단하게 원하는 계획을 세울 수 있습니다.</Styles.BottomContentText>
                             </Styles.BottomContentWords>
                         </Styles.BottomContentSBox>
-                        <Styles.BottomContentBtn>플랜 작성하기</Styles.BottomContentBtn>
+                        <Styles.BottomContentBtn onClick={moveCreatePlan}>플랜 작성하기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                     <Styles.BottomContentBox column paddingBottom="50px">
                         <Styles.CarouselTitle>인기플랜</Styles.CarouselTitle>
@@ -167,7 +176,7 @@ const MainPage = () => {
                                     </Styles.SliderInfo>
                                 </Styles.SliderBox>
                             </Styles.SliderCustom>
-                        <Styles.BottomContentBtn>플랜 모두 보기</Styles.BottomContentBtn>
+                        <Styles.BottomContentBtn onClick={moveSharedPlan}>플랜 모두 보기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                 </Styles.BottomBox>
             </MarginTopWrapper>
