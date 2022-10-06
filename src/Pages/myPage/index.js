@@ -19,10 +19,12 @@ const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
                 <Styles.SettingBox>
                     <Styles.Profile src={`assets/임시프로필사진.png`}/>
                 </Styles.SettingBox>
+                <Styles.Box5>
                 <Styles.Box4>
-                <Styles.Text>tetrisGosu</Styles.Text>
-                <Styles.Setting src={`assets/settings.png`}/>
+                <Styles.Text>tetfdsa</Styles.Text>
                 </Styles.Box4>
+                <Styles.EditMemberBox>회원 수정</Styles.EditMemberBox>
+                </Styles.Box5>
                 
             </Styles.ProfileBox>
         

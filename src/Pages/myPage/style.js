@@ -6,16 +6,15 @@ import { NavLink as Link } from 'react-router-dom';
 
 export const ProfileBox = styled.div`
     width: 1200px;
-    display: flex;
+    text-align: center;
     margin: 150px 0 50px 0;
     
 `
 
 export const SettingBox = styled.div`
     width: 400px;
-    display: flex-end;
-    text-align:right;
-    margin-left: 200px;
+    text-align:center;
+    margin-left: 400px;
     margin-top: 50px;
     
     
@@ -84,7 +83,30 @@ export const Box3 = styled.div`
 `
 
 export const Box4 = styled.div`
-    width: 50%;
+    width: 500px;
+    //align-items: center;
+    margin-left: 500px;
+    text-align: center;
+    display: flex;
+`
+export const Box5 = styled.div`
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    display: flex;
+`
+
+export const EditMemberBox = styled.div`
+    width: 100px;
+    height: 25px;
+    background-color: #ECECEC;
+    
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top:5px ;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
     
 `
 
@@ -109,14 +131,6 @@ export const MySharingPlanBox = styled.div`
     padding-top: 20px;
 `
 
-export const Setting = styled.img`
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    align-items:flex-end ;
-    justify-content: flex-start;
-    
-`
 
 export const Profile = styled.img`
     width: 150px;
@@ -128,10 +142,13 @@ export const Profile = styled.img`
 `
 
 export const Text = styled.div`
-    width: 300px; 
-   
+    width: auto; 
+    text-align: center;
     font-size: 30px;
-    margin: 100px 0 0 20px;
+    //margin-left: 85px;
+    margin-right: 20px;
+    
+     
 `
 export const Text1 = styled.div`
     width: 100%; 

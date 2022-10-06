@@ -17,7 +17,7 @@ const MyPlan = () => {
               <Styles.ImgBox src={`assets/image32.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentBox2>
-                  <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
+                  <Styles.ContentText>응가의 경북 </Styles.ContentText>
                   <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
