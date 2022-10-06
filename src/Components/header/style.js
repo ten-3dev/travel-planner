@@ -39,8 +39,16 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     top: 0;
+    transition: all .5s;
     background: ${props => {
-        return props.main ? "transparent" : "linear-gradient(180deg, rgba(118, 118, 118,1) 5%,  rgba(255,255,255, 0) 100%)"
+        let bg;
+        if(props.bg){
+            bg = "transparent"
+        }else{
+            bg = "linear-gradient(180deg, rgba(118, 118, 118,1) 5%,  rgba(255,255,255, 0) 100%)"
+        }
+        if(props.scroll) bg = "white"
+        return bg;
     }};
     display: ${props => {
         return props.open ? "block" : "none"

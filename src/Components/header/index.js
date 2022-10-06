@@ -12,6 +12,8 @@ const Header = () => {
     
     const [loginOpen, setLoginOpen] = useState(false); //로그인용 모달
     const [signOpen, setSignOpen] = useState(false); //회원가입용 모달
+
+    const [scrollPosition, setScrollPosition] = useState(0); // 스트롤
     
     const moveMain = () => {
         navigate('/');
@@ -34,8 +36,19 @@ const Header = () => {
         }
     }, [loginOpen, signOpen])
 
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);
+    });
+
     return(
-        <Styles.Wrapper main={location.pathname === '/' ? true : false} open={location.pathname === '/CreatePlanPage' ? false : true}>
+        <Styles.Wrapper 
+            bg={location.pathname === '/' ? true : false}
+            open={location.pathname === '/CreatePlanPage' ? false : true}
+            scroll={scrollPosition > 100 ? true : false}
+            >
             <MarginTopWrapper>
                 <Styles.Header>
                     <Styles.Menu>
