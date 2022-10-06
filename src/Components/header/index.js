@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import LoginPage from '../../Modals/login/index'
 import SignPage from '../../Modals/sign/index'
 import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
-import { UserContext } from "../../Store/users";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -14,9 +13,6 @@ const Header = () => {
     const [loginOpen, setLoginOpen] = useState(false); //로그인용 모달
     const [signOpen, setSignOpen] = useState(false); //회원가입용 모달
     
-    const context = useContext(UserContext);
-    const { layoutOpen } = context;
-
     const moveMain = () => {
         navigate('/');
     }
@@ -37,9 +33,9 @@ const Header = () => {
             document.body.style.overflow = 'unset'
         }
     }, [loginOpen, signOpen])
-    
+
     return(
-        <Styles.Wrapper main={location.pathname === '/' ? true : false} open={layoutOpen}>
+        <Styles.Wrapper main={location.pathname === '/' ? true : false} open={location.pathname === '/CreatePlanPage' ? false : true}>
             <MarginTopWrapper>
                 <Styles.Header>
                     <Styles.Menu>

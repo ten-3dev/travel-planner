@@ -23,7 +23,7 @@ const App = () => {
   return (
     <UserStore>
       <BrowserRouter>
-        <Header open={true}/>
+        <Header/>
         <Routes>
           <Route path="/" element={<MainPage/>}/>
           <Route path="/calendar" element={<CalendarPage/>}/>
@@ -40,7 +40,7 @@ const App = () => {
           <Route path='/like' element={<Like/>} />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
-        <Footer open={true}/>
+        <Footer/>
       </BrowserRouter>
     </UserStore>
   );

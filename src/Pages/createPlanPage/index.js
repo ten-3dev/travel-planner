@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as Styles from './style';
-import { UserContext } from "../../Store/users";
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => {
     const [value, onChange] = useState(new Date());
@@ -50,13 +49,6 @@ const CreatePlanPage = () => {
     //박스를 움직이게 하는 state
     const [controlOpen, setControlOpen] = useState(false); // Control
     const [travelOpen, settravelOpen] = useState(false); // Travel
-
-    const context = useContext(UserContext);
-    const { setLayoutOpen } = context;
-
-    useEffect(() => { // 헤더, 푸터 없앰
-        setLayoutOpen(false);
-    });
 
     useEffect(() => { // 임시. 이따 지우셈
         console.log(dateList);
