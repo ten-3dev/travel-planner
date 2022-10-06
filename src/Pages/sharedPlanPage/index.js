@@ -1,8 +1,10 @@
-import React from "react";
+import React,{ useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 const SharedPlanPage = () =>{
+    const [clicked, setClicked] = useState("Latest");
+
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -10,6 +12,11 @@ const SharedPlanPage = () =>{
                     공유된 플랜
                 </Styles.Title>
             </Styles.TitleBox>
+            <Styles.LatestpopularBox>
+                <Styles.LatestBtn click={clicked === "Latest"} onClick={() => setClicked("Latest")}>최신순</Styles.LatestBtn>
+                <Styles.Sign>|</Styles.Sign>
+                <Styles.PopularBtn click={clicked === "Popular"} onClick={() => setClicked("Popular")}>인기순</Styles.PopularBtn>
+            </Styles.LatestpopularBox>
             <Styles.TopBar/>
             <Styles.PlanBox>
                 <Styles.PlanContentBox>

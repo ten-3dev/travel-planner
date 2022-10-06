@@ -16,7 +16,7 @@ export const Title = styled.div`
 export const TopBar = styled.div` 
     width: 100%;
     height: 3px;
-    margin-top: 10px;
+   // margin-top: 10px;
     margin-bottom: 30px;
     background-color: grey ;
     opacity: 0.2;
@@ -63,4 +63,32 @@ export const ContentListBox = styled.div`
     padding: 15px 15px 0;
     display: flex;
     flex-direction: column;
+`
+export const LatestpopularBox =styled.div`
+    //background-color: white;
+    width: 115px;
+    margin-left: 1050px;
+    margin-bottom: 10px;
+    display: flex;
+`
+export const LatestBtn = styled.button`
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    font-weight: ${props => {
+        if(props.click) return "bold" 
+        else return "none"
+    }};
+`
+export const PopularBtn = styled.button`
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    font-weight: ${props => {
+        if(props.click) return "bold" 
+        else return "none"
+    }};
+`
+export const Sign = styled.div`
+
 `
