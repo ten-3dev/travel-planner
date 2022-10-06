@@ -88,13 +88,6 @@ export const PlanInfoList = styled.div`
         }
     flex: 1;
     flex-direction: column;
-    height: ${props =>{
-        return props.height ? `${props.height}` : ""
-    }};
-    margin: ${props => {
-        return props.margin ? `${props.margin}` : ""
-    }};
-   
 `
 
 export const DayList = styled.div`
@@ -180,10 +173,22 @@ export const Content = styled.div`
     
 `
 
+export const MapBtnBox = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0 25px 25px 25px;
+    background-color: white;//#D7D7D7
+    
+
+`
 export const MapBtn = styled.img`
-   // border: 3px solid skyblue;
-    height: 50%;
-    margin: 25px;
+    height: 100%;
 
 `
 
