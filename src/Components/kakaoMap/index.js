@@ -18,13 +18,13 @@ const Map=(props)=>{
         position: new kakao.maps.LatLng(lat, lon),  // 마커가 표시될 위치
     });
 
-    // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+    
+    //@@@@ 여기부터 카테고리추가 ㅋㅋ
+    // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다 
     var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
     contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
     markers = [], // 마커를 담을 배열입니다
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
-
-  
 
     var map = new kakao.maps.Map(container, options); // 지도를 생성합니다    
     var ps = new kakao.maps.services.Places(map); // 장소 검색 객체를 생성합니다
@@ -156,36 +156,36 @@ const Map=(props)=>{
       if (el) el.className = 'on';
       
    } 
-    
+    //@@@@@@@@@@@@@@@카테고리 끝
     },)
     return (
       <div className="map_wrap">
       <div id="map" style={{width:"100%",height:"100%",position:"relative",overflow:"hidden"}}></div>
-      <ul id="category" style={{display:"flex", postion:"absolute",top:"100px", left: "10px"}}>
-          <div id="BK9" data-order="0"> 
+      <ul id="category">
+          <li id="BK9" data-order="0"> 
               <span className="category_bg bank"></span>
               은행
-          </div>       
-          <div id="MT1" data-order="1"> 
+          </li>       
+          <li id="MT1" data-order="1"> 
               <span className="category_bg mart"></span>
               마트
-          </div>  
-          <div id="PM9" data-order="2"> 
+          </li>  
+          <li id="PM9" data-order="2"> 
               <span className="category_bg pharmacy"></span>
               약국
-          </div>  
-          <div id="OL7" data-order="3"> 
+          </li>  
+          <li id="OL7" data-order="3"> 
               <span className="category_bg oil"></span>
               주유소
-          </div>  
-          <div id="CE7" data-order="4"> 
+          </li>  
+          <li id="CE7" data-order="4"> 
               <span className="category_bg cafe"></span>
               카페
-          </div>  
-          <div id="CS2" data-order="5"> 
+          </li>  
+          <li id="CS2" data-order="5"> 
               <span className="category_bg store"></span>
               편의점
-          </div>      
+          </li>      
       </ul> 
   </div>
     )
