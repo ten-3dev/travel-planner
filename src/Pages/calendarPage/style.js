@@ -174,22 +174,15 @@ export const Content = styled.div`
 `
 
 export const MapBtnBox = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: none;
     border-radius: 10px;
-    height: 100%;
     cursor: pointer;
-    padding: 15px;
-    margin: 0 25px 25px 25px;
+    background: url("/assets/image35.png") no-repeat scroll 0 0 transparent;
+    background-size: contain ;
     background-color: white;//#D7D7D7
+    width: 70px;
+    margin: 10px 20px 0 0;
     
-
-`
-export const MapBtn = styled.img`
-    height: 100%;
-
 `
 
 export const MapBox = styled.div`

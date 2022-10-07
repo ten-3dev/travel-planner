@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import * as Styles from './style';
 
 const SignPage = () => {
-  const { resgister, handleSubmit } = useForm();
+  const { resgister, handleSubmit } = useForm();//eslint-disable-line no-unused-vars
   const onSubmit = (data) => console.log(data);
 
     return(

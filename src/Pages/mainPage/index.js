@@ -50,7 +50,7 @@ const MainPage = () => {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />
     };
-
+    
     const onPreview = async (e) => {
         if(addressData === null){
             const data = await getAddressData();
