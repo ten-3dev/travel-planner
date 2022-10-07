@@ -4,6 +4,20 @@ import { MarginTopWrapper } from "../../Common/style";
 
 export const EditmemberPage = () => {
     const [clicked, setClicked] = useState("Profile");
+    function EditBtn() {
+        if (window.confirm("수정하시겠습니까?")) {
+
+         } else {
+        console.log("취소. 변화 없음");
+        }
+    };
+    function Deletemsg() {
+        if(window.confirm("정말로 탈퇴하시겠습니까??")){
+
+        } else {
+            console.log("취소. 탈퇴ㄴㄴ");
+        } 
+    };
     return(
         <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
@@ -15,7 +29,7 @@ export const EditmemberPage = () => {
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>회원수정</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Logout"} onClick={() => setClicked("Logout")} >로그아웃</Styles.LeftContent>
-                    <Styles.DeleteBtn>탈퇴하기 ▶ </Styles.DeleteBtn>
+                    <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 <Styles.MemberInforBox>
                     <Styles.MemberContentBox>
@@ -35,7 +49,7 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="010-5899-7032" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
             </Styles.ProfileBox>
