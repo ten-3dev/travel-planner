@@ -16,7 +16,6 @@ const Map=(props)=>{
 
     new kakao.maps.Marker({  // 마커를 생성
         position: new kakao.maps.LatLng(lat, lon),  // 마커가 표시될 위치
-        map: map
     });
 
     // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
