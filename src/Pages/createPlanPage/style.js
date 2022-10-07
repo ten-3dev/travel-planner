@@ -415,3 +415,22 @@ export const FilterBtn = styled.div`
         text-decoration: underline;
     }
 `
+
+export const PlanApplyBtn = styled.div`
+    width: 180px;
+    height: 50px;
+    background-color: greenyellow;
+    position: absolute;
+    z-index: 3;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -90px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+`

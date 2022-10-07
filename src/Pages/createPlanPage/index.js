@@ -134,6 +134,7 @@ const CreatePlanPage = () => {
             <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
+                <Styles.PlanApplyBtn>적용하기</Styles.PlanApplyBtn>
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
