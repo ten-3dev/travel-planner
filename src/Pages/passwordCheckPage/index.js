@@ -22,11 +22,11 @@ const PasswordCheckPage = () => {
                         </Styles.UserInformationBox>
                         <Styles.Text2>비밀번호를 한번 더 확인해 주세요.</Styles.Text2>
                         <Styles.PasswardCheckBox>
-                            <Styles.Text3>▶ 비밀번호</Styles.Text3>
+                            <Styles.Text3>비밀번호</Styles.Text3>
                             <Styles.Input></Styles.Input>
                         </Styles.PasswardCheckBox>
                         <Styles.CheckBox>
-                            <Styles.CheckBtn>▶ 확인</Styles.CheckBtn>
+                            <Styles.CheckBtn>확인</Styles.CheckBtn>
                         </Styles.CheckBox>
                     </Styles.UserInformationBox2>
                 </Styles.InformationBox>
