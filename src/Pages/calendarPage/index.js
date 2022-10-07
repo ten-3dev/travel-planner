@@ -24,8 +24,6 @@ const CalendarPage = () =>{
         }
         setCoordinate(newCoor);
     }
-    
-
     return(
         <>
         <Styles.ImageBox>
