@@ -30,6 +30,7 @@ export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 �
     font-size: 19px;
     margin: 40px 100px 30px;
     text-align: center;
+    cursor: pointer;
     border-bottom: ${props => {
         if(props.click) return "2px solid"
         else return "none"

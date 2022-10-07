@@ -28,7 +28,7 @@ export const EditmemberPage = () => {
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>회원수정</Styles.LeftContent>
-                    <Styles.LeftContent click={clicked === "Logout"} onClick={() => setClicked("Logout")} >로그아웃</Styles.LeftContent>
+                    <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 <Styles.MemberInforBox>
