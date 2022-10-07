@@ -27,22 +27,41 @@ export const EditmemberPage = () => {
                     <Styles.MemberConrentBox>jjijju</Styles.MemberConrentBox>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
-                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>회원수정</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>내프로필</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 <Styles.MemberInforBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit>비밀번호</Styles.MemberEdit>
+                        <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit>비밀번호확인</Styles.MemberEdit>
+                        <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
+                    </Styles.MemberContentBox>
+                    <Styles.MemberContentBox>
+                        <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
                         <Styles.Content placeholder="비밀번호를 다시입력해주세요." ></Styles.Content>
                     </Styles.MemberContentBox>
+                    <Styles.BtnBox>
+                        <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
+                    </Styles.BtnBox> 
+                </Styles.MemberInforBox>
+                <Styles.MyProfileBox>
+                <Styles.MemberConrentBox>기본정보</Styles.MemberConrentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>이름</Styles.MemberEdit>
                         <Styles.Content placeholder="김찌쭈" ></Styles.Content>
+                    </Styles.MemberContentBox>
+                    <Styles.MemberContentBox>
+                        <Styles.MemberEdit>닉네임</Styles.MemberEdit>
+                        <Styles.Content placeholder="쮸짱이" ></Styles.Content>
+                    </Styles.MemberContentBox>
+                    <Styles.MemberContentBox>
+                        <Styles.MemberEdit>이메일</Styles.MemberEdit>
+                        <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
@@ -51,9 +70,12 @@ export const EditmemberPage = () => {
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
-                </Styles.MemberInforBox>
+                </Styles.MyProfileBox>
+
+
             </Styles.ProfileBox>
         </MarginTopWrapper>
+
     );
 }
 export default EditmemberPage;

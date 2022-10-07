@@ -26,9 +26,9 @@ export const LeftProfileBox = styled.div`
     border-left: 1px solid rgba(0,0,0,.08);
 `
 export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 자동 첫번째
-    width: 100px;
+    width: 120px;
     font-size: 19px;
-    margin: 40px 100px 30px;
+    margin: 40px 90px 30px;
     text-align: center;
     cursor: pointer;
     border-bottom: ${props => {
@@ -42,9 +42,9 @@ export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 �
     }};
 `
 export const MemberInforBox = styled.div`
-    height: 550px;
+    height: 600px;
     margin-left: 50px;
-    padding: 16px 17px 0;
+    padding: 60px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
     border: solid 1px rgba(54, 66, 69, 0.56);
@@ -59,8 +59,8 @@ export const ProfileImg = styled.img`
     margin: 100px 100px 0;
 `
 export const MemberContentBox = styled.div`
-    margin: 10px 0 0;
-    padding: 15px 30px 10px;
+    margin: 30px 0 0;
+    padding: 10px 30px 0;
 `
 export const MemberEdit = styled.div`
     width: 150px;
@@ -79,6 +79,16 @@ export const Memberemail = styled.div`
     text-align:center;
     font-size: 15px;
     color: #929294;
+`
+export const MyProfileBox = styled.div`
+    height: 600px;
+    margin-left: 50px;
+    padding: 20px 17px 0;
+    border-radius: 15px;
+    box-shadow: 2px 2px 14px 0;
+    border: solid 1px rgba(54, 66, 69, 0.56);
+    background-color: #fff;
+    box-sizing: border-box;
 `
 export const Content = styled.input`
     margin: 0;
@@ -107,7 +117,7 @@ export const EditBtn = styled.button`
     border: 0;
     width: 100px;
     height: 40px;
-    margin: 30px 150px;
+    margin: 45px 150px;
     font-size: 15px;
     background: rgba(0, 100, 100, 0.5);
     color: white;
