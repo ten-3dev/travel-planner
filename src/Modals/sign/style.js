@@ -19,9 +19,15 @@ export const SignText = styled.div`
 
 export const SignText2 = styled.label`
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 550;
     margin-bottom: 30px;
     color: black;
+`
+
+export const ErrorMessage = styled.label`
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
 `
 
 export const Input = styled.input`

@@ -1,5 +1,6 @@
 import React from "react";
 import * as Styles from './style';
+import { useNavigate } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
 
 import {
@@ -12,6 +13,13 @@ import {
   } from './style';
 
 const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
+
+    const navigate = useNavigate();
+
+    const moveEditMember = () => {
+        navigate('/editMember');
+    }
+
     return (
         <MarginTopWrapper margin>
             <Styles.Box3>
@@ -23,7 +31,7 @@ const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
                     <Styles.Box4>
                         <Styles.Text>dddddddddddddddd</Styles.Text>
                     </Styles.Box4>
-                    <Styles.EditMemberBox>회원 수정</Styles.EditMemberBox>
+                    <Styles.EditMemberBox onClick={moveEditMember}>회원 수정</Styles.EditMemberBox>
                 </Styles.Box5>
                 
             </Styles.ProfileBox>
