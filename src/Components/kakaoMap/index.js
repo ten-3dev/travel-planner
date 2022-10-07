@@ -6,27 +6,26 @@ const Map=(props)=>{
   const lat = props.lat == null ? 35.87572504970846 : props.lat;
   const lon = props.lon == null ? 128.68151215551117 : props.lon;
   
-  useEffect(()=>{ 
+  useEffect(()=>{
     const container = document.getElementById('map');
     const options = {
       center: new kakao.maps.LatLng(lat, lon), 
       level: 3
     };
-    //const map = new kakao.maps.Map(container, options); //지도 생성
+    const map = new kakao.maps.Map(container, options); //지도 생성
 
-    new kakao.maps.Marker({  // 마커를 생성
+    var marker = new kakao.maps.Marker({  // 마커를 생성
         position: new kakao.maps.LatLng(lat, lon),  // 마커가 표시될 위치
     });
+    marker.setMap(map); // 지도 위에 마커를 표출합니다
 
-    
     //@@@@ 여기부터 카테고리추가 ㅋㅋ
     // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다 
-    var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+    var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
     contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
     markers = [], // 마커를 담을 배열입니다
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
 
-    var map = new kakao.maps.Map(container, options); // 지도를 생성합니다    
     var ps = new kakao.maps.services.Places(map); // 장소 검색 객체를 생성합니다
     kakao.maps.event.addListener(map, 'idle', searchPlaces);   // 지도에 idle 이벤트를 등록합니다
     contentNode.className = 'placeinfo_wrap'; // 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
@@ -65,15 +64,14 @@ const Map=(props)=>{
     function displayPlaces(places) {  // 지도에 마커를 표출하는 함수입니다
       // 몇번째 카테고리가 선택되어 있는지 얻어옵 니다
       // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+      console.log(places)
       var order = document.getElementById(currCategory).getAttribute('data-order');
       for ( var i=0; i<places.length; i++ ) {
         var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);// 마커를 생성하고 지도에 표시합니다
         // 마커와 검색결과 항목을 클릭 했을 때
         // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
         (function(marker, place) {
-          kakao.maps.event.addListener(marker, 'click', function() {
-                                                            displayPlaceInfo(place);}
-          );
+          kakao.maps.event.addListener(marker, 'click', function() {displayPlaceInfo(place);});
         })(marker, places[i]);
       }
     }
@@ -154,41 +152,39 @@ const Map=(props)=>{
           i;
       for ( i=0; i<children.length; i++ ) children[i].className = '';
       if (el) el.className = 'on';
-      
-   } 
+    } 
     //@@@@@@@@@@@@@@@카테고리 끝
     },)
     return (
       <div className="map_wrap">
-      <div id="map" style={{width:"100%",height:"100%",position:"relative",overflow:"hidden"}}></div>
-      <ul id="category">
-          <li id="BK9" data-order="0"> 
-              <span className="category_bg bank"></span>
-              은행
-          </li>       
-          <li id="MT1" data-order="1"> 
-              <span className="category_bg mart"></span>
-              마트
-          </li>  
-          <li id="PM9" data-order="2"> 
-              <span className="category_bg pharmacy"></span>
-              약국
-          </li>  
-          <li id="OL7" data-order="3"> 
-              <span className="category_bg oil"></span>
-              주유소
-          </li>  
-          <li id="CE7" data-order="4"> 
-              <span className="category_bg cafe"></span>
-              카페
-          </li>  
-          <li id="CS2" data-order="5"> 
-              <span className="category_bg store"></span>
-              편의점
-          </li>      
-      </ul> 
-  </div>
+        <div id="map" style={{width:"100%",height:"100%",position:"relative",overflow:"hidden"}}></div>
+        <ul id="category">
+            <li id="BK9" data-order="0"> 
+                <span className="category_bg bank"></span>
+                은행
+            </li>       
+            <li id="MT1" data-order="1"> 
+                <span className="category_bg mart"></span>
+                마트
+            </li>  
+            <li id="PM9" data-order="2"> 
+                <span className="category_bg pharmacy"></span>
+                약국
+            </li>  
+            <li id="OL7" data-order="3"> 
+                <span className="category_bg oil"></span>
+                주유소
+            </li>  
+            <li id="CE7" data-order="4"> 
+                <span className="category_bg cafe"></span>
+                카페
+            </li>  
+            <li id="CS2" data-order="5"> 
+                <span className="category_bg store"></span>
+                편의점
+            </li>      
+        </ul> 
+    </div>
     )
 }
-
 export default Map;
