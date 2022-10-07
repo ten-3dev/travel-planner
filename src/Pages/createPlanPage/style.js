@@ -14,6 +14,14 @@ export const ModalCustom = styled(Modal)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    ${props => {
+        if(props.filter){
+            return {
+                boxSizing: "border-box",
+                padding: "20px"
+            }
+        }
+    }}
 `
 
 export const BtnBox = styled.div`
@@ -364,4 +372,46 @@ export const ItemBtn = styled.div`
 `
 
 export const ListItemBox = styled.div`
+`
+
+export const FilterItemBox = styled.div`
+    border-radius: 5px;
+    display: flex;
+    width: 110px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    cursor: pointer;
+`
+
+export const FilterBox = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    row-gap: 15px;
+`
+
+export const FilterCheckBox = styled.input`
+    margin-right: 7px;
+`
+
+export const FilterItemText = styled.div`
+`
+
+export const FilterBtnBox = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+`
+
+export const FilterBtn = styled.div`
+    margin: 0 15px;
+    cursor: pointer;
+    :hover{
+        text-decoration: underline;
+    }
 `

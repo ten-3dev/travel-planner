@@ -7,6 +7,13 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
 
     const getApply = () => {
+        // 클릭을 안했을때 (당일로 여행을 가서 바로 적용을 눌렀을때)
+        if(!Array.isArray(value)){
+            setDateList([value]);
+            setOpen(false);
+            return;
+        }
+
         // 날짜 사이 일 수 구함
         const diffDate = value[0].getTime() - value[1].getTime();
         const dateN = Math.ceil(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
@@ -44,33 +51,50 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     )
 }
 
-// const DayList = () => {
-//     return(
-//         <Styles.ListItemBox>
-//             <Styles.DayTitle>DAY 1</Styles.DayTitle>
-//             <Styles.DayItem>
-//                 <Styles.DayItemImg></Styles.DayItemImg>
-//                     <Styles.DayItemTextBox>
-//                         <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
-//                         <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-//                     </Styles.DayItemTextBox>
-//                 </Styles.DayItem>
-//                 <Styles.DayItem>
-//                     <Styles.DayItemImg></Styles.DayItemImg>
-//                     <Styles.DayItemTextBox>
-//                         <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
-//                         <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-//                     </Styles.DayItemTextBox>
-//                 </Styles.DayItem>
-//                 <Styles.PlanAddBtnBox>
-//                     <Styles.PlanAddBtn onClick={() => settravelOpen(!travelOpen)}>일정 수정</Styles.PlanAddBtn>
-//                 </Styles.PlanAddBtnBox>
-//         </Styles.ListItemBox>
-//     )
-// }
+const FilterSelector = ({open, setOpen}) => {
+    const [filterData, setFilterData] = useState([
+        {text: "동물1", state: false},
+        {text: "동물2", state: false},
+        {text: "동물3", state: false},
+        {text: "동물4", state: false},
+        {text: "동물5", state: false},
+        {text: "동물6", state: false},
+        {text: "동물7", state: false},
+        {text: "동물8", state: false},
+        {text: "동물9", state: false},
+    ]);
+
+
+    const filterClick = (idx) => {
+        const changeArr = filterData.map((el, index) => {
+            return idx === index ? {...el, state: !el.state} : el;
+        })
+
+        setFilterData(changeArr);
+    }
+
+    return(
+        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "2"}}} ariaHideApp={false} filter>
+            <Styles.FilterBox>
+                {filterData.map((el, idx) => {
+                    return(
+                        <Styles.FilterItemBox key={idx} onClick={() => filterClick(idx)}>
+                            <Styles.FilterCheckBox type="checkbox" readOnly checked={el.state || false}/>
+                            <Styles.FilterItemText>{el.text}</Styles.FilterItemText>
+                        </Styles.FilterItemBox>
+                    )
+                })}
+            </Styles.FilterBox>
+            <Styles.FilterBtnBox>
+                <Styles.FilterBtn onClick={() => setOpen(false)}>닫기</Styles.FilterBtn>
+            </Styles.FilterBtnBox>
+        </Styles.ModalCustom>
+    )
+}
 
 const CreatePlanPage = () => {
-    const [isModelOpen, setIsModelOpen] = useState(true); //로그인용 모달
+    const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
+    const [filterOpen, setFilterOpen] = useState(false);
     const [dateList, setDateList] = useState();
     
     //박스를 움직이게 하는 state
@@ -107,6 +131,7 @@ const CreatePlanPage = () => {
     return(
         <>
             <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
+            <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
@@ -156,7 +181,7 @@ const CreatePlanPage = () => {
                         <Styles.ListBox>
                             <Styles.ListTitleBox>
                                 <Styles.ListTitle>추천 여행지</Styles.ListTitle>
-                                <Styles.ListFilter>필터</Styles.ListFilter>
+                                <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
                                 <Styles.DayItem>
