@@ -56,16 +56,16 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="김찌쭈" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
+                        <Styles.MemberEdit>연락처</Styles.MemberEdit>
+                        <Styles.Content placeholder="01058997032" ></Styles.Content>
+                    </Styles.MemberContentBox>
+                    <Styles.MemberContentBox>
                         <Styles.MemberEdit>닉네임</Styles.MemberEdit>
                         <Styles.Content placeholder="쮸짱이" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>이메일</Styles.MemberEdit>
                         <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
-                    </Styles.MemberContentBox>
-                    <Styles.MemberContentBox>
-                        <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01058997032" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
