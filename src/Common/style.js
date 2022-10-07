@@ -10,7 +10,7 @@ export const MarginTopWrapper = styled.div`
 
 // 팝업 회원쪽 공용 스타일
 
-export const UserBlueBtn = styled.div`
+export const UserBlueBtn = styled.button`
     width: 350px;
     height: 35px;
     background-color: #38B7FF;
@@ -20,4 +20,5 @@ export const UserBlueBtn = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border: none;
 `

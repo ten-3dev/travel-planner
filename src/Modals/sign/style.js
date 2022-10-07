@@ -40,7 +40,7 @@ export const Input = styled.input`
     margin-top: 7px;
 `
 
-export const UserGreenBtn = styled.div`
+export const UserGreenBtn = styled.button`
     width: 150px;
     height: 35px;
     background-color: #90F0DF;
@@ -50,6 +50,7 @@ export const UserGreenBtn = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border: none;
 `
 
 export const RadioWrap = styled.div`
