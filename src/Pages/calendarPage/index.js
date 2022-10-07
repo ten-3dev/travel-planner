@@ -14,10 +14,9 @@ const daysList =[   // 대충 시험용 데이터
 
 const CalendarPage = () =>{
     const [days, setDays] = useState(daysList); //eslint-disable-line no-unused-vars
-
     const [coordinate, setCoordinate] = useState([]);
 
-    const moveMapLocation = (e) =>{ //클릭시 버튼배경 회색으로 해보기@
+    const moveMapLocation = (e) =>{
         const coor = e.target.value.split(',');
         const newCoor = {
             lat: coor[0], lon : coor[1]

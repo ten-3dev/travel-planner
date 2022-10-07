@@ -1,6 +1,6 @@
 /*global kakao*/ 
 import React, { useEffect } from 'react'
-
+import './map.css'
 const Map=(props)=>{
 
   const lat = props.lat == null ? 35.87572504970846 : props.lat;
@@ -25,7 +25,7 @@ const Map=(props)=>{
     currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
 
   
-    
+
     var map = new kakao.maps.Map(container, options); // 지도를 생성합니다    
     var ps = new kakao.maps.services.Places(map); // 장소 검색 객체를 생성합니다
     kakao.maps.event.addListener(map, 'idle', searchPlaces);   // 지도에 idle 이벤트를 등록합니다
@@ -149,46 +149,43 @@ const Map=(props)=>{
     }
 
     function changeCategoryClass(el) {  // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
-    var category = document.getElementById('category'),
-        children = category.children,
-        i;
-    for ( i=0; i<children.length; i++ ) {
-        children[i].className = '';
-    }
-    if (el) {
-        el.className = 'on';
-    }
+      var category = document.getElementById('category'),
+          children = category.children,
+          i;
+      for ( i=0; i<children.length; i++ ) children[i].className = '';
+      if (el) el.className = 'on';
+      
    } 
     
     },)
     return (
       <div className="map_wrap">
       <div id="map" style={{width:"100%",height:"100%",position:"relative",overflow:"hidden"}}></div>
-      <ul id="category" style={{postion:"absolute",top:"100px", left: "10px"}}>
-          <li id="BK9" data-order="0"> 
-              <span class="category_bg bank"></span>
+      <ul id="category" style={{display:"flex", postion:"absolute",top:"100px", left: "10px"}}>
+          <div id="BK9" data-order="0"> 
+              <span className="category_bg bank"></span>
               은행
-          </li>       
-          <li id="MT1" data-order="1"> 
-              <span class="category_bg mart"></span>
+          </div>       
+          <div id="MT1" data-order="1"> 
+              <span className="category_bg mart"></span>
               마트
-          </li>  
-          <li id="PM9" data-order="2"> 
-              <span class="category_bg pharmacy"></span>
+          </div>  
+          <div id="PM9" data-order="2"> 
+              <span className="category_bg pharmacy"></span>
               약국
-          </li>  
-          <li id="OL7" data-order="3"> 
-              <span class="category_bg oil"></span>
+          </div>  
+          <div id="OL7" data-order="3"> 
+              <span className="category_bg oil"></span>
               주유소
-          </li>  
-          <li id="CE7" data-order="4"> 
-              <span class="category_bg cafe"></span>
+          </div>  
+          <div id="CE7" data-order="4"> 
+              <span className="category_bg cafe"></span>
               카페
-          </li>  
-          <li id="CS2" data-order="5"> 
-              <span class="category_bg store"></span>
+          </div>  
+          <div id="CS2" data-order="5"> 
+              <span className="category_bg store"></span>
               편의점
-          </li>      
+          </div>      
       </ul> 
   </div>
     )
