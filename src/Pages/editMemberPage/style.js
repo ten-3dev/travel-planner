@@ -21,7 +21,7 @@ export const ProfileBox = styled.div`
 `
 export const LeftProfileBox = styled.div`
     width: 300px;
-    background-color: #fff;
+    background-color: rgba(15, 35, 11, 0.14);
     box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
     border-left: 1px solid rgba(0,0,0,.08);
 `
@@ -117,7 +117,7 @@ export const DeleteBtn = styled.button`
     border: none;
     margin-top: 70px;
     margin-left: 200px;
-    background-color: white;
+    background-color:transparent;
     color: gray;
     font-weight: bold;
     font-size: 13px;
@@ -126,3 +126,5 @@ export const DeleteBtn = styled.button`
 export const BtnBox = styled.div`
     width: 100%;
 `
+
+//회원가입 에러값 띄우기 

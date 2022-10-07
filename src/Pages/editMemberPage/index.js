@@ -46,7 +46,7 @@ export const EditmemberPage = () => {
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="010-5899-7032" ></Styles.Content>
+                        <Styles.Content placeholder="01058997032" ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
