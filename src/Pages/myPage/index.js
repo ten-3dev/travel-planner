@@ -29,9 +29,9 @@ const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
                 </Styles.SettingBox>
                 <Styles.Box5>
                     <Styles.Box4>
-                        <Styles.Text>dddddddddddddddd</Styles.Text>
+                        <Styles.Text>ddd</Styles.Text>
                     </Styles.Box4>
-                    <Styles.EditMemberBox onClick={moveEditMember}>회원 수정</Styles.EditMemberBox>
+                    <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
                 </Styles.Box5>
                 
             </Styles.ProfileBox>

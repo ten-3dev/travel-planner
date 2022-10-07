@@ -16,9 +16,6 @@ export const SettingBox = styled.div`
     text-align:center;
     margin-left: 400px;
     margin-top: 50px;
-    
-    
-    
 
 `
 export const MyWritingBox = styled.div`
@@ -84,16 +81,14 @@ export const Box3 = styled.div`
 
 export const Box4 = styled.div`
     width: auto;
-    //align-items: center;
-    //margin-left: auto;
     text-align: center;
+    display: flex;
+    justify-content : center;
     
-    margin-left: 120px;
 `
 export const Box5 = styled.div`
     width: 1200px;
-    //align-items:center;
-    //text-align: center;
+    
     justify-content: center;
     display: flex;
 `
@@ -142,13 +137,20 @@ export const Profile = styled.img`
     cursor: pointer;
     
 `
+export const SettingsImg= styled.img`
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+    cursor: pointer;
+    
+`
 
 export const Text = styled.div`
     width: auto; 
     text-align: center;
     font-size: 30px;
     //margin-left: 85px;
-    margin-right: 20px;
+    margin-right: 10px;
     
      
 `
