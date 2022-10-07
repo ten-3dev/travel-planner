@@ -3,7 +3,7 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 export const EditmemberPage = () => {
-    const [clicked, setClicked] = useState("Latest");
+    const [clicked, setClicked] = useState("Profile");
     return(
         <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
