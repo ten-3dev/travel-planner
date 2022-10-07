@@ -4,7 +4,6 @@ export const EditTitle = styled.div`
     font-size: 30px;
     font-weight: 500px;
     margin: 150px 200px 20px;
-    //text-align: center;
     font-weight: bold;
 `
 export const TitleBar = styled.div` 
@@ -15,11 +14,9 @@ export const TitleBar = styled.div`
     background-color: gray ;
 `
 export const ProfileBox = styled.div`
-    //width: 100%;
     display: flex;
     table-layout: fixed;
     width: 800px;
-    //height: 100%; 
     margin: 0 auto 200px ; 
 `
 export const LeftProfileBox = styled.div`
