@@ -125,7 +125,7 @@ export const ControlBox = styled.div`
 export const TravelBox = styled.div`
     width: 500px;
     height: 100vh;
-    background-color: blue;
+    background-color: white;
     top: 0;
     position:fixed;
     margin-right: ${props => {
@@ -280,6 +280,7 @@ export const TravelInput = styled.input`
     box-sizing: border-box;
     padding-left: 10px;
     border-radius: 5px;
+    background-color: #e8e8e8;
 `
 
 export const TravelInputBtn = styled.div`
@@ -300,7 +301,7 @@ export const TravelInputBtn = styled.div`
 export const ListBox = styled.div`
     width: 100%;
     height: 650px;
-    background-color: azure;
+    /* background-color: azure; */
     margin-bottom: 50px;
     box-sizing: border-box;
     padding: 5px 10px;
