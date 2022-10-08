@@ -21,7 +21,7 @@ export const ProfileBox = styled.div`
 `
 export const LeftProfileBox = styled.div`
     width: 300px;
-    background-color: rgba(15, 35, 11, 0.14);
+    background-color: rgba(72, 112, 110, 0.16);
     box-shadow: 5px 1px 8px 0 rgb(0 0 0 / 6%);
     border-left: 1px solid rgba(0,0,0,.08);
 `
@@ -44,7 +44,7 @@ export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 �
 export const MemberInforBox = styled.div`
     height: 600px;
     margin-left: 50px;
-    padding: 60px 17px 0;
+    padding: 20px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
     border: solid 1px rgba(54, 66, 69, 0.56);
@@ -52,15 +52,15 @@ export const MemberInforBox = styled.div`
     box-sizing: border-box;
 `
 export const ProfileImg = styled.img`
-    width: 112px;
-    height: 112px;
+    width: 110px;
+    height: 110px;
     border-radius: 50px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
     margin: 100px 100px 0;
 `
 export const MemberContentBox = styled.div`
-    margin: 30px 0 0;
-    padding: 10px 30px 0;
+    margin: 20px 0 0;
+    padding: 30px 30px 0;
 `
 export const MemberEdit = styled.div`
     width: 150px;
@@ -76,13 +76,15 @@ export const MemberName = styled.div`
     text-align:center;
 `
 export const BasicInformation = styled.div`
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 20px;
     font-weight: bold;
     text-align:center;
 `
 export const BasicInformationBox = styled.div`
+    height: 60px;
     display: flex;
+    margin-left: 30px;
 `
 export const BasicInformationImg = styled.img`
     width: 56px;
@@ -91,10 +93,8 @@ export const BasicInformationImg = styled.img`
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
 `
 export const BasicInformationName =styled.div`
-   // margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
-    text-align:center;
 `
 export const BasicInformationEamil = styled.div`
     text-align:center;
@@ -102,7 +102,8 @@ export const BasicInformationEamil = styled.div`
     color: #929294;
 `
 export const BasicInformationEamilBox = styled.div`
-
+    margin-top: 10px;
+    margin-left: 10px;
 `
 export const Memberemail = styled.div`
     text-align:center;
@@ -153,9 +154,20 @@ export const EditBtn = styled.button`
     border-radius: 5px;
     cursor: pointer;
 `
+export const BasicInfoBtn = styled.button`
+    border: 0;
+    width: 45px;
+    height: 30px;
+    margin: 20px 40px;
+    font-size: 10px;
+    background: rgba(0, 100, 100, 0.5);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+`
 export const DeleteBtn = styled.button`
     border: none;
-    margin-top: 70px;
+    margin-top: 30px;
     margin-left: 200px;
     background-color:transparent;
     color: gray;
@@ -166,5 +178,18 @@ export const DeleteBtn = styled.button`
 export const BtnBox = styled.div`
     width: 100%;
 `
-//회원가입 에러값 띄우기 , 수정버튼 이메일 * 닉넴 옆에 작게 만들기 
-//내 프로필 누르면 기본정보
+export const BasicInforContentBox = styled.div`
+    margin: 10px 0 0;
+    padding: 10px 30px 0;
+`
+export const ProfileImgChange = styled.img`
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
+    margin: 0 200px 0;
+`
+export const ProfileImgInput = styled.input`
+
+`
+//회원수정 조건 및 이벤트헨들러 필요 

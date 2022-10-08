@@ -24,15 +24,20 @@ export const EditmemberPage = () => {
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
                     <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
+                    <label htmlFor="ex_file">
+                        <Styles.ProfileImgChange src={"assets/카메라.jpg"} ></Styles.ProfileImgChange>
+                    </label>
+                    <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
                     <Styles.MemberName>jjijju</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
-                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>내프로필</Styles.LeftContent>
-                    <Styles.LeftContent click={clicked === "Paw"} onClick={(Paw) => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")} >내프로필</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 <Styles.MemberInforBox>
+                <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
@@ -53,26 +58,31 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/임시프로필사진.png"}></Styles.BasicInformationImg>
+                        <Styles.BasicInformationEamilBox>
+                            <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
+                            <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
+                        </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>
-                    <Styles.BasicInformationEamilBox>
-                    <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
-                        <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
-                    </Styles.BasicInformationEamilBox>
-                    <Styles.MemberContentBox>
+                    <Styles.BasicInforContentBox>
+                        <Styles.MemberEdit>이름</Styles.MemberEdit>
+                        <Styles.Content placeholder="김지수" ></Styles.Content>
+                    </Styles.BasicInforContentBox>
+                    <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01058997032" ></Styles.Content>
-                    </Styles.MemberContentBox>
-                    <Styles.MemberContentBox>
+                    </Styles.BasicInforContentBox>
+                    <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>닉네임</Styles.MemberEdit>
                         <Styles.Content placeholder="쮸짱이" ></Styles.Content>
-                    </Styles.MemberContentBox>
-                    
+                    </Styles.BasicInforContentBox>
+                    <Styles.BasicInforContentBox>
+                        <Styles.MemberEdit>이메일</Styles.MemberEdit>
+                        <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
+                    </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
-
-
             </Styles.ProfileBox>
         </MarginTopWrapper>
 
