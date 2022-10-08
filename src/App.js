@@ -18,6 +18,7 @@ import SharedPlan from "./Pages/myBarPage/sharedPlan/index";
 import Like from "./Pages/myBarPage/like/index";
 import PasswordCheckPage from "./Pages/passwordCheckPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import JoinPage from "./Pages/joinPage";
 
 const App = () => {
 
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/sharedPlan' element={<SharedPlan/>} />
           <Route path='/like' element={<Like/>} />
           <Route path='/passwordCheck' element={<PasswordCheckPage/>} />
+          <Route path='/join' element={<JoinPage/>} />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
         <Footer/>
