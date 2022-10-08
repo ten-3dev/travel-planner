@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EditTitle = styled.div`
     font-size: 30px;
     font-weight: 500px;
-    margin: 150px 200px 20px;
+    margin: 150px 0 20px;
     font-weight: bold;
 `
 export const TitleBar = styled.div` 
@@ -17,7 +17,7 @@ export const ProfileBox = styled.div`
     display: flex;
     table-layout: fixed;
     width: 800px;
-    margin: 0 auto 200px ; 
+    margin: 0 0 200px ; 
 `
 export const LeftProfileBox = styled.div`
     width: 300px;
@@ -69,7 +69,13 @@ export const MemberEdit = styled.div`
     font-size: 15px;
     font-weight: bold;
 `
-export const MemberConrentBox = styled.div`
+export const MemberName = styled.div`
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align:center;
+`
+export const BasicInformation = styled.div`
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;

@@ -24,15 +24,15 @@ export const EditmemberPage = () => {
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
                     <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
-                    <Styles.MemberConrentBox>jjijju</Styles.MemberConrentBox>
+                    <Styles.MemberName>jjijju</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")}>내프로필</Styles.LeftContent>
-                    <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Paw"} onClick={(Paw) => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
-                <Styles.MemberInforBox>
+                <Styles.MemberInforBox className="Paw">
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
@@ -50,7 +50,7 @@ export const EditmemberPage = () => {
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 <Styles.MyProfileBox>
-                <Styles.MemberConrentBox>기본정보</Styles.MemberConrentBox>
+                <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>이름</Styles.MemberEdit>
                         <Styles.Content placeholder="김찌쭈" ></Styles.Content>
