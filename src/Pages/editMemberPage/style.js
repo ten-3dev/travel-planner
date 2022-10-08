@@ -81,6 +81,29 @@ export const BasicInformation = styled.div`
     font-weight: bold;
     text-align:center;
 `
+export const BasicInformationBox = styled.div`
+    display: flex;
+`
+export const BasicInformationImg = styled.img`
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
+`
+export const BasicInformationName =styled.div`
+   // margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align:center;
+`
+export const BasicInformationEamil = styled.div`
+    text-align:center;
+    font-size: 15px;
+    color: #929294;
+`
+export const BasicInformationEamilBox = styled.div`
+
+`
 export const Memberemail = styled.div`
     text-align:center;
     font-size: 15px;
@@ -143,6 +166,5 @@ export const DeleteBtn = styled.button`
 export const BtnBox = styled.div`
     width: 100%;
 `
-
 //회원가입 에러값 띄우기 , 수정버튼 이메일 * 닉넴 옆에 작게 만들기 
 //내 프로필 누르면 기본정보

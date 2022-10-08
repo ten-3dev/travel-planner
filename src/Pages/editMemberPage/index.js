@@ -32,7 +32,7 @@ export const EditmemberPage = () => {
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
-                <Styles.MemberInforBox className="Paw">
+                <Styles.MemberInforBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
@@ -51,10 +51,13 @@ export const EditmemberPage = () => {
                 </Styles.MemberInforBox>
                 <Styles.MyProfileBox>
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
-                    <Styles.MemberContentBox>
-                        <Styles.MemberEdit>이름</Styles.MemberEdit>
-                        <Styles.Content placeholder="김찌쭈" ></Styles.Content>
-                    </Styles.MemberContentBox>
+                    <Styles.BasicInformationBox>
+                        <Styles.BasicInformationImg src={"assets/임시프로필사진.png"}></Styles.BasicInformationImg>
+                    </Styles.BasicInformationBox>
+                    <Styles.BasicInformationEamilBox>
+                    <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
+                        <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
+                    </Styles.BasicInformationEamilBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01058997032" ></Styles.Content>
@@ -63,10 +66,7 @@ export const EditmemberPage = () => {
                         <Styles.MemberEdit>닉네임</Styles.MemberEdit>
                         <Styles.Content placeholder="쮸짱이" ></Styles.Content>
                     </Styles.MemberContentBox>
-                    <Styles.MemberContentBox>
-                        <Styles.MemberEdit>이메일</Styles.MemberEdit>
-                        <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
-                    </Styles.MemberContentBox>
+                    
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
