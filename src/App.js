@@ -7,7 +7,6 @@ import InformationPage from './Pages/tourInfoPage';
 import TravelPage from './Pages/travelPage';
 import NotFoundPage from './Pages/notFoundPage';
 import MyPage from "./Pages/myPage";
-import SchedulePage from "./Pages/scheduleBoxPage";
 import SharedPlanPage from "./Pages/sharedPlanPage";
 import EditMemberPage from"./Pages/editMemberPage";
 import CreatePlanPage from "./Pages/createPlanPage";
@@ -31,7 +30,6 @@ const App = () => {
           <Route path="/calendar" element={<CalendarPage/>}/>
           <Route path="/information" element={<InformationPage/>}/>
           <Route path="/travel" element={<TravelPage/>}/>
-          <Route path="/schedule" element={<SchedulePage/>}/>
           <Route path="/myPage" element={<MyPage/>}/>
           <Route path="/shared" element={<SharedPlanPage/>}/>
           <Route path="/editMember" element={<EditMemberPage/>}/>
