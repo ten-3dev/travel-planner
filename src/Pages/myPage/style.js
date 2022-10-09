@@ -134,6 +134,7 @@ export const Profile = styled.img`
     height: 150px;
     border-radius: 100%;
     margin-bottom: 20px;
+    box-shadow: 1px 1px 5px 2px;
     cursor: pointer;
     
 `
