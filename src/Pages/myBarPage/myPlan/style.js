@@ -19,42 +19,42 @@ export const SmallBox = styled.div`
     width: 895px;
     border-radius: 10px;
     margin-bottom: 30px;
-   
 `
+
 export const LineBox = styled.div`
     width: 885px;
     padding: 30px 0 20px 10px;
     display: flex;
 `
+
 export const ContentBox = styled.div`
     width: 650px;
     height: 120px;
     background-color: #ECECEC;
-    margin-left: 50px;
-    
+    margin-left: 50px; 
     border-radius: 10px;  
 `
+
 export const ContentBox2 = styled.div`
     width: 100%;
     height: 50%;
     display: flex;
-   
 `
+
 export const DayBox = styled.div`
     width: 120px;
     font-size: 16px;
     margin-top:20px;
     margin-bottom: 50px;
     font-weight: bold;
-    
 `
+
 export const NameBox = styled.div`
     width: 100px;
     font-size: 16px;
     margin-top:20px;
     font-weight: bold;
     margin-left: 90px;
-    
 `
 
 export const ModifyDeleteBox = styled.div`
@@ -69,9 +69,7 @@ export const ModifyDeleteBox = styled.div`
     background-color: #93A6AE;
     text-align: center;
     padding-top: 5px;
-    cursor: pointer;
-
-    
+    cursor: pointer; 
 `
 
 export const ImgBox = styled.img`
@@ -79,28 +77,23 @@ export const ImgBox = styled.img`
     height: 120px;
     border-radius: 10px;
     cursor: pointer;
-    
 `
-
-
-
 
 export const Text = styled.div`
     width: 100%; 
     font-size: 16px;
     text-align: center;
     padding-top: 20px;
-    font-weight: bold;
-    
+    font-weight: bold;  
 `
+
 export const ContentText = styled.div`
     width: 430px; 
     font-size: 16px;
     margin-left: 20px;
     margin-right: 30px;
     font-weight: bold;
-    margin-top:20px;
-    
+    margin-top:20px; 
 `
 
 export const PageText = styled.div`
@@ -108,5 +101,4 @@ export const PageText = styled.div`
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    
 `

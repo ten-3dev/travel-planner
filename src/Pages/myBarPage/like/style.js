@@ -25,28 +25,24 @@ export const SmallBox = styled.div`
     width: 895px;
     border-radius: 10px;
     margin-bottom: 30px;
-   
 `
+
 export const LineBox = styled.div`
     width: 885px;
     padding: 30px 0 10px 0;
-    
     display: flex;
 `
+
 export const ContentBox = styled.div`
     width: 785px;
     height: 120px;
-    
     border-radius: 10px;  
 `
+
 export const ContentBox2 = styled.div`
     width: 785px;
     height: 50%;
     display: flex; 
-`
-export const ContentBox3 = styled.div`
-    width: 520px;
-    display: flex;
 `
 
 export const DayBox = styled.div`
@@ -55,17 +51,13 @@ export const DayBox = styled.div`
     margin-top: 20px;
     margin-left: 140px;
     font-weight: bold;
-    
-    
-    
 `
+
 export const NameBox = styled.div`
     width: 100px;
     font-size: 16px;
     margin-top:20px;
-    font-weight: bold;
-    //margin-left: 90px;
-    
+    font-weight: bold;   
 `
 export const HeartSumText = styled.div`
     width: 100px;
@@ -73,8 +65,7 @@ export const HeartSumText = styled.div`
     margin-top:15px;
     font-weight: bold;
     margin-left: 10px;
-    margin-right: 290px;
-    
+    margin-right: 290px;   
 `
 
 export const ModifyDeleteBox = styled.div`
@@ -89,9 +80,7 @@ export const ModifyDeleteBox = styled.div`
     background-color: #93A6AE;
     text-align: center;
     padding-top: 5px;
-    cursor: pointer;
-
-    
+    cursor: pointer;    
 `
 
 export const ImgBox = styled.img`
@@ -99,36 +88,31 @@ export const ImgBox = styled.img`
     height: 100px;
     border-radius: 10px;
     margin-top: 10px;
-    margin-left: 10px;
-    
+    margin-left: 10px;  
 `
+
 export const Imgheart = styled.img`
     width: 35px;
     height: 35px;
     margin-left: 20px;
     margin-top: 10px;
-    display: flex;
-    
+    display: flex;  
 `
-
-
 
 export const Text = styled.div`
     width: 100%; 
     font-size: 16px;
     text-align: center;
     padding-top: 20px;
-    font-weight: bold;
-    
+    font-weight: bold; 
 `
+
 export const ContentText = styled.div`
     width: 330px; 
     font-size: 16px;
     margin-left: 20px;
-    
     font-weight: bold;
-    margin-top:20px;
-    
+    margin-top:20px; 
 `
 
 export const PageText = styled.div`
