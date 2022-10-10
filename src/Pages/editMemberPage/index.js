@@ -24,9 +24,9 @@ export const EditmemberPage = () => {
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
                         <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
-                    <label htmlFor="ex_file">
+                    <Styles.LabelBox htmlFor="ex_file" >
                         <Styles.ProfileImgChange src={"assets/카메라.jpg"} ></Styles.ProfileImgChange>
-                    </label>
+                    </Styles.LabelBox>
                     <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
                     <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
@@ -80,7 +80,7 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
                     </Styles.BasicInforContentBox> */}
                     <Styles.BtnBox>
-                        <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
+                        <Styles.BasicInfoBtn onClick={(EditBtn)}>수정하기</Styles.BasicInfoBtn>
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
             </Styles.ProfileBox>

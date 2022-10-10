@@ -84,7 +84,8 @@ export const BasicInformation = styled.div`
 export const BasicInformationBox = styled.div`
     height: 60px;
     display: flex;
-    margin-left: 30px;
+    //margin-left: 30px;
+    margin: 30px 30px;
 `
 export const BasicInformationImg = styled.img`
     width: 56px;
@@ -156,10 +157,10 @@ export const EditBtn = styled.button`
 `
 export const BasicInfoBtn = styled.button`
     border: 0;
-    width: 45px;
-    height: 30px;
-    margin: 20px 40px;
-    font-size: 10px;
+    width: 100px;
+    height: 40px;
+    margin: 85px 150px ;
+    font-size: 15px;
     background: rgba(0, 100, 100, 0.5);
     color: white;
     border-radius: 5px;
@@ -179,8 +180,8 @@ export const BtnBox = styled.div`
     width: 100%;
 `
 export const BasicInforContentBox = styled.div`
-    margin: 10px 0 0;
-    padding: 10px 30px 0;
+    margin: 20px 0 0;
+    padding: 20px 30px 0;
 `
 export const ProfileImgChange = styled.img`
     width: 20px;
@@ -190,6 +191,9 @@ export const ProfileImgChange = styled.img`
     margin: 0 200px 0;
 `
 export const ProfileImgInput = styled.input`
-
+    width: 20px;
 `
-//고칠게 많은듯? 
+export const LabelBox = styled.label`
+    width: 20px;
+`
+//lebel 규격을 작게 해야하는지 잘 모르겠음 카메라 사진 여백 클릭시에도 열림
