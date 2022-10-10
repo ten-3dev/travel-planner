@@ -55,7 +55,6 @@ const MyPlan = () => {
                 </Styles.ContentBox2>
               </Styles.ContentBox>
             </Styles.LineBox>
-            
           </Styles.SmallBox>
           <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
         </Styles.BigBox>

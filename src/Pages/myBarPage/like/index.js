@@ -24,7 +24,7 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                    <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
+                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -41,7 +41,7 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                    <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
+                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
