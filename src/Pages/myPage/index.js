@@ -26,13 +26,16 @@ const MyPage = ({isAction,isAction1,isAction2,isAction3}) => {
             <Styles.ProfileBox>
                 <Styles.SettingBox>
                     <Styles.Profile src={`assets/임시프로필사진.png`}/>
+                    <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
+                    <Styles.Box4>
+                        <Styles.Text>닉네임</Styles.Text>
+                    </Styles.Box4>
                 </Styles.SettingBox>
-                <Styles.Box5>
+                {/* <Styles.Box5>
                     <Styles.Box4>
                         <Styles.Text>ddd</Styles.Text>
                     </Styles.Box4>
-                    <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
-                </Styles.Box5>
+                </Styles.Box5> */}
                 
             </Styles.ProfileBox>
         

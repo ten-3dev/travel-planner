@@ -80,18 +80,20 @@ export const Box3 = styled.div`
 `
 
 export const Box4 = styled.div`
-    width: auto;
+    width: 200px;
     text-align: center;
-    display: flex;
+    //display: flex;
+    margin-top: 10px;
+    margin-left: 85px;
     justify-content : center;
     
-`
-export const Box5 = styled.div`
-    width: 1200px;
+// `
+// export const Box5 = styled.div`
+//     width: 1200px;
     
-    justify-content: center;
-    display: flex;
-`
+//     justify-content: center;
+//     display: flex;
+// `
 
 export const EditMemberBox = styled.div`
     width: 100px;
@@ -130,28 +132,30 @@ export const MySharingPlanBox = styled.div`
 
 
 export const Profile = styled.img`
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 100%;
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
     box-shadow: 1px 1px 5px 2px;
     cursor: pointer;
     
 `
 export const SettingsImg= styled.img`
-    width: 35px;
-    height: 35px;
-    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+   // margin-top: 5px;
+
     cursor: pointer;
     
 `
 
 export const Text = styled.div`
-    width: auto; 
+    width: 200px; 
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: bold;
     //margin-left: 85px;
-    margin-right: 10px;
+    //margin-right: 10px;
     
      
 `
