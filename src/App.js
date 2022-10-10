@@ -15,7 +15,6 @@ import MyPlan from "./Pages/myBarPage/myPlan";
 import SharedPlan from "./Pages/myBarPage/sharedPlan/index";
 import Like from "./Pages/myBarPage/like/index";
 import PasswordCheckPage from "./Pages/passwordCheckPage";
-import JoinPage from "./Pages/joinPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -28,16 +27,17 @@ const App = () => {
           <Route path="/calendar" element={<CalendarPage/>}/>
           <Route path="/information" element={<InformationPage/>}/>
           <Route path="/travel" element={<TravelPage/>}/>
-          <Route path="/myPage" element={<MyPage/>}/>
           <Route path="/shared" element={<SharedPlanPage/>}/>
           <Route path="/editMember" element={<EditMemberPage/>}/>
           <Route path="/createPlanPage" element={<CreatePlanPage/>}/>
+          <Route path='/passwordCheck' element={<PasswordCheckPage/>} />
+          {/* 마이페이지 페이지 */}
+          <Route path="/myPage" element={<MyPage/>}/>
           <Route path='/myComments' element={<MyComments/>} />
           <Route path='/myPlan' element={<MyPlan/>} />
           <Route path='/sharedPlan' element={<SharedPlan/>} />
           <Route path='/like' element={<Like/>} />
-          <Route path='/passwordCheck' element={<PasswordCheckPage/>} />
-          <Route path='/join' element={<JoinPage/>} />
+          {/*  */}
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
         <Footer/>

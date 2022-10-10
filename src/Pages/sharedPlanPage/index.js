@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import Pagination from "../../Components/pagination";
 
 const SharedPlanPage = () =>{
     const [clicked, setClicked] = useState("Latest");
@@ -104,6 +105,7 @@ const SharedPlanPage = () =>{
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>
             </Styles.PlanBox>
+            <Pagination />
         </MarginTopWrapper>
     );
 }

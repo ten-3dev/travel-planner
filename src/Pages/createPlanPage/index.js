@@ -103,9 +103,18 @@ const CreatePlanPage = () => {
 
     const [update, setUpdate] = useState(null);
 
+    useEffect(() => { // 새로고침 방지 alert
+        window.onbeforeunload = function() {
+            return true;
+        };
+    
+        return () => {
+            window.onbeforeunload = null;
+        };
+    }, []);
+
     useEffect(() => { // 임시. 이따 지우셈
         console.log(dateList);
-        alert(dateList);
     }, [dateList])
 
     const onUpdate = (idx) => {
