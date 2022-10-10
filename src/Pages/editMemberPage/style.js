@@ -192,4 +192,4 @@ export const ProfileImgChange = styled.img`
 export const ProfileImgInput = styled.input`
 
 `
-//회원수정 조건 및 이벤트헨들러 필요 
+//고칠게 많은듯? 

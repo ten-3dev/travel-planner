@@ -23,12 +23,12 @@ export const EditmemberPage = () => {
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
-                    <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
+                        <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
                     <label htmlFor="ex_file">
                         <Styles.ProfileImgChange src={"assets/카메라.jpg"} ></Styles.ProfileImgChange>
                     </label>
                     <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
-                    <Styles.MemberName>jjijju</Styles.MemberName>
+                    <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")} >내프로필</Styles.LeftContent>
@@ -71,14 +71,14 @@ export const EditmemberPage = () => {
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01058997032" ></Styles.Content>
                     </Styles.BasicInforContentBox>
-                    <Styles.BasicInforContentBox>
+                    {/* <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>닉네임</Styles.MemberEdit>
                         <Styles.Content placeholder="쮸짱이" ></Styles.Content>
-                    </Styles.BasicInforContentBox>
-                    <Styles.BasicInforContentBox>
+                    </Styles.BasicInforContentBox> */}
+                    {/* <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>이메일</Styles.MemberEdit>
                         <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
-                    </Styles.BasicInforContentBox>
+                    </Styles.BasicInforContentBox> */}
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
