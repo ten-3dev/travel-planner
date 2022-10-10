@@ -105,16 +105,8 @@ const CreatePlanPage = () => {
 
     useEffect(() => { // 임시. 이따 지우셈
         console.log(dateList);
+        alert(dateList);
     }, [dateList])
-
-    window.onbeforeunload = (event) => { // 리로드/뒤로가기 트리거
-        const e = event || window.event;
-        e.preventDefault();
-        if (e) {
-          e.returnValue = '';
-        }
-        return '';
-    };
 
     const onUpdate = (idx) => {
         if(update == null){
@@ -141,7 +133,7 @@ const CreatePlanPage = () => {
                         <Styles.CloseBtn right onClick={() => setControlOpen(!controlOpen)}></Styles.CloseBtn>
                         <Styles.DateBox>
                             <Styles.TravelDate>{`${moment(dateList[0]).format("YYYY-MM-DD")} ~ ${moment(dateList[dateList.length - 1]).format("YYYY-MM-DD")}`}</Styles.TravelDate>
-                            <Styles.TravelCalendar></Styles.TravelCalendar>
+                            <Styles.TravelCalendar onClick={() => window.location.reload()}></Styles.TravelCalendar>
                         </Styles.DateBox>
                         {dateList.map((el, idx) => {
                             return(

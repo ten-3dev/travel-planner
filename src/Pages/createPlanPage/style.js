@@ -421,7 +421,7 @@ export const PlanApplyBtn = styled.div`
     height: 50px;
     background-color: greenyellow;
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     bottom: 50px;
     left: 50%;
     margin-left: -90px;
