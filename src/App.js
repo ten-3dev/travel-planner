@@ -10,19 +10,17 @@ import MyPage from "./Pages/myPage";
 import SharedPlanPage from "./Pages/sharedPlanPage";
 import EditMemberPage from"./Pages/editMemberPage";
 import CreatePlanPage from "./Pages/createPlanPage";
-import UserStore from "./Store/users";
 import MyComments from "./Pages/myBarPage/myComment/index";
 import MyPlan from "./Pages/myBarPage/myPlan";
 import SharedPlan from "./Pages/myBarPage/sharedPlan/index";
 import Like from "./Pages/myBarPage/like/index";
 import PasswordCheckPage from "./Pages/passwordCheckPage";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import JoinPage from "./Pages/joinPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
 
   return (
-    <UserStore>
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -44,7 +42,6 @@ const App = () => {
         </Routes>
         <Footer/>
       </BrowserRouter>
-    </UserStore>
   );
 }
 
