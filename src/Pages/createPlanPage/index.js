@@ -2,6 +2,7 @@ import moment from "moment/moment";
 import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
+import Paging from "../../Components/paging";
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
@@ -102,6 +103,25 @@ const CreatePlanPage = () => {
     const [travelOpen, settravelOpen] = useState(false); // Travel
 
     const [update, setUpdate] = useState(null);
+
+    // 추천 여행지 페이지네이션
+    const [page1, setPage1] = useState(1);
+    const [itemsCount] = useState(6);
+    const [totalItemsCount1] = useState(50); // 임시
+
+    // 찜한 여행지 페이지네이션
+    const [page2, setPage2] = useState(1);
+    const [totalItemsCount2] = useState(50); // 임시
+
+    useEffect(() => {
+        console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
+        console.log(itemsCount + "까지");
+    }, [page1, itemsCount]);
+
+    useEffect(() => {
+        console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
+        console.log(itemsCount + "까지");
+    }, [page2, itemsCount]);
 
     useEffect(() => { // 새로고침 방지 alert
         window.onbeforeunload = function() {
@@ -314,6 +334,7 @@ const CreatePlanPage = () => {
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
                             </Styles.ScrollBox>
+                            <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
                         </Styles.ListBox>
                         <Styles.ListBox>
                         <Styles.ListTitleBox>
@@ -442,6 +463,7 @@ const CreatePlanPage = () => {
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
                             </Styles.ScrollBox>
+                            <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount}/>
                         </Styles.ListBox>
                     </Styles.ContentBox>
                 </Styles.TravelBox>
