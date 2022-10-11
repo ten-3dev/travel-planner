@@ -71,6 +71,7 @@ export const EditmemberPage = () => {
                         <Styles.BasicInformationImg src={"assets/임시프로필사진.png"}></Styles.BasicInformationImg>
                         <Styles.BasicInformationEamilBox>
                             <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
+                            <Styles.BasicInformationEamil>1997-09-18</Styles.BasicInformationEamil>
                             <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
                         </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>

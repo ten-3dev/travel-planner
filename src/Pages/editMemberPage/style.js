@@ -98,7 +98,7 @@ export const BasicInformationName =styled.div`
     font-weight: bold;
 `
 export const BasicInformationEamil = styled.div`
-    text-align:center;
+    //text-align:center;
     font-size: 15px;
     color: #929294;
 `
