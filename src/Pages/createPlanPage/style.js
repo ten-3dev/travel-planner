@@ -363,11 +363,6 @@ export const ItemBox = styled.div`
     align-items: center;
 `
 
-export const LikeImg = styled.img`
-    width: 15px;
-    height: 15px;
-`
-
 export const ItemBtn = styled.div`
     width: 60px;
     height: 25px;
