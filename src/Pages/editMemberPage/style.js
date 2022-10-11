@@ -196,5 +196,6 @@ export const LabelBox = styled.label`
     width: 20px;
     display:inline-block;
     margin: 0 200px 0;
+    cursor: pointer;
 `
-// 클릭이벤트가 안됌
+// 클릭이벤트가 안됌, 사진변경가능하게 해야함

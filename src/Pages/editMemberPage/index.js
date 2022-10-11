@@ -19,14 +19,14 @@ export const EditmemberPage = () => {
         if (window.confirm("수정하시겠습니까?")) {
 
          } else {
-        console.log("취소. 변화 없음");
+        console.log("취소. 수정 ㄴㄴ");
         }
     };
     function Deletemsg() {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
 
         } else {
-            console.log("취소. 탈퇴ㄴㄴ");
+            console.log("취소. 탈퇴ㄴㄴ 절때 안되지");
         } 
     };
     return(
