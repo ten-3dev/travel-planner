@@ -11,7 +11,7 @@ const InformationPage = () => {
                 </Styles.Title>
             </Styles.TitleBox>
             <Styles.LikeBox>
-                <Styles.Img1 src={"assets/hrr.png"}></Styles.Img1>
+                <Styles.Img1 src={"assets/heart.png"}></Styles.Img1>
                 <Styles.Like>+찜하기</Styles.Like>
             </Styles.LikeBox>
             <Styles.TopBar />

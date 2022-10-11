@@ -34,7 +34,7 @@ const SharedPlan = () => {
                   <Styles.ModifyDeleteBox>공유 삭제</Styles.ModifyDeleteBox>
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
-                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
+                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
                   <Styles.HeartSumText>300</Styles.HeartSumText>
                   <Styles.NameBox>석준혁</Styles.NameBox>
                 </Styles.ContentBox2>
@@ -51,7 +51,7 @@ const SharedPlan = () => {
                   <Styles.ModifyDeleteBox>공유 삭제</Styles.ModifyDeleteBox>
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
-                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/hrr.png"}></Styles.Imgheart>
+                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
                   <Styles.HeartSumText>300</Styles.HeartSumText>
                   <Styles.NameBox>석준혁</Styles.NameBox>
                 </Styles.ContentBox2>
