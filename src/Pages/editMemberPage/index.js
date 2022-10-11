@@ -3,17 +3,11 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 export const EditmemberPage = () => {
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState("Profile");
 
-    // function clickedBtn () {
-    //     setClicked(clicked => !clicked);
-    // }
-    // const [value, setValue] = useState(false);
-
-    // function onClickHide() {
-    //     setValue(value => !value);
-
-    //   };
+    function clickedBtn () { 
+        setClicked(clicked => !clicked);
+    };
     
     function EditBtn() {
         if (window.confirm("수정하시겠습니까?")) {
@@ -42,12 +36,13 @@ export const EditmemberPage = () => {
                     <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
-                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")} >내프로필</Styles.LeftContent>
-                    <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
-                <Styles.MemberInforBox >
+                {clicked === "Paw" &&
+                <Styles.MemberInforBox id="Paw" >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
@@ -65,7 +60,9 @@ export const EditmemberPage = () => {
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
-                <Styles.MyProfileBox >
+                }
+                {clicked === "Profile" &&
+                <Styles.MyProfileBox id="Profile">
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/임시프로필사진.png"}></Styles.BasicInformationImg>
@@ -87,6 +84,7 @@ export const EditmemberPage = () => {
                         <Styles.BasicInfoBtn onClick={(EditBtn)}>수정하기</Styles.BasicInfoBtn>
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
+                }
             </Styles.ProfileBox>
         </MarginTopWrapper>
 
