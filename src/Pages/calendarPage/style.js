@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 `
 
 export const ImageBox = styled.div`
+    position: relative;
     display: flex;
     width: 100%;
     height: 700px;
@@ -21,12 +22,41 @@ export const Image = styled.img`
     width: 100%;
 `
 
-export const ShareBtn = styled.div`
+export const IntroTitle = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    left: 100px;
+    bottom: 50px;
+`
+export const IntroText = styled.div`
+    font-size:30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+
+`
+
+export const IntroDate = styled.div`
+    font-size: 18px;
+    color: white;
+
+`
+
+export const ShareBtn = styled.button` 
+    position: absolute;
+    display: flex;
+    border: none;
+    cursor: pointer;
+    background: ${props => {
+        return props.open ? "url(/assets/lockon.png) no-repeat scroll 0 0 transparent" : "url(/assets/lockoff.png) no-repeat scroll 0 0 transparent"
+    }};
+    background-size: contain ;
+    bottom: -120px;
+    right: 50px;
     width: 100px;
-    height: 30px;
-    margin: 5px 5px 5px -90%;
-    border-radius: 5px;
-    background-color: #ABE4C7; 
+    height: 100px;
 
 `
 
@@ -40,7 +70,6 @@ export const ContentBox = styled.div`
 `
 
 export const Menu = styled.div`
-    //border: 3px solid blue;
     display:flex;
     flex-direction: column;
     width: 100%;
@@ -66,9 +95,7 @@ export const Box = styled.div`
 
 `
 
-export const PlanInfoList = styled.div`
-    //border: 3px solid orange;
-    
+export const PlanInfoList = styled.div`    
     display: flex;
     overflow-y: auto;
         // 스크롤 디자인
@@ -91,7 +118,6 @@ export const PlanInfoList = styled.div`
 `
 
 export const DayList = styled.div`
-   // border: 3px solid pink;
     display: flex;
     padding: 10px 0 10px 0;
     border-bottom: 1px solid #eeeeef;
@@ -100,7 +126,6 @@ export const DayList = styled.div`
 `
 
 export const Day = styled.div`
-    //border: 3px solid purple;
     overflow: hidden;
     display: inline-block;
     width: 100px;
@@ -118,7 +143,6 @@ export const Day = styled.div`
 `
 
 export const PlaceInfo = styled.div`
-    //border: 4px solid darkblue;
     height: 100px;      
     display: flex;
     border-bottom: 1px solid #eeeeef;
@@ -127,13 +151,11 @@ export const PlaceInfo = styled.div`
 `
 
 export const PlanImage = styled.img`
-    //border: 1px solid gold;
     width: 20%;
     border-radius: 10px;
 `
 
 export const Text = styled.div`
-    //border: 1px solid gray;
     display: flex;
     width: 65%;
     height: 100%;
@@ -143,8 +165,6 @@ export const Text = styled.div`
 `
 
 export const PlaceTitle = styled.div`
-    //border: 1px solid darkblue;
-    
     overflow: hidden;
     display: inline-block;
     width: 100%;
@@ -158,7 +178,6 @@ export const PlaceTitle = styled.div`
 `
 
 export const Content = styled.div`
-   // border: 1px solid saddlebrown;
     width: 100%;
     padding: 0;
     display: block;
@@ -179,14 +198,15 @@ export const MapBtnBox = styled.button`
     cursor: pointer;
     background: url("/assets/image35.png") no-repeat scroll 0 0 transparent;
     background-size: contain ;
-    background-color: white;//#D7D7D7
+    background-color: ${props => {
+        return props.open ? "#D7D7D7" : "white"
+    }};
     width: 60px;
     margin: 10px 15px 0 0;
     
 `
 
 export const MapBox = styled.div`
-    //border: 1px solid black;
     width: 600px;
     height: 750px;
     z-index: 0;
@@ -194,19 +214,17 @@ export const MapBox = styled.div`
 `
 
 export const Comment = styled.div`
-    //border: 3px solid yellow;
     display:flex;
     flex-direction: column;
     box-sizing: border-box;
     width: 100%;
-    height: 800px;
     margin-top: 200px;
+    flex: 1;
     
 `
 
 export const CommentBox = styled.div`
-    //border: 3px solid blue;
-    background-color: rgba(49, 49, 49, 0.2);
+    background-color: #f3f3f3;
     width: 100%;
     height: 100%;
     border-radius: 20px;
@@ -219,7 +237,6 @@ export const CommentBox = styled.div`
 `
 
 export const ReviewBox = styled.div`
-    //border: 3px solid gold;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -239,14 +256,19 @@ export const Review = styled.div`
     width: 100%;
     border-bottom: 1px solid black;
     padding: 5px 5px 0 5px;
-
     
+`
+
+export const RefirstBox = styled.div` 
+    display: flex;
+    align-items: center;
 `
 
 export const ReImage = styled.img`
     left: 0;
     width: 50px;
     height: 50px;
+    margin-right: 5px;
 
 `
 
@@ -264,12 +286,13 @@ export const ReContent = styled.div`
     display: -webkit-box;
     word-break: keep-all;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 10;
+    -webkit-line-clamp: 30;
     -webkit-box-orient: vertical;
 
 `
 
 export const ReDate = styled.div`
+    margin-top: 5px;
     right: 0;
     font-size: small;   
 `
@@ -300,6 +323,7 @@ export const Profile = styled.img`
 `
 
 export const InputComment = styled.textarea`
+    resize: none;
     width: 70%;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
