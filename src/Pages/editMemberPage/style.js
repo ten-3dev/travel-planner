@@ -98,7 +98,6 @@ export const BasicInformationName =styled.div`
     font-weight: bold;
 `
 export const BasicInformationEamil = styled.div`
-    //text-align:center;
     font-size: 15px;
     color: #929294;
 `
@@ -135,14 +134,6 @@ export const Content = styled.input`
     padding: 0 0 0 9px;
     background-color: #F3F3F3;
     margin-top: 7px;
-`
-export const GenderCheck = styled.input` 
-    width: 20px;
-    height: 20px;
-`
-export const GenderLabel = styled.label`
-    font-size: 15px;
-    margin-left: 15px;
 `
 export const EditBtn = styled.button`
     border: 0;
