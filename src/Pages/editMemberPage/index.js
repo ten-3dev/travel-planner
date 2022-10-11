@@ -5,9 +5,9 @@ import { MarginTopWrapper } from "../../Common/style";
 export const EditmemberPage = () => {
     const [clicked, setClicked] = useState(false);
 
-    function clickedBtn () {
-        setClicked(clicked => !clicked);
-    }
+    // function clickedBtn () {
+    //     setClicked(clicked => !clicked);
+    // }
     // const [value, setValue] = useState(false);
 
     // function onClickHide() {
@@ -42,12 +42,11 @@ export const EditmemberPage = () => {
                     <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
-                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked(clickedBtn)} >내프로필</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
-                {clicked===false &&
                 <Styles.MemberInforBox >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
@@ -66,7 +65,6 @@ export const EditmemberPage = () => {
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
-}
                 <Styles.MyProfileBox >
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
