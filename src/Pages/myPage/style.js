@@ -44,7 +44,7 @@ export const Profile = styled.img`
 export const SettingsImg= styled.img`
     width: 35px;
     height: 35px;
-    margin-top: 5px;
+    //margin-top: 5px;
     cursor: pointer;
 `
 
