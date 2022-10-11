@@ -174,8 +174,11 @@ export const DetainfoRight = styled.div`
     width: 70%;    
     align-items: center;
 `
-export const Img1 = styled.img`
-    width: 20px;
+// export const Img1 = styled.img`
+//     width: 20px;
+// `
+export const HeartBox = styled.div`
+    /* width: 20px; */
 `
 export const Titleimage = styled.img`
     width: 100%;
