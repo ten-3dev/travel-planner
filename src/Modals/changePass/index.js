@@ -2,7 +2,11 @@ import React from "react";
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 
-const ChangePass = () => {
+const ChangePass = ({setChangePass}) => {
+
+    const onChange = () =>{
+        setChangePass(false);
+    }
  
     return(
         <Styles.Wrapper>
@@ -17,7 +21,7 @@ const ChangePass = () => {
                         <Styles.Input placeholder="비밀번호를 다시 입력하세요"></Styles.Input>
                 </Styles.LoginText2>
                 
-                <UserBlueBtn>비밀번호 변경</UserBlueBtn>
+                <UserBlueBtn onClick={onChange}>비밀번호 변경</UserBlueBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
     )

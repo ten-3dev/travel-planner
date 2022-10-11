@@ -25,7 +25,7 @@ useEffect(() => {
 }, [page2, itemsCount]);
   return (
     < >
-      <MyPage isAction1="myComment"/>
+       <MyPage myCommentAction="myComment"/>
       <MarginTopWrapper>
         <Styles.BigBox>
           <Styles.Box>
@@ -58,7 +58,6 @@ useEffect(() => {
             </Styles.LineBox>
             
           </Styles.SmallBox>
-          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
           <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
         </Styles.BigBox>
 
@@ -90,7 +89,6 @@ useEffect(() => {
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
           </Styles.SmallBox>
-          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
           <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount}/>
         </Styles.BigBox>
 

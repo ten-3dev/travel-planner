@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EditTitle = styled.div`
     font-size: 30px;
     font-weight: 500px;
-    margin: 150px 0 20px;
+    margin: 150px 150px 20px;
     font-weight: bold;
 `
 export const TitleBar = styled.div` 
@@ -17,7 +17,7 @@ export const ProfileBox = styled.div`
     display: flex;
     table-layout: fixed;
     width: 800px;
-    margin: 0 0 200px ; 
+    margin: 0 150px 200px ; 
 `
 export const LeftProfileBox = styled.div`
     width: 300px;
@@ -43,7 +43,7 @@ export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 �
 `
 export const MemberInforBox = styled.div`
     height: 600px;
-    margin-left: 50px;
+    margin-left: 100px;
     padding: 20px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
@@ -52,11 +52,11 @@ export const MemberInforBox = styled.div`
     box-sizing: border-box;
 `
 export const ProfileImg = styled.img`
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     border-radius: 50px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
-    margin: 100px 100px 0;
+    margin: 100px 100px 10px;
 `
 export const MemberContentBox = styled.div`
     margin: 20px 0 0;
@@ -84,13 +84,13 @@ export const BasicInformation = styled.div`
 export const BasicInformationBox = styled.div`
     height: 60px;
     display: flex;
-    //margin-left: 30px;
-    margin: 30px 30px;
+    margin: 0 30px;
 `
 export const BasicInformationImg = styled.img`
     width: 56px;
     height: 56px;
     border-radius: 50px;
+    margin-top: 15px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
 `
 export const BasicInformationName =styled.div`
@@ -98,7 +98,6 @@ export const BasicInformationName =styled.div`
     font-weight: bold;
 `
 export const BasicInformationEamil = styled.div`
-    //text-align:center;
     font-size: 15px;
     color: #929294;
 `
@@ -113,7 +112,7 @@ export const Memberemail = styled.div`
 `
 export const MyProfileBox = styled.div`
     height: 600px;
-    margin-left: 50px;
+    margin-left: 100px;
     padding: 20px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
@@ -135,14 +134,6 @@ export const Content = styled.input`
     padding: 0 0 0 9px;
     background-color: #F3F3F3;
     margin-top: 7px;
-`
-export const GenderCheck = styled.input` 
-    width: 20px;
-    height: 20px;
-`
-export const GenderLabel = styled.label`
-    font-size: 15px;
-    margin-left: 15px;
 `
 export const EditBtn = styled.button`
     border: 0;
@@ -184,18 +175,17 @@ export const BasicInforContentBox = styled.div`
     padding: 20px 30px 0;
 `
 export const ProfileImgChange = styled.img`
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50px;
-    //margin: 0 200px 0;
 `
 export const ProfileImgInput = styled.input`
-    width: 20px;
+    display: none ;
 `
 export const LabelBox = styled.label`
-    width: 20px;
     display:inline-block;
-    margin: 0 200px 0;
     cursor: pointer;
+    margin-top: 5px;
+    margin-left: 70px;
 `
-// 클릭이벤트가 안됌, 사진변경가능하게 해야함
+//사진변경가능하게 해야함

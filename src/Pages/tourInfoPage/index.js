@@ -3,6 +3,10 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 const InformationPage = () => {
+
+    // const HeartBtn ({like, onClick }) => {
+        
+    // };
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -11,7 +15,7 @@ const InformationPage = () => {
                 </Styles.Title>
             </Styles.TitleBox>
             <Styles.LikeBox>
-                <Styles.Img1 src={"assets/hrr.png"}></Styles.Img1>
+                {/* <Styles.Img1 src={like?heartoo:heartxx} onClick={onClick} ></Styles.Img1> */}
                 <Styles.Like>+찜하기</Styles.Like>
             </Styles.LikeBox>
             <Styles.TopBar />

@@ -6,7 +6,7 @@ import Map from "../../Components/kakaoMap";
 const daysList =[   // 대충 시험용 데이터
     {key: '1', image: 'assets/image32.png', title:'서울 강남', content: '여긴 강남', coordinate:[37.497944, 127.027618]},
     {key: '21', image: 'assets/image35.png', title:'대구 동성로', content: '여긴 동성로', coordinate:[37.498944, 127.027618]},
-    {key: '34', image: 'assets/hrr.png', title:'부산 해운대', content: '여긴 해운대', coordinate:[35.1584, 129.16]},
+    {key: '34', image: 'assets/heart.png', title:'부산 해운대', content: '여긴 해운대', coordinate:[35.1584, 129.16]},
     {key: '42', image: 'assets/image32.png', title:'영진직업전문학교', content: '쿠쿠', coordinate:[35.87572504970846, 128.68151215551117]},
     {key: '55', image: 'assets/github.png', title:'대구 동성로', content: '여긴 동성로', coordinate:[ 35.865467 ,128.593369]},
     {key: '6', image: 'assets/myProfile.png', title:'부산 해운대', content: '여긴 해운대 부산', coordinate:[35.1884, 129.166957]},

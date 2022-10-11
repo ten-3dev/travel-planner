@@ -215,6 +215,9 @@ export const DayItemImg = styled.div`
     background-color: blue;
     margin-right: 5px;
 `
+export const DayItemSubTextBox = styled.div`
+    display: flex;
+`
 
 export const DayItemTextBox = styled.div`
     flex: 1;
@@ -227,11 +230,18 @@ export const DayItemTitle = styled.div`
     font-size: 13px;
     font-weight: bold;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `
 
 export const DayItemText = styled.div`
     font-size: 12px;
-    width: 100%;
+    flex: 1;
+`
+
+export const DayItemRemove = styled.div`
+    color: red;
 `
 
 export const PlanAddBtnBox = styled.div`
@@ -317,6 +327,8 @@ export const ListBox = styled.div`
 
 export const ScrollBox = styled.div`
     overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 0 10px;
 `
 
 export const ListTitleBox = styled.div`
@@ -349,11 +361,6 @@ export const ItemBox = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-`
-
-export const LikeImg = styled.img`
-    width: 15px;
-    height: 15px;
 `
 
 export const ItemBtn = styled.div`
@@ -431,4 +438,9 @@ export const PlanApplyBtn = styled.div`
     font-weight: bold;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+`
+
+export const LocationImg = styled.img`
+    width: 20px;
+    height: 20px;
 `
