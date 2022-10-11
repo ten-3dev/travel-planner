@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import LoginPage from '../../Modals/login/index'
-// import SignPage from '../../Modals/sign/index'
-import JoinPage from "../../Pages/joinPage";
+import Join from "../../Modals/join";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
 
@@ -68,7 +67,7 @@ const Header = () => {
                             <Styles.Text onClick={()=> setSignOpen(true)}>회원가입</Styles.Text>
                             <Styles.SignModal isOpen={signOpen} onRequestClose={() => setSignOpen(false)} style={{overlay: {zIndex: "1"}}} ariaHideApp={false}>
                                 {/* <SignPage/> */}
-                                <JoinPage />
+                                <Join />
                             </Styles.SignModal>
                         </> 
                         : 
