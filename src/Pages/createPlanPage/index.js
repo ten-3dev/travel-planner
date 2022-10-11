@@ -146,10 +146,10 @@ const CreatePlanPage = () => {
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
-                        <Styles.CloseBtn right onClick={onClose}></Styles.CloseBtn>
+                        <Styles.CloseBtn right onClick={onClose} src="assets/x.png"/>
                         <Styles.DateBox>
                             <Styles.TravelDate>{`${moment(dateList[0]).format("YYYY-MM-DD")} ~ ${moment(dateList[dateList.length - 1]).format("YYYY-MM-DD")}`}</Styles.TravelDate>
-                            <Styles.TravelCalendar onClick={() => window.location.reload()}></Styles.TravelCalendar>
+                            <Styles.TravelCalendar onClick={() => window.location.reload()} src="assets/calendar.png"/>
                         </Styles.DateBox>
                         {dateList.map((el, idx) => {
                             return(

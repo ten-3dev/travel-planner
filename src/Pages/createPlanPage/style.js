@@ -183,10 +183,9 @@ export const TravelDate = styled.div`
     font-size: 14px;
 `
 
-export const TravelCalendar = styled.div`
-    width: 25px;
-    height: 25px;
-    background-color: black;
+export const TravelCalendar = styled.img`
+    width: 20px;
+    height: 20px;
     margin-left: 10px;
     cursor: pointer;
 `
@@ -258,10 +257,9 @@ export const PlanAddBtn = styled.div`
     cursor: pointer;
 `
 
-export const CloseBtn = styled.div`
-    width: 30px;
-    height: 30px;
-    background-color: black;
+export const CloseBtn = styled.img`
+    width: 25px;
+    height: 25px;
     position: absolute;
     top: 10px;
     cursor: pointer;
