@@ -63,16 +63,16 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
-                        <Styles.LabelBox htmlFor="ex_file" >
-                            <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
-                            <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
-                         </Styles.LabelBox>
                         <Styles.BasicInformationEamilBox>
                             <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
                             <Styles.BasicInformationEamil>1997-09-18</Styles.BasicInformationEamil>
                             <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
                         </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>
+                    <Styles.LabelBox htmlFor="ex_file" >
+                            <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
+                            <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
+                    </Styles.LabelBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>이름</Styles.MemberEdit>
                         <Styles.Content placeholder="김지수" ></Styles.Content>

@@ -84,7 +84,7 @@ export const BasicInformation = styled.div`
 export const BasicInformationBox = styled.div`
     height: 60px;
     display: flex;
-    margin: 30px 30px;
+    margin: 0 30px;
 `
 export const BasicInformationImg = styled.img`
     width: 56px;
@@ -181,11 +181,11 @@ export const ProfileImgChange = styled.img`
 `
 export const ProfileImgInput = styled.input`
     display: none ;
-    //display: inline-block;
 `
 export const LabelBox = styled.label`
     display:inline-block;
     cursor: pointer;
-    margin: 70px 0 0;
+    margin-top: 5px;
+    margin-left: 70px;
 `
 //사진변경가능하게 해야함
