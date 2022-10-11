@@ -29,14 +29,7 @@ export const EditmemberPage = () => {
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
-
-                        <Styles.ProfileImg src={"assets/기본프로필.png"}></Styles.ProfileImg>
-
-                    <Styles.LabelBox htmlFor="ex_file" >
-                        <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
-                        <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
-                    </Styles.LabelBox>
-
+                    <Styles.ProfileImg src={"assets/기본프로필.png"}></Styles.ProfileImg>
                     <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
@@ -70,6 +63,10 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
+                        <Styles.LabelBox htmlFor="ex_file" >
+                            <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
+                            <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
+                         </Styles.LabelBox>
                         <Styles.BasicInformationEamilBox>
                             <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
                             <Styles.BasicInformationEamil>1997-09-18</Styles.BasicInformationEamil>

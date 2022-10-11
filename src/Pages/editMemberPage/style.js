@@ -56,7 +56,7 @@ export const ProfileImg = styled.img`
     height: 100px;
     border-radius: 50px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
-    margin: 100px 100px 0;
+    margin: 100px 100px 10px;
 `
 export const MemberContentBox = styled.div`
     margin: 20px 0 0;
@@ -84,7 +84,6 @@ export const BasicInformation = styled.div`
 export const BasicInformationBox = styled.div`
     height: 60px;
     display: flex;
-    //margin-left: 30px;
     margin: 30px 30px;
 `
 export const BasicInformationImg = styled.img`
@@ -176,18 +175,17 @@ export const BasicInforContentBox = styled.div`
     padding: 20px 30px 0;
 `
 export const ProfileImgChange = styled.img`
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50px;
-    //margin: 0 200px 0;
 `
 export const ProfileImgInput = styled.input`
-    width: 20px;
+    display: none ;
+    //display: inline-block;
 `
 export const LabelBox = styled.label`
-    width: 20px;
     display:inline-block;
-    margin: 0 200px 0;
     cursor: pointer;
+    margin: 70px 0 0;
 `
 //사진변경가능하게 해야함
