@@ -41,7 +41,7 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     }
 
     return(
-        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "1"}}} ariaHideApp={false}>
+        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "1", backgroundColor: "white"}}} ariaHideApp={false}>
             <Styles.CalendarCustom onChange={onChange} value={value} selectRange />
             <Styles.BtnBox>
                 <Styles.Btn onClick={() => setOpen(false)}>이전</Styles.Btn>
@@ -129,6 +129,13 @@ const CreatePlanPage = () => {
         }
     }
 
+    const onClose = () => {
+        if(update !== null){
+            return alert("아직 작업중인 DAY가 있습니다.");
+        }
+        setControlOpen(!controlOpen);
+    }
+
     return(
         <>
             <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
@@ -139,7 +146,7 @@ const CreatePlanPage = () => {
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
-                        <Styles.CloseBtn right onClick={() => setControlOpen(!controlOpen)}></Styles.CloseBtn>
+                        <Styles.CloseBtn right onClick={onClose}></Styles.CloseBtn>
                         <Styles.DateBox>
                             <Styles.TravelDate>{`${moment(dateList[0]).format("YYYY-MM-DD")} ~ ${moment(dateList[dateList.length - 1]).format("YYYY-MM-DD")}`}</Styles.TravelDate>
                             <Styles.TravelCalendar onClick={() => window.location.reload()}></Styles.TravelCalendar>
@@ -175,7 +182,6 @@ const CreatePlanPage = () => {
                 </Styles.Map>
                 <Styles.TravelBox open={travelOpen}>
                     <Styles.ContentBox>
-                        <Styles.CloseBtn left onClick={() => settravelOpen(!travelOpen)}></Styles.CloseBtn>
                         <Styles.TravelInputBox>
                             <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." />
                             <Styles.TravelInputBtn>검색</Styles.TravelInputBtn>

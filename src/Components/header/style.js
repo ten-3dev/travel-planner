@@ -50,9 +50,6 @@ export const Wrapper = styled.div`
         if(props.scroll) bg = "white"
         return bg;
     }};
-    display: ${props => {
-        return props.open ? "block" : "none"
-    }};
 `
 
 export const Header = styled.div`

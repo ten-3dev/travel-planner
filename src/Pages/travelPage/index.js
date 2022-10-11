@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import Paging from "../../Components/paging";
 
 
 const TravelPage = () => {
+    const [page, setPage] = useState(1);
+    const [itemsCount] = useState(6);
+    const [totalItemsCount] = useState(50); // 임시
+
+    useEffect(() => {
+        console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
+        console.log(itemsCount + "까지");
+    }, [page, itemsCount]);
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
@@ -125,6 +134,7 @@ const TravelPage = () => {
             </Styles.ContentBox>
             <Styles.SteamListButtonBox>
             </Styles.SteamListButtonBox>
+            <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </MarginTopWrapper>
       );
 }

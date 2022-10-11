@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
+import Paging from '../../../Components/paging';
 
 const MyComments = () => {
+  // 공유한 플랜 댓글
+  const [page1, setPage1] = useState(1);
+  const [itemsCount] = useState(6);
+  const [totalItemsCount1] = useState(50); // 임시
+
+  // 관광지 댓글
+  const [page2, setPage2] = useState(1);
+  const [totalItemsCount2] = useState(50); // 임시
+
+  useEffect(() => {
+    console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
+    console.log(itemsCount + "까지");
+}, [page1, itemsCount]);
+
+useEffect(() => {
+  console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
+  console.log(itemsCount + "까지");
+}, [page2, itemsCount]);
   return (
     < >
       <MyPage isAction1="myComment"/>
@@ -39,7 +58,8 @@ const MyComments = () => {
             </Styles.LineBox>
             
           </Styles.SmallBox>
-          <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
+          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
+          <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
         </Styles.BigBox>
 
         <Styles.BigBox>
@@ -70,7 +90,8 @@ const MyComments = () => {
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
           </Styles.SmallBox>
-          <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
+          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
+          <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount}/>
         </Styles.BigBox>
 
         

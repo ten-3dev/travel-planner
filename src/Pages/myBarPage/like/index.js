@@ -1,10 +1,19 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
+import Paging from '../../../Components/paging';
 
 const Like = () => {
+  const [page, setPage] = useState(1);
+  const [itemsCount] = useState(6);
+  const [totalItemsCount] = useState(50); // 임시
+
+  useEffect(() => {
+    console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
+    console.log(itemsCount + "까지");
+}, [page, itemsCount]);
   return (
     <>
       <MyPage isAction3 ="like" />
@@ -49,7 +58,8 @@ const Like = () => {
               </Styles.Box2>
             </Styles.LineBox>
           </Styles.SmallBox>
-          <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText>
+          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
+          <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </Styles.BigBox>
       </MarginTopWrapper>
       

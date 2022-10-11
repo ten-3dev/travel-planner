@@ -47,7 +47,6 @@ const Header = () => {
     return(
         <Styles.Wrapper 
             bg={location.pathname === '/' ? true : false}
-            open={location.pathname === '/CreatePlanPage' ? false : true}
             scroll={scrollPosition > 100 ? true : false}
             >
             <MarginTopWrapper>
