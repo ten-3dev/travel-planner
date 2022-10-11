@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EditTitle = styled.div`
     font-size: 30px;
     font-weight: 500px;
-    margin: 150px 0 20px;
+    margin: 150px 150px 20px;
     font-weight: bold;
 `
 export const TitleBar = styled.div` 
@@ -17,7 +17,7 @@ export const ProfileBox = styled.div`
     display: flex;
     table-layout: fixed;
     width: 800px;
-    margin: 0 0 200px ; 
+    margin: 0 150px 200px ; 
 `
 export const LeftProfileBox = styled.div`
     width: 300px;
@@ -43,7 +43,7 @@ export const LeftContent = styled.div` //클릭했을 때 찐하게 해놓기 �
 `
 export const MemberInforBox = styled.div`
     height: 600px;
-    margin-left: 50px;
+    margin-left: 100px;
     padding: 20px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
@@ -52,8 +52,8 @@ export const MemberInforBox = styled.div`
     box-sizing: border-box;
 `
 export const ProfileImg = styled.img`
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     border-radius: 50px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
     margin: 100px 100px 0;
@@ -91,6 +91,7 @@ export const BasicInformationImg = styled.img`
     width: 56px;
     height: 56px;
     border-radius: 50px;
+    margin-top: 15px;
     box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
 `
 export const BasicInformationName =styled.div`
@@ -112,7 +113,7 @@ export const Memberemail = styled.div`
 `
 export const MyProfileBox = styled.div`
     height: 600px;
-    margin-left: 50px;
+    margin-left: 100px;
     padding: 20px 17px 0;
     border-radius: 15px;
     box-shadow: 2px 2px 14px 0;
@@ -189,4 +190,4 @@ export const LabelBox = styled.label`
     margin: 0 200px 0;
     cursor: pointer;
 `
-// 클릭이벤트가 안됌, 사진변경가능하게 해야함
+//사진변경가능하게 해야함
