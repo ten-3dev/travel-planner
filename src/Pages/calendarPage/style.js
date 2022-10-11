@@ -180,13 +180,13 @@ export const MapBtnBox = styled.button`
     background: url("/assets/image35.png") no-repeat scroll 0 0 transparent;
     background-size: contain ;
     background-color: white;//#D7D7D7
-    width: 70px;
-    margin: 10px 20px 0 0;
+    width: 60px;
+    margin: 10px 15px 0 0;
     
 `
 
 export const MapBox = styled.div`
-    border: 1px solid black;
+    //border: 1px solid black;
     width: 600px;
     height: 750px;
     z-index: 0;
@@ -205,65 +205,122 @@ export const Comment = styled.div`
 `
 
 export const CommentBox = styled.div`
+    //border: 3px solid blue;
     background-color: rgba(49, 49, 49, 0.2);
     width: 100%;
     height: 100%;
     border-radius: 20px;
     box-sizing: border-box;
-    padding: 50px 70px;
-
+    padding: 0 70px 0 70px;
+    
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    align-content: space-between;
 `
 
-export const Review = styled.div`   
-    //border: 2px solid black;
+export const ReviewBox = styled.div`
+    //border: 3px solid gold;
+    width: 100%;
     display: flex;
-    width: 60%;
-    height: 20px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex: 1;
 
-    border-bottom: 1px solid #eeeeef;
-    padding: 25px 0 23px 0;
 
     
 `
 
-export const ReImage = styled.div`
+export const Review = styled.div`
+    display: flex;
+    justify-content: center;
+    align-self: start;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding: 5px 5px 0 5px;
 
-    opacity: .1;
+    
+`
+
+export const ReImage = styled.img`
+    left: 0;
+    width: 50px;
+    height: 50px;
+
+`
+
+export const ReName = styled.div`
+    left: 70px;
+    font-weight: bold;
 
 `
 
 export const ReContent = styled.div`
+    left: 110px;
+    width: 80%;
+    padding: 0;
+    display: block;
+    display: -webkit-box;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
 
 `
 
 export const ReDate = styled.div`
-
+    right: 0;
+    font-size: small;   
 `
 
 export const InputBox = styled.div`
+    position: relative;
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    height: 150px;
+    margin: 50px 0 50px 0;
 `
 
-export const InputText = styled.textarea`
-    width: 800px;
-    height: 200px;
-
+export const ReviewTextBox= styled.div`
+    position: absolute;
+    top: -40px;
 `
 
-export const Profile = styled.div`
-
+export const ReviewText= styled.div`
+    font-weight: bold;
 `
 
-export const Input = styled.div`
-
+export const Profile = styled.img`
+    top:0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    margin-right: 60px;
 `
 
-export const InputBtn = styled.div`
+export const InputComment = styled.textarea`
+    width: 70%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+`
 
+export const InputBtn = styled.button`
+    border: none;
+    border-radius: 7px;
+    position: absolute;
+    display: flex;
+    right: 0;
+    bottom:0;
+    width: 100px;
+    height: 35px;
+    background-color: #587545;
+
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-items: center;
 `
  

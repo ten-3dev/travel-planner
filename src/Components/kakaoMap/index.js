@@ -19,7 +19,7 @@ const Map=(props)=>{
     });
     marker.setMap(map); // 지도 위에 마커를 표출합니다
 
-    //@@@@ 여기부터 카테고리추가 ㅋㅋ
+    //@@@@ 여기부터 카테고리 추가
     // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다 
     var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
     contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
