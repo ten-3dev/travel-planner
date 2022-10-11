@@ -3,7 +3,18 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 export const EditmemberPage = () => {
-    const [clicked, setClicked] = useState("Profile");
+    const [clicked, setClicked] = useState(false);
+
+    function clickedBtn () {
+        setClicked(clicked => !clicked);
+    }
+    // const [value, setValue] = useState(false);
+
+    // function onClickHide() {
+    //     setValue(value => !value);
+
+    //   };
+    
     function EditBtn() {
         if (window.confirm("수정하시겠습니까?")) {
 
@@ -25,18 +36,19 @@ export const EditmemberPage = () => {
                 <Styles.LeftProfileBox>
                         <Styles.ProfileImg src={"assets/임시프로필사진.png"}></Styles.ProfileImg>
                     <Styles.LabelBox htmlFor="ex_file" >
-                        <Styles.ProfileImgChange src={"assets/카메라.jpg"} ></Styles.ProfileImgChange>
+                        <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
+                        <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
                     </Styles.LabelBox>
-                    <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg"  style={{ display: "none" }}></Styles.ProfileImgInput>
                     <Styles.MemberName>김지수</Styles.MemberName>
                     <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
                     <Styles.TitleBar/>
-                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile")} >내프로필</Styles.LeftContent>
+                    <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked(clickedBtn)} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw")}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
-                <Styles.MemberInforBox>
+                {clicked===false &&
+                <Styles.MemberInforBox >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
@@ -54,7 +66,8 @@ export const EditmemberPage = () => {
                         <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
-                <Styles.MyProfileBox>
+}
+                <Styles.MyProfileBox >
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/임시프로필사진.png"}></Styles.BasicInformationImg>
@@ -71,14 +84,6 @@ export const EditmemberPage = () => {
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01058997032" ></Styles.Content>
                     </Styles.BasicInforContentBox>
-                    {/* <Styles.BasicInforContentBox>
-                        <Styles.MemberEdit>닉네임</Styles.MemberEdit>
-                        <Styles.Content placeholder="쮸짱이" ></Styles.Content>
-                    </Styles.BasicInforContentBox> */}
-                    {/* <Styles.BasicInforContentBox>
-                        <Styles.MemberEdit>이메일</Styles.MemberEdit>
-                        <Styles.Content placeholder="su70322@naver.com" ></Styles.Content>
-                    </Styles.BasicInforContentBox> */}
                     <Styles.BtnBox>
                         <Styles.BasicInfoBtn onClick={(EditBtn)}>수정하기</Styles.BasicInfoBtn>
                     </Styles.BtnBox> 

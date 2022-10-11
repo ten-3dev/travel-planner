@@ -187,7 +187,6 @@ export const ProfileImgChange = styled.img`
     width: 20px;
     height: 20px;
     border-radius: 50px;
-    box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
     margin: 0 200px 0;
 `
 export const ProfileImgInput = styled.input`
@@ -197,3 +196,4 @@ export const LabelBox = styled.label`
     width: 20px;
 `
 //lebel 규격을 작게 해야하는지 잘 모르겠음 카메라 사진 여백 클릭시에도 열림
+// 클릭이벤트가 안됌
