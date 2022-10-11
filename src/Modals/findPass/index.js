@@ -4,8 +4,12 @@ import { UserBlueBtn } from "../../Common/style";
 
 
 
-const FindPass = () => {
+const FindPass = ({setFindPass ,setChangePass}) => {
 
+    const gotoChangePass = () => {
+        setFindPass(false)
+        setChangePass(true);
+    }
     
     return(
         <Styles.Wrapper>
@@ -20,7 +24,7 @@ const FindPass = () => {
                         <Styles.Input placeholder="이메일을 입력하세요"></Styles.Input>
                 </Styles.LoginText2>
                 
-                <UserBlueBtn>이메일 확인</UserBlueBtn>
+                <UserBlueBtn onClick={gotoChangePass}>이메일 확인</UserBlueBtn>
 
             </Styles.ContentBox>
         </Styles.Wrapper>

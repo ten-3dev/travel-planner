@@ -178,15 +178,13 @@ const CreatePlanPage = () => {
                                     <Styles.DayItem>
                                         <Styles.DayItemImg></Styles.DayItemImg>
                                         <Styles.DayItemTextBox>
-                                            <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                        </Styles.DayItemTextBox>
-                                    </Styles.DayItem>
-                                    <Styles.DayItem>
-                                        <Styles.DayItemImg></Styles.DayItemImg>
-                                        <Styles.DayItemTextBox>
-                                            <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                            <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                            </Styles.DayItemTitle>
+                                            <Styles.DayItemSubTextBox>
+                                                <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                                <Styles.DayItemRemove>삭제</Styles.DayItemRemove>
+                                            </Styles.DayItemSubTextBox>
                                         </Styles.DayItemTextBox>
                                     </Styles.DayItem>
                                     <Styles.PlanAddBtnBox>
@@ -215,7 +213,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -226,7 +226,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -237,7 +239,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -248,7 +252,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -259,7 +265,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -270,7 +278,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -281,7 +291,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -292,7 +304,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -303,7 +317,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -314,7 +330,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -325,7 +343,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -344,7 +364,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -355,7 +377,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -366,7 +390,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -377,7 +403,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -388,7 +416,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -399,7 +429,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -410,7 +442,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -421,7 +455,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -432,7 +468,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -443,7 +481,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>
@@ -454,7 +494,9 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                     <Styles.DayItemImg></Styles.DayItemImg>
                                     <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)</Styles.DayItemTitle>
+                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
+                                            <Styles.LocationImg src={"assets/image35.png"} />
+                                        </Styles.DayItemTitle>
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.LikeImg src="assets/heart.png"/>

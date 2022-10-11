@@ -120,5 +120,6 @@ export const PageText = styled.div`
     font-size: 16px;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 30px;
     
 `

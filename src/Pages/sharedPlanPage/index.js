@@ -35,7 +35,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>
@@ -49,7 +49,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>
@@ -63,7 +63,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>
@@ -77,7 +77,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>
@@ -91,7 +91,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>
@@ -105,7 +105,7 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox>2022-03-21 - 2022-09-18</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                                <Styles.LikeImg src={"assets/hrr.png"}></Styles.LikeImg>
+                                <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>By.JD</Styles.ContentBox>

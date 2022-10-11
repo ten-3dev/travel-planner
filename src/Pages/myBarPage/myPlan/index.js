@@ -15,7 +15,7 @@ const MyPlan = () => {
 }, [page, itemsCount]);
   return (
     <>
-    <MyPage isAction="myPlan"/>
+    <MyPage myPlanAction="myPlan"/>
     <MarginTopWrapper>
       <Styles.BigBox>
           <Styles.Box>
@@ -65,7 +65,6 @@ const MyPlan = () => {
               </Styles.ContentBox>
             </Styles.LineBox>
           </Styles.SmallBox>
-          {/* <Styles.PageText>&lt;&nbsp; 1 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 &nbsp; &gt;</Styles.PageText> */}
           <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </Styles.BigBox>
     </MarginTopWrapper>
