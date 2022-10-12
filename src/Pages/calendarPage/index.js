@@ -48,7 +48,7 @@ const CalendarPage = () =>{
                 <Styles.IntroText>즐거운(?) 코딩 여행</Styles.IntroText>
                 <Styles.IntroDate>2022-10-22 - 2022-10-23</Styles.IntroDate>
             </Styles.IntroTitle>
-            <Styles.ShareBtn  open={controlOpen} right onClick={() => {setControlOpen(!controlOpen)}} ></Styles.ShareBtn>
+            <Styles.ShareBtn  open={controlOpen} onClick={() => {setControlOpen(!controlOpen)}}></Styles.ShareBtn>
         </Styles.ImageBox>
             <MarginTopWrapper>
                 <Styles.Wrapper>

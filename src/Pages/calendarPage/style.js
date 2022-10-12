@@ -13,13 +13,14 @@ export const ImageBox = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    height: 700px;
+    height: 850px;
     margin-top:150px;
     
 `
 
 export const Image = styled.img`
     width: 100%;
+    height: calc(100% - 150px);
 `
 
 export const IntroTitle = styled.div`
@@ -29,7 +30,7 @@ export const IntroTitle = styled.div`
     flex-wrap: wrap;
     align-content: space-between;
     left: 100px;
-    bottom: 50px;
+    bottom: 200px;
 `
 export const IntroText = styled.div`
     font-size:30px;
@@ -44,17 +45,17 @@ export const IntroDate = styled.div`
 
 `
 
-export const ShareBtn = styled.button` 
+export const ShareBtn = styled.button`
     position: absolute;
     display: flex;
     border: none;
     cursor: pointer;
     background: ${props => {
-        return props.open ? "url(/assets/lockon.png) no-repeat scroll 0 0 transparent" : "url(/assets/lockoff.png) no-repeat scroll 0 0 transparent"
+        return (props.open ? "url(/assets/lockon.png) " : "url(/assets/lockoff.png) ") +"no-repeat scroll 0 0 transparent"
     }};
     background-size: contain ;
-    bottom: -120px;
-    right: 50px;
+    right: 18%;
+    bottom: 0;
     width: 100px;
     height: 100px;
 
@@ -196,11 +197,11 @@ export const MapBtnBox = styled.button`
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background: url("/assets/image35.png") no-repeat scroll 0 0 transparent;
-    background-size: contain ;
-    background-color: ${props => {
-        return props.open ? "#D7D7D7" : "white"
+    background: ${props => {
+        return (props.open ? "url(/assets/image35_1.png) " : "url(/assets/image35.png) ") + "no-repeat scroll 0 0 transparent"
     }};
+    background-size: contain ;
+
     width: 60px;
     margin: 10px 15px 0 0;
     
