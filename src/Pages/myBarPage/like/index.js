@@ -4,6 +4,8 @@ import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
+import LikeButton from '../../../Components/LikeButton/LikeButton';
+
 
 const Like = () => {
   const [page, setPage] = useState(1);
@@ -14,6 +16,7 @@ const Like = () => {
     console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
     console.log(itemsCount + "까지");
 }, [page, itemsCount]);
+
   return (
     <>
       <MyPage likeAction ="like" />
@@ -33,7 +36,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -50,7 +55,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -67,7 +74,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -90,7 +99,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -107,7 +118,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
@@ -124,7 +137,9 @@ const Like = () => {
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
-                      <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                      <Styles.Imgheart>
+                        <LikeButton/>
+                      </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
                       <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
