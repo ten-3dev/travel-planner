@@ -1,19 +1,18 @@
 import styled from "styled-components";
 
 export const BigBox = styled.div`
-    width: 895px;
-    margin-left: 155px;
-    margin-top: 120px;
-    margin-bottom: 100px;
+    width: 1100px;
+    display: flex; 
 `
 
 export const Box = styled.div`
-    width: 250px;
+    width: 200px;
     height: 60px;
     background-color: #ECECEC;
     border-radius: 10px;
     margin-bottom: 20px;
-    margin-left: 100px;
+    margin-left: 35px;
+    margin-top: 60px;
 `
 
 export const Box2 = styled.div`
@@ -27,7 +26,15 @@ export const SmallBox = styled.div`
     width: 500px;
     border-radius: 10px;
     margin-bottom: 30px;
-    margin-left: 200px;
+    margin-left: 35px;
+    margin-right: 35px;
+`
+export const SmallBox2 = styled.div`
+    width: 1100px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 35px;
+    margin-right: 35px;
 `
 
 export const LineBox = styled.div`
@@ -37,13 +44,13 @@ export const LineBox = styled.div`
 `
 
 export const ContentBox = styled.div`
-    width: 785px;
+    width: 500px;
     height: 120px;
     border-radius: 10px;  
 `
 
 export const ContentBox2 = styled.div`
-    width: 785px;
+    width: 380px;
     height: 50%;
     display: flex; 
 `
@@ -57,11 +64,12 @@ export const DayBox = styled.div`
 `
 
 export const NameBox = styled.div`
-    width: 230px;
+    width: 250px;
     font-size: 16px;
     margin-top:15px;
     margin-left: 20px;
-    font-weight: bold;   
+    font-weight: bold;  
+    text-align :center ;
 `
 export const HeartSumText = styled.div`
     width: 100px;
@@ -69,15 +77,15 @@ export const HeartSumText = styled.div`
     margin-top:15px;
     font-weight: bold;
     margin-left: 10px;
-    margin-right: 290px;   
+    margin-right: 120px;   
 `
 
-export const ModifyDeleteBox = styled.div`
+export const KeepDeleteBox = styled.div`
     width: 100px;
     height: 20px;
     font-size: 12px;
-    margin-top:20px;
-    margin-left: 150px;
+    margin-top:50px;
+    margin-left: 100px;
     margin-right: 30px;
     font-weight: bold;
     border-radius: 100px;
@@ -92,7 +100,15 @@ export const ImgBox = styled.img`
     height: 100px;
     border-radius: 10px;
     margin-top: 10px;
-    margin-left: 10px;  
+    margin-left: 10px; 
+    cursor: pointer; 
+`
+
+export const ImgBox2 = styled.img`
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;  
+    cursor: pointer;
 `
 
 export const Imgheart = styled.div`
@@ -117,13 +133,65 @@ export const ContentText = styled.div`
     margin-left: 20px;
     font-weight: bold;
     margin-top:20px; 
+    cursor: pointer;
 `
 
-export const PageText = styled.div`
-    width: 900px; 
-    font-size: 16px;
-    font-weight: bold;
+export const LikeText = styled.div`
+    width: 200px; 
+    font-size: 32px;
     text-align: center;
-    margin-bottom: 30px;
-    
+    font-weight: bold;
+    border:3px solid #93A6AE ;
+    border-radius: 10px;
+    color: #93A6AE;
+    margin-top: 120px;
+`
+
+export const LikesListBox = styled.div`
+    width: 1200px;
+    //border-left: 1px solid #000000 ;
+    margin-left: 15px;
+`
+
+export const LikesListBox1 = styled.div`
+    width: 1200px;
+    margin-left: 15px;
+`
+
+export const KeepBox = styled.div`
+    width: 1100px;
+    height: 120px;
+    border-radius: 10px;  
+`
+
+export const KeepBox2 = styled.div`
+    width: 1100px;
+    height: 50%;
+    display: flex; 
+`
+
+
+export const KeepBox3 = styled.div`
+    width: 1100px;
+    background-color: #ECECEC;
+    border-radius: 10px; 
+    display: flex;
+`
+
+export const AddressText = styled.div`
+    width: 600px;
+    font-size: 14px;
+    text-align: right;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-weight: bold;
+`
+
+export const KeepContentText = styled.div`
+    width: 650px; 
+    height: 70px;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top:20px; 
+    cursor: pointer;
 `

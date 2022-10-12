@@ -88,7 +88,7 @@ export const NavLink = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isAction === "myPlan" ? "#BEBEBE" :"#ECECEC"
+    return props.isaction === "myPlan" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -110,7 +110,7 @@ export const NavLink1 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isAction === "myComment" ? "#BEBEBE" :"#ECECEC"
+    return props.isaction === "myComment" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -132,7 +132,7 @@ export const NavLink2 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isAction === "sharedPlan" ? "#BEBEBE" :"#ECECEC"
+    return props.isaction === "sharedPlan" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -154,7 +154,7 @@ export const NavLink3 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isAction === "like" ? "#BEBEBE" :"#ECECEC"
+    return props.isaction === "like" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
