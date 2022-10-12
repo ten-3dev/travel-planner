@@ -29,7 +29,7 @@ export const Like = styled.button`
 export const TopBar = styled.div` 
     width: 100%;
     height: 3px;
-    margin-top: 10px;
+    //margin-top: 10px;
     margin-bottom: 30px;
     background-color: grey ;
     opacity: 0.2;
@@ -174,11 +174,8 @@ export const DetainfoRight = styled.div`
     width: 70%;    
     align-items: center;
 `
-// export const Img1 = styled.img`
-//     width: 20px;
-// `
-export const HeartBox = styled.div`
-    /* width: 20px; */
+export const Img1 = styled.div`
+    margin-top: 15px;
 `
 export const Titleimage = styled.img`
     width: 100%;
@@ -202,4 +199,4 @@ export const MyWriting = styled.div`
     justify-content: space-between;
 `
 
-//페이지네이션 댓글 나의 글쓰기 밑에 만들기 라이브러리 사용예정 , 하트 바꿔야함
+//페이지네이션 댓글 나의 글쓰기 밑에 만들기 라이브러리 사용예정 

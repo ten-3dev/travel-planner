@@ -1,32 +1,11 @@
 import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
-import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
+// import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
+import LikeButton from "../../Components/LikeButton/LikeButton";
 
 
 const InformationPage = () => {
-    // const [onClick] = useState();
-    
-    // function btn () {
-    //     useState = {
-    //         isChecked:false,
-    //         notice: ' ',
-    //     };
-    
-    //     onClick = () => {
-    //         this.state.isChecked ?
-    //         this.setState({
-    //             isChecked:false,
-    //             notice: '',
-    //         })
-    //         :
-    //         this.setState({
-    //             isChecked: true,
-    //         });
-    //     };
-
-    // };
-   
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -35,10 +14,7 @@ const InformationPage = () => {
                 </Styles.Title>
             </Styles.TitleBox>
             <Styles.LikeBox>
-                <Styles.HeartBox className="icons-list" >
-                    <HeartFilled  style={{ color: 'red', fontSize: '20px'}}    />
-                    <HeartOutlined style={{ fontSize: '20px'}}  />
-                </Styles.HeartBox>
+                <Styles.Img1><LikeButton/></Styles.Img1>
                 <Styles.Like>+찜하기</Styles.Like>
             </Styles.LikeBox>
             <Styles.TopBar />
