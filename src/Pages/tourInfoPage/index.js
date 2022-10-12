@@ -1,31 +1,32 @@
-import React ,{useState} from "react";
+import React from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
 
-const InformationPage = () => {
-    // const [isChecked, onClick] = useState();
-    const [clicked, setClicked] = useState(false);
-    
-    function HeartBtn() {
-        setClicked(clicked?HeartFilled:HeartOutlined);
-    };
-    // useState = {
-    //     isChecked: false,
-    //     notice: ' ',
-    // };
-    // onClick = () => {				
-    //     this.state.isChecked ?		
-    //     this.setState({
-    //         isChecked: false,		
-    //         notice: '',				
-    //     })
-    //     :
-    //     this.setState({				
-    //         isChecked: true,		
-    //     });
-    // }
 
+const InformationPage = () => {
+    // const [onClick] = useState();
+    
+    // function btn () {
+    //     useState = {
+    //         isChecked:false,
+    //         notice: ' ',
+    //     };
+    
+    //     onClick = () => {
+    //         this.state.isChecked ?
+    //         this.setState({
+    //             isChecked:false,
+    //             notice: '',
+    //         })
+    //         :
+    //         this.setState({
+    //             isChecked: true,
+    //         });
+    //     };
+
+    // };
+   
     return(
         <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -34,10 +35,10 @@ const InformationPage = () => {
                 </Styles.Title>
             </Styles.TitleBox>
             <Styles.LikeBox>
-                <Styles.HeartBox  className="icons-list" >
-                    <HeartFilled  style={{ color: 'red', fontSize: '20px'}} click={clicked === "HeartFilled"} onClick={HeartBtn}  />
-                    <HeartOutlined style={{ fontSize: '20px'}} click={clicked === "HeartOutlined"} onClick={HeartBtn}/>
-                 </Styles.HeartBox>
+                <Styles.HeartBox className="icons-list" >
+                    <HeartFilled  style={{ color: 'red', fontSize: '20px'}}    />
+                    <HeartOutlined style={{ fontSize: '20px'}}  />
+                </Styles.HeartBox>
                 <Styles.Like>+찜하기</Styles.Like>
             </Styles.LikeBox>
             <Styles.TopBar />
