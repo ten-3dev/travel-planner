@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import Paging from "../../Components/paging";
+import LikeButton from "../../Components/LikeButton/LikeButton2";
 
 
 const TravelPage = () => {
@@ -31,7 +32,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -45,7 +46,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -59,7 +60,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -73,7 +74,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -87,7 +88,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -101,7 +102,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>
@@ -115,7 +116,7 @@ const TravelPage = () => {
                             </Styles.Text1>
                         </Styles.TravelWrapper5>
                         <Styles.LikeBox>
-                            <Styles.Img1 src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Img1>
+                            <Styles.Img1 ><LikeButton/></Styles.Img1>
                             <Styles.Like>+찜하기</Styles.Like>
                         </Styles.LikeBox>  
                     </Styles.TravelWrapper>

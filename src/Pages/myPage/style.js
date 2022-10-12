@@ -1,5 +1,7 @@
 import styled from "styled-components";
+
 import { NavLink as Link } from 'react-router-dom';
+
 
 
 export const ProfileBox = styled.div`
@@ -13,6 +15,7 @@ export const SettingBox = styled.div`
     text-align:center;
     margin-left: 400px;
     margin-top: 50px;
+    position:relative;
 `
 
 export const Box1 = styled.div`
@@ -37,14 +40,23 @@ export const Profile = styled.img`
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    margin-bottom: 20px;
+    margin-left: 50px;
     box-shadow: 1px 1px 5px 2px;
+    position:absolute;
     cursor: pointer;
 `
+
+export const MyProfileBox = styled.div`
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+`
 export const SettingsImg= styled.img`
-    width: 35px;
-    height: 35px;
-    //margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    margin-top: 130px;
+    margin-left: 165px;
+    position:absolute;
     cursor: pointer;
 `
 
@@ -76,7 +88,7 @@ export const NavLink = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isaction === "myPlan" ? "#BEBEBE" :"#ECECEC"
+    return props.isAction === "myPlan" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -98,7 +110,7 @@ export const NavLink1 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isaction === "myComment" ? "#BEBEBE" :"#ECECEC"
+    return props.isAction === "myComment" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -120,7 +132,7 @@ export const NavLink2 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isaction === "sharedPlan" ? "#BEBEBE" :"#ECECEC"
+    return props.isAction === "sharedPlan" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;
@@ -142,7 +154,7 @@ export const NavLink3 = styled(Link)`
   border-radius: 10px;
   height: 100%;
   background: ${props => {
-    return props.isaction === "like" ? "#BEBEBE" :"#ECECEC"
+    return props.isAction === "like" ? "#BEBEBE" :"#ECECEC"
   }
   };
   cursor: pointer;

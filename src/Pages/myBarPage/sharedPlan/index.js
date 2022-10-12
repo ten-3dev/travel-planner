@@ -3,6 +3,8 @@ import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
+import LikeButton from '../../../Components/LikeButton/LikeButton';
+
   
 const SharedPlan = () => {
   const [page, setPage] = useState(1);
@@ -34,7 +36,9 @@ const SharedPlan = () => {
                   <Styles.ModifyDeleteBox>공유 삭제</Styles.ModifyDeleteBox>
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
-                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                  <Styles.Imgheart>
+                    <LikeButton/>
+                  </Styles.Imgheart>
                   <Styles.HeartSumText>300</Styles.HeartSumText>
                   <Styles.NameBox>석준혁</Styles.NameBox>
                 </Styles.ContentBox2>
@@ -51,7 +55,9 @@ const SharedPlan = () => {
                   <Styles.ModifyDeleteBox>공유 삭제</Styles.ModifyDeleteBox>
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
-                  <Styles.Imgheart src={process.env.PUBLIC_URL + "assets/heart.png"}></Styles.Imgheart>
+                  <Styles.Imgheart>
+                    <LikeButton/>
+                  </Styles.Imgheart>
                   <Styles.HeartSumText>300</Styles.HeartSumText>
                   <Styles.NameBox>석준혁</Styles.NameBox>
                 </Styles.ContentBox2>

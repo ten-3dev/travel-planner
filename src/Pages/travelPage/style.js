@@ -129,11 +129,11 @@ export const Img = styled.img`
     margin-top: 5px;
 `
 
-export const Img1 = styled.img`
+export const Img1 = styled.div`
     width: 20px;
     height: 20px;
-    display: flex;
-    cursor: pointer;
+    margin-bottom: 3px;
+
 `
 
 export const SteamListButtonImg = styled.img`

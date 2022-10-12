@@ -92,7 +92,7 @@ export const ImgBox = styled.img`
     
     
 `
-export const Imgheart = styled.img`
+export const Imgheart = styled.div`
     width: 35px;
     height: 35px;
     margin-left: 20px;

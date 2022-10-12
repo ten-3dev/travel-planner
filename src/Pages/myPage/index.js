@@ -25,8 +25,10 @@ import {
             <Styles.Box>
             <Styles.ProfileBox>
                 <Styles.SettingBox>
-                    <Styles.Profile src={`assets/임시프로필사진.png`}/>
+                    <Styles.MyProfileBox>
+                    <Styles.Profile src={`assets/임시프로필사진.png`} />
                     <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
+                    </Styles.MyProfileBox>
                     <Styles.Box2>
                         <Styles.Text>닉네임</Styles.Text>
                     </Styles.Box2>
