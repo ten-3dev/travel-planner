@@ -33,7 +33,7 @@ useEffect(() => {
           </Styles.Box>
           <Styles.SmallBox>
             <Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...</Styles.ContentText>
@@ -41,7 +41,7 @@ useEffect(() => {
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
             <Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
@@ -49,7 +49,7 @@ useEffect(() => {
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
             <Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
@@ -67,21 +67,21 @@ useEffect(() => {
           </Styles.Box>
           <Styles.SmallBox>
             <Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox><Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox><Styles.LineBox>
-              <Styles.ImgBox src={`assets/임시프로필사진.png`}/>
+              <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
                 <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>

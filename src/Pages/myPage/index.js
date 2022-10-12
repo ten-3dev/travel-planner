@@ -26,7 +26,7 @@ import {
             <Styles.ProfileBox>
                 <Styles.SettingBox>
                     <Styles.MyProfileBox>
-                    <Styles.Profile src={`assets/임시프로필사진.png`} />
+                    <Styles.Profile src={`assets/기본프로필.png`} />
                     <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
                     </Styles.MyProfileBox>
                     <Styles.Box2>
@@ -69,7 +69,7 @@ import {
                 <NavMenu>
                     <NavLink3 to='/like'  isaction={likeAction}>
                         <Styles.Box1>
-                            <Styles.Text1>좋아요</Styles.Text1>
+                            <Styles.Text1>좋아요 및 찜목록</Styles.Text1>
                             <Styles.Text1>7</Styles.Text1>
                         </Styles.Box1>
                     </NavLink3>

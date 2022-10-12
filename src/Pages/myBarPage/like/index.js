@@ -22,6 +22,7 @@ const Like = () => {
       <MyPage likeAction ="like" />
       <MarginTopWrapper>
         <Styles.BigBox>
+          좋아요
           <Styles.Box>
             <Styles.Text>공유한 플랜 목록</Styles.Text>
           </Styles.Box>
@@ -32,15 +33,14 @@ const Like = () => {
                   <Styles.ContentBox>
                     <Styles.ContentBox2>
                       <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
-                      <Styles.NameBox>석준혁</Styles.NameBox>
                       <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
                     </Styles.ContentBox2>
                     <Styles.ContentBox2>
+                      <Styles.NameBox>석준혁</Styles.NameBox>
                       <Styles.Imgheart>
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>
@@ -59,7 +59,6 @@ const Like = () => {
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>
@@ -78,7 +77,6 @@ const Like = () => {
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>
@@ -103,7 +101,6 @@ const Like = () => {
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>
@@ -122,7 +119,6 @@ const Like = () => {
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>
@@ -141,7 +137,7 @@ const Like = () => {
                         <LikeButton/>
                       </Styles.Imgheart>
                       <Styles.HeartSumText>300</Styles.HeartSumText>
-                      <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox>
+                      {/* <Styles.ModifyDeleteBox>삭제</Styles.ModifyDeleteBox> */}
                     </Styles.ContentBox2>
                   </Styles.ContentBox>
               </Styles.Box2>

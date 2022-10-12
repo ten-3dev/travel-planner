@@ -43,7 +43,7 @@ export const Profile = styled.img`
     margin-left: 50px;
     box-shadow: 1px 1px 5px 2px;
     position:absolute;
-    cursor: pointer;
+    
 `
 
 export const MyProfileBox = styled.div`
