@@ -367,13 +367,17 @@ export const ItemBtn = styled.div`
     width: 60px;
     height: 25px;
     border-radius: 5px;
-    background-color: #6FCB71;
+    /* background-color: #6FCB71; */
+    background-color: ${props => {
+        return props.remove ? "#DF5151" : "#6FCB71"
+    }};
     font-size: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin-left: 10px;
+
 `
 
 export const ListItemBox = styled.div`

@@ -359,6 +359,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -371,6 +372,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -383,6 +385,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -395,6 +398,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -407,6 +411,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -419,6 +424,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -431,6 +437,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -443,6 +450,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -455,6 +463,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -467,6 +476,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
@@ -479,6 +489,7 @@ const CreatePlanPage = () => {
                                         <Styles.ItemBox>
                                             <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                             <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                         </Styles.ItemBox>
                                     </Styles.DayItemTextBox>
                                 </Styles.DayItem>
