@@ -36,7 +36,7 @@ useEffect(() => {
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
@@ -44,7 +44,7 @@ useEffect(() => {
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...ㅠ</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
@@ -52,11 +52,10 @@ useEffect(() => {
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...ㅠ</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>
-            
           </Styles.SmallBox>
           <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
         </Styles.BigBox>
@@ -70,21 +69,21 @@ useEffect(() => {
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...ㅠ</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox><Styles.LineBox>
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...ㅠ</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox><Styles.LineBox>
               <Styles.ImgBox src={`assets/기본프로필.png`}/>
               <Styles.ContentBox>
                 <Styles.ContentText>김광석 길</Styles.ContentText>
-                <Styles.ContentText>볼거없다 가지말자...ㅠ</Styles.ContentText>
+                <Styles.ContentTe>볼거없다 가지말자...ㅠ</Styles.ContentTe>
               </Styles.ContentBox>
               <Styles.DayBox>1995-05-09</Styles.DayBox>
             </Styles.LineBox>

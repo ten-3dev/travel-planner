@@ -84,8 +84,7 @@ const Like = () => {
               </Styles.LineBox>
               <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
             </Styles.SmallBox>
-          </Styles.LikesListBox1>
-          <Styles.LikesListBox>
+            {/* <Styles.LikesListBox> */}
             <Styles.Box>
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
@@ -146,7 +145,70 @@ const Like = () => {
               </Styles.LineBox>
               <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
             </Styles.SmallBox>
-          </Styles.LikesListBox>
+          {/* </Styles.LikesListBox> */}
+          </Styles.LikesListBox1>
+          {/* <Styles.LikesListBox>
+            <Styles.Box>
+              <Styles.Text>관광지</Styles.Text>
+            </Styles.Box>
+            <Styles.SmallBox>
+              <Styles.LineBox>
+                <Styles.Box2>
+                  <Styles.ImgBox src={`assets/image32.png`}/>
+                    <Styles.ContentBox>
+                      <Styles.ContentBox2>
+                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
+                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
+                      </Styles.ContentBox2>
+                      <Styles.ContentBox2>
+                        <Styles.Imgheart>
+                          <LikeButton/>
+                        </Styles.Imgheart>
+                        <Styles.HeartSumText>300</Styles.HeartSumText>
+                        <Styles.NameBox>석준혁</Styles.NameBox>
+                      </Styles.ContentBox2>
+                    </Styles.ContentBox>
+                </Styles.Box2>
+              </Styles.LineBox>
+              <Styles.LineBox>
+                <Styles.Box2>
+                  <Styles.ImgBox src={`assets/image32.png`}/>
+                    <Styles.ContentBox>
+                      <Styles.ContentBox2>
+                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
+                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
+                      </Styles.ContentBox2>
+                      <Styles.ContentBox2>
+                        <Styles.Imgheart>
+                          <LikeButton/>
+                        </Styles.Imgheart>
+                        <Styles.HeartSumText>300</Styles.HeartSumText>
+                        <Styles.NameBox>석준혁</Styles.NameBox>
+                      </Styles.ContentBox2>
+                    </Styles.ContentBox>
+                </Styles.Box2>
+              </Styles.LineBox>
+              <Styles.LineBox>
+                <Styles.Box2>
+                  <Styles.ImgBox src={`assets/image32.png`}/>
+                    <Styles.ContentBox>
+                      <Styles.ContentBox2>
+                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
+                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
+                      </Styles.ContentBox2>
+                      <Styles.ContentBox2>
+                        <Styles.Imgheart>
+                          <LikeButton/>
+                        </Styles.Imgheart>
+                        <Styles.HeartSumText>300</Styles.HeartSumText>
+                        <Styles.NameBox>석준혁</Styles.NameBox>
+                      </Styles.ContentBox2>
+                    </Styles.ContentBox>
+                </Styles.Box2>
+              </Styles.LineBox>
+              <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+            </Styles.SmallBox>
+          </Styles.LikesListBox> */}
         </Styles.BigBox>
         <Styles.LikeText>찜 목록</Styles.LikeText>
         <Styles.LikesListBox>
@@ -211,8 +273,8 @@ const Like = () => {
                     </Styles.KeepBox>
                 </Styles.KeepBox3>
               </Styles.LineBox>
+              <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
             </Styles.SmallBox2>
-            <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
           </Styles.LikesListBox>
       </MarginTopWrapper>
       

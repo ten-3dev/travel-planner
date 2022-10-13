@@ -6,24 +6,24 @@ export const BigBox = styled.div`
 `
 
 export const Box = styled.div`
-    width: 200px;
-    height: 60px;
+    width: 130px;
+    height: 40px;
     background-color: #ECECEC;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    //margin-bottom: 20px;
     margin-left: 35px;
     margin-top: 60px;
 `
 
 export const Box2 = styled.div`
-    width: 500px;
+    width: 1000px;
     background-color: #ECECEC;
     border-radius: 10px; 
     display: flex;
 `
 
 export const SmallBox = styled.div`
-    width: 500px;
+    width: 1000px;
     border-radius: 10px;
     margin-bottom: 30px;
     margin-left: 35px;
@@ -38,45 +38,45 @@ export const SmallBox2 = styled.div`
 `
 
 export const LineBox = styled.div`
-    width: 500px;
+    width: 1000px;
     padding: 30px 0 10px 0;
     display: flex;
 `
 
 export const ContentBox = styled.div`
-    width: 500px;
+    width: 1000px;
     height: 120px;
     border-radius: 10px;  
 `
 
 export const ContentBox2 = styled.div`
-    width: 380px;
-    height: 50%;
+    width: 900px;
+    height: 50px;
     display: flex; 
 `
 
 export const DayBox = styled.div`
     width: 100px;
     font-size: 14px;
-    margin-top: 20px;
-    margin-left: 30px;
+    margin-top: 30px;
+    margin-left: 500px;
     font-weight: bold;
 `
 
 export const NameBox = styled.div`
-    width: 250px;
+    width: 100px;
     font-size: 16px;
-    margin-top:15px;
-    margin-left: 20px;
+    margin-top:35px;
+    margin-left: 310px;
     font-weight: bold;  
     text-align :center ;
 `
 export const HeartSumText = styled.div`
     width: 100px;
     font-size: 16px;
-    margin-top:15px;
+    margin-top:30px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 15px;
     margin-right: 120px;   
 `
 
@@ -114,16 +114,16 @@ export const ImgBox2 = styled.img`
 export const Imgheart = styled.div`
     width: 35px;
     height: 35px;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-left: 25px;
+    margin-top: 25px;
     display: flex;  
 `
 
 export const Text = styled.div`
-    width: 100%; 
+    width: 130px; 
     font-size: 16px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 10px;
     font-weight: bold; 
 `
 
@@ -137,21 +137,22 @@ export const ContentText = styled.div`
 `
 
 export const LikeText = styled.div`
-    width: 170px; 
-    height: 45px;
-    padding-top: 10px;
-    font-size: 25px;
+    width: 200px; 
+    height: 50px;
+    padding-top: 20px;
+    font-size: 20px;
     text-align: center;
-    //font-weight: bold;
+    font-weight: bold;
     //border:3px solid #93A6AE ;
-    background-color: rgba(7, 14, 6, 0.6);
+    background-color: #ECECEC;;
     border-radius: 10px;
-    color: white;
+   // color: white;
+    margin-left: 40px;
     margin-top: 120px;
 `
 
 export const LikesListBox = styled.div`
-    width: 1200px;
+    width: 200px;
     //border-left: 1px solid #000000 ;
     margin-left: 15px;
 `

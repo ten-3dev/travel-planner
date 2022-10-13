@@ -90,7 +90,7 @@ export const Text = styled.div`
 export const ContentText = styled.div`
     width: 430px; 
     font-size: 16px;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-right: 30px;
     font-weight: bold;
     margin-top:20px; 
