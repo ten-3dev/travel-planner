@@ -143,17 +143,14 @@ export const LikeText = styled.div`
     font-size: 20px;
     text-align: center;
     font-weight: bold;
-    //border:3px solid #93A6AE ;
     background-color: #ECECEC;;
     border-radius: 10px;
-   // color: white;
     margin-left: 40px;
     margin-top: 120px;
 `
 
 export const LikesListBox = styled.div`
     width: 200px;
-    //border-left: 1px solid #000000 ;
     margin-left: 15px;
 `
 
@@ -173,8 +170,6 @@ export const KeepBox2 = styled.div`
     height: 50%;
     display: flex; 
 `
-
-
 export const KeepBox3 = styled.div`
     width: 1100px;
     background-color: #ECECEC;
