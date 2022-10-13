@@ -150,9 +150,9 @@ const Like = () => {
         </Styles.BigBox>
         <Styles.LikeText>찜 목록</Styles.LikeText>
         <Styles.LikesListBox>
-            <Styles.Box>
+            {/* <Styles.Box>
               <Styles.Text>찜 목록</Styles.Text>
-            </Styles.Box>
+            </Styles.Box> */}
             <Styles.SmallBox2>
               <Styles.LineBox>
                 <Styles.KeepBox3>

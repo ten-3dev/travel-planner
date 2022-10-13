@@ -137,13 +137,16 @@ export const ContentText = styled.div`
 `
 
 export const LikeText = styled.div`
-    width: 200px; 
-    font-size: 32px;
+    width: 170px; 
+    height: 45px;
+    padding-top: 10px;
+    font-size: 25px;
     text-align: center;
-    font-weight: bold;
-    border:3px solid #93A6AE ;
+    //font-weight: bold;
+    //border:3px solid #93A6AE ;
+    background-color: rgba(7, 14, 6, 0.6);
     border-radius: 10px;
-    color: #93A6AE;
+    color: white;
     margin-top: 120px;
 `
 
