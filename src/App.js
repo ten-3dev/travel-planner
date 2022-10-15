@@ -14,6 +14,10 @@ import MyComments from "./Pages/myBarPage/myComment/index";
 import MyPlan from "./Pages/myBarPage/myPlan";
 import SharedPlan from "./Pages/myBarPage/sharedPlan/index";
 import Like from "./Pages/myBarPage/like/index";
+import LoginPage from "./Pages/loginPage";
+import SignPage from "./Pages/signPage";
+import FindPassPage from "./Pages/findPassPage";
+import ChangePassPage from "./Pages/changePassPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -23,6 +27,10 @@ const App = () => {
         <Header/>
         <Routes>
           <Route path="/" element={<MainPage/>}/>
+          <Route path="/login" element={<LoginPage />}/>
+          <Route path="/sign" element={<SignPage />}/>
+          <Route path="/findPass" element={<FindPassPage />}/>
+          <Route path="/changePass" element={<ChangePassPage />}/>
           <Route path="/calendar" element={<CalendarPage/>}/>
           <Route path="/information" element={<InformationPage/>}/>
           <Route path="/travel" element={<TravelPage/>}/>
