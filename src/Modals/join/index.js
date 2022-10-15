@@ -65,12 +65,12 @@ const Join = () => {
                 <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="pw">비밀번호
-                  <Styles.Input type="text" placeholder="비밀번호를 입력해주세요." {...register('pw')}/>
+                  <Styles.Input type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')}/>
                     <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="checkPw">비밀번호 확인
-                  <Styles.Input type="text" placeholder="비밀번호를 다시 입력해주세요."{...register('checkPw')}/>
+                  <Styles.Input type="password" placeholder="비밀번호를 다시 입력해주세요."{...register('checkPw')}/>
                     <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                   </Styles.SignText2>
 

@@ -26,7 +26,7 @@ const LoginPage = ({setLoginOpen, setSignOpen}) => {
                 </Styles.LoginText2>
 
                 <Styles.LoginText2>비밀번호
-                        <Styles.Input placeholder="비밀번호를 입력하세요"></Styles.Input>
+                        <Styles.Input type="password" placeholder="비밀번호를 입력하세요"></Styles.Input>
                 </Styles.LoginText2>
                 
                 <UserBlueBtn>로그인</UserBlueBtn>

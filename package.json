@@ -9,6 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "http-proxy-middleware": "^2.0.6",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-calendar": "^3.9.0",
@@ -31,9 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "proxy": "http://localhost:8080",
-
   "eslintConfig": {
     "extends": [
       "react-app",
