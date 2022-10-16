@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,44 @@ const LoginPage = () => {
     const [pw, setPw] = useState("");
 
     const kakaoLogin = async () => {
-        window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://localhost:8080/kakaoCallback&response_type=code';
-        // const code = new URL(window.location.href).searchParams.get("code");
+        window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://localhost:3000/login&response_type=code';
     }
+
+    const getToken = async () => {
+        const code = new URL(window.location.href).searchParams.get('code');
+        const params = {
+            client_id: '0a61f9efbdac3933e6a14ed6f553bd00',
+            redirect_uri: 'http://localhost:3000/login',
+            client_secret: 'K2uqygqk3ddG8UFgrIFdE76bKg9SpEwT',
+            code: code,
+            grant_type: 'authorization_code'
+        }
+        if(code !== null){
+            try{
+                const token = await axios.get('https://kauth.kakao.com/oauth/token', {params:  params, headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+                const userInfo = await axios.get('http://localhost:8080/kakaoLogin', { params: { token: token.data.access_token } });
+                console.log(userInfo);
+            }catch(e){
+                console.log(e)
+                alert("알 수 없는 오류! 나중에 다시 시도해주세요.");
+            }
+        }
+    }
+
+    useEffect(() => getToken, []);
 
     const onLogin = async () => {
         console.log(email);
         console.log(pw);
+        let data = null;
 
-        const data = await axios.post('http://localhost:8080/login', {email, pw});
-        console.log(data);
+        try{
+            data = await axios.post('http://localhost:8080/login', {email, pw});
+            console.log(data);
+
+        }catch(e){
+            alert(e.response.data.msg);
+        }
     }
     
     return(

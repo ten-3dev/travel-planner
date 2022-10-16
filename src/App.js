@@ -19,6 +19,18 @@ import SignPage from "./Pages/signPage";
 import FindPassPage from "./Pages/findPassPage";
 import ChangePassPage from "./Pages/changePassPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import axios from "axios";
+
+axios.interceptors.response.use((response) => {
+  try{
+    if(response.status == 200){
+      console.log("asdf");
+    }
+    return response;
+  }catch(e){
+    return response;
+  }
+});
 
 const App = () => {
 
