@@ -26,10 +26,9 @@ const signUp = () => {
   })
   .then((response) =>{
     console.log('nice');
-    console.log('user profile', response.data.user)
   })
   .catch((error)=>{
-    console.log('error occured:', error.response)
+    console.log('error occured:')
   })
 }
 
