@@ -16,7 +16,7 @@ const SignPage = () => {
 
 const signUp = () => {
   axios
-  .post('http://localhost:8080/signup',{
+  .post('http://localhost:8080/signup',JSON.stringify({
     email: email,
     password: password,
     passwordcheck: passwordCheck,
@@ -30,7 +30,7 @@ const signUp = () => {
   .catch((error)=>{
     console.log('error occured:')
   })
-}
+)}
 
   const schema = yup.object().shape({
     email: yup
