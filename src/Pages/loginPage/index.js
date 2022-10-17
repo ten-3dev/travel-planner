@@ -28,6 +28,14 @@ const LoginPage = () => {
                 const token = await axios.get('https://kauth.kakao.com/oauth/token', {params:  params, headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
                 const userInfo = await axios.get('http://localhost:8080/kakaoLogin', { params: { token: token.data.access_token } });
                 console.log(userInfo);
+                if(userInfo.status == 200){
+                    if(userInfo.data.data.isUser === "N"){ // 현재 DB에 회원이 없음
+                        navigate('/sign', {state: {email: userInfo.data.data.email, birthday: userInfo.data.data.birthday}})
+                    }else if(userInfo.data.data.isUser === "Y"){ // 현재 DB에 회원이 있음
+                        sessionStorage.setItem("access_token", userInfo.data.data.access_token);
+                        localStorage.setItem("refresh_token", userInfo.data.data.refresh_token);
+                    }
+                }
             }catch(e){
                 console.log(e)
                 alert("알 수 없는 오류! 나중에 다시 시도해주세요.");
@@ -37,6 +45,8 @@ const LoginPage = () => {
 
     useEffect(() => getToken, []);
 
+    // 액세스 토큰은 세션 스토리지
+    // 리프레시 토큰은 로컬 스토리지
     const onLogin = async () => {
         console.log(email);
         console.log(pw);
@@ -44,8 +54,8 @@ const LoginPage = () => {
 
         try{
             data = await axios.post('http://localhost:8080/login', {email, pw});
-            console.log(data);
-
+            sessionStorage.setItem("access_token", data.data.data.access_token);
+            localStorage.setItem("refresh_token", data.data.data.refresh_token);
         }catch(e){
             alert(e.response.data.msg);
         }

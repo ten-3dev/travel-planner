@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useForm} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as Styles from './style';
+import { useLocation } from 'react-router-dom';
 
 const SignPage = () => {
+  const location = useLocation();
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    const { state } = location;
+    setData({email: state.email, birthday: state.birthday});
+    console.log(state);
+  }, [])
+
   const schema = yup.object().shape({
     pw: yup
      .string()
@@ -52,7 +62,6 @@ const SignPage = () => {
     mode: 'onChange'});
 
   const onSubmit = (data) => console.log(data);
-  
 
     return(
   
@@ -60,7 +69,7 @@ const SignPage = () => {
             <Styles.ContentBox>
             <Styles.SignText>SIGN UP</Styles.SignText>
                 <Styles.SignText2 htmlFor="email">이메일
-                  <Styles.Input type="email" placeholder="이메일을 입력해주세요" {...register('email')}/>
+                  <Styles.Input type="email" placeholder="이메일을 입력해주세요" {...register('email')} value={data.email ? data.email : ""}/>
                   <Styles.ErrorMessage>{errors.email && <Styles.ErrorMessage>{errors.email.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
 
@@ -85,7 +94,7 @@ const SignPage = () => {
                 </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="birth">생년월일
-                  <Styles.Input type="birth" placeholder="ex)1999-09-09" {...register('birth')}/>
+                  <Styles.Input type="birth" placeholder="ex)1999-09-09" {...register('birth')} value={data.birthday ? data.birthday : ""}/>
                   <Styles.ErrorMessage>{errors.birth && <Styles.ErrorMessage>{errors.birth.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 

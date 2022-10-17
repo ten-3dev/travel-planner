@@ -21,16 +21,28 @@ import ChangePassPage from "./Pages/changePassPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from "axios";
 
-axios.interceptors.response.use((response) => {
-  try{
-    if(response.status == 200){
-      console.log("asdf");
-    }
-    return response;
-  }catch(e){
-    return response;
+axios.interceptors.response.use(
+  response => {
+      console.log("axios interceptors: ", response);
+      return response;
+  },
+  error => {
+      if(error.response.status == 403){ // 액세스 토큰이 만료되면 요기가 실행됨
+          // refreshToken()
+      }
   }
-});
+);
+
+axios.interceptors.request.use(
+  config => {
+      config.headers['Authorization'] = `Bearer ${sessionStorage.getItem('access_token')}`;
+      return config;
+    },
+    error => {
+        console.log(error);
+        return Promise.reject(error);
+    }
+);
 
 const App = () => {
 
