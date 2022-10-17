@@ -24,10 +24,10 @@ const signUp = () => {
     phone: phone,
     birth: birth,
   })
-  .then((response) =>{
+  .then(() =>{
     console.log('nice');
   })
-  .catch((error)=>{
+  .catch(()=>{
     console.log('error occured:')
   })
 )}
