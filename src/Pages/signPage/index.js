@@ -14,23 +14,34 @@ const SignPage = () => {
   const [phone, setPhone] = useState("");
   const [birth, setBirth] = useState("");
 
-const signUp = () => {
-  axios
-  .post('http://localhost:8080/signup',JSON.stringify({
-    email: email,
-    password: password,
-    passwordcheck: passwordCheck,
-    name: name,
-    phone: phone,
-    birth: birth,
-  })
-  .then(() =>{
-    console.log('nice');
-  })
-  .catch(()=>{
-    console.log('error occured:')
-  })
-)}
+  const signUp = () => {
+    axios
+    .post('http://localhost:8080/signup',JSON.stringify({
+      email: email,
+      password: password,
+      passwordcheck: passwordCheck,
+      name: name,
+      phone: phone,
+      birth: birth,
+    })
+    .then(() =>{
+      console.log('nice');
+    })
+    .catch(()=>{
+      console.log('error occured:')
+    })
+  )}
+
+  // const signUp = async () => {
+  //   try{
+  //       await axios.post("http://localhost:8080/signup", {
+  //           email,
+  //           username,
+  //           password,
+  //      });
+  //    }catch(e){
+  //        alert(e.response.data.msg);
+  //  }
 
   const schema = yup.object().shape({
     email: yup
