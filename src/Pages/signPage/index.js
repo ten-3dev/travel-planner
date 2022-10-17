@@ -11,7 +11,9 @@ const SignPage = () => {
 
   useEffect(() => {
     const { state } = location;
-    setData({email: state.email, birthday: state.birthday});
+    if(state !== null){
+      setData({email: state.email, birthday: state.birthday});
+    }
     console.log(state);
   }, [])
 
