@@ -6,14 +6,6 @@ import * as Styles from './style';
 
 const SignPage = () => {
   const schema = yup.object().shape({
-    id: yup
-      .string()
-      .min(4, '아이디는 4자리 이상이어야 합니다.')
-      .max(12, '아이디는 12자리 이하여야 합니다.')
-      .matches(
-        /^[a-z0-9]+$/,
-        "영소문자와 숫자만 입력가능합니다.")
-      .required('아이디를 입력해주세요.'),
     pw: yup
      .string()
       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
@@ -67,12 +59,10 @@ const SignPage = () => {
         <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <Styles.ContentBox>
             <Styles.SignText>SIGN UP</Styles.SignText>
-          
-                <Styles.SignText2 htmlFor="id">아이디
-                  <Styles.Input type="id" placeholder="아이디를 입력해주세요." {...register('id')}/>
-                    <Styles.ErrorMessage>{errors.id && <Styles.ErrorMessage>{errors.id.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
-                  <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn>
-                </Styles.SignText2>
+                <Styles.SignText2 htmlFor="email">이메일
+                  <Styles.Input type="email" placeholder="이메일을 입력해주세요" {...register('email')}/>
+                  <Styles.ErrorMessage>{errors.email && <Styles.ErrorMessage>{errors.email.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
+                <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="pw">비밀번호
                   <Styles.Input type="text" placeholder="비밀번호를 입력해주세요." {...register('pw')}/>
@@ -89,11 +79,6 @@ const SignPage = () => {
                    <Styles.ErrorMessage>{errors.name && <Styles.ErrorMessage>{errors.name.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
-                <Styles.SignText2 htmlFor="email">이메일
-                  <Styles.Input type="email" placeholder="이메일을 입력해주세요" {...register('email')}/>
-                  <Styles.ErrorMessage>{errors.email && <Styles.ErrorMessage>{errors.email.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
-                <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
-
                 <Styles.SignText2 htmlFor="phone">연락처
                   <Styles.Input type="phone" placeholder="'-' 제외 휴대폰 번호를 입력해주세요" {...register('phone')}/>
                   <Styles.ErrorMessage>{errors.phone && <Styles.ErrorMessage>{errors.phone.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
@@ -102,15 +87,6 @@ const SignPage = () => {
                 <Styles.SignText2 htmlFor="birth">생년월일
                   <Styles.Input type="birth" placeholder="ex)1999-09-09" {...register('birth')}/>
                   <Styles.ErrorMessage>{errors.birth && <Styles.ErrorMessage>{errors.birth.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
-                </Styles.SignText2>
-
-                <Styles.SignText2 htmlFor="gender">성별
-                  <Styles.RadioWrap>
-                  <Styles.RadioLabel htmlFor="male">남</Styles.RadioLabel>
-                  <Styles.RadioBtn type="radio" name='gender' id="male"/>
-                  <Styles.RadioLabel htmlFor="female">여</Styles.RadioLabel>
-                  <Styles.RadioBtn type="radio" name='gender' id="female"/>
-                  </Styles.RadioWrap>
                 </Styles.SignText2>
 
                 <Styles.UserGreenBtn type="submit">가입하기</Styles.UserGreenBtn>
