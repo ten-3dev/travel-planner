@@ -16,6 +16,10 @@ const SignPage = () => {
   }, [])
 
   const schema = yup.object().shape({
+    email: yup
+    .string()
+    .email('올바른 이메일 형식을 입력해주세요.')
+    .required('이메일을 입력해주세요.'),
     pw: yup
      .string()
       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
@@ -37,10 +41,6 @@ const SignPage = () => {
         "2-4자리의 한글이름만 입력가능"
       )
       .required('이름을 입력해주세요.'),
-    email: yup
-      .string()
-      .email('올바른 이메일 형식을 입력해주세요.')
-      .required('이메일을 입력해주세요.'),
     phone: yup
       .string()
       .matches(
@@ -98,7 +98,9 @@ const SignPage = () => {
                   <Styles.ErrorMessage>{errors.birth && <Styles.ErrorMessage>{errors.birth.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
-                <Styles.UserGreenBtn type="submit">가입하기</Styles.UserGreenBtn>
+                <Styles.UserGreenBtn type="submit" onClick={() => {
+                  signUp();
+                }}>가입하기</Styles.UserGreenBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
     )
