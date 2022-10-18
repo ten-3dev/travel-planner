@@ -30,7 +30,7 @@ const SignPage = () => {
 
   // useEffect(async () => {
   //   try{
-  //   const response = await axios.post('http://localhost8080/users/create')
+  //   const response = await axios.post('http://localhost8080/sign')
   //   setData(response.data);
   //   }catch(error){
   //     console.log(error)
@@ -39,7 +39,7 @@ const SignPage = () => {
 
   const signUp = () => {
     axios
-    .post('http://localhost:8080/users/create',{
+    .post('http://localhost:8080/sign',{
       email: email,
       pw: password,
       checkPw: passwordCheck,
