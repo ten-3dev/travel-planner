@@ -34,6 +34,7 @@ const LoginPage = () => {
                     }else if(userInfo.data.data.isUser === "Y"){ // 현재 DB에 회원이 있음
                         sessionStorage.setItem("access_token", userInfo.data.data.access_token);
                         localStorage.setItem("refresh_token", userInfo.data.data.refresh_token);
+                        navigate('/');
                     }
                 }
             }catch(e){
@@ -63,8 +64,7 @@ const LoginPage = () => {
     }
 
     const onTokenAuth = async () => {
-        const data = await axios.post('http://localhost:8080/tokenAuth', {email, pw});
-        console.log(data);
+        await axios.post('http://localhost:8080/tokenAuth', {email, pw});
     }
     
     return(

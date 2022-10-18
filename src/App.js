@@ -26,8 +26,20 @@ axios.interceptors.response.use(
     console.log(response);
     return response;
   },
-  error => {
+  async error => {
     console.log(error);
+    if(error.response.status === 401){
+      try{
+        console.log("ASDfasdf");
+        const data = await axios.post('http://localhost:8080/getTokenUsedRefreshToken', {"refreshToken" : localStorage.getItem("refresh_token")});
+        sessionStorage.setItem("access_token", data.data.data.access_token);
+
+        await axios.request(error.config);
+        return;
+      }catch(e){
+        console.log(e);
+      }
+    }
     return Promise.reject(error);
 });
 

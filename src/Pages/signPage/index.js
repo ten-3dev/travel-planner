@@ -16,7 +16,7 @@ const SignPage = () => {
   const [phone, setPhone] = useState("");
   const [birth, setBirth] = useState("");
 
-  const {replace} = useNavigate();
+  const replace = useNavigate();
 
   useEffect(() => {
     const { state } = location;
@@ -48,10 +48,8 @@ const SignPage = () => {
     })
     .then((response) =>{
       console.log('회원가입 완료');
-      console.log('user profile', response.data.users);
-      console.log(response.data.jwt);
-      localStorage.setItem('token', response.data.jwt);
-      replace("/");
+      console.log('user profile', response);
+      replace("/login");
     })
     .catch((error)=>{
       console.log('회원가입 실패', error.response)
