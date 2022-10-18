@@ -3,11 +3,21 @@ import {useForm} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as Styles from './style';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignPage = () => {
   const location = useLocation();
   const [data, setData] = useState({})
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birth, setBirth] = useState("");
+
+  const {replace} = useNavigate();
 
   useEffect(() => {
     const { state } = location;
@@ -16,6 +26,38 @@ const SignPage = () => {
     }
     console.log(state);
   }, [])
+
+
+  // useEffect(async () => {
+  //   try{
+  //   const response = await axios.post('http://localhost8080/users/create')
+  //   setData(response.data);
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // })
+
+  const signUp = () => {
+    axios
+    .post('http://localhost:8080/users/create',{
+      email: email,
+      pw: password,
+      checkPw: passwordCheck,
+      name: name,
+      phone: phone,
+      birth: birth,
+    })
+    .then((response) =>{
+      console.log('회원가입 완료');
+      console.log('user profile', response.data.users);
+      console.log(response.data.jwt);
+      localStorage.setItem('token', response.data.jwt);
+      replace("/");
+    })
+    .catch((error)=>{
+      console.log('회원가입 실패', error.response)
+    })
+  }
 
   const schema = yup.object().shape({
     email: yup
@@ -76,22 +118,22 @@ const SignPage = () => {
                 <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="pw">비밀번호
-                  <Styles.Input type="text" placeholder="비밀번호를 입력해주세요." {...register('pw')}/>
+                  <Styles.Input type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')} value={password} onChange={(event)=>{ setPassword(event.target.value);}}/>
                     <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="checkPw">비밀번호 확인
-                  <Styles.Input type="text" placeholder="비밀번호를 다시 입력해주세요."{...register('checkPw')}/>
+                  <Styles.Input type="password" placeholder="비밀번호를 다시 입력해주세요."{...register('checkPw')} value={passwordCheck} onChange={(event)=>{ setPasswordCheck(event.target.value);}}/>
                     <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                   </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="name">이름
-                  <Styles.Input type="text" placeholder="이름을 입력해주세요." {...register('name')}/>
+                  <Styles.Input type="text" placeholder="이름을 입력해주세요." {...register('name')} value={name} onChange={(event)=>{ setName(event.target.value);}}/>
                    <Styles.ErrorMessage>{errors.name && <Styles.ErrorMessage>{errors.name.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="phone">연락처
-                  <Styles.Input type="phone" placeholder="'-' 제외 휴대폰 번호를 입력해주세요" {...register('phone')}/>
+                  <Styles.Input type="phone" placeholder="'-' 제외 휴대폰 번호를 입력해주세요" {...register('phone')} value={phone} onChange={(event)=>{ setPhone(event.target.value);}}/>
                   <Styles.ErrorMessage>{errors.phone && <Styles.ErrorMessage>{errors.phone.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.SignText2>
 
@@ -102,7 +144,7 @@ const SignPage = () => {
 
                 <Styles.UserGreenBtn type="submit" onClick={() => {
                   signUp();
-                }}>가입하기</Styles.UserGreenBtn>
+                  }}>가입하기</Styles.UserGreenBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
     )
