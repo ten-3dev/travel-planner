@@ -38,13 +38,13 @@ const SignPage = () => {
 
   const signUp = () => {
     axios
-    .post('http://localhost:8080/sign',{
+    .post('http://localhost:8080/register',{
       email: email,
-      pw: password,
-      checkPw: passwordCheck,
+      password: password,
       name: name,
-      phone: phone,
+      tel: phone,
       birth: birth,
+      profileImg: ''
     })
     .then((response) =>{
       console.log('회원가입 완료');
