@@ -38,13 +38,13 @@ const SignPage = () => {
 
   const signUp = () => {
     axios
-    .post('http://localhost:8080/sign',{
+    .post('http://localhost:8080/register',{
       email: email,
-      pw: password,
-      checkPw: passwordCheck,
+      password: password,
       name: name,
-      phone: phone,
+      tel: phone,
       birth: birth,
+      profileImg: ''
     })
     .then((response) =>{
       console.log('회원가입 완료');
@@ -114,7 +114,7 @@ const SignPage = () => {
                 <Styles.SignText2 htmlFor="email">이메일
                   <Styles.Input type="email" placeholder="이메일을 입력해주세요" {...register('email')} value={email !== "" ? email : ""} onChange={(event)=>{ setEmail(event.target.value);}}/>
                   <Styles.ErrorMessage>{errors.email && <Styles.ErrorMessage>{errors.email.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
-                <Styles.UserGreenBtn>중복확인</Styles.UserGreenBtn></Styles.SignText2>
+                </Styles.SignText2>
 
                 <Styles.SignText2 htmlFor="pw">비밀번호
                   <Styles.Input type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')} value={password} onChange={(event)=>{ setPassword(event.target.value);}}/>
