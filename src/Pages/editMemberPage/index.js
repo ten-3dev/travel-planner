@@ -1,13 +1,19 @@
 import React,{ useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import axios from "axios";
 
 export const EditmemberPage = () => {
     const [clicked, setClicked] = useState("Profile");
+    const [clickinfo, setclickinfo] = useState([]);
 
     useEffect(() => {
-        // api 를 불러와
-    }, []);
+        axios({
+            method : 'GET',
+            url : 'http://localhost:8080/getUserInfo'
+        }).then(response => setclickinfo(response.data))  
+
+    }, [clickinfo]);
     
 
     function clickedBtn () { 
