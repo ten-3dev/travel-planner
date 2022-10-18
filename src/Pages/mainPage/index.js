@@ -64,8 +64,8 @@ const MainPage = () => {
  
     const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
-            console.log(e.target.value);
-            navigate('/travel', encodeURIComponent(e.target.value))
+            console.log("메인페이지" + e.target.value);
+            navigate('/travel', {state : encodeURIComponent(e.target.value)})
         }
     };
 

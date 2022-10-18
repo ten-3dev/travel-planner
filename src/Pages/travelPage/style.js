@@ -48,16 +48,6 @@ export const Input = styled.input`
     
 `
 
-export const TravelWrapper = styled.div`
-    width: 100%;
-    height: 160px; 
-    padding: 0 0 0 7px;  
-    display: flex;
-    border-top: 1px solid #9ea4ad;
-    border-bottom: 1px solid #9ea4ad ;
-    margin-bottom: 20px;
-`
-
 export const TravelListBox = styled.div`
     width: 100%;
 `
@@ -88,6 +78,7 @@ export const FilterBoxSticky = styled.div`
 `
 
 export const TravelFilterBox = styled.div`
+    display: flex;
     width: 70%;
     margin-top: 15px;   
 `
@@ -105,9 +96,20 @@ export const SteamListButtonBox = styled.div`
    
 `
 
-export const TravelWrapper5 = styled.div`
-    width: 700px;
-    display: flex;  
+export const TravelWrapper = styled.div`
+    width: 900px;
+    height: 160px; 
+    padding: 20px 0 20px 0;
+    display: flex;
+    border-bottom: 1px solid #eeeeef;
+    border-bottom: 1px solid #9ea4ad ;
+
+`
+
+export const Image = styled.img`
+    width: 200;
+    object-fit: cover;
+    border-radius: 10px;
 `
 
 export const Title = styled.div`
@@ -122,30 +124,46 @@ export const Title = styled.div`
     margin-bottom: 10px;
     
 `
+
+export const Txt = styled.div`
+    display: flex;
+    width: 65%;
+    height: 100%;
+    margin-left: 15px;
+    flex-direction: column;
+    
+`
+
+export const PlaceTitle = styled.div`
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    
+`
+
 export const Text = styled.div`
     width: 100%; 
     font-size: 30px;
     text-align: center;
     font-weight: bold
 `
-export const Text1 = styled.div`
-    width: 700px; 
-    margin-bottom: 20px;
-`
-
-export const Img = styled.img`
-    cursor: pointer;
-    width: 230px;
-    height: 140px;
-    margin-right: 15px;
+export const Address = styled.div`
     margin-top: 5px;
+    right: 0;
+    font-size: small;
 `
 
-export const Img1 = styled.div`
-    width: 20px;
-    height: 20px;
-    margin-bottom: 3px;
-
+export const Tel = styled.div`
+    width: 100%; 
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold
 `
 
 export const SteamListButtonImg = styled.img`
@@ -158,7 +176,7 @@ export const SteamListButtonImg = styled.img`
 `
 
 export const Like = styled.button`
-    border: 0;
+    border: none;
     width: 70px;
     background: rgba(0, 150, 100, 0.5);
     color: white;
