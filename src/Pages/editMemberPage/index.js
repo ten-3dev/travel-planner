@@ -1,9 +1,13 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 
 export const EditmemberPage = () => {
     const [clicked, setClicked] = useState("Profile");
+
+    useEffect(() => {
+        // api 를 불러와
+    }, []);
     
 
     function clickedBtn () { 
