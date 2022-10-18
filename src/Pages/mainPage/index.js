@@ -61,6 +61,13 @@ const MainPage = () => {
         const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
         setFilterAddressData(filterData);
     }
+ 
+    const handleOnKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            console.log(e.target.value);
+            navigate('/travel', encodeURIComponent(e.target.value))
+        }
+    };
 
     return(
         <>
@@ -74,7 +81,7 @@ const MainPage = () => {
                         <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>
-                        <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput}/>
+                        <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput} onKeyPress={handleOnKeyPress}/>
                         <Styles.Btn>
                             <Styles.Img src="assets/search_icon.png"/>
                         </Styles.Btn>

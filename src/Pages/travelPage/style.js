@@ -110,6 +110,18 @@ export const TravelWrapper5 = styled.div`
     display: flex;  
 `
 
+export const Title = styled.div`
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    
+`
 export const Text = styled.div`
     width: 100%; 
     font-size: 30px;
