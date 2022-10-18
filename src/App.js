@@ -23,15 +23,13 @@ import axios from "axios";
 
 axios.interceptors.response.use(
   response => {
-      console.log("axios interceptors: ", response);
-      return response;
+    console.log(response);
+    return response;
   },
   error => {
-      if(error.response.status == 403){ // 액세스 토큰이 만료되면 요기가 실행됨
-          // refreshToken()
-      }
-  }
-);
+    console.log(error);
+    return Promise.reject(error);
+});
 
 axios.interceptors.request.use(
   config => {
