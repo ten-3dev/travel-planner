@@ -56,6 +56,7 @@ const LoginPage = () => {
             data = await axios.post('http://localhost:8080/login', {email, pw});
             sessionStorage.setItem("access_token", data.data.data.access_token);
             localStorage.setItem("refresh_token", data.data.data.refresh_token);
+            navigate('/');
         }catch(e){
             alert(e.response.data.msg);
         }

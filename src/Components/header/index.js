@@ -17,6 +17,12 @@ const Header = () => {
         window.addEventListener('scroll', updateScroll);
     });
 
+    const logout = () => {
+        localStorage.clear();
+        sessionStorage.clear();
+        navigate("/login");
+    }
+
     return(
         <Styles.Wrapper 
             bg={location.pathname === '/' ? true : false}
@@ -31,7 +37,7 @@ const Header = () => {
                         <Styles.Text onClick={() => {navigate('/shared')}}>공유된 플랜 보기</Styles.Text>
                     </Styles.Menu>
                     <Styles.LogSign>
-                        {true ? 
+                        {!sessionStorage.getItem("access_token") ? 
                         <>
                             <Styles.Text onClick={()=> navigate('/login')}>로그인</Styles.Text>
                             <Styles.Text onClick={()=> navigate('/sign')}>회원가입</Styles.Text>
@@ -40,9 +46,8 @@ const Header = () => {
                         <>
                             <Styles.MyProfile onClick={() => setIsOpenList(!isOpenList)}>
                                 <Styles.MyProfileListBox clicked={isOpenList}>
-                                    <Styles.MyProfileItem>MY PAGE</Styles.MyProfileItem>
-                                    <Styles.MyProfileItem>SCHEDULE</Styles.MyProfileItem>
-                                    <Styles.MyProfileItem last>LOGOUT</Styles.MyProfileItem>
+                                    <Styles.MyProfileItem onClick={() => navigate('/myPage')}>MY PAGE</Styles.MyProfileItem>
+                                    <Styles.MyProfileItem last onClick={logout}>LOGOUT</Styles.MyProfileItem>
                                 </Styles.MyProfileListBox>
                             </Styles.MyProfile>
                         </>
