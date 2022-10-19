@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
+import { getAccessToken } from "../../Data";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -16,6 +17,12 @@ const Header = () => {
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll);
     });
+
+    useEffect(() => {
+        if(localStorage.getItem("refresh_token") && !sessionStorage.getItem("access_token")){
+            getAccessToken();
+        }
+    }, []);
 
     const logout = () => {
         localStorage.clear();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Components/header";
 import Footer from "./Components/footer";
 import MainPage from './Pages/mainPage';
@@ -19,6 +19,7 @@ import SignPage from "./Pages/signPage";
 import FindPassPage from "./Pages/findPassPage";
 import ChangePassPage from "./Pages/changePassPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { getAccessToken } from "./Data";
 import axios from "axios";
 
 axios.interceptors.response.use(
@@ -30,9 +31,7 @@ axios.interceptors.response.use(
     console.log(error);
     if(error.response.status === 401){
       try{
-        console.log("ASDfasdf");
-        const data = await axios.post('http://localhost:8080/getTokenUsedRefreshToken', {"refreshToken" : localStorage.getItem("refresh_token")});
-        sessionStorage.setItem("access_token", data.data.data.access_token);
+        await getAccessToken();
 
         await axios.request(error.config);
         return;
@@ -55,7 +54,6 @@ axios.interceptors.request.use(
 );
 
 const App = () => {
-
   return (
       <BrowserRouter>
         <Header/>

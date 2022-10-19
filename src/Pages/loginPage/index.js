@@ -27,7 +27,6 @@ const LoginPage = () => {
             try{
                 const token = await axios.get('https://kauth.kakao.com/oauth/token', {params:  params, headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
                 const userInfo = await axios.get('http://localhost:8080/kakaoLogin', { params: { token: token.data.access_token } });
-                console.log(userInfo);
                 if(userInfo.status == 200){
                     if(userInfo.data.data.isUser === "N"){ // 현재 DB에 회원이 없음
                         navigate('/sign', {state: {email: userInfo.data.data.email, birthday: userInfo.data.data.birthday}})
@@ -49,8 +48,6 @@ const LoginPage = () => {
     // 액세스 토큰은 세션 스토리지
     // 리프레시 토큰은 로컬 스토리지
     const onLogin = async () => {
-        console.log(email);
-        console.log(pw);
         let data = null;
 
         try{
