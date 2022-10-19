@@ -67,7 +67,7 @@ const MainPage = () => {
     
     const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
-            navigate('/travel', {state : encodeURIComponent(e.target.value)})
+            navigate('/travel', {state : searchKeyword})
         }
     };
 
