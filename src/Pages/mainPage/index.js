@@ -3,6 +3,7 @@ import * as Styles from './style';
 import { useNavigate } from "react-router-dom";
 import { MarginTopWrapper } from '../../Common/style';
 import { getAddressData } from "../../Data";
+import axios from "axios";
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -74,6 +75,32 @@ const MainPage = () => {
         navigate('/travel', {state : searchKeyword})
     }
 
+    const fileList = []; // 업로드한 파일들을 저장하는 배열
+    
+    const onSaveFiles = (e) => {
+        const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
+    
+        uploadFiles.forEach((uploadFile) => {
+            fileList.push(uploadFile);
+        });
+    };
+    
+    const onFileUpload = () => {
+        const formData = new FormData();
+    
+        fileList.forEach((file) => {
+                // 파일 데이터 저장
+            formData.append('multipartFiles', file);
+        });
+
+        fileList.forEach((f) => {
+            console.log(f);
+        })
+        
+        axios.post('http://localhost:8080/uploadFile', formData);
+        alert("다시 로그인 후 적용됩니다.");
+        };
+
     return(
         <>
             <Styles.Wrapper>
@@ -83,6 +110,8 @@ const MainPage = () => {
                 <Styles.ContentBox>
                     <Styles.Title>
                         TRAVEL PLANNER
+                        <input type="file" onChange={onSaveFiles}/>
+                        <button onClick={onFileUpload}>파일 업로드</button>
                         <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>

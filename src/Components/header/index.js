@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import { useNavigate, useLocation } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
-import { getAccessToken } from "../../Data";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -17,12 +16,6 @@ const Header = () => {
     useEffect(()=>{
         window.addEventListener('scroll', updateScroll);
     });
-
-    useEffect(() => {
-        if(localStorage.getItem("refresh_token") && !sessionStorage.getItem("access_token")){
-            getAccessToken();
-        }
-    }, []);
 
     const logout = () => {
         localStorage.clear();
@@ -52,7 +45,7 @@ const Header = () => {
                         : 
                         <>
                             <Styles.MyProfile onClick={() => setIsOpenList(!isOpenList)}>
-                                <Styles.MyProfileImg src="assets/defaultProfile.png"/>
+                                <Styles.MyProfileImg src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"}/>
                                 <Styles.MyProfileListBox clicked={isOpenList}>
                                     <Styles.MyProfileItem onClick={() => navigate('/myPage')}>MY PAGE</Styles.MyProfileItem>
                                     <Styles.MyProfileItem last onClick={logout}>LOGOUT</Styles.MyProfileItem>

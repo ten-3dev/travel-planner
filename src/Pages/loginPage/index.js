@@ -33,6 +33,7 @@ const LoginPage = () => {
                     }else if(userInfo.data.data.isUser === "Y"){ // 현재 DB에 회원이 있음
                         sessionStorage.setItem("access_token", userInfo.data.data.access_token);
                         localStorage.setItem("refresh_token", userInfo.data.data.refresh_token);
+                        sessionStorage.setItem("profileImg", userInfo.data.data.profileImg);
                         navigate('/');
                     }
                 }
@@ -53,6 +54,7 @@ const LoginPage = () => {
         try{
             data = await axios.post('http://localhost:8080/login', {email, pw});
             sessionStorage.setItem("access_token", data.data.data.access_token);
+            sessionStorage.setItem("profileImg", data.data.data.profileImg);
             localStorage.setItem("refresh_token", data.data.data.refresh_token);
             navigate('/');
         }catch(e){
