@@ -101,15 +101,14 @@ export const TravelWrapper = styled.div`
     height: 160px; 
     padding: 20px 0 20px 0;
     display: flex;
-    border-bottom: 1px solid #eeeeef;
-    border-bottom: 1px solid #9ea4ad ;
+    border-top: 2px solid #eeeeef;
+    border-bottom: 2px solid #eeeeef ;
 
 `
 
 export const Image = styled.img`
     width: 200;
     object-fit: cover;
-    border-radius: 10px;
 `
 
 export const Title = styled.div`
