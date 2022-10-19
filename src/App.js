@@ -18,6 +18,7 @@ import LoginPage from "./Pages/loginPage";
 import SignPage from "./Pages/signPage";
 import FindPassPage from "./Pages/findPassPage";
 import ChangePassPage from "./Pages/changePassPage";
+import ScrollToTop from "./scrollToTop";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { getAccessToken } from "./Data";
 import axios from "axios";
@@ -56,6 +57,7 @@ axios.interceptors.request.use(
 const App = () => {
   return (
       <BrowserRouter>
+        <ScrollToTop/>
         <Header/>
         <Routes>
           <Route path="/" element={<MainPage/>}/>
