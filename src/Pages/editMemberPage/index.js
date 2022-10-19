@@ -13,7 +13,7 @@ export const EditmemberPage = () => {
             url : 'http://localhost:8080/getUserInfo'
         }).then(response => setclickinfo(response.data))  
 
-    }, [clickinfo]);
+    }, []);
     
 
     function clickedBtn () { 
@@ -46,7 +46,7 @@ export const EditmemberPage = () => {
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent>로그아웃</Styles.LeftContent>
-                    <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
+                    <Styles.DeleteBtn onClick={Deletemsg}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
                 <Styles.MemberInforBox id="Paw" >
@@ -64,7 +64,7 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="비밀번호를 다시입력해주세요." ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn onClick={(EditBtn)}>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn onClick={EditBtn}>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
@@ -92,7 +92,7 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="01058997032" ></Styles.Content>
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn onClick={(EditBtn)}>수정하기</Styles.BasicInfoBtn>
+                        <Styles.BasicInfoBtn onClick={EditBtn}>수정하기</Styles.BasicInfoBtn>
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }

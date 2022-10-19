@@ -85,7 +85,6 @@ export const Img = styled.img`
 export const MyProfile = styled.div`
     width: 40px;
     height: 40px;
-    background-color: #565656;
     border-radius: 20px;
     cursor: pointer;
     position: relative;
