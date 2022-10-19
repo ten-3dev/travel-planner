@@ -1,4 +1,4 @@
-import React,{useEffect,useState } from "react";
+import React,{useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
@@ -7,26 +7,36 @@ import axios from "axios";
 export const EditmemberPage = () => {
     const navigate = useNavigate();
     const [clicked, setClicked] = useState("Profile");
+
     const [email, setEmail] = useState("");
     const [pw, setPw] = useState("");
-    const [name, setname] = useState("");
-    const [phone, setphone] = useState("");
-    const [birth, setbirth] = useState("");
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [shwoName, setShowName] = useState("");
+    const [birth, setBirth] = useState("");
     
- 
-
-    useEffect(() => {
+    const [ clickinfo, setclickinfo] = useState([]);
+    
+    //  useEffect(() => {
+            
+    //  },[]);
         
-        async function fetchData() {
-            try{
-                data = await axios.get('http:localhost:8080/getUserInfo',{email,pw,name,phone,birth});
+    useEffect(() => {
+        const getData = async () => {
+            const data = await axios.get('http://localhost:8080/getUserInfo');
+            setEmail(data.data.data.email);
+            setPw(data.data.data.pw);
 
-            } catch(e){
-                console.log(error);
-            }}
+            setName(data.data.data.name);
+            setShowName(data.data.data.name);
 
-        fetchData();
+            setPhone(data.data.data.tel);
+            setBirth(data.data.data.birth);
+        }
+        getData();
     },[])
+    
+    
 
     function clickedBtn () { 
         setClicked(clicked => !clicked);
@@ -57,8 +67,8 @@ export const EditmemberPage = () => {
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
                     <Styles.ProfileImg src={"assets/기본프로필.png"}></Styles.ProfileImg>
-                    <Styles.MemberName>김지수</Styles.MemberName>
-                    <Styles.Memberemail>su70322@naver.com</Styles.Memberemail>
+                    <Styles.MemberName>{shwoName}</Styles.MemberName>
+                    <Styles.Memberemail >{email}</Styles.Memberemail>
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
@@ -91,9 +101,9 @@ export const EditmemberPage = () => {
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
                         <Styles.BasicInformationEamilBox>
-                            <Styles.BasicInformationName onChange={(e) => setname(e.target.value)}>김지수</Styles.BasicInformationName>
-                            <Styles.BasicInformationEamil onChange={(e) => setbirth(e.target.value)} >1997-09-18</Styles.BasicInformationEamil>
-                            <Styles.BasicInformationEamil onChange={(e) => setEmail(e.target.value)}>su70322@naver.com</Styles.BasicInformationEamil>
+                            <Styles.BasicInformationName>{shwoName}</Styles.BasicInformationName>
+                            <Styles.BasicInformationEamil>{birth}</Styles.BasicInformationEamil>
+                            <Styles.BasicInformationEamil>{email}</Styles.BasicInformationEamil>
                         </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>
                     <Styles.LabelBox htmlFor="ex_file" >
@@ -102,11 +112,11 @@ export const EditmemberPage = () => {
                     </Styles.LabelBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit >이름</Styles.MemberEdit>
-                        <Styles.Content placeholder="김지수"  onChange={(e) => setname(e.target.value)}></Styles.Content>
+                        <Styles.Content placeholder="홍길동"  onChange={(e) => setName(e.target.value)} value={name || ''}/>
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01058997032"  onChange={(e) => setphone(e.target.value)}></Styles.Content>
+                        <Styles.Content placeholder="01012345678"  onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
                         <Styles.BasicInfoBtn onClick={EditBtn}>수정하기</Styles.BasicInfoBtn> 
