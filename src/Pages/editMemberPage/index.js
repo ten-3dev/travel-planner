@@ -1,9 +1,11 @@
 import React,{ useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const EditmemberPage = () => {
+    const navigate = useNavigate();
     const [clicked, setClicked] = useState("Profile");
     const [clickinfo, setclickinfo] = useState([]);
 
@@ -34,6 +36,11 @@ export const EditmemberPage = () => {
             console.log("취소. 탈퇴ㄴㄴ 절때 안되지");
         } 
     };
+    const logout = () => {
+        localStorage.clear();
+        sessionStorage.clear();
+        navigate("/login");
+    }
     return(
         <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
@@ -45,7 +52,7 @@ export const EditmemberPage = () => {
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
-                    <Styles.LeftContent>로그아웃</Styles.LeftContent>
+                    <Styles.LeftContent onClick={logout}>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={(Deletemsg)}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
