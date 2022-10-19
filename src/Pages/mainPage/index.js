@@ -9,7 +9,8 @@ const MainPage = () => {
     const [addressData, setAddressData] = useState(null);
     const [filterAddressData, setFilterAddressData] = useState([]);
     const searchInput = useRef("");
-
+    const [searchKeyword, setSearchKeyword] = useState();
+    
     const moveCreatePlan = () => {
         navigate('/CreatePlanPage');
     }
@@ -60,14 +61,18 @@ const MainPage = () => {
 
         const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
         setFilterAddressData(filterData);
+        setSearchKeyword(encodeURIComponent(e.target.value));
     }
- 
+    
     const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
-            console.log("메인페이지" + e.target.value);
             navigate('/travel', {state : encodeURIComponent(e.target.value)})
         }
     };
+
+    const onSubmit = (e) => {
+        navigate('/travel', {state : searchKeyword})
+    }
 
     return(
         <>
@@ -82,7 +87,7 @@ const MainPage = () => {
                     </Styles.Title>
                     <Styles.InputBox>
                         <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput} onKeyPress={handleOnKeyPress}/>
-                        <Styles.Btn>
+                        <Styles.Btn onClick={onSubmit}>
                             <Styles.Img src="assets/search_icon.png"/>
                         </Styles.Btn>
                         <Styles.InputPreView display={(searchInput.current.value && filterAddressData.length > 0) ? "true" : undefined}>

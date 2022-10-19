@@ -155,15 +155,12 @@ export const Text = styled.div`
 `
 export const Address = styled.div`
     margin-top: 5px;
-    right: 0;
-    font-size: small;
+    font-size: 15px;
 `
 
 export const Tel = styled.div`
-    width: 100%; 
-    font-size: 30px;
-    text-align: center;
-    font-weight: bold
+    margin-top: 5px;
+    font-size: 14px;
 `
 
 export const SteamListButtonImg = styled.img`
@@ -186,8 +183,9 @@ export const Like = styled.button`
 `
 export const LikeBox = styled.div`
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
     width: 100px;
-    margin-bottom: 10px;
+    margin-top: 150px;
 `

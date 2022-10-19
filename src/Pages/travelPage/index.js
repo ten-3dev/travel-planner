@@ -6,9 +6,9 @@ import LikeButton from "../../Components/LikeButton/LikeButton2";
 import { useLocation } from "react-router-dom";
 
 const TravelPage = (props) => {
-    const [page, setPage] = useState(1);
-    const [itemsCount] = useState(6);
-    const [totalItemsCount] = useState(50); // 임시
+    const [page, setPage] = useState(1); // 첫 페이지
+    const [itemsCount] = useState(10);  // 한 페이지에 보여질 리스트 수
+    const [totalItemsCount] = useState(60); // 총 아이템 개수........
     const [tours, setTours] = useState([]);
 
     const data = useLocation();
@@ -36,13 +36,13 @@ const TravelPage = (props) => {
     const tourData = (props) =>{
         (async () => {
             const response = await fetch(
-              `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${`foMVynPSBOYhWmlC8s%2BKfpDr%2BvSx28OYvMbw0XupmbJLmOJG88qv9BJM2%2BrP8FOceqJSmGi969LghG0WhbxxyA%3D%3D`}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
+              `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=${itemsCount}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
             );
             const json = await response.json();
             const tourItems = json.response.body.items.item;
+            console.log(tourItems);
             setTours(tourItems.filter((e) => {return e.firstimage !== ""}));
-          })();
-          
+          })(); 
     }
 
     const handleOnKeyPress = (e) => {
@@ -60,7 +60,7 @@ const TravelPage = (props) => {
             <Styles.ContentBox>
                 <Styles.TravelListBox>
                 {tours.map( (tour,id) =>{
-                     return(
+                    return(
                         <div key={id}>
                             <Styles.TravelWrapper>
                                 <Styles.Image src={tour.firstimage2}/>
@@ -71,12 +71,12 @@ const TravelPage = (props) => {
                                     <Styles.Address>
                                         {tour.addr1}
                                     </Styles.Address>
-                                    <Styles.Address>
+                                    <Styles.Tel>
                                         {tour.tel}
-                                    </Styles.Address>
+                                    </Styles.Tel>
                                 </Styles.Txt>
                                 <Styles.LikeBox>
-                                    <LikeButton/>
+                                    <LikeButton />
                                     <Styles.Like>+찜하기</Styles.Like>
                                 </Styles.LikeBox>
                             </Styles.TravelWrapper>
