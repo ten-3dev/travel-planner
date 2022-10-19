@@ -14,21 +14,21 @@ const TravelPage = (props) => {
     const data = useLocation(); //mainPage, travelPage에서 받아온 키워드 값
 
     const {state} = data;
-
+    const keyWord = decodeURIComponent(state);
     useEffect(() => {
         console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
         console.log(itemsCount + "까지");
 
-        console.log(searchKeyword);
-        
-        if(searchKeyword === undefined){  // 처음엔 null이므로 실행할거임 ㅇㅇ;
-            tourData(state);                //검색 키워드 없으면 state 실행
-        }else{
-            tourData(searchKeyword);        // 검색키워드있으면 이걸로 실행
-        }
+        console.log("state" + state);
 
         if(state == null){
+            tourData2();
+            setSearchKeyword("");
             console.log("useLocation NULL");
+        }else if(searchKeyword === undefined){  // 처음엔 null이므로 실행할거임 ㅇㅇ;
+            tourData(state);                    //검색 키워드 없으면 state 실행
+        }else{
+            tourData(searchKeyword);            // 검색키워드있으면 이걸로 실행
         }
 
     }, [page, itemsCount]);
@@ -59,6 +59,18 @@ const TravelPage = (props) => {
           })();
     }
 
+    const tourData2 = () =>{
+        (async () => {
+            const response = await fetch(
+                `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=${itemsCount}&pageNo=${page}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
+            );
+            const json = await response.json();
+            const tourItems = json.response.body.items.item;
+            console.log(tourItems);
+            setTours(tourItems.filter((e) => {return e.firstimage !== ""}));
+          })();
+    }
+
     const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
             const value = encodeURIComponent(e.target.value);
@@ -74,7 +86,7 @@ const TravelPage = (props) => {
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
-                <Styles.Input placeholder="검색하세요." onChange={(e) => chageState(e)} onKeyPress={handleOnKeyPress}/>
+                <Styles.Input placeholder="검색하세요." value={keyWord === 'null' ? "#전체" : `#${keyWord}` } onChange={(e) => chageState(e)} onKeyPress={handleOnKeyPress}/>
             </Styles.InputBox>
             <Styles.ListSumBox>총 69건</Styles.ListSumBox>
             <Styles.ContentBox>
@@ -123,3 +135,4 @@ const TravelPage = (props) => {
       );
 }
 export default TravelPage;
+
