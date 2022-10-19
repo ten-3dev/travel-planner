@@ -52,7 +52,7 @@ export const EditmemberPage = () => {
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
-                    <Styles.LeftContent>로그아웃</Styles.LeftContent>
+                    <Styles.LeftContent onClick={logout}>로그아웃</Styles.LeftContent>
                     <Styles.DeleteBtn onClick={Deletemsg}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
