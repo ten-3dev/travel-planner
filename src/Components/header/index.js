@@ -52,6 +52,7 @@ const Header = () => {
                         : 
                         <>
                             <Styles.MyProfile onClick={() => setIsOpenList(!isOpenList)}>
+                                <Styles.MyProfileImg src="assets/defaultProfile.png"/>
                                 <Styles.MyProfileListBox clicked={isOpenList}>
                                     <Styles.MyProfileItem onClick={() => navigate('/myPage')}>MY PAGE</Styles.MyProfileItem>
                                     <Styles.MyProfileItem last onClick={logout}>LOGOUT</Styles.MyProfileItem>

@@ -91,6 +91,11 @@ export const MyProfile = styled.div`
     position: relative;
 `
 
+export const MyProfileImg = styled.img`
+    width: 100%;
+    border-radius: 20px;
+`
+
 export const MyProfileListBox = styled.div`
     position: absolute;
     width: 140px;
