@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React,{useEffect,useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
@@ -7,16 +7,26 @@ import axios from "axios";
 export const EditmemberPage = () => {
     const navigate = useNavigate();
     const [clicked, setClicked] = useState("Profile");
-    const [clickinfo, setclickinfo] = useState([]);
+    const [email, setEmail] = useState("");
+    const [pw, setPw] = useState("");
+    const [name, setname] = useState("");
+    const [phone, setphone] = useState("");
+    const [birth, setbirth] = useState("");
+    
+ 
 
     useEffect(() => {
-        axios({
-            method : 'GET',
-            url : 'http://localhost:8080/getUserInfo'
-        }).then(response => setclickinfo(response.data))  
+        
+        async function fetchData() {
+            try{
+                data = await axios.get('http:localhost:8080/getUserInfo',{email,pw,name,phone,birth});
 
-    }, []);
-    
+            } catch(e){
+                console.log(error);
+            }}
+
+        fetchData();
+    },[])
 
     function clickedBtn () { 
         setClicked(clicked => !clicked);
@@ -60,11 +70,11 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요." onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 입력해주세요." ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요."  ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
@@ -81,9 +91,9 @@ export const EditmemberPage = () => {
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
                         <Styles.BasicInformationEamilBox>
-                            <Styles.BasicInformationName>김지수</Styles.BasicInformationName>
-                            <Styles.BasicInformationEamil>1997-09-18</Styles.BasicInformationEamil>
-                            <Styles.BasicInformationEamil>su70322@naver.com</Styles.BasicInformationEamil>
+                            <Styles.BasicInformationName onChange={(e) => setname(e.target.value)}>김지수</Styles.BasicInformationName>
+                            <Styles.BasicInformationEamil onChange={(e) => setbirth(e.target.value)} >1997-09-18</Styles.BasicInformationEamil>
+                            <Styles.BasicInformationEamil onChange={(e) => setEmail(e.target.value)}>su70322@naver.com</Styles.BasicInformationEamil>
                         </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>
                     <Styles.LabelBox htmlFor="ex_file" >
@@ -91,15 +101,15 @@ export const EditmemberPage = () => {
                             <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
                     </Styles.LabelBox>
                     <Styles.BasicInforContentBox>
-                        <Styles.MemberEdit>이름</Styles.MemberEdit>
-                        <Styles.Content placeholder="김지수" ></Styles.Content>
+                        <Styles.MemberEdit >이름</Styles.MemberEdit>
+                        <Styles.Content placeholder="김지수"  onChange={(e) => setname(e.target.value)}></Styles.Content>
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01058997032" ></Styles.Content>
+                        <Styles.Content placeholder="01058997032"  onChange={(e) => setphone(e.target.value)}></Styles.Content>
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn onClick={EditBtn}>수정하기</Styles.BasicInfoBtn>
+                        <Styles.BasicInfoBtn onClick={EditBtn}>수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }
