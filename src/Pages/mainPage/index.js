@@ -58,8 +58,10 @@ const MainPage = () => {
             setAddressData(data);
             return;
         }
+
         const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
         setFilterAddressData(filterData);
+        setSearchKeyword(encodeURIComponent(e.target.value));
     }
     
     const handleOnKeyPress = (e) => {
