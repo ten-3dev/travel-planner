@@ -33,7 +33,7 @@ const InformationPage = () => {
                         <Styles.InformationBox>
                             <Styles.InformationTitle>상세정보</Styles.InformationTitle>
                             <Styles.InformationBar />
-                        <Styles.InformationContnet>{e.overview}</Styles.InformationContnet>
+                        <Styles.InformationContnet><div dangerouslySetInnerHTML={{ __html: e.overview }}></div></Styles.InformationContnet>
                         <Styles.Sources>[출처: 쮸짱이의 브이로그 히힛]</Styles.Sources>
                         <Styles.Map>
                             <Map lon = {e.mapx} lat = {e.mapy}/>
