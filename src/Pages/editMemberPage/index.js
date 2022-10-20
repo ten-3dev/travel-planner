@@ -3,6 +3,7 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import * as crypto from 'crypto';
 
 export const EditmemberPage = () => {
     const navigate = useNavigate();
@@ -52,8 +53,25 @@ export const EditmemberPage = () => {
       }
     const updatepw = async () => { //회원 데이터 수정 비밀번호
         if(window.confirm("수정하시겠습니까?")){
+            if(newpw !== newclickpw){
+                alert("비밀번호가 서로 맞지 않습니다.");
+                return;
+            }
             try{
-                const data = await axios.post('http://localhost:8080/getUserUpdate',{pw, newpw, newclickpw}); //비교해야됌 아직
+                const createHashedPw = crypto.createHash("sha256").update(pw).digest("base64");
+                const createHashedNewPw = crypto.createHash("sha256").update(newpw).digest("base64");
+                const data = await axios.post('http://localhost:8080/getUserUpdate',{pw: createHashedPw, newpw: createHashedNewPw});
+
+                // newpw 이거 newPw로 변경 and newclickpw
+
+                // 기존의 비밀번호랑 바꿀(새로운) 비밀번호 보내
+                // 백엔드에서는 기존에 비밀번호(pw)랑 실제 유저의 정보에 있는 비밀번호랑 맞는지 안맞는지 체크
+
+                // 맞다?
+                //      바꿀 비밀번호(newpw)로 변경
+
+                //아니다?
+                //      에러 뱉음
 
                 getData();
 
@@ -138,11 +156,11 @@ export const EditmemberPage = () => {
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 입력해주세요."  ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요."  onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 다시입력해주세요." ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
