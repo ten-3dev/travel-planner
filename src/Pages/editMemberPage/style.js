@@ -188,4 +188,11 @@ export const LabelBox = styled.label`
     margin-top: 5px;
     margin-left: 70px;
 `
+
+export const ErrorMessage = styled.label`
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
+`
+
 //사진변경가능하게 해야함
