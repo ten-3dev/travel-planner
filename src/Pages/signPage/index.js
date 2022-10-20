@@ -5,6 +5,7 @@ import * as yup from "yup";
 import * as Styles from './style';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import * as crypto from 'crypto';
 
 const SignPage = () => {
   const location = useLocation();
@@ -37,10 +38,11 @@ const SignPage = () => {
   // })
 
   const signUp = () => {
+    const createHashedPassword = crypto.createHash("sha256").update(password).digest("base64");
     axios
     .post('http://localhost:8080/register',{
       email: email,
-      password: password,
+      password: createHashedPassword,
       name: name,
       tel: phone,
       birth: birth,

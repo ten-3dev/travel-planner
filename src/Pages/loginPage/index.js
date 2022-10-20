@@ -3,6 +3,7 @@ import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import * as crypto from 'crypto';
 
 
 const LoginPage = () => {
@@ -50,9 +51,9 @@ const LoginPage = () => {
     // 리프레시 토큰은 로컬 스토리지
     const onLogin = async () => {
         let data = null;
-
+        const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
         try{
-            data = await axios.post('http://localhost:8080/login', {email, pw});
+            data = await axios.post('http://localhost:8080/login', {email, pw :createHashedPassword});
             sessionStorage.setItem("access_token", data.data.data.access_token);
             sessionStorage.setItem("profileImg", data.data.data.profileImg);
             localStorage.setItem("refresh_token", data.data.data.refresh_token);
@@ -75,7 +76,7 @@ const LoginPage = () => {
                     <Styles.Input placeholder="이메일을 입력하세요" onChange={(e) => setEmail(e.target.value)}/>
                 </Styles.LoginText2>
 
-                <Styles.LoginText2>비밀번호
+                <Styles.LoginText2 htmlFor="pw">비밀번호
                         <Styles.Input type="password" placeholder="비밀번호를 입력하세요" onChange={(e) => setPw(e.target.value)} />
                 </Styles.LoginText2>
                 
