@@ -25,7 +25,7 @@ import axios from "axios";
 
 axios.interceptors.response.use(
   response => {
-    console.log(response);
+    console.log("interceptors: ", response);
     return response;
   },
   async error => {
