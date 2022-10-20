@@ -53,12 +53,12 @@ const ChangePassPage = () => {
                 <Styles.LoginText>비밀번호 변경</Styles.LoginText>
                 
                 <Styles.LoginText2 htmlFor="pw">새 비밀번호
-                    <Styles.Input placeholder="새로운 비밀번호를 입력하세요" onChange={(e) => setPw(e.target.value)}></Styles.Input>
+                    <Styles.Input type="password" placeholder="새로운 비밀번호를 입력하세요" onChange={(e) => setPw(e.target.value)}></Styles.Input>
                     <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.LoginText2>
 
                 <Styles.LoginText2 htmlFor="checkPw">비밀번호 확인
-                        <Styles.Input placeholder="비밀번호를 다시 입력하세요" ></Styles.Input>
+                        <Styles.Input type="password" placeholder="비밀번호를 다시 입력하세요" ></Styles.Input>
                         <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                 </Styles.LoginText2>
                 
