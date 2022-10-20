@@ -63,7 +63,7 @@ const TravelPage = () => {
                     
             
                 // }
-                setTours();
+                setTours(filterTourItems);
             }
           })();
     }
