@@ -72,11 +72,14 @@ export const EditmemberPage = () => {
         setClicked(clicked => !clicked);
     };
 
-    function Deletemsg() {
+    const userDelete = async () => {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
-
-        } else {
-            console.log("취소. 탈퇴ㄴㄴ 절때 안되지");
+            try{
+                const data = await axios.post('http://localhost:8080/userDelete', email);
+                alert(data.data.msg);
+            }catch(e){
+                console.log("탈퇴 실패", e)
+            }
         } 
     };
     const logout = () => {
@@ -132,7 +135,7 @@ export const EditmemberPage = () => {
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
                     <Styles.LeftContent click={clicked === "Paw"} onClick={() => setClicked("Paw") + clickedBtn}>비밀번호 변경</Styles.LeftContent>
                     <Styles.LeftContent onClick={logout}>로그아웃</Styles.LeftContent>
-                    <Styles.DeleteBtn onClick={Deletemsg}>탈퇴하기 ▶ </Styles.DeleteBtn>
+                    <Styles.DeleteBtn onClick={userDelete}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
                 <Styles.MemberInforBox id="Paw" >
