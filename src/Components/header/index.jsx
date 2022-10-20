@@ -31,7 +31,7 @@ const Header = () => {
             <MarginTopWrapper>
                 <Styles.Header>
                     <Styles.Menu>
-                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo" onClick={() => {navigate('/')}}/>
+                        <Styles.Img src={'assets/logo.png'} alt="logo" onClick={() => {navigate('/')}}/>
                         <Styles.Text onClick={() => {navigate('/travel')}}>여행지</Styles.Text>
                         <Styles.Text onClick={() => {navigate('/CreatePlanPage')}}>플랜 생성</Styles.Text>
                         <Styles.Text onClick={() => {navigate('/shared')}}>공유된 플랜 보기</Styles.Text>
