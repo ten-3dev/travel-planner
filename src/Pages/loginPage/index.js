@@ -30,7 +30,7 @@ const LoginPage = () => {
                 const userInfo = await axios.get('http://localhost:8080/kakaoLogin', { params: { token: token.data.access_token } });
                 if(userInfo.status == 200){
                     if(userInfo.data.data.isUser === "N"){ // 현재 DB에 회원이 없음
-                        navigate('/sign', {state: {email: userInfo.data.data.email, birthday: userInfo.data.data.birthday}})
+                        navigate('/sign', {state: {email: userInfo.data.data.email}})
                     }else if(userInfo.data.data.isUser === "Y"){ // 현재 DB에 회원이 있음
                         sessionStorage.setItem("access_token", userInfo.data.data.access_token);
                         localStorage.setItem("refresh_token", userInfo.data.data.refresh_token);
@@ -45,7 +45,9 @@ const LoginPage = () => {
         }
     }
 
-    useEffect(() => getToken, []);
+    useEffect(() => {
+        getToken();
+    }, []);
 
     // 액세스 토큰은 세션 스토리지
     // 리프레시 토큰은 로컬 스토리지
