@@ -10,17 +10,12 @@ export const EditmemberPage = () => {
 
     const [email, setEmail] = useState("");
     const [pw, setPw] = useState("");
+
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [shwoName, setShowName] = useState("");
     const [birth, setBirth] = useState("");
     
-    const [ clickinfo, setclickinfo] = useState([]);
-    
-    //  useEffect(() => {
-            
-    //  },[]);
-        
     useEffect(() => {
         const getData = async () => {
             const data = await axios.get('http://localhost:8080/getUserInfo');
@@ -35,6 +30,24 @@ export const EditmemberPage = () => {
         }
         getData();
     },[])
+
+    const update = () => {
+        axios
+        .post('http://localhost:8080/getUserUpdate',{
+          name: name,
+          tel: phone,
+          password: password,
+          profileImg: ''
+        })
+        .then((response) =>{
+          console.log('수정완료');
+          console.log('user profile', response);
+          replace("/editMember");
+        })
+        .catch((error)=>{
+          console.log('수정실패', error.response)
+        })
+      }
     
     
 
@@ -42,13 +55,13 @@ export const EditmemberPage = () => {
         setClicked(clicked => !clicked);
     };
 
-    function EditBtn() {
-        if (window.confirm("수정하시겠습니까?")) {
+    // function EditBtn() {
+    //     if (window.confirm("수정하시겠습니까?")) {
 
-         } else {
-        console.log("취소. 수정 ㄴㄴ");
-        }
-    };
+    //      } else {
+    //     console.log("취소. 수정 ㄴㄴ");
+    //     }
+    // };
     function Deletemsg() {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
 
@@ -80,7 +93,7 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 입력해주세요." onChange={(e) => setPw(e.target.value)} ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요."  onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
@@ -116,10 +129,10 @@ export const EditmemberPage = () => {
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01012345678"  onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
+                        <Styles.Content placeholder="01012345678" onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn onClick={EditBtn}>수정하기</Styles.BasicInfoBtn> 
+                        <Styles.BasicInfoBtn onClick={()=>{update()}}>수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }
