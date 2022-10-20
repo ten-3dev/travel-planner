@@ -138,11 +138,11 @@ export const EditmemberPage = () => {
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 입력해주세요."  ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 입력해주세요."  onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content placeholder="비밀번호를 다시입력해주세요." ></Styles.Content>
+                        <Styles.Content placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
