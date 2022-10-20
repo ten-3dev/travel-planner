@@ -9,7 +9,10 @@ export const EditmemberPage = () => {
     const [clicked, setClicked] = useState("Profile");
 
     const [email, setEmail] = useState("");
+
     const [pw, setPw] = useState("");
+    const [newpw, setNewPw] = useState("");
+    const [newclickpw, setClickPw] = useState("");
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -37,26 +40,33 @@ export const EditmemberPage = () => {
     }
 
     const update = async () => { // 회원 데이터를 수정 (이름, 연락처)
-        try{
-            const data = await axios.post('http://localhost:8080/getUserUpdate',{name, tel: phone});
-            // console.log(data);
-            getData(); // 변경된 데이터를 다시 불러오기
-        }catch(e){
-            console.log("에러 남", e)
-        }
+        if(window.confirm("수정하시겠습니까?")){
+            try{
+                const data = await axios.post('http://localhost:8080/getUserUpdate',{name, tel: phone});
+                // console.log(data);
+                getData(); // 변경된 데이터를 다시 불러오기
+            } catch(e){
+                console.log("에러 남", e)
+            }
+         }
       }
+    const updatepw = async () => {
+        if(window.confirm("수정하시겠습니까?")){
+            try{
+                const data = await axios.post('http://localhost:8080/getUserUpdate',{pw, newpw, newclickpw});
 
+                getData();
+
+            }catch(e){
+                console.log("에러오짐",e)
+            }
+        }
+    }
+   
     function clickedBtn () { 
         setClicked(clicked => !clicked);
     };
 
-    function EditBtn() {
-        if (window.confirm("수정하시겠습니까?")) {
-
-         } else {
-        console.log("취소. 수정 ㄴㄴ");
-        }
-    };
     function Deletemsg() {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
 
@@ -69,6 +79,42 @@ export const EditmemberPage = () => {
         sessionStorage.clear();
         navigate("/login");
     }
+
+    //아직 사용 안됌 고쳐야함
+    // const schema = yup.object().shape({
+       
+    //     pw: yup
+    //      .string()
+    //       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
+    //       .max(25, '비밀번호는 25자리 이하여야 합니다.')
+    //       .matches(
+    //         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    //         "최소한개의 영문자, 숫자를 입력하세요."
+    //       )
+    //       .required('비밀번호를 입력해주세요.'),
+    //     checkPw: yup
+    //       .string()
+    //       .oneOf([yup.ref('pw'), null],
+    //       "비밀번호가 일치하지 않습니다.")
+    //       .required('비밀번호를 다시 입력해주세요.'),
+    //     name: yup
+    //       .string()
+    //       .matches(
+    //         /^[가-힣]{2,4}$/,
+    //         "2-4자리의 한글이름만 입력가능"
+    //       )
+    //       .required('이름을 입력해주세요.'),
+    //     phone: yup
+    //       .string()
+    //       .matches(
+    //         /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
+    //         '올바른 휴대폰 번호를 입력해주세요.'
+    //       )
+    //       .required('휴대폰 번호를 입력해주세요.')
+       
+    //   });
+    
+
     return(
         <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
@@ -99,7 +145,7 @@ export const EditmemberPage = () => {
                         <Styles.Content placeholder="비밀번호를 다시입력해주세요." ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn onClick={EditBtn}>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
