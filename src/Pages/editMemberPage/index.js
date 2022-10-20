@@ -50,10 +50,10 @@ export const EditmemberPage = () => {
             }
          }
       }
-    const updatepw = async () => {
+    const updatepw = async () => { //회원 데이터 수정 비밀번호
         if(window.confirm("수정하시겠습니까?")){
             try{
-                const data = await axios.post('http://localhost:8080/getUserUpdate',{pw, newpw, newclickpw});
+                const data = await axios.post('http://localhost:8080/getUserUpdate',{pw, newpw, newclickpw}); //비교해야됌 아직
 
                 getData();
 
