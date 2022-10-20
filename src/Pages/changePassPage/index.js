@@ -3,7 +3,7 @@ import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import * as crypto from "crypto"
 
 const ChangePassPage = () => {
 
@@ -12,8 +12,9 @@ const ChangePassPage = () => {
     const [pwRe, setPwRe] = useState("");//비밀번호 확인
 
     const PasswordChange = async () => {
+        const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
         try{
-            await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw, pwRe });
+            await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw:createHashedPassword, pwRe });
             
             // navigate('/changePass',{state : email});
         }catch(e){
