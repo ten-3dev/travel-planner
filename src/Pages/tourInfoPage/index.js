@@ -72,8 +72,7 @@ const InformationPage = () => {
                             <Styles.DetaBoxrightBox>
                                 <Styles.DetaFontrightBox>
                                     <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
-                                    <Styles.DetainfoRight>{e.homepage}</Styles.DetainfoRight>
-                                    {/* <div dangerouslySetInnerHTML={{ __html: codes }}></div> */}
+                                    <Styles.DetainfoRight><div dangerouslySetInnerHTML={{ __html: e.homepage }}></div></Styles.DetainfoRight>
                                 </Styles.DetaFontrightBox>
                                 <Styles.DetaFontrightBox>
                                     <Styles.DetaFont>● 이용시간</Styles.DetaFont>
