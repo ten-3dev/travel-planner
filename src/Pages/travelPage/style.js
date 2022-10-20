@@ -7,7 +7,7 @@ export const ContentBox1 = styled.div`
     width: 1200px;
 `
 export const InputBox = styled.div`
-    width: 100%;
+    width: 75%;
     height: 48px;
     background-color: white;
     box-sizing: border-box;
@@ -15,6 +15,7 @@ export const InputBox = styled.div`
     display: flex;
     margin-top: 250px;
     border-bottom: 1px solid #000000;
+    border-bottom-width: 2.3px;
 `
 export const ListSumBox = styled.div`
     width: 100%;
@@ -25,7 +26,6 @@ export const ListSumBox = styled.div`
     display: flex;
     font-size: 32px;
     margin: 10px;
-    margin-left: 30px;
     margin-bottom: 30px;
     font-weight: bold
 `
