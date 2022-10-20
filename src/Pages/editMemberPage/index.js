@@ -13,12 +13,18 @@ export const EditmemberPage = () => {
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
-    const [shwoName, setShowName] = useState("");
+    const [showName, setShowName] = useState("");
     const [birth, setBirth] = useState("");
     
-    useEffect(() => {
-        const getData = async () => {
-            const data = await axios.get('http://localhost:8080/getUserInfo');
+    useEffect(() => { // 제일 처음에 실행하는 애 
+        getData();
+    },[])
+
+    const getData = async () => { // DB에 있는 회원데이터를 불러옴
+        const data = await axios.get('http://localhost:8080/getUserInfo');
+        if(!data){
+            getData();
+        }else{
             setEmail(data.data.data.email);
             setPw(data.data.data.pw);
 
@@ -28,40 +34,29 @@ export const EditmemberPage = () => {
             setPhone(data.data.data.tel);
             setBirth(data.data.data.birth);
         }
-        getData();
-    },[])
+    }
 
-    const update = () => {
-        axios
-        .post('http://localhost:8080/getUserUpdate',{
-          name: name,
-          tel: phone,
-          password: password,
-          profileImg: ''
-        })
-        .then((response) =>{
-          console.log('수정완료');
-          console.log('user profile', response);
-          replace("/editMember");
-        })
-        .catch((error)=>{
-          console.log('수정실패', error.response)
-        })
+    const update = async () => { // 회원 데이터를 수정 (이름, 연락처)
+        try{
+            const data = await axios.post('http://localhost:8080/getUserUpdate',{name, tel: phone});
+            // console.log(data);
+            getData(); // 변경된 데이터를 다시 불러오기
+        }catch(e){
+            console.log("에러 남", e)
+        }
       }
-    
-    
 
     function clickedBtn () { 
         setClicked(clicked => !clicked);
     };
 
-    // function EditBtn() {
-    //     if (window.confirm("수정하시겠습니까?")) {
+    function EditBtn() {
+        if (window.confirm("수정하시겠습니까?")) {
 
-    //      } else {
-    //     console.log("취소. 수정 ㄴㄴ");
-    //     }
-    // };
+         } else {
+        console.log("취소. 수정 ㄴㄴ");
+        }
+    };
     function Deletemsg() {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
 
@@ -80,7 +75,7 @@ export const EditmemberPage = () => {
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
                     <Styles.ProfileImg src={"assets/기본프로필.png"}></Styles.ProfileImg>
-                    <Styles.MemberName>{shwoName}</Styles.MemberName>
+                    <Styles.MemberName>{showName}</Styles.MemberName>
                     <Styles.Memberemail >{email}</Styles.Memberemail>
                     <Styles.TitleBar/>
                     <Styles.LeftContent click={clicked === "Profile"} onClick={() => setClicked("Profile") + clickedBtn} >내프로필</Styles.LeftContent>
@@ -114,7 +109,7 @@ export const EditmemberPage = () => {
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
                         <Styles.BasicInformationEamilBox>
-                            <Styles.BasicInformationName>{shwoName}</Styles.BasicInformationName>
+                            <Styles.BasicInformationName>{showName}</Styles.BasicInformationName>
                             <Styles.BasicInformationEamil>{birth}</Styles.BasicInformationEamil>
                             <Styles.BasicInformationEamil>{email}</Styles.BasicInformationEamil>
                         </Styles.BasicInformationEamilBox>
