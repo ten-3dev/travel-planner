@@ -209,10 +209,9 @@ export const DayItem = styled.div`
     cursor: pointer;
 `
 
-export const DayItemImg = styled.div`
+export const DayItemImg = styled.img`
     height: 100%;
     width: 90px;
-    background-color: blue;
     margin-right: 5px;
 `
 export const DayItemSubTextBox = styled.div`

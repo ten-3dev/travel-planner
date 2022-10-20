@@ -1,5 +1,5 @@
 import moment from "moment/moment";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
@@ -97,6 +97,7 @@ const CreatePlanPage = () => {
     const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
     const [filterOpen, setFilterOpen] = useState(false);
     const [dateList, setDateList] = useState();
+    const [tours, setTours] = useState([]); //@@추가
     
     //박스를 움직이게 하는 state
     const [controlOpen, setControlOpen] = useState(false); // Control
@@ -107,7 +108,7 @@ const CreatePlanPage = () => {
     // 추천 여행지 페이지네이션
     const [page1, setPage1] = useState(1);
     const [itemsCount] = useState(6);
-    const [totalItemsCount1] = useState(50); // 임시
+    const [totalItemsCount1,setStotalItemCount1] = useState(50); // 임시    //@@set추가
 
     // 찜한 여행지 페이지네이션
     const [page2, setPage2] = useState(1);
@@ -124,6 +125,10 @@ const CreatePlanPage = () => {
     }, [page2, itemsCount]);
 
     useEffect(() => { // 새로고침 방지 alert
+        //@@
+        console.log("최초 useEffect실행@@");
+        tourData2();
+        //@@
         window.onbeforeunload = function() {
             return true;
         };
@@ -155,6 +160,71 @@ const CreatePlanPage = () => {
         }
         setControlOpen(!controlOpen);
     }
+
+    //@@@@@@@@
+    const pagingHook = useRef(false)
+    const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
+
+    useEffect(() => {
+        if(pagingHook.current){
+            console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
+            window.scroll(0,0)
+            console.log(searchKeyword + "dddddd");
+            if(searchKeyword === ""){        
+                tourData2();
+            }else{
+                tourData(searchKeyword);
+            }
+            }else{
+                pagingHook.current = true;
+            }
+    }, [page1]);
+
+    const tourData = (props) =>{    //키워드 별 검색 함수
+        (async () => {
+            const response = await fetch(
+              `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
+            );
+            console.log("tourData 실행");
+            const json = await response.json();
+            if(json.response.body.items === ""){
+                setTours("");
+            }else{
+                const tourItems = json.response.body.items.item;
+                setStotalItemCount1(tourItems.length);
+                setTours(tourItems.filter((e,index) => {
+                    if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
+                }));
+            }
+          })();
+    }
+
+    const tourData2 = () =>{    // 전체 검색 함수
+        (async () => {
+            const response = await fetch(
+                `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
+            );
+            console.log("tourData2 실행")
+            const json = await response.json();
+            const tourItems = json.response.body.items.item;
+            setStotalItemCount1(tourItems.length);
+            setTours(tourItems.filter((e,index) => {
+                if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
+            }));
+          })();
+    }
+
+     const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
+        if (e.key === 'Enter') {
+            const value = encodeURIComponent(e.target.value);
+            setSearchKeyword(value);
+            setPage1(1);
+            if(value === "" ){
+                console.log("111111111111");
+                tourData2();
+            }
+        }
+    };
 
     return(
         <>
@@ -201,7 +271,7 @@ const CreatePlanPage = () => {
                 <Styles.TravelBox open={travelOpen}>
                     <Styles.ContentBox>
                         <Styles.TravelInputBox>
-                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." />
+                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." onKeyUp={handleOnKeyPress}/>
                             <Styles.TravelInputBtn>검색</Styles.TravelInputBtn>
                         </Styles.TravelInputBox>
                         <Styles.ListBox>
@@ -210,138 +280,25 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
+                                {tours.map((tour,id) => {
+                                        return(
+                                            <div key ={id}>
+                                                <Styles.DayItem>
+                                                    <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
+                                                        <Styles.DayItemTextBox>
+                                                        <Styles.DayItemTitle>{tour.title}
+                                                            <Styles.LocationImg src={"assets/image35.png"}/>
+                                                        </Styles.DayItemTitle>
+                                                        <Styles.ItemBox>
+                                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
+                                                        </Styles.ItemBox>
+                                                    </Styles.DayItemTextBox>
+                                                </Styles.DayItem>
+                                            </div>
+                                        )
+                                })}
                             </Styles.ScrollBox>
                             <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
                         </Styles.ListBox>

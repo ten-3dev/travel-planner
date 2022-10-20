@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import Map from "../../Components/kakaoMap";
-import Paging from "../../Components/paging";
 import Comment from "../../Components/Comment";
 
 const daysList =[   // 대충 시험용 데이터
