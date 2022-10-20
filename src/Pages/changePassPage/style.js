@@ -40,3 +40,9 @@ export const Input = styled.input`
     background-color: #F3F3F3;
     margin-top: 7px;
 `
+
+export const ErrorMessage = styled.label`
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
+`
