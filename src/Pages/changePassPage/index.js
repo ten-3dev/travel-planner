@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Styles from './style';
 import { UserBlueBtn } from "../../Common/style";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as crypto from "crypto"
 
@@ -10,13 +10,14 @@ const ChangePassPage = () => {
     const data = useLocation();
     const [pw, setPw] = useState("");
     const [pwRe, setPwRe] = useState("");//비밀번호 확인
+    const navigate = useNavigate();
 
     const PasswordChange = async () => {
         const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
         try{
             await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw:createHashedPassword, pwRe });
             
-            // navigate('/changePass',{state : email});
+            navigate('/login');
         }catch(e){
             alert(e.response.data.msg);
         }
