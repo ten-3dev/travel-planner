@@ -97,6 +97,7 @@ export const Image = styled.img`
     width: 200;
     object-fit: cover;
     border-radius: 10px;
+    cursor: pointer;
 `
 export const Title = styled.div`
     overflow: hidden;
@@ -128,6 +129,8 @@ export const PlaceTitle = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 10px;
+    cursor: pointer;
+
     
 `
 export const Text = styled.div`

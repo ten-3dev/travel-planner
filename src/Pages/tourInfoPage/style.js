@@ -54,7 +54,7 @@ export const TalkMessageBox = styled.div`
     padding: 50px 70px;
 `
 export const InformationContnet = styled.div`
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
     word-break: keep-all;
 `
@@ -138,13 +138,18 @@ export const MessageBtn = styled.button`
 `
 export const Map = styled.div`
     margin-bottom: 30px;
-    height:200px;
-    background-color:grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height:400px;
 `
 export const DetailedInforBox = styled.div`
     margin-bottom:30px;
-    //align-items: center;
     display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 `
 export const DetaBox = styled.div`
     width: 50%;
