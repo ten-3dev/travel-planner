@@ -58,12 +58,7 @@ export const InformationContnet = styled.div`
     margin-bottom: 20px;
     word-break: keep-all;
 `
-export const Sources = styled.div`
-    font-size: 15px;
-    margin-bottom: 20px;
-    margin-right:75px;
-    font-weight: bold;
-`
+
 export const Talk = styled.div`
     font-size: 25px;
     font-weight: bold;

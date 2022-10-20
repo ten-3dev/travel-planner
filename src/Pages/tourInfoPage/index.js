@@ -5,7 +5,7 @@ import { MarginTopWrapper } from "../../Common/style";
 import LikeButton from "../../Components/LikeButton/LikeButton";
 import {useLocation } from "react-router-dom";
 import Map from "../../Components/kakaoMap";
-
+import Comment from "../../Components/Comment"
 
 
 const InformationPage = () => {
@@ -34,7 +34,6 @@ const InformationPage = () => {
                             <Styles.InformationTitle>상세정보</Styles.InformationTitle>
                             <Styles.InformationBar />
                         <Styles.InformationContnet><div dangerouslySetInnerHTML={{ __html: e.overview }}></div></Styles.InformationContnet>
-                        <Styles.Sources>[출처: 쮸짱이의 브이로그 히힛]</Styles.Sources>
                         <Styles.Map>
                             <Map lon = {e.mapx} lat = {e.mapy}/>
                         </Styles.Map>
@@ -49,8 +48,8 @@ const InformationPage = () => {
                                     <Styles.DetainforMation>{e.addr1+" " + e.addr2}</Styles.DetainforMation>
                                 </Styles.DetaFontBox>
                                 <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 휴일</Styles.DetaFont>
-                                    <Styles.DetainforMation>매주 월요일 휴관(공휴일 월요일 제외)</Styles.DetainforMation>
+                                    <Styles.DetaFont>● 우편주소</Styles.DetaFont>
+                                    <Styles.DetainforMation>{e.zipcode}</Styles.DetainforMation>
                                 </Styles.DetaFontBox>
                                 <Styles.DetaFontBox>
                                     <Styles.DetaFont>● 이용요금</Styles.DetaFont>
@@ -92,41 +91,11 @@ const InformationPage = () => {
                                 </Styles.DetaFontrightBox>
                                 </Styles.DetaBoxrightBox>
                             </Styles.DetailedInforBox>
-                            <Styles.Talk>톡톡</Styles.Talk>
-                            <Styles.InformationBar />
-                            <Styles.TalkMessageBox>
-                                <Styles.MessageCommentsBox>
-                                    <Styles.MessageCommentBox>
-                                        <Styles.MessageCommentIcon />
-                                            <Styles.Comment>데이트코스로 너무 좋아요!</Styles.Comment>
-                                            <Styles.Days>2022.06.24</Styles.Days>
-                                    </Styles.MessageCommentBox>
-                                    <Styles.MessageCommentBox>
-                                        <Styles.MessageCommentIcon />
-                                        <Styles.Comment>가지마셈 ㅈㄴ 불친절</Styles.Comment>
-                                        <Styles.Days>2022.06.24</Styles.Days>
-                                    </Styles.MessageCommentBox>
-                                    <Styles.MessageCommentBox>
-                                        <Styles.MessageCommentIcon />
-                                        <Styles.Comment>너무 피곤해 잠온다</Styles.Comment>
-                                        <Styles.Days>2022.06.24</Styles.Days>
-                                    </Styles.MessageCommentBox>
-                                </Styles.MessageCommentsBox>
-                                <Styles.MymessageBox>
-                                    <Styles.Reviewcomment>
-                                        <Styles.Msg>리뷰쓰기</Styles.Msg>
-                                    </Styles.Reviewcomment>
-                                    <Styles.MyWriting>
-                                        <Styles.Profile src={"assets/임시프로필사진.png"} ></Styles.Profile>
-                                        <Styles.MessageInput placeholder="소중한댓글을 남겨주세요."></Styles.MessageInput>
-                                        <Styles.MessageBtn>글쓰기</Styles.MessageBtn>
-                                    </Styles.MyWriting>
-                                </Styles.MymessageBox>
-                            </Styles.TalkMessageBox>
                         </Styles.InformationBox>
                     </div>
                 )
             })}
+            <Comment/>
         </MarginTopWrapper>
     );
 }
