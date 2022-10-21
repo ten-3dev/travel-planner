@@ -105,17 +105,6 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
-    const onChangeName = (e)=> {
-        setName(e.target.value)
-        if (e.target.value.length < 2 || e.target.value.length > 5){
-            setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
-            setIsName(false)
-        }else{
-            setNameMessage('올바른 이름 형식입니다')
-            setIsName(true)
-        }
-    }
-
     const onChangePassword = (e)=> {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
         const passwordCurrent = e.target.value
@@ -138,6 +127,17 @@ export const EditmemberPage = () => {
         }else{
             setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
             setIsPasswordConfirm(false)
+        }
+    }
+
+    const onChangeName = (e)=> {
+        setName(e.target.value)
+        if (e.target.value.length < 2 || e.target.value.length > 4){
+            setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
+            setIsName(false)
+        }else{
+            setNameMessage('올바른 이름 형식입니다')
+            setIsName(true)
         }
     }
 
@@ -222,7 +222,7 @@ export const EditmemberPage = () => {
                     <Styles.MemberContentBox htmlFor="checkPw">
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onKeyUp={onChangePasswordConfirm} onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
-                        {passwordConfirm.length > 0 && (<span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>)}
+                        {newPw.length > 0 && (<span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>)}
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn disabled={!(isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
