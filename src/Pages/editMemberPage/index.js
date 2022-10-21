@@ -221,7 +221,7 @@ export const EditmemberPage = () => {
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn disabled={!(isName && isEmail && isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn disabled={!(isName && isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
@@ -251,7 +251,7 @@ export const EditmemberPage = () => {
                         {phone.length > 0 && (<span className={`message ${isPhone ? 'success' : 'error'}`}>{phoneMessage}</span>)}
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn disabled={!(isName && isEmail && isPassword && isPasswordConfirm)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
+                        <Styles.BasicInfoBtn disabled={!(isName && isPassword && isPasswordConfirm)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }
