@@ -138,16 +138,22 @@ const CreatePlanPage = () => {
     }, []);
 
     useEffect(() => { // 임시. 이따 지우셈
-        console.log(dateList);
+        // console.log(dateList);
     }, [dateList])
 
     const onUpdate = (idx) => {
+        console.log(idx);
         if(update == null){
             setUpdate(idx);
             settravelOpen(true);
         }else if(update !== null & update !== idx){
             alert("현재 수정하고 있는 DAY가 있습니다.");
         }else{
+            if(idx === dayList[0]){
+                setAllDayList([dayList])  // [[],[],[]] 여기서 idx에 해당하는 곳에 dayList 넣음
+            }
+            setDayList(["",[]]);
+            setTourSelect([]);
             setUpdate(null);
             settravelOpen(false);
         }
@@ -162,17 +168,20 @@ const CreatePlanPage = () => {
 
     //@@@@@@@@
     const pagingHook = useRef(false)
-    const [coordinate, setCoordinate] = useState([]);
-    const [tours, setTours] = useState([]);
+    const [coordinate, setCoordinate] = useState([]);           // 좌표
+    const [tours, setTours] = useState([]);                     // 검색창 관광지
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
-    const [tourselect, setTourSelect] = useState(); // 지도 of/off
+    const [tourMakerSelect, setTourMakerSelect] = useState(); // 여행지 마커 of/off
+    const [dayList, setDayList] = useState(["",[]]);                 //일정 수 
+    const [tourSelect, setTourSelect] = useState([]);             //해당 일정( EX. DAY 1)에 추가한 여행지
+    const [allDayList, setAllDayList] = useState([]);// 총 일정목록
 
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
             console.log("페이징 키워드 " + searchKeyword);
-            setTourSelect(Array(totalItemsCount1).fill(false));
+            setTourMakerSelect(Array(totalItemsCount1).fill(false));
         }else{
             pagingHook.current = true;
         }
@@ -193,7 +202,7 @@ const CreatePlanPage = () => {
                 setStotalItemCount1(tourItems.length);
                 setTours(tourItems);
                 setPage1(1);
-                setTourSelect(Array(tourItems.length).fill(false));
+                setTourMakerSelect(Array(tourItems.length).fill(false));
             }
           })();
     }
@@ -209,7 +218,7 @@ const CreatePlanPage = () => {
             setStotalItemCount1(tourItems.length);
             setTours(tourItems);
             setPage1(1);
-            setTourSelect(Array(tourItems.length).fill(false));
+            setTourMakerSelect(Array(tourItems.length).fill(false));
           })();
     }
 
@@ -232,11 +241,34 @@ const CreatePlanPage = () => {
         const newCoor = {
             lat: coor[0], lon : coor[1]
         }
-
-        const newArr = tourselect.fill(false);
+        const newArr = tourMakerSelect.fill(false);
         newArr[id] = true;
         setCoordinate(newCoor);
-        setTourSelect(newArr);
+        setTourMakerSelect(newArr);
+    }
+    // 적용하기 누를때 대충 이런 형태로 보내야됨
+    // const createPlan = [
+        //     "asdqwe@asdd.com",
+        //     [idx, {"여행지"},{"여행지"},{"여행지"}],
+        //     [idx, {"여행지"},{"여행지"},{"여행지"},{"여행지"},{"여행지"}],
+        //     [idx, {"여행지"},{"여행지"}]
+        // ]
+
+    const addTour = (el, idx) =>{
+        console.log("addTour실행");
+        console.log(dayList[0] + "####" + update)
+        console.log(tourSelect.length);
+
+        if(dayList[0] === ""){  // 처음일때
+            console.log("11111111111111");
+            setDayList([idx, [...tourSelect, el]]); 
+            
+        }else if(dayList[0] === update && tourSelect.length !== 0){ //그 후
+            console.log("22222222222222");
+            setDayList([update, [...tourSelect, el]]);
+
+        }
+        setTourSelect([...tourSelect, el]); // 이건 dayList[idx, [[여행],[여행]]] 여기서 dayList[1]을 맡음
     }
 
     return(
@@ -256,24 +288,34 @@ const CreatePlanPage = () => {
                         </Styles.DateBox>
                         {dateList.map((el, idx) => {
                             return(
-                                <Styles.ListItemBox key={idx}>
-                                    <Styles.DayTitle>DAY {idx + 1}</Styles.DayTitle>
-                                    <Styles.DayItem>
-                                        <Styles.DayItemImg></Styles.DayItemImg>
-                                        <Styles.DayItemTextBox>
-                                            <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                            </Styles.DayItemTitle>
-                                            <Styles.DayItemSubTextBox>
-                                                <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                                <Styles.DayItemRemove>삭제</Styles.DayItemRemove>
-                                            </Styles.DayItemSubTextBox>
-                                        </Styles.DayItemTextBox>
-                                    </Styles.DayItem>
-                                    <Styles.PlanAddBtnBox>
-                                        <Styles.PlanAddBtn updated={update === idx + 1} onClick={() => onUpdate(idx + 1)}>{update === idx + 1 ? "취소" : "일정 수정"}</Styles.PlanAddBtn>
-                                    </Styles.PlanAddBtnBox>
-                                </Styles.ListItemBox>
+                                <div key={idx}>
+                                    <Styles.ListItemBox key={idx}>
+                                        <Styles.DayTitle>DAY {idx + 1}</Styles.DayTitle>
+                                        {/* idx에 해당하는 dayList 뿌려야됨 */}
+                                            {update === (idx + 1) ? dayList[1].map((e, id) => {
+                                                return(
+                                                    <div key={id}>
+                                                        <Styles.DayItem>
+                                                            <Styles.DayItemImg src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2}/>
+                                                            <Styles.DayItemTextBox>
+                                                                <Styles.DayItemTitle>{e.title}
+                                                                <Styles.LocationImg />
+                                                                </Styles.DayItemTitle>
+                                                                <Styles.DayItemSubTextBox>
+                                                                    <Styles.DayItemText>{e.addr1}</Styles.DayItemText>
+                                                                    <Styles.DayItemRemove>삭제</Styles.DayItemRemove>
+                                                                </Styles.DayItemSubTextBox>
+                                                            </Styles.DayItemTextBox>
+                                                        </Styles.DayItem>
+                                                    </div>
+                                                )
+                                            }) : ""}
+
+                                        <Styles.PlanAddBtnBox>
+                                            <Styles.PlanAddBtn updated={update === idx + 1} onClick={() => onUpdate(idx + 1)}>{update === idx + 1 ? "취소" : "일정 수정"}</Styles.PlanAddBtn>
+                                        </Styles.PlanAddBtnBox>
+                                    </Styles.ListItemBox>
+                                </div>
                             )
                         })}
                     </Styles.ContentBox>
@@ -303,11 +345,11 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
                                                                 <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg open={tourselect[id]} value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
+                                                                    <Styles.LocationImg open={tourMakerSelect[id]} value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.ItemBox>
                                                                     <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                                                    <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                                                    <Styles.ItemBtn onClick={() => addTour(tour, update)}>추가하기</Styles.ItemBtn>
                                                                     <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                                                 </Styles.ItemBox>
                                                             </Styles.DayItemTextBox>
@@ -315,7 +357,7 @@ const CreatePlanPage = () => {
                                                     </div>
                                                 )
                                             }))
-                                }  
+                                }
                             </Styles.ScrollBox>
                             {tours === "" ? "" : <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>}
                         </Styles.ListBox>

@@ -206,7 +206,6 @@ export const DayItem = styled.div`
     padding: 5px 0;
     display: flex;
     border-bottom: 2px solid gray;
-    cursor: pointer;
 `
 
 export const DayItemImg = styled.img`
@@ -361,7 +360,7 @@ export const ItemBox = styled.div`
     align-items: center;
 `
 
-export const ItemBtn = styled.div`
+export const ItemBtn = styled.button`
     width: 60px;
     height: 25px;
     border-radius: 5px;
@@ -375,6 +374,9 @@ export const ItemBtn = styled.div`
     justify-content: center;
     color: white;
     margin-left: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 
 `
 
