@@ -1,7 +1,4 @@
 import React,{useEffect, useState } from "react";
-import {useForm} from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +10,6 @@ export const EditmemberPage = () => {
     const [clicked, setClicked] = useState("Profile");
 
     const [email, setEmail] = useState("");
-
     const [pw, setPw] = useState("");
     const [newPw, setNewPw] = useState("");
     const [newClickPw, setClickPw] = useState("");
@@ -23,6 +19,20 @@ export const EditmemberPage = () => {
     const [showName, setShowName] = useState("");
     const [birth, setBirth] = useState("");
     
+    //유효성 검사
+    const[isPassword, setIsPassword] = useState<boolean>(false)
+    const[isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false)
+    const[isName, setIsName] = useState<boolean>(false)
+    const[isPhone, setIsPhone] = useState<boolean>(false)
+    //유효성 메세지
+    const[passwordMessage, setPasswordMessage] = useState<String>('')
+    //const[passwordConfirmMessage, setPasswordConfirmMessage] = useState<String>('')
+    const[nameMessage, setNameMessage] = useState<String>('')
+    const[phoneMessage, setPhoneMessage] = useState<String>('')
+
+
+
+
     useEffect(() => { // 제일 처음에 실행하는 애 
         getData();
     },[])
@@ -94,52 +104,94 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
-    //유효성 검사는 되지만 데이터보내는걸 못막고 입력값이 그대로 db로 전달되버림
-    const schema = yup.object().shape({
-        pw: yup
-          .string()
-          .min(8, '비밀번호는 8자리 이상이어야 합니다.')
-          .max(25, '비밀번호는 25자리 이하여야 합니다.')
-          .matches(
-            /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            "최소한개의 영문자, 숫자를 입력하세요."
-          )
-          .required('비밀번호를 입력해주세요.'),
-        newPw: yup
-           .string()
-           .min(8, '비밀번호는 8자리 이상이어야 합니다.')
-           .max(25, '비밀번호는 25자리 이하여야 합니다.')
-           .matches(
-             /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-             "최소한개의 영문자, 숫자를 입력하세요."
-           )
-           .required('비밀번호를 입력해주세요.'),
-        name: yup
-           .string()
-           .matches(
-            /^[가-힣]{2,4}$/,
-            "2-4자리의 한글이름만 입력가능"
-          )
-          .required('이름을 입력해주세요.'),
-        phone: yup
-          .string()
-          .matches(
-            /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
-            '올바른 휴대폰 번호를 입력해주세요.'
-          )
-          .required('휴대폰 번호를 입력해주세요.')
-       
-      });
+    const onChangeName = useCallback( (e)=> {
+        setName(e.target.value)
+        if (e.target.value.length < 2 || e.target.value.length > 5){
+            setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
+            setIsName(false)
+        }else{
+            setNameMessage('올바른 이름 형식입니다')
+            setIsName(true)
+        }
+    }, [])
 
-    const { register, handleSubmit, formState:{ errors }} = useForm({
-        resolver: yupResolver(schema),
-       mode: 'onChange'});
-   
-     const onSubmit = (data) => console.log(data);
+    const onChangePassword = useCallback( (e)=> {
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/
+        const passwordCurrent = e.target.value
+        setPassword(e.target.value)
+        if (!passwordRegex.test(passwordCurrent)){
+            setPasswordMessage('최소한개의 영문자, 숫자를 8자리 이상 입력해주세요.')
+            setIsPassword(false)
+        }else{
+            setPasswordMessage('올바른 비밀번호 형식입니다')
+            setIsPassword(true)
+        }
+    }, [])
+
+    // const onChangePasswordConfirm = useCallback( (e)=> {
+    //     const passwordConfirmCurrent = e.target.value
+    //     setPasswordConfirm(e.target.value)
+    //     if (password === passwordConfirmCurrent){
+    //         setPasswordMessage('비밀번호가 일치합니다.')
+    //         setIsPasswordConfirm(true)
+    //     }else{
+    //         setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
+    //         setIsPasswordConfirm(false)
+    //     }
+    // }, [])
+
+    const onChangePhone = useCallback( (e)=> {
+        const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/
+        const phoneCurrent = e.target.value
+        setIsPhone(e.target.value)
+        if (!phoneRegex.test(phoneCurrent)){
+            setPhoneMessage('비밀번호가 일치합니다.')
+            setIsPhone(true)
+        }else{
+            setPhoneMessage('비밀번호가 일치하지 않습니다.')
+            setIsPhone(false)
+        }
+    }, [])
     
+    //유효성 검사는 되지만 데이터보내는걸 못막고 입력값이 그대로 db로 전달되버림
+    // const schema = yup.object().shape({
+    //     pw: yup
+    //       .string()
+    //       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
+    //       .max(25, '비밀번호는 25자리 이하여야 합니다.')
+    //       .matches(
+    //         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    //         "최소한개의 영문자, 숫자를 입력하세요."
+    //       )
+    //       .required('비밀번호를 입력해주세요.'),
+    //     newPw: yup
+    //        .string()
+    //        .min(8, '비밀번호는 8자리 이상이어야 합니다.')
+    //        .max(25, '비밀번호는 25자리 이하여야 합니다.')
+    //        .matches(
+    //          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    //          "최소한개의 영문자, 숫자를 입력하세요."
+    //        )
+    //        .required('비밀번호를 입력해주세요.'),
+    //     name: yup
+    //        .string()
+    //        .matches(
+    //         /^[가-힣]{2,4}$/,
+    //         "2-4자리의 한글이름만 입력가능"
+    //       )
+    //       .required('이름을 입력해주세요.'),
+    //     phone: yup
+    //       .string()
+    //       .matches(
+    //         /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
+    //         '올바른 휴대폰 번호를 입력해주세요.'
+    //       )
+    //       .required('휴대폰 번호를 입력해주세요.')
+       
+    //   });
 
     return(
-        <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
+        <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -157,25 +209,24 @@ export const EditmemberPage = () => {
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')} onChange={(e) => setPw(e.target.value)} ></Styles.Content>
-                        <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
+                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="newPw">새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="새 비밀번호를 입력해주세요." {...register('newPw')} onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
-                        <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
+                        <Styles.MemberEdit htmlFor="password">새 비밀번호</Styles.MemberEdit>
+                        <Styles.Content type="password" placeholder="새 비밀번호를 입력해주세요." onKeyUp={onChangePassword} onChange={(e) => setNewPw(e.target.value)}></Styles.Content>
+                        {pw.length > 0 && (<span className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>)}
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox htmlFor="checkPw">
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn disabled={!(isName && isEmail && isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
                 {clicked === "Profile" &&
-                <Styles.MyProfileBox onSubmit={handleSubmit(onSubmit)} id="Profile">
+                <Styles.MyProfileBox id="Profile">
                     <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
@@ -191,21 +242,21 @@ export const EditmemberPage = () => {
                     </Styles.LabelBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="name">이름</Styles.MemberEdit>
-                        <Styles.Content placeholder="홍길동"  {...register('name')} onChange={(e) => setName(e.target.value)} value={name || ''}/>
-                        <Styles.ErrorMessage>{errors.name && <Styles.ErrorMessage>{errors.name.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
+                        <Styles.Content placeholder="홍길동" onKeyUp={onChangeName} onChange={(e) => setName(e.target.value)} value={name || ''} />
+                        {name.length > 0 && <span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</span>}
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="phone">연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01012345678" {...register('phone')} onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
-                        <Styles.ErrorMessage>{errors.phone && <Styles.ErrorMessage>{errors.phone.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
+                        <Styles.Content placeholder="01012345678" onKeyUp={onChangePhone} onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
+                        {phone.length > 0 && (<span className={`message ${isPhone ? 'success' : 'error'}`}>{phoneMessage}</span>)}
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn onClick={()=>{update()}}>수정하기</Styles.BasicInfoBtn> 
+                        <Styles.BasicInfoBtn disabled={!(isName && isEmail && isPassword && isPasswordConfirm)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }
             </Styles.ProfileBox>
-        </Styles.Wrapper>
+        </MarginTopWrapper>
 
     );
 }
