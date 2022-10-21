@@ -42,7 +42,7 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     }
 
     return(
-        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "2", backgroundColor: "white"}}} ariaHideApp={false}>
+        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "1", backgroundColor: "white"}}} ariaHideApp={false}>
             <Styles.CalendarCustom onChange={onChange} value={value} selectRange />
             <Styles.BtnBox>
                 <Styles.Btn onClick={() => setOpen(false)}>이전</Styles.Btn>
@@ -165,12 +165,14 @@ const CreatePlanPage = () => {
     const [coordinate, setCoordinate] = useState([]);
     const [tours, setTours] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
+    const [tourselect, setTourSelect] = useState(); // 지도 of/off
 
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
             console.log("페이징 키워드 " + searchKeyword);
+            setTourSelect(Array(totalItemsCount1).fill(false));
         }else{
             pagingHook.current = true;
         }
@@ -191,6 +193,7 @@ const CreatePlanPage = () => {
                 setStotalItemCount1(tourItems.length);
                 setTours(tourItems);
                 setPage1(1);
+                setTourSelect(Array(tourItems.length).fill(false));
             }
           })();
     }
@@ -206,6 +209,7 @@ const CreatePlanPage = () => {
             setStotalItemCount1(tourItems.length);
             setTours(tourItems);
             setPage1(1);
+            setTourSelect(Array(tourItems.length).fill(false));
           })();
     }
 
@@ -223,12 +227,16 @@ const CreatePlanPage = () => {
         }
     };
 
-    const moveMapLocation = (e) =>{
+    const moveMapLocation = (e,id) =>{
         const coor = e.target.value.split(',');
         const newCoor = {
             lat: coor[0], lon : coor[1]
         }
+
+        const newArr = tourselect.fill(false);
+        newArr[id] = true;
         setCoordinate(newCoor);
+        setTourSelect(newArr);
     }
 
     return(
@@ -295,7 +303,7 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
                                                                 <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e)}/>
+                                                                    <Styles.LocationImg open={tourselect[id]} value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.ItemBox>
                                                                     <Styles.DayItemText>경북 상주시</Styles.DayItemText>
