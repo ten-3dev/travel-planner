@@ -32,12 +32,7 @@ const TravelPage = () => {
         if(pagingHook.current){
             console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
-            console.log(searchKeyword + "dddddd");
-            if(searchKeyword === null || searchKeyword === ""){        
-                tourData2();
-            }else{
-                tourData(searchKeyword);
-            }
+            console.log("페이징 키워드 " + searchKeyword);
         }else{
             pagingHook.current = true;
         }
@@ -65,9 +60,7 @@ const TravelPage = () => {
             }else{
                 const tourItems = json.response.body.items.item;
                 setStotalItemCount(tourItems.length);
-                setTours(tourItems.filter((e,index) => {
-                    if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;
-                }));
+                setTours(tourItems);
             }
           })();
     }
@@ -82,9 +75,7 @@ const TravelPage = () => {
             const tourItems = json.response.body.items.item;
             console.log(tourItems);
                 setStotalItemCount(tourItems.length);
-                setTours(tourItems.filter((e,index) => {
-                    if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;
-                }));
+                setTours(tourItems);
           })();
     }
     const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
@@ -126,30 +117,32 @@ const TravelPage = () => {
                      <Styles.Txt>
                         <Styles.PlaceTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.PlaceTitle>
                      </Styles.Txt>
-                 : (tours.map( (tour,id) =>{
-                    return(
-                        <div key={id}>
-                            <Styles.TravelWrapper>
-                                <Styles.Image src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2} onClick={() => infoMove(tour.contentid)}/>
-                                <Styles.Txt>
-                                    <Styles.PlaceTitle onClick={() => infoMove(tour.contentid)}>
-                                        {tour.title}
-                                    </Styles.PlaceTitle>
-                                    <Styles.Address>
-                                        {tour.addr1}
-                                    </Styles.Address>
-                                    <Styles.Tel>
-                                        {tour.tel}
-                                    </Styles.Tel>
-                                </Styles.Txt>
-                                <Styles.LikeBox>
-                                    <LikeButton />
-                                    <Styles.Like>+찜하기</Styles.Like>
-                                </Styles.LikeBox>
-                            </Styles.TravelWrapper>
-                        </div>
-                    )
-                }))}
+                 : (tours.filter((e,index) => {
+                        if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;
+                        }).map( (tour,id) =>{
+                            return(
+                                <div key={id}>
+                                    <Styles.TravelWrapper>
+                                        <Styles.Image src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2} onClick={() => infoMove(tour.contentid)}/>
+                                        <Styles.Txt>
+                                            <Styles.PlaceTitle onClick={() => infoMove(tour.contentid)}>
+                                                {tour.title}
+                                            </Styles.PlaceTitle>
+                                            <Styles.Address>
+                                                {tour.addr1}
+                                            </Styles.Address>
+                                            <Styles.Tel>
+                                                {tour.tel}
+                                            </Styles.Tel>
+                                        </Styles.Txt>
+                                        <Styles.LikeBox>
+                                            <LikeButton />
+                                            <Styles.Like>+찜하기</Styles.Like>
+                                        </Styles.LikeBox>
+                                    </Styles.TravelWrapper>
+                                </div>
+                            )
+                        }))}
                 </Styles.TravelListBox>
                 <Styles.TravelFilterBox>
                 <Styles.FilterBoxSticky>
