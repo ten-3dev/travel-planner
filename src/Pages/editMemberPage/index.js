@@ -1,4 +1,7 @@
 import React,{useEffect, useState } from "react";
+import {useForm} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
@@ -89,42 +92,48 @@ export const EditmemberPage = () => {
     }
 
     //아직 사용 안됌 고쳐야함
-    // const schema = yup.object().shape({
+    const schema = yup.object().shape({
        
-    //     pw: yup
-    //      .string()
-    //       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
-    //       .max(25, '비밀번호는 25자리 이하여야 합니다.')
-    //       .matches(
-    //         /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    //         "최소한개의 영문자, 숫자를 입력하세요."
-    //       )
-    //       .required('비밀번호를 입력해주세요.'),
-    //     checkPw: yup
-    //       .string()
-    //       .oneOf([yup.ref('pw'), null],
-    //       "비밀번호가 일치하지 않습니다.")
-    //       .required('비밀번호를 다시 입력해주세요.'),
-    //     name: yup
-    //       .string()
-    //       .matches(
-    //         /^[가-힣]{2,4}$/,
-    //         "2-4자리의 한글이름만 입력가능"
-    //       )
-    //       .required('이름을 입력해주세요.'),
-    //     phone: yup
-    //       .string()
-    //       .matches(
-    //         /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
-    //         '올바른 휴대폰 번호를 입력해주세요.'
-    //       )
-    //       .required('휴대폰 번호를 입력해주세요.')
+        pw: yup
+         .string()
+          .min(8, '비밀번호는 8자리 이상이어야 합니다.')
+          .max(25, '비밀번호는 25자리 이하여야 합니다.')
+          .matches(
+            /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            "최소한개의 영문자, 숫자를 입력하세요."
+          )
+          .required('비밀번호를 입력해주세요.'),
+        checkPw: yup
+          .string()
+          .oneOf([yup.ref('pw'), null],
+          "비밀번호가 일치하지 않습니다.")
+          .required('비밀번호를 다시 입력해주세요.'),
+        name: yup
+          .string()
+          .matches(
+            /^[가-힣]{2,4}$/,
+            "2-4자리의 한글이름만 입력가능"
+          )
+          .required('이름을 입력해주세요.'),
+        phone: yup
+          .string()
+          .matches(
+            /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
+            '올바른 휴대폰 번호를 입력해주세요.'
+          )
+          .required('휴대폰 번호를 입력해주세요.')
        
-    //   });
+      });
+
+    const { register, handleSubmit, formState:{ errors }} = useForm({
+        resolver: yupResolver(schema),
+       mode: 'onChange'});
+   
+     const onSubmit = (data) => console.log(data);
     
 
     return(
-        <MarginTopWrapper margin>
+        <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -141,16 +150,16 @@ export const EditmemberPage = () => {
                 <Styles.MemberInforBox id="Paw" >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setPw(e.target.value)} ></Styles.Content>
+                        <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
+                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')} onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
+                        <Styles.MemberEdit htmlFor="newPw">새 비밀번호</Styles.MemberEdit>
+                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." {...register('newPw')} onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
-                    <Styles.MemberContentBox>
+                    <Styles.MemberContentBox htmlFor="checkPw">
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
+                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." {...register('checkPw')} onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
@@ -158,8 +167,8 @@ export const EditmemberPage = () => {
                 </Styles.MemberInforBox>
                 }
                 {clicked === "Profile" &&
-                <Styles.MyProfileBox id="Profile">
-                <Styles.BasicInformation>기본정보</Styles.BasicInformation>
+                <Styles.MyProfileBox onSubmit={handleSubmit(onSubmit)} id="Profile">
+                    <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
                         <Styles.BasicInformationEamilBox>
@@ -173,12 +182,14 @@ export const EditmemberPage = () => {
                             <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
                     </Styles.LabelBox>
                     <Styles.BasicInforContentBox>
-                        <Styles.MemberEdit >이름</Styles.MemberEdit>
-                        <Styles.Content placeholder="홍길동"  onChange={(e) => setName(e.target.value)} value={name || ''}/>
+                        <Styles.MemberEdit htmlFor="name">이름</Styles.MemberEdit>
+                        <Styles.Content placeholder="홍길동"  {...register('name')} onChange={(e) => setName(e.target.value)} value={name || ''}/>
+                        <Styles.ErrorMessage>{errors.name && <Styles.ErrorMessage>{errors.name.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
-                        <Styles.MemberEdit>연락처</Styles.MemberEdit>
-                        <Styles.Content placeholder="01012345678" onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
+                        <Styles.MemberEdit htmlFor="phone">연락처</Styles.MemberEdit>
+                        <Styles.Content placeholder="01012345678" {...register('phone')} onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
+                        <Styles.ErrorMessage>{errors.phone && <Styles.ErrorMessage>{errors.phone.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
                         <Styles.BasicInfoBtn onClick={()=>{update()}}>수정하기</Styles.BasicInfoBtn> 
@@ -186,7 +197,7 @@ export const EditmemberPage = () => {
                 </Styles.MyProfileBox>
                 }
             </Styles.ProfileBox>
-        </MarginTopWrapper>
+        </Styles.Wrapper>
 
     );
 }
