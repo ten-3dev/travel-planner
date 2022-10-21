@@ -93,16 +93,14 @@ const TravelPage = () => {
         }
     };
 
-    const infoMove = (e) => {   //상세정보 함수
-        (async () => {
-            const response = await fetch(
-                `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${e}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
-            );
-            console.log("상세정보함수");
-            const json = await response.json();
-            const tourItems = json.response.body.items.item;
-            navigate('/information', {state : tourItems});
-          })();
+    const infoMove = async (e) => {   //상세정보 함수
+        // const response = await fetch(
+        //     `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${e}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
+        // );
+        console.log("상세정보함수");
+        // const json = await response.json();
+        // const tourItems = json.response.body.items.item;
+        navigate(`/information?id=${e}`);
     }
 
     return (

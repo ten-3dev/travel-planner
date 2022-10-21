@@ -17,7 +17,7 @@ export const Comment = styled.div`
     flex-direction: column;
     box-sizing: border-box;
     width: 100%;
-    margin-top: 200px;
+    margin-top: 100px;
     flex: 1;
     
 `

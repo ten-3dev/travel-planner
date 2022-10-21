@@ -9,92 +9,76 @@ import Comment from "../../Components/Comment"
 
 
 const InformationPage = () => {
-    const data = useLocation(); //mainPage, travelPage에서 받아온 키워드 값
-    const {state} = data;
-    console.log(state);
+    const [infoData, setInfoData] = useState();
+    useEffect(() => {
+        console.log(location);
+        if(location.search === ""){
+            alert("url이 잘못되었습니다.");
+            history.back();
+        }else{
+            console.log(location.search.split("=")[1]);
+            getTravelInfo(location.search.split("=")[1]);
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log(infoData);
+    }, [infoData])
+
+    const getTravelInfo = async (id) => {
+        const response = await fetch(`https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`)
+        const json = await response.json();
+        const data  = json.response.body.items.item;
+        setInfoData(data[0]);
+    }
+
+    if(infoData === null){
+        return null;
+    }
+
     return(
         <MarginTopWrapper margin>
-            {state.map((e,id) => {
-                return(
-                    <div key={id}>
-                        <Styles.TitleBox>
-                            <Styles.Title>
-                                {e.title}
-                            </Styles.Title>
-                        </Styles.TitleBox>
-                        <Styles.LikeBox>
-                            <Styles.Img1><LikeButton/></Styles.Img1>
-                            <Styles.Like>+찜하기</Styles.Like>
-                        </Styles.LikeBox>
-                        <Styles.TopBar />
-                        <Styles.TitleImgBox>
-                            <Styles.Titleimage src={e.firstimage === "" ? "assets/logo.png" : e.firstimage}></Styles.Titleimage>
-                        </Styles.TitleImgBox>
-                        <Styles.InformationBox>
-                            <Styles.InformationTitle>상세정보</Styles.InformationTitle>
-                            <Styles.InformationBar />
-                        <Styles.InformationContnet><div dangerouslySetInnerHTML={{ __html: e.overview }}></div></Styles.InformationContnet>
-                        <Styles.Map>
-                            <Map lon = {e.mapx} lat = {e.mapy}/>
-                        </Styles.Map>
-                        <Styles.DetailedInforBox>
-                            <Styles.DetaBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 전화번호</Styles.DetaFont>
-                                    <Styles.DetainforMation>{e.tel === "" ? "조회하지 못함" : e.tel  }</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 주소</Styles.DetaFont>
-                                    <Styles.DetainforMation>{e.addr1+" " + e.addr2}</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 우편주소</Styles.DetaFont>
-                                    <Styles.DetainforMation>{e.zipcode}</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 이용요금</Styles.DetaFont>
-                                    <Styles.DetainforMation>대인 32123원</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont/>
-                                        <Styles.DetainforMation>소인32123원</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 장애인주차요금</Styles.DetaFont>
-                                    <Styles.DetainforMation>장애인 주차장있음,무장애 편의시설</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                                <Styles.DetaFontBox>
-                                    <Styles.DetaFont>● 휠체어</Styles.DetaFont>
-                                    <Styles.DetainforMation>대여가능(100대)</Styles.DetainforMation>
-                                </Styles.DetaFontBox>
-                            </Styles.DetaBox>
-                            <Styles.DetaBoxrightBox>
-                                <Styles.DetaFontrightBox>
-                                    <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
-                                    <Styles.DetainfoRight><div dangerouslySetInnerHTML={{ __html: e.homepage }}></div></Styles.DetainfoRight>
-                                </Styles.DetaFontrightBox>
-                                <Styles.DetaFontrightBox>
-                                    <Styles.DetaFont>● 이용시간</Styles.DetaFont>
-                                    <Styles.DetainfoRight>충청북도 충주시 양성면 가곡로 1434</Styles.DetainfoRight>
-                                </Styles.DetaFontrightBox>
-                                <Styles.DetaFontrightBox>
-                                    <Styles.DetaFont>● 주차</Styles.DetaFont>
-                                    <Styles.DetainfoRight>매주 월요일 휴관(공휴일 월요일 제외)</Styles.DetainfoRight>
-                                </Styles.DetaFontrightBox>
-                                <Styles.DetaFontrightBox>
-                                    <Styles.DetaFont>● 출입통로</Styles.DetaFont>
-                                    <Styles.DetainfoRight>대인 32123원</Styles.DetainfoRight>
-                                </Styles.DetaFontrightBox>
-                                <Styles.DetaFontrightBox>
-                                    <Styles.DetaFont>● 접근로</Styles.DetaFont>
-                                    <Styles.DetainfoRight>장애인 주차장있음,무장애 편의시설</Styles.DetainfoRight>
-                                </Styles.DetaFontrightBox>
-                                </Styles.DetaBoxrightBox>
-                            </Styles.DetailedInforBox>
-                        </Styles.InformationBox>
-                    </div>
-                )
-            })}
+            <Styles.TitleBox>
+                <Styles.Title>{infoData?.title}</Styles.Title>
+            </Styles.TitleBox>
+            <Styles.LikeBox>
+                <Styles.Img1>
+                    <LikeButton/>
+                </Styles.Img1>
+                <Styles.Like>+찜하기</Styles.Like>
+            </Styles.LikeBox>
+            <Styles.TopBar />
+            <Styles.TitleImgBox>
+                <Styles.Titleimage src={infoData?.firstimage === "" ? "assets/logo.png" : infoData?.firstimage} />
+            </Styles.TitleImgBox>
+            <Styles.InformationBox>
+                <Styles.InformationTitle>상세정보</Styles.InformationTitle>
+                <Styles.InformationBar />
+                <Styles.InformationContnet>{infoData?.overview}</Styles.InformationContnet>
+                <Styles.Map>
+                    <Map lon = {infoData?.mapx} lat = {infoData?.mapy}/>
+                </Styles.Map>
+                <Styles.DetailedInforBox>
+                    <Styles.DetaBox>
+                        <Styles.DetaFontBox>
+                            <Styles.DetaFont>● 전화번호</Styles.DetaFont>
+                            <Styles.DetainforMation>{infoData?.tel === "" ? "조회하지 못함" : infoData?.tel}</Styles.DetainforMation>
+                        </Styles.DetaFontBox>
+                        <Styles.DetaFontBox>
+                            <Styles.DetaFont>● 주소</Styles.DetaFont>
+                            <Styles.DetainforMation>{infoData?.addr1+ " " + infoData?.addr2}</Styles.DetainforMation>
+                        </Styles.DetaFontBox>
+                        <Styles.DetaFontBox>
+                            <Styles.DetaFont>● 우편주소</Styles.DetaFont>
+                            <Styles.DetainforMation>{infoData?.zipcode}</Styles.DetainforMation>
+                        </Styles.DetaFontBox>
+                        <Styles.DetaFontBox>
+                        <Styles.DetaFont>● 홈페이지</Styles.DetaFont>
+                            <Styles.DetainfoRight><div dangerouslySetInnerHTML={{ __html: infoData?.homepage }}></div></Styles.DetainfoRight>
+                        </Styles.DetaFontBox>
+                    </Styles.DetaBox>
+                </Styles.DetailedInforBox>
+            </Styles.InformationBox>
             <Comment/>
         </MarginTopWrapper>
     );

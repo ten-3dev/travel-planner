@@ -147,15 +147,9 @@ export const DetailedInforBox = styled.div`
     align-items: center;
 `
 export const DetaBox = styled.div`
-    width: 50%;
+    width: 100%;
 `
-export const DetaBoxrightBox = styled.div`
-    width: 50%;
-` 
 export const DetaFontBox = styled.div`
-    display: flex;
-`
-export const DetaFontrightBox = styled.div`
     display: flex;
 `
 export const DetaFont = styled.div`

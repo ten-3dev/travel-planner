@@ -42,7 +42,7 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     }
 
     return(
-        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "1", backgroundColor: "white"}}} ariaHideApp={false}>
+        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "2", backgroundColor: "white"}}} ariaHideApp={false}>
             <Styles.CalendarCustom onChange={onChange} value={value} selectRange />
             <Styles.BtnBox>
                 <Styles.Btn onClick={() => setOpen(false)}>이전</Styles.Btn>
