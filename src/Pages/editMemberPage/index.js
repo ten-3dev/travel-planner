@@ -1,8 +1,6 @@
 import React,{useEffect, useState } from "react";
-import {useForm} from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import * as Styles from './style';
+import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as crypto from 'crypto';
@@ -77,7 +75,7 @@ export const EditmemberPage = () => {
     const userDelete = async () => {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
             try{
-                const data = await axios.delete('http://localhost:8080/userDelete', {data: email});
+                const data = await axios.delete('http://localhost:8080/userDelete', {data:email});
                 alert(data.data.msg);
             }catch(e){
                 console.log("탈퇴 실패", e)
@@ -90,10 +88,11 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
-
+    //아직 사용 안됌 고쳐야함
     // const schema = yup.object().shape({
+       
     //     pw: yup
-    //       .string()
+    //      .string()
     //       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
     //       .max(25, '비밀번호는 25자리 이하여야 합니다.')
     //       .matches(
@@ -122,16 +121,10 @@ export const EditmemberPage = () => {
     //       .required('휴대폰 번호를 입력해주세요.')
        
     //   });
-
-    //   const { handleSubmit, formState:{ errors }} = useForm({
-    //     resolver: yupResolver(schema),
-    //    mode: 'onChange'});
-   
-    //  const onSubmit = (data) => console.log(data);
     
 
     return(
-        <Styles.Wrapper>
+        <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -150,17 +143,14 @@ export const EditmemberPage = () => {
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setPw(e.target.value)} ></Styles.Content>
-
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
-
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
-
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
@@ -185,12 +175,10 @@ export const EditmemberPage = () => {
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit >이름</Styles.MemberEdit>
                         <Styles.Content placeholder="홍길동"  onChange={(e) => setName(e.target.value)} value={name || ''}/>
-
                     </Styles.BasicInforContentBox>
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit>연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01012345678" onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
-
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
                         <Styles.BasicInfoBtn onClick={()=>{update()}}>수정하기</Styles.BasicInfoBtn> 
@@ -198,7 +186,7 @@ export const EditmemberPage = () => {
                 </Styles.MyProfileBox>
                 }
             </Styles.ProfileBox>
-            </Styles.Wrapper>
+        </MarginTopWrapper>
 
     );
 }
