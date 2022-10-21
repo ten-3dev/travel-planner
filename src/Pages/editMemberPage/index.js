@@ -119,12 +119,12 @@ export const EditmemberPage = () => {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/
         const passwordCurrent = e.target.value
         setPassword(e.target.value)
-        if (!passwordRegex.test(passwordCurrent)){
-            setPasswordMessage('최소한개의 영문자, 숫자를 8자리 이상 입력해주세요.')
-            setIsPassword(false)
-        }else{
+        if (passwordRegex.test(passwordCurrent)){
             setPasswordMessage('올바른 비밀번호 형식입니다')
             setIsPassword(true)
+        }else{
+            setPasswordMessage('최소한개의 영문자, 숫자를 8자리 이상 입력해주세요.')
+            setIsPassword(false)
         }
     }
 
@@ -144,7 +144,7 @@ export const EditmemberPage = () => {
         const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/
         const phoneCurrent = e.target.value
         setIsPhone(e.target.value)
-        if (!phoneRegex.test(phoneCurrent)){
+        if (phoneRegex.test(phoneCurrent)){
             setPhoneMessage('띄어쓰기 없이 입력해주세요. ex) 01012345678')
             setIsPhone(true)
         }else{
