@@ -12,13 +12,13 @@ export const EditmemberPage = () => {
     const [email, setEmail] = useState("");
     const [pw, setPw] = useState("");
     const [newPw, setNewPw] = useState("");
-    const [newClickPw, setClickPw] = useState("");
+    const [newPwConfirm, setNewPwConfirm] = useState("");
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [showName, setShowName] = useState("");
     const [birth, setBirth] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
+
     
     //유효성 검사
     const[isPassword, setIsPassword] = useState(false);
@@ -67,7 +67,7 @@ export const EditmemberPage = () => {
       }
     const updatepw = async () => { //회원 데이터 수정 비밀번호
         if(window.confirm("수정하시겠습니까?")){
-            if(newPw !== newClickPw){
+            if(newPw !== newPwConfirm){
                 alert("비밀번호가 서로 맞지 않습니다.");
                 return;
             }
@@ -77,7 +77,7 @@ export const EditmemberPage = () => {
                 await axios.post('http://localhost:8080/getUserUpdatePw',{pw: createHashedPw, newPw: createHashedNewPw});
                 alert("비밀번호 변경 성공");
             }catch(e){
-                alert("기존 비밀번호와 맞지 않음");
+                alert("기존 비밀번호와 맞지 않음 얘가문제임 안고쳐짐 ㅈ같음", e); //얘가 문제다 ㅅㅂ년임 아주
             }
         }
     }
@@ -105,6 +105,7 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
+    //새 비밀번호 유효성
     const onChangePassword = (e)=> {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
         const passwordCurrent = e.target.value
@@ -118,14 +119,15 @@ export const EditmemberPage = () => {
         }
     }
 
+    //새 비밀번호와 일치하는지 확인하는 유효성. 백에서도 하고있음.
     const onChangePasswordConfirm = (e)=> {
         const passwordConfirmCurrent = e.target.value
-        setPasswordConfirm(e.target.value)
-        if (pw === passwordConfirmCurrent){
-            setPasswordMessage('비밀번호가 일치합니다.')
+        setNewPwConfirm(e.target.value)
+        if (newPw === passwordConfirmCurrent){
+            setPasswordConfirmMessage('새 비밀번호가 일치합니다.')
             setIsPasswordConfirm(true)
         }else{
-            setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
+            setPasswordConfirmMessage('새 비밀번호가 일치하지 않습니다.')
             setIsPasswordConfirm(false)
         }
     }
@@ -206,29 +208,38 @@ export const EditmemberPage = () => {
                     <Styles.DeleteBtn onClick={userDelete}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
+
+
+
                 <Styles.MemberInforBox id="Paw" >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
+                        <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
 
+
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="password">새 비밀번호</Styles.MemberEdit>
+                        <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="새 비밀번호를 입력해주세요." onKeyUp={onChangePassword} onChange={(e) => setNewPw(e.target.value)}></Styles.Content>
-                        {pw.length > 0 && (<span className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>)}
+                        {newPw.length > 0 && (<span className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>)}
                     </Styles.MemberContentBox>
 
-                    <Styles.MemberContentBox htmlFor="checkPw">
+
+                    <Styles.MemberContentBox>
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onKeyUp={onChangePasswordConfirm} onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
-                        {newPw.length > 0 && (<span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>)}
+                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onKeyUp={onChangePasswordConfirm} onChange={(e) => setNewPwConfirm(e.target.value)} ></Styles.Content>
+                        {newPwConfirm.length > 0 && (<span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>)}
                     </Styles.MemberContentBox>
+
                     <Styles.BtnBox>
-                        <Styles.EditBtn disabled={!(isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
+
+
+
                 {clicked === "Profile" &&
                 <Styles.MyProfileBox id="Profile">
                     <Styles.BasicInformation>기본정보</Styles.BasicInformation>
@@ -245,12 +256,16 @@ export const EditmemberPage = () => {
                             <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
                     </Styles.LabelBox>
 
+
+
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="name">이름</Styles.MemberEdit>
                         <Styles.Content placeholder="홍길동" onKeyUp={onChangeName} onChange={(e) => setName(e.target.value)} value={name || ''} />
                         {name.length > 0 && <span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</span>}
                     </Styles.BasicInforContentBox>
                     
+
+
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="phone">연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01012345678" onKeyUp={onChangePhone} onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
