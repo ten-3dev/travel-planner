@@ -3,7 +3,6 @@ import {useForm} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as Styles from './style';
-import { MarginTopWrapper } from "../../Common/style";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as crypto from 'crypto';
@@ -132,7 +131,7 @@ export const EditmemberPage = () => {
     
 
     return(
-        <MarginTopWrapper margin onSubmit={handleSubmit(onSubmit)}>
+        <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -199,7 +198,7 @@ export const EditmemberPage = () => {
                 </Styles.MyProfileBox>
                 }
             </Styles.ProfileBox>
-        </MarginTopWrapper>
+            </Styles.Wrapper>
 
     );
 }

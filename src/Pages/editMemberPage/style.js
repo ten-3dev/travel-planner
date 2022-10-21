@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.form`
+    width: 100%;
+    margin: 150px 0;
+`
 export const EditTitle = styled.div`
     font-size: 30px;
     font-weight: 500px;
