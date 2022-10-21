@@ -25,7 +25,6 @@ const TravelPage = () => {
         }else{
             tourData(state);
         }
-        
     },[]);
 
     useEffect(() => {
@@ -61,6 +60,7 @@ const TravelPage = () => {
                 const tourItems = json.response.body.items.item;
                 setStotalItemCount(tourItems.length);
                 setTours(tourItems);
+                setPage(1);
             }
           })();
     }
@@ -76,13 +76,13 @@ const TravelPage = () => {
             console.log(tourItems);
                 setStotalItemCount(tourItems.length);
                 setTours(tourItems);
+                setPage(1);
           })();
     }
     const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
         if (e.key === 'Enter') {
             const value = encodeURIComponent(e.target.value);
             setSearchKeyword(value);
-            setPage(1);
             if(value === "" ){
                 console.log("111111111111");
                 tourData2();

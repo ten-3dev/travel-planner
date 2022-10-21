@@ -183,11 +183,14 @@ const CreatePlanPage = () => {
             console.log("tourData 실행");
             const json = await response.json();
             if(json.response.body.items === ""){
+                console.log("wwwwwwwwwwwwwwwwwww");
+                setPage1(1);
                 setTours("");
             }else{
                 const tourItems = json.response.body.items.item;
                 setStotalItemCount1(tourItems.length);
                 setTours(tourItems);
+                setPage1(1);
             }
           })();
     }
@@ -202,19 +205,19 @@ const CreatePlanPage = () => {
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
             setTours(tourItems);
+            setPage1(1);
           })();
     }
 
-     const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
+    const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
         if (e.key === 'Enter') {
             const value = encodeURIComponent(e.target.value);
-            console.log("입력한 키워드 " + value);
             setSearchKeyword(value);
-            setPage1(1);
-            if(value === "" || value === null ){
+            if(value === "" ){
                 console.log("111111111111");
                 tourData2();
             }else{
+                console.log("2222222222222");
                 tourData(value);
             }
         }
@@ -274,27 +277,29 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {tours.filter((e,index) => {
-                                    if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
-                                        }).map((tour,id) => {
-                                            return(
-                                                <div key ={id}>
-                                                    <Styles.DayItem>
-                                                        <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
-                                                            <Styles.DayItemTextBox>
-                                                            <Styles.DayItemTitle>{tour.title}
-                                                                <Styles.LocationImg src={"assets/image35.png"}/>
-                                                            </Styles.DayItemTitle>
-                                                            <Styles.ItemBox>
-                                                                <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                                                <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                                                <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                                            </Styles.ItemBox>
-                                                        </Styles.DayItemTextBox>
-                                                    </Styles.DayItem>
-                                                </div>
-                                            )
-                                        })}
+                                {tours === "" ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
+                                :(tours.filter((e,index) => {
+                                        if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
+                                            }).map((tour,id) => {
+                                                return(
+                                                    <div key ={id}>
+                                                        <Styles.DayItem>
+                                                            <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
+                                                                <Styles.DayItemTextBox>
+                                                                <Styles.DayItemTitle>{tour.title}
+                                                                    <Styles.LocationImg src={"assets/image35.png"}/>
+                                                                </Styles.DayItemTitle>
+                                                                <Styles.ItemBox>
+                                                                    <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                                                    <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                                                    <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
+                                                                </Styles.ItemBox>
+                                                            </Styles.DayItemTextBox>
+                                                        </Styles.DayItem>
+                                                    </div>
+                                                )
+                                            }))
+                                }  
                             </Styles.ScrollBox>
                             <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
                         </Styles.ListBox>
