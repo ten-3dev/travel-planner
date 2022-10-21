@@ -97,7 +97,6 @@ const CreatePlanPage = () => {
     const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
     const [filterOpen, setFilterOpen] = useState(false);
     const [dateList, setDateList] = useState();
-    const [tours, setTours] = useState([]); //@@추가
     
     //박스를 움직이게 하는 state
     const [controlOpen, setControlOpen] = useState(false); // Control
@@ -125,10 +124,10 @@ const CreatePlanPage = () => {
     }, [page2, itemsCount]);
 
     useEffect(() => { // 새로고침 방지 alert
-        //@@
+        //@@ 추가
         console.log("최초 useEffect실행@@");
         tourData2();
-        //@@
+
         window.onbeforeunload = function() {
             return true;
         };
@@ -163,21 +162,17 @@ const CreatePlanPage = () => {
 
     //@@@@@@@@
     const pagingHook = useRef(false)
+    const [tours, setTours] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
 
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
-            console.log(searchKeyword + "dddddd");
-            if(searchKeyword === null || searchKeyword === ""){        
-                tourData2();
-            }else{
-                tourData(searchKeyword);
-            }
-            }else{
-                pagingHook.current = true;
-            }
+            console.log("페이징 키워드 " + searchKeyword);
+        }else{
+            pagingHook.current = true;
+        }
     }, [page1]);
 
     const tourData = (props) =>{    //키워드 별 검색 함수
@@ -192,9 +187,7 @@ const CreatePlanPage = () => {
             }else{
                 const tourItems = json.response.body.items.item;
                 setStotalItemCount1(tourItems.length);
-                setTours(tourItems.filter((e,index) => {
-                    if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
-                }));
+                setTours(tourItems);
             }
           })();
     }
@@ -208,20 +201,21 @@ const CreatePlanPage = () => {
             const json = await response.json();
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
-            setTours(tourItems.filter((e,index) => {
-                if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
-            }));
+            setTours(tourItems);
           })();
     }
 
      const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
         if (e.key === 'Enter') {
             const value = encodeURIComponent(e.target.value);
+            console.log("입력한 키워드 " + value);
             setSearchKeyword(value);
             setPage1(1);
-            if(value === "" ){
+            if(value === "" || value === null ){
                 console.log("111111111111");
                 tourData2();
+            }else{
+                tourData(value);
             }
         }
     };
@@ -280,25 +274,27 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {tours.map((tour,id) => {
-                                        return(
-                                            <div key ={id}>
-                                                <Styles.DayItem>
-                                                    <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
-                                                        <Styles.DayItemTextBox>
-                                                        <Styles.DayItemTitle>{tour.title}
-                                                            <Styles.LocationImg src={"assets/image35.png"}/>
-                                                        </Styles.DayItemTitle>
-                                                        <Styles.ItemBox>
-                                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                                        </Styles.ItemBox>
-                                                    </Styles.DayItemTextBox>
-                                                </Styles.DayItem>
-                                            </div>
-                                        )
-                                })}
+                                {tours.filter((e,index) => {
+                                    if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
+                                        }).map((tour,id) => {
+                                            return(
+                                                <div key ={id}>
+                                                    <Styles.DayItem>
+                                                        <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
+                                                            <Styles.DayItemTextBox>
+                                                            <Styles.DayItemTitle>{tour.title}
+                                                                <Styles.LocationImg src={"assets/image35.png"}/>
+                                                            </Styles.DayItemTitle>
+                                                            <Styles.ItemBox>
+                                                                <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                                                <Styles.ItemBtn>추가하기</Styles.ItemBtn>
+                                                                <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
+                                                            </Styles.ItemBox>
+                                                        </Styles.DayItemTextBox>
+                                                    </Styles.DayItem>
+                                                </div>
+                                            )
+                                        })}
                             </Styles.ScrollBox>
                             <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
                         </Styles.ListBox>
