@@ -1,36 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 
-class LikeButton extends React.Component{
-    state = {
-        isChecked: false,
-        
-    };
+const LikeButton = ({like, id}) => {
+    const [isChecked, setIsChecked] = useState(like);
 
-    onClick = () => {
-        this.state.isChecked ?
-        this.setState({
-            isChecked: false,
-           
-        })
-        :
-        this.setState({
-            isChecked: true,
-           
-        });
+    const onClick = () => {
+        setIsChecked(!isChecked);
+        console.log(id);
     }
-    render(){
-        return(
-            <React.Fragment>
-                <div >
-                    {this.state.isChecked ?  
-                    <HeartFilled style={{ color: 'red', fontSize: '30px'}}onClick={this.onClick}/> :
-                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={this.onClick}/>}
-                    <h3>{this.state.notice}</h3>
-                </div>
-            </React.Fragment> 
-        )
-    }
+    return(
+            <div >
+                {isChecked ?  
+                <HeartFilled style={{ color: 'red', fontSize: '30px'}}onClick={onClick}/> :
+                <HeartOutlined  style={{ fontSize: '30px'}} onClick={onClick}/>}
+            </div>
+    )
 }
-// style= {{fontSize: '50px', color:'red'}}
 export default LikeButton;
