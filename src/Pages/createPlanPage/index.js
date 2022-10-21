@@ -187,6 +187,16 @@ const CreatePlanPage = () => {
         }
     }, [page1]);
 
+    useEffect(() => { // 찜 목록 불러오는 event
+        if(sessionStorage.getItem("dibs")){
+            const dibs = sessionStorage.getItem("dibs").split(" ");
+            dibs.pop(); // 쓰레기 값 제거
+            console.log(dibs);
+        }else{
+            console.log("찜한거 없음");
+        }
+    }, [])
+
     const tourData = (props) =>{    //키워드 별 검색 함수
         (async () => {
             const response = await fetch(
@@ -350,7 +360,6 @@ const CreatePlanPage = () => {
                                                                 <Styles.ItemBox>
                                                                     <Styles.DayItemText>경북 상주시</Styles.DayItemText>
                                                                     <Styles.ItemBtn onClick={() => addTour(tour, update)}>추가하기</Styles.ItemBtn>
-                                                                    <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
                                                                 </Styles.ItemBox>
                                                             </Styles.DayItemTextBox>
                                                         </Styles.DayItem>

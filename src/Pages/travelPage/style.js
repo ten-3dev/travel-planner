@@ -159,18 +159,21 @@ export const Text = styled.div`
 `
 export const Like = styled.button`
     border: none;
-    width: 70px;
-    background: rgba(0, 150, 100, 0.5);
+    background: ${props => {
+        return props.dibs ? "rgba(0, 150, 100, 0.5)" : "rgba(255, 0, 100, 0.5)"
+    }};
     color: white;
     border-radius: 10px;
     margin-left: 15px;
     cursor: pointer;
+    width: 80px;
+    height: 100%;
  `
  export const LikeBox = styled.div`
      display: flex;
      justify-content: center;
      align-content: center;
      align-items: flex-start;
-     width: 100px;
      margin-top: 150px;
+     height: 25px;
  `

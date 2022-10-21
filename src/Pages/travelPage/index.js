@@ -14,6 +14,7 @@ const TravelPage = () => {
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
     const pagingHook = useRef(false)
     const data = useLocation(); //mainPage 받아온 키워드 값
+    const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
 
     useEffect(() => {
         window.scroll(0,0)
@@ -103,6 +104,24 @@ const TravelPage = () => {
         navigate(`/information?id=${e}`);
     }
 
+    // 찜하기 이벤트
+    const onDibs = (tour) => {
+        console.log(sessionStorage.getItem("dibs"));
+        setDibs(!dibs);
+        if(sessionStorage.getItem("dibs")){ // 세션 스토리지에 찜하기 스토리지가 있으면
+            const dibs = sessionStorage.getItem("dibs").split(" ")
+            const filterDibs = dibs.filter(id => id === tour.contentid);
+            if(filterDibs.length === 0){ // 현제 세션 스토리지 해당 값이 없으면
+                sessionStorage.setItem("dibs", sessionStorage.getItem("dibs") + tour.contentid + " ");
+            }else{
+                const dibs = sessionStorage.getItem("dibs");
+                sessionStorage.setItem("dibs", dibs.replace(tour.contentid + " ", ""));
+            }
+        }else{ // 없으면
+            sessionStorage.setItem("dibs", tour.contentid + " ");
+        }
+    }
+
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
@@ -117,9 +136,9 @@ const TravelPage = () => {
                      </Styles.Txt>
                  : (tours.filter((e,index) => {
                         if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;
-                        }).map( (tour,id) =>{
+                        }).map( (tour,idx) =>{
                             return(
-                                <div key={id}>
+                                <div key={idx}>
                                     <Styles.TravelWrapper>
                                         <Styles.Image src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2} onClick={() => infoMove(tour.contentid)}/>
                                         <Styles.Txt>
@@ -135,7 +154,21 @@ const TravelPage = () => {
                                         </Styles.Txt>
                                         <Styles.LikeBox>
                                             <LikeButton />
-                                            <Styles.Like>+찜하기</Styles.Like>
+                                            <Styles.Like onClick={() => onDibs(tour)} dibs={
+                                                    sessionStorage.getItem("dibs") 
+                                                ?
+                                                    sessionStorage.getItem("dibs").split(" ").filter(id => id === tour.contentid).length === 0 ? true : false
+                                                :
+                                                    true
+                                                }>
+                                                {
+                                                    sessionStorage.getItem("dibs")
+                                                ?
+                                                    sessionStorage.getItem("dibs").split(" ").filter(id => id === tour.contentid).length === 0 ? "+찜하기" : "-찜 취소"
+                                                :
+                                                    "+찜하기"
+                                                }
+                                            </Styles.Like>
                                         </Styles.LikeBox>
                                     </Styles.TravelWrapper>
                                 </div>
