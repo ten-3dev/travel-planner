@@ -78,8 +78,11 @@ export const EditmemberPage = () => {
     const userDelete = async () => {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
             try{
-                const data = await axios.delete('http://localhost:8080/userDelete', {data:email});
+                const data = await axios.delete('http://localhost:8080/userDelete');
                 alert(data.data.msg);
+                localStorage.clear();
+                sessionStorage.clear();
+                navigate("/");
             }catch(e){
                 console.log("탈퇴 실패", e)
             }
@@ -91,11 +94,10 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
-    //아직 사용 안됌 고쳐야함
+    //유효성 검사는 되지만 데이터보내는걸 못막고 입력값이 그대로 db로 전달되버림
     const schema = yup.object().shape({
-       
         pw: yup
-         .string()
+          .string()
           .min(8, '비밀번호는 8자리 이상이어야 합니다.')
           .max(25, '비밀번호는 25자리 이하여야 합니다.')
           .matches(
@@ -103,14 +105,18 @@ export const EditmemberPage = () => {
             "최소한개의 영문자, 숫자를 입력하세요."
           )
           .required('비밀번호를 입력해주세요.'),
-        checkPw: yup
-          .string()
-          .oneOf([yup.ref('pw'), null],
-          "비밀번호가 일치하지 않습니다.")
-          .required('비밀번호를 다시 입력해주세요.'),
+        newPw: yup
+           .string()
+           .min(8, '비밀번호는 8자리 이상이어야 합니다.')
+           .max(25, '비밀번호는 25자리 이하여야 합니다.')
+           .matches(
+             /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+             "최소한개의 영문자, 숫자를 입력하세요."
+           )
+           .required('비밀번호를 입력해주세요.'),
         name: yup
-          .string()
-          .matches(
+           .string()
+           .matches(
             /^[가-힣]{2,4}$/,
             "2-4자리의 한글이름만 입력가능"
           )
@@ -152,14 +158,16 @@ export const EditmemberPage = () => {
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." {...register('pw')} onChange={(e) => setPw(e.target.value)} ></Styles.Content>
+                        <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit htmlFor="newPw">새 비밀번호</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." {...register('newPw')} onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
+                        <Styles.Content type="password" placeholder="새 비밀번호를 입력해주세요." {...register('newPw')} onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
+                        <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox htmlFor="checkPw">
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." {...register('checkPw')} onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
+                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
                         <Styles.EditBtn onClick={() => updatepw() }>수정하기</Styles.EditBtn>
