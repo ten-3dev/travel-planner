@@ -170,7 +170,7 @@ const CreatePlanPage = () => {
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
             console.log(searchKeyword + "dddddd");
-            if(searchKeyword === ""){        
+            if(searchKeyword === null || searchKeyword === ""){        
                 tourData2();
             }else{
                 tourData(searchKeyword);
@@ -276,7 +276,7 @@ const CreatePlanPage = () => {
                         </Styles.TravelInputBox>
                         <Styles.ListBox>
                             <Styles.ListTitleBox>
-                                <Styles.ListTitle>추천 여행지</Styles.ListTitle>
+                                <Styles.ListTitle>전체 여행지</Styles.ListTitle>
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>

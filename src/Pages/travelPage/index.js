@@ -33,7 +33,7 @@ const TravelPage = () => {
             console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터" + itemsCount + "까지");
             window.scroll(0,0)
             console.log(searchKeyword + "dddddd");
-            if(searchKeyword === ""){        
+            if(searchKeyword === null || searchKeyword === ""){        
                 tourData2();
             }else{
                 tourData(searchKeyword);
@@ -80,6 +80,7 @@ const TravelPage = () => {
             console.log("tourData2 실행")
             const json = await response.json();
             const tourItems = json.response.body.items.item;
+            console.log(tourItems);
                 setStotalItemCount(tourItems.length);
                 setTours(tourItems.filter((e,index) => {
                     if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;

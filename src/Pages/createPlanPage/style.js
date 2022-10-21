@@ -325,7 +325,6 @@ export const ListBox = styled.div`
 `
 
 export const ScrollBox = styled.div`
-    overflow-y: scroll;
     box-sizing: border-box;
     padding: 0 10px;
 `
