@@ -20,15 +20,15 @@ export const EditmemberPage = () => {
     const [birth, setBirth] = useState("");
     
     //유효성 검사
-    const[isPassword, setIsPassword] = useState<boolean>(false)
-    const[isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false)
-    const[isName, setIsName] = useState<boolean>(false)
-    const[isPhone, setIsPhone] = useState<boolean>(false)
+    const[isPassword, setIsPassword] = useState(false)
+    //const[isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+    const[isName, setIsName] = useState(false)
+    const[isPhone, setIsPhone] = useState<(false)
     //유효성 메세지
-    const[passwordMessage, setPasswordMessage] = useState<String>('')
+    const[passwordMessage, setPasswordMessage] = useState('')
     //const[passwordConfirmMessage, setPasswordConfirmMessage] = useState<String>('')
-    const[nameMessage, setNameMessage] = useState<String>('')
-    const[phoneMessage, setPhoneMessage] = useState<String>('')
+    const[nameMessage, setNameMessage] = useState('')
+    const[phoneMessage, setPhoneMessage] = useState('')
 
 
 
@@ -104,7 +104,7 @@ export const EditmemberPage = () => {
         navigate("/login");
     }
 
-    const onChangeName = useCallback( (e)=> {
+    const onChangeName = (e)=> {
         setName(e.target.value)
         if (e.target.value.length < 2 || e.target.value.length > 5){
             setNameMessage('2글자 이상 5글자 미만으로 입력해주세요.')
@@ -113,9 +113,9 @@ export const EditmemberPage = () => {
             setNameMessage('올바른 이름 형식입니다')
             setIsName(true)
         }
-    }, [])
+    }
 
-    const onChangePassword = useCallback( (e)=> {
+    const onChangePassword = (e)=> {
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/
         const passwordCurrent = e.target.value
         setPassword(e.target.value)
@@ -126,7 +126,7 @@ export const EditmemberPage = () => {
             setPasswordMessage('올바른 비밀번호 형식입니다')
             setIsPassword(true)
         }
-    }, [])
+    }
 
     // const onChangePasswordConfirm = useCallback( (e)=> {
     //     const passwordConfirmCurrent = e.target.value
@@ -140,18 +140,18 @@ export const EditmemberPage = () => {
     //     }
     // }, [])
 
-    const onChangePhone = useCallback( (e)=> {
+    const onChangePhone = (e)=> {
         const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/
         const phoneCurrent = e.target.value
         setIsPhone(e.target.value)
         if (!phoneRegex.test(phoneCurrent)){
-            setPhoneMessage('비밀번호가 일치합니다.')
+            setPhoneMessage('띄어쓰기 없이 입력해주세요. ex) 01012345678')
             setIsPhone(true)
         }else{
-            setPhoneMessage('비밀번호가 일치하지 않습니다.')
+            setPhoneMessage('올바른 휴대폰 번호를 입력해주세요.')
             setIsPhone(false)
         }
-    }, [])
+    }
     
     //유효성 검사는 되지만 데이터보내는걸 못막고 입력값이 그대로 db로 전달되버림
     // const schema = yup.object().shape({
@@ -221,7 +221,7 @@ export const EditmemberPage = () => {
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn disabled={!(isName && isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn disabled={!(isPassword)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
@@ -251,7 +251,7 @@ export const EditmemberPage = () => {
                         {phone.length > 0 && (<span className={`message ${isPhone ? 'success' : 'error'}`}>{phoneMessage}</span>)}
                     </Styles.BasicInforContentBox>
                     <Styles.BtnBox>
-                        <Styles.BasicInfoBtn disabled={!(isName && isPassword && isPasswordConfirm)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
+                        <Styles.BasicInfoBtn disabled={!(isName && isPhone)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
                 </Styles.MyProfileBox>
                 }
