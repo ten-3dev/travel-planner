@@ -77,7 +77,7 @@ export const EditmemberPage = () => {
     const userDelete = async () => {
         if(window.confirm("정말로 탈퇴하시겠습니까??")){
             try{
-                const data = await axios.post('http://localhost:8080/userDelete', email);
+                const data = await axios.delete('http://localhost:8080/userDelete', email);
                 alert(data.data.msg);
             }catch(e){
                 console.log("탈퇴 실패", e)
