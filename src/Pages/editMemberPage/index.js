@@ -132,7 +132,7 @@ export const EditmemberPage = () => {
     
 
     return(
-        <MarginTopWrapper margin>
+        <MarginTopWrapper margin onSubmit={handleSubmit(onSubmit)}>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -146,7 +146,7 @@ export const EditmemberPage = () => {
                     <Styles.DeleteBtn onClick={userDelete}>탈퇴하기 ▶ </Styles.DeleteBtn>
                 </Styles.LeftProfileBox>
                 {clicked === "Paw" &&
-                <Styles.MemberInforBox onSubmit={handleSubmit(onSubmit)} id="Paw" >
+                <Styles.MemberInforBox id="Paw" >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
@@ -169,7 +169,7 @@ export const EditmemberPage = () => {
                 </Styles.MemberInforBox>
                 }
                 {clicked === "Profile" &&
-                <Styles.MyProfileBox onSubmit={handleSubmit(onSubmit)} id="Profile">
+                <Styles.MyProfileBox id="Profile">
                 <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
                         <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
