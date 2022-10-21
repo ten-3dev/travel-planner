@@ -19,7 +19,7 @@ import SignPage from "./Pages/signPage";
 import FindPassPage from "./Pages/findPassPage";
 import ChangePassPage from "./Pages/changePassPage";
 import ScrollToTop from "./scrollToTop";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import { getAccessToken } from "./Data";
 import axios from "axios";
 
@@ -54,33 +54,43 @@ axios.interceptors.request.use(
     }
 );
 
+const MainLayout = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
+
 const App = () => {
   return (
       <BrowserRouter>
         <ScrollToTop/>
-        <Header/>
         <Routes>
-          <Route path="/" element={<MainPage/>}/>
-          <Route path="/login" element={<LoginPage />}/>
-          <Route path="/sign" element={<SignPage />}/>
-          <Route path="/findPass" element={<FindPassPage />}/>
-          <Route path="/changePass" element={<ChangePassPage />}/>
-          <Route path="/calendar" element={<CalendarPage/>}/>
-          <Route path="/information" element={<InformationPage/>}/>
-          <Route path="/travel" element={<TravelPage/>}/>
-          <Route path="/shared" element={<SharedPlanPage/>}/>
-          <Route path="/editMember" element={<EditMemberPage/>}/>
+          <Route element={<MainLayout/>}>
+            <Route path="/" element={<MainPage/>}/>
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/sign" element={<SignPage />}/>
+            <Route path="/findPass" element={<FindPassPage />}/>
+            <Route path="/changePass" element={<ChangePassPage />}/>
+            <Route path="/calendar" element={<CalendarPage/>}/>
+            <Route path="/information" element={<InformationPage/>}/>
+            <Route path="/travel" element={<TravelPage/>}/>
+            <Route path="/shared" element={<SharedPlanPage/>}/>
+            <Route path="/editMember" element={<EditMemberPage/>}/>
+            {/* 마이페이지 페이지 */}
+            <Route path="/myPage" element={<MyPage/>}/>
+            <Route path='/myComments' element={<MyComments/>} />
+            <Route path='/myPlan' element={<MyPlan/>} />
+            <Route path='/sharedPlan' element={<SharedPlan/>} />
+            <Route path='/like' element={<Like/>} />
+            {/*  */}
+            <Route path="*" element={<NotFoundPage/>}/>
+          </Route>
           <Route path="/createPlanPage" element={<CreatePlanPage/>}/>
-          {/* 마이페이지 페이지 */}
-          <Route path="/myPage" element={<MyPage/>}/>
-          <Route path='/myComments' element={<MyComments/>} />
-          <Route path='/myPlan' element={<MyPlan/>} />
-          <Route path='/sharedPlan' element={<SharedPlan/>} />
-          <Route path='/like' element={<Like/>} />
-          {/*  */}
-          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
   );
 }

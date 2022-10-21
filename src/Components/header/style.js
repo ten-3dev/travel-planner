@@ -35,7 +35,7 @@ export const SignModal = styled(Modal)`
 export const Wrapper = styled.div`
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     justify-content: center;
     top: 0;
