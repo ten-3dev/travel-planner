@@ -18,17 +18,18 @@ export const EditmemberPage = () => {
     const [phone, setPhone] = useState("");
     const [showName, setShowName] = useState("");
     const [birth, setBirth] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
     
     //유효성 검사
-    const[isPassword, setIsPassword] = useState(false)
-    //const[isPasswordConfirm, setIsPasswordConfirm] = useState(false)
-    const[isName, setIsName] = useState(false)
-    const[isPhone, setIsPhone] = useState<(false)
+    const[isPassword, setIsPassword] = useState(false);
+    const[isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+    const[isName, setIsName] = useState(false);
+    const[isPhone, setIsPhone] = useState(false);
     //유효성 메세지
-    const[passwordMessage, setPasswordMessage] = useState('')
-    //const[passwordConfirmMessage, setPasswordConfirmMessage] = useState<String>('')
-    const[nameMessage, setNameMessage] = useState('')
-    const[phoneMessage, setPhoneMessage] = useState('')
+    const[passwordMessage, setPasswordMessage] = useState('');
+    const[passwordConfirmMessage, setPasswordConfirmMessage] = useState('');
+    const[nameMessage, setNameMessage] = useState('');
+    const[phoneMessage, setPhoneMessage] = useState('');
 
 
 
@@ -116,9 +117,9 @@ export const EditmemberPage = () => {
     }
 
     const onChangePassword = (e)=> {
-        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,25}$/
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
         const passwordCurrent = e.target.value
-        setPassword(e.target.value)
+        setPw(e.target.value)
         if (passwordRegex.test(passwordCurrent)){
             setPasswordMessage('올바른 비밀번호 형식입니다')
             setIsPassword(true)
@@ -128,17 +129,17 @@ export const EditmemberPage = () => {
         }
     }
 
-    // const onChangePasswordConfirm = useCallback( (e)=> {
-    //     const passwordConfirmCurrent = e.target.value
-    //     setPasswordConfirm(e.target.value)
-    //     if (password === passwordConfirmCurrent){
-    //         setPasswordMessage('비밀번호가 일치합니다.')
-    //         setIsPasswordConfirm(true)
-    //     }else{
-    //         setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
-    //         setIsPasswordConfirm(false)
-    //     }
-    // }, [])
+    const onChangePasswordConfirm = (e)=> {
+        const passwordConfirmCurrent = e.target.value
+        setPasswordConfirm(e.target.value)
+        if (pw === passwordConfirmCurrent){
+            setPasswordMessage('비밀번호가 일치합니다.')
+            setIsPasswordConfirm(true)
+        }else{
+            setPasswordConfirmMessage('비밀번호가 일치하지 않습니다.')
+            setIsPasswordConfirm(false)
+        }
+    }
 
     const onChangePhone = (e)=> {
         const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/
@@ -211,17 +212,20 @@ export const EditmemberPage = () => {
                         <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요." onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                     </Styles.MemberContentBox>
+
                     <Styles.MemberContentBox>
                         <Styles.MemberEdit htmlFor="password">새 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="새 비밀번호를 입력해주세요." onKeyUp={onChangePassword} onChange={(e) => setNewPw(e.target.value)}></Styles.Content>
                         {pw.length > 0 && (<span className={`message ${isPassword ? 'success' : 'error'}`}>{passwordMessage}</span>)}
                     </Styles.MemberContentBox>
+
                     <Styles.MemberContentBox htmlFor="checkPw">
                         <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
-                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
+                        <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onKeyUp={onChangePasswordConfirm} onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
+                        {passwordConfirm.length > 0 && (<span className={`message ${isPasswordConfirm ? 'success' : 'error'}`}>{passwordConfirmMessage}</span>)}
                     </Styles.MemberContentBox>
                     <Styles.BtnBox>
-                        <Styles.EditBtn disabled={!(isPassword)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
+                        <Styles.EditBtn disabled={!(isPassword && isPasswordConfirm)} onClick={() => updatepw() }>수정하기</Styles.EditBtn>
                     </Styles.BtnBox> 
                 </Styles.MemberInforBox>
                 }
@@ -240,16 +244,19 @@ export const EditmemberPage = () => {
                             <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
                             <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
                     </Styles.LabelBox>
+
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="name">이름</Styles.MemberEdit>
                         <Styles.Content placeholder="홍길동" onKeyUp={onChangeName} onChange={(e) => setName(e.target.value)} value={name || ''} />
                         {name.length > 0 && <span className={`message ${isName ? 'success' : 'error'}`}>{nameMessage}</span>}
                     </Styles.BasicInforContentBox>
+                    
                     <Styles.BasicInforContentBox>
                         <Styles.MemberEdit htmlFor="phone">연락처</Styles.MemberEdit>
                         <Styles.Content placeholder="01012345678" onKeyUp={onChangePhone} onChange={(e) => setPhone(e.target.value)} value={phone || ''}/>
                         {phone.length > 0 && (<span className={`message ${isPhone ? 'success' : 'error'}`}>{phoneMessage}</span>)}
                     </Styles.BasicInforContentBox>
+
                     <Styles.BtnBox>
                         <Styles.BasicInfoBtn disabled={!(isName && isPhone)} onClick={()=>{update()}} >수정하기</Styles.BasicInfoBtn> 
                     </Styles.BtnBox> 
