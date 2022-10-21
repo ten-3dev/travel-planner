@@ -199,4 +199,10 @@ export const ErrorMessage = styled.label`
     color: red;
 `
 
+export const WarningMessage = styled.span`
+    color: ${props => {
+        return props.check ? "green" : "red"
+    }}
+`
+
 //사진변경가능하게 해야함

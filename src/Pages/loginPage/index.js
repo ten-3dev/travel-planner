@@ -41,6 +41,7 @@ const LoginPage = () => {
             }catch(e){
                 console.log(e)
                 alert("알 수 없는 오류! 나중에 다시 시도해주세요.");
+                navigate("/login");
             }
         }
     }
@@ -62,6 +63,7 @@ const LoginPage = () => {
             navigate('/');
         }catch(e){
             alert(e.response.data.msg);
+            navigate("/login");
         }
     }
 
