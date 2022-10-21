@@ -131,7 +131,7 @@ export const EditmemberPage = () => {
     
 
     return(
-        <Styles.Wrapper onSubmit={handleSubmit(onSubmit)}>
+        <Styles.Wrapper>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
@@ -148,17 +148,17 @@ export const EditmemberPage = () => {
                 <Styles.MemberInforBox id="Paw" >
                 <Styles.BasicInformation>비밀번호 변경</Styles.BasicInformation>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="pw">현재 비밀번호</Styles.MemberEdit>
+                        <Styles.MemberEdit>현재 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setPw(e.target.value)} ></Styles.Content>
                         <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="pw">새 비밀번호</Styles.MemberEdit>
+                        <Styles.MemberEdit>새 비밀번호</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 입력해주세요."  onChange={(e) => setNewPw(e.target.value)} ></Styles.Content>
                         <Styles.ErrorMessage>{errors.pw && <Styles.ErrorMessage>{errors.pw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.MemberContentBox>
                     <Styles.MemberContentBox>
-                        <Styles.MemberEdit htmlFor="checkPw">새 비밀번호확인</Styles.MemberEdit>
+                        <Styles.MemberEdit>새 비밀번호확인</Styles.MemberEdit>
                         <Styles.Content type="password" placeholder="비밀번호를 다시입력해주세요." onChange={(e) => setClickPw(e.target.value)} ></Styles.Content>
                         <Styles.ErrorMessage>{errors.checkPw && <Styles.ErrorMessage>{errors.checkPw.message}</Styles.ErrorMessage>}</Styles.ErrorMessage>
                     </Styles.MemberContentBox>
