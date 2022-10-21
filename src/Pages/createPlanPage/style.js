@@ -442,7 +442,16 @@ export const PlanApplyBtn = styled.div`
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 `
 
-export const LocationImg = styled.img`
-    width: 20px;
-    height: 20px;
+export const LocationImg = styled.button`
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: ${props => {
+        return (props.open ? "url(/assets/image35_1.png) " : "url(/assets/image35.png) ") + "no-repeat scroll 0 0 transparent"
+    }};
+    background-size: contain ;
+    width: 25px;
+    height: 25px;
+
 `

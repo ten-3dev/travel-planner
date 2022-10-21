@@ -73,7 +73,7 @@ const CalendarPage = () =>{
                                                                 {day.content}
                                                             </Styles.Content> 
                                                         </Styles.Text>
-                                                        <Styles.MapBtnBox open={mapMarker} value={day.coordinate} onClick={moveMapLocation}/>
+                                                        <Styles.MapBtnBox open={mapMarker} value={day.coordinate} onClick={(e) => moveMapLocation(e)}/>
                                                         </Styles.PlaceInfo>
                                                     </div>
                                                 )

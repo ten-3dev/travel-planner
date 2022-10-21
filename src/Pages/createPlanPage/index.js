@@ -162,6 +162,7 @@ const CreatePlanPage = () => {
 
     //@@@@@@@@
     const pagingHook = useRef(false)
+    const [coordinate, setCoordinate] = useState([]);
     const [tours, setTours] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
 
@@ -183,7 +184,6 @@ const CreatePlanPage = () => {
             console.log("tourData 실행");
             const json = await response.json();
             if(json.response.body.items === ""){
-                console.log("wwwwwwwwwwwwwwwwwww");
                 setPage1(1);
                 setTours("");
             }else{
@@ -222,6 +222,14 @@ const CreatePlanPage = () => {
             }
         }
     };
+
+    const moveMapLocation = (e) =>{
+        const coor = e.target.value.split(',');
+        const newCoor = {
+            lat: coor[0], lon : coor[1]
+        }
+        setCoordinate(newCoor);
+    }
 
     return(
         <>
@@ -263,7 +271,7 @@ const CreatePlanPage = () => {
                     </Styles.ContentBox>
                 </Styles.ControlBox>
                 <Styles.Map>
-                    <Map/>
+                    <Map lon = {coordinate.lon} lat = {coordinate.lat}/>
                 </Styles.Map>
                 <Styles.TravelBox open={travelOpen}>
                     <Styles.ContentBox>
@@ -287,7 +295,7 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
                                                                 <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg src={"assets/image35.png"}/>
+                                                                    <Styles.LocationImg value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e)}/>
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.ItemBox>
                                                                     <Styles.DayItemText>경북 상주시</Styles.DayItemText>
@@ -301,7 +309,7 @@ const CreatePlanPage = () => {
                                             }))
                                 }  
                             </Styles.ScrollBox>
-                            <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>
+                            {tours === "" ? "" : <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>}
                         </Styles.ListBox>
                         <Styles.ListBox>
                         <Styles.ListTitleBox>

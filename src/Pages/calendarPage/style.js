@@ -195,6 +195,7 @@ export const Content = styled.div`
 
 export const MapBtnBox = styled.button`
     border: none;
+    outline: none;
     border-radius: 10px;
     cursor: pointer;
     background: ${props => {
