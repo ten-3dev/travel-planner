@@ -68,7 +68,8 @@ export const EditmemberPage = () => {
                 alert("형식에 맞지 않는 값이 있습니다.")
             }
          }
-      }
+    }
+    
     const updatePw = async () => { //회원 데이터 수정 비밀번호
         if(window.confirm("수정하시겠습니까?")){
             if(isPassword & isPasswordConfirm){

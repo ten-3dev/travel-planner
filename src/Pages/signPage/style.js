@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.form`
+export const Wrapper = styled.div`
     width: 100%;
     margin: 150px 0;
 `
@@ -70,4 +70,11 @@ export const RadioBtn = styled.input`
 
 export const RadioLabel = styled.label`
     
+`
+
+export const WarningMessage = styled.span`
+    font-size: 14px;
+    color: ${props => {
+        return props.check ? "green" : "red"
+    }}
 `
