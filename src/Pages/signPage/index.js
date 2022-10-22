@@ -137,6 +137,13 @@ const SignPage = () => {
         setIsBirth(false)
     }
   }
+
+  const handleOnKeyPress = e => {
+    if (e.key === 'Enter') {
+      OnClick(); // Enter 입력이 되면 클릭 이벤트 실행// 온클릭 이벤트도 따로 만들어줘야함 나중에하거나 안하거나
+    }
+  };
+
     return(
         <Styles.Wrapper>
             <Styles.ContentBox>
@@ -167,7 +174,7 @@ const SignPage = () => {
                 </Styles.SignText2>
 
                 <Styles.SignText2>생년월일
-                  <Styles.Input placeholder="ex)1999-09-09" onChange={(e)=> onBirth(e)} value={birth || ''}/>
+                  <Styles.Input placeholder="ex)1999-09-09" onKeyPress={handleOnKeyPress} onChange={(e)=> onBirth(e)} value={birth || ''}/>
                   <Styles.WarningMessage check={isBirth}>{birthMessage}</Styles.WarningMessage>
                 </Styles.SignText2>
 
