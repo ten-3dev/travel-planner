@@ -46,3 +46,10 @@ export const ErrorMessage = styled.label`
     font-weight: 400;
     color: red;
 `
+
+export const WarningMessage = styled.span`
+    font-size: 14px;
+    color: ${props => {
+        return props.check ? "green" : "red"
+    }}
+`
