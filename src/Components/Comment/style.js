@@ -29,70 +29,59 @@ export const CommentBox = styled.div`
     border-radius: 20px;
     box-sizing: border-box;
     padding: 0 70px 0 70px;
-    
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
+    margin-bottom: 30px;
 `
 
 export const ReviewBox = styled.div`
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    flex: 1;
-
+    border-bottom: 1px solid #9ea4aa;
+    box-sizing: border-box;
 
     
 `
 
-export const Review = styled.div`
-    display: flex;
-    justify-content: center;
-    align-self: start;
-    flex-direction: column;
-    width: 100%;
-    border-bottom: 1px solid black;
-    padding: 5px 5px 0 5px;
+// export const Review = styled.div`
+//     // display: flex;
+//     // justify-content: center;
+//     // align-self: start;
+//     // flex-direction: column;
+//     // width: 100%;
+//     // border-bottom: 1px solid black;
+//     // padding: 5px 5px 0 5px;
+
     
-`
+// `
 
 export const RefirstBox = styled.div` 
-    display: flex;
-    align-items: center;
+    margin-top: 25px;
+    margin-left: 10px;
 `
 
 export const ReImage = styled.img`
-    left: 0;
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
 
 `
 
 export const ReName = styled.div`
     left: 70px;
     font-weight: bold;
-
 `
 
 export const ReContent = styled.div`
-    left: 110px;
-    width: 80%;
-    padding: 0;
-    display: block;
-    display: -webkit-box;
-    word-break: keep-all;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 30;
-    -webkit-box-orient: vertical;
-
+    margin-bottom: 10px
 `
 
 export const ReDate = styled.div`
-    margin-top: 5px;
-    right: 0;
+    margin-top: 8px;
+    margin-bottom: 10px
     font-size: small;   
 `
 
