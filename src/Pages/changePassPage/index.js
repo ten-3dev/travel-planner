@@ -26,9 +26,7 @@ const ChangePassPage = () => {
         if(isPassword && isPasswordConfirm){
             try{
                 const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
-                const createHashedPasswordConfirm = crypto.createHash("sha256").update(pwCheck).digest("base64");
-                await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw:createHashedPassword, pwCheck: createHashedPasswordConfirm });
-                
+                await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw:createHashedPassword, pwCheck});
                 navigate('/login');
             }catch(e){
                 alert(e.response.data.msg);
@@ -77,7 +75,7 @@ const ChangePassPage = () => {
                         <Styles.WarningMessage check={isPasswordConfirm}>{passwordConfirmMessage}</Styles.WarningMessage>
                 </Styles.LoginText2>
                 
-                <UserBlueBtn onClick={() => PasswordChange()}>비밀번호 변경</UserBlueBtn>
+                <UserBlueBtn onClick={PasswordChange}>비밀번호 변경</UserBlueBtn>
             </Styles.ContentBox>
         </Styles.Wrapper>
     )
