@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
+import { date } from "yup";
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
@@ -114,6 +115,16 @@ const CreatePlanPage = () => {
     const [totalItemsCount2] = useState(50); // 임시
 
     useEffect(() => {
+        if(dateList !== undefined){
+            let arr = [];
+            for(let i=0; i<dateList.length; i++){
+                arr[i] = [i+1,[]]
+            }
+            setDayList(arr);
+        }
+    },[dateList])
+
+    useEffect(() => {
         console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
         console.log(itemsCount + "까지");
     }, [page1, itemsCount]);
@@ -148,14 +159,7 @@ const CreatePlanPage = () => {
             settravelOpen(true);
         }else if(update !== null & update !== idx){
             alert("현재 수정하고 있는 DAY가 있습니다.");
-        }else{                                      //취소 누를 때
-            if(idx === dayList[0]){
-                console.log("onUpdate");
-                console.log(allDayList);
-                console.log(dayList);
-                setAllDayList([...allDayList, dayList])  // [[],[],[]] 여기서 idx에 해당하는 곳에 dayList 넣음
-            }
-            //setDayList(["",[]]);   
+        }else{                       
             setTourSelect([]);
             setUpdate(null);
             settravelOpen(false);
@@ -175,10 +179,9 @@ const CreatePlanPage = () => {
     const [tours, setTours] = useState([]);                     // 검색창 관광지
     const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
     const [tourMakerSelect, setTourMakerSelect] = useState(); // 여행지 마커 of/off
-    const [dayList, setDayList] = useState(["",[]]);                 //일정 수 
     const [tourSelect, setTourSelect] = useState([]);             //해당 일정( EX. DAY 1)에 추가한 여행지
-    const [allDayList, setAllDayList] = useState([]);// 총 일정목록
-
+    const [dayList, setDayList] = useState();// 총 일정목록
+    
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
@@ -199,7 +202,7 @@ const CreatePlanPage = () => {
             console.log("찜한거 없음");
         }
     }, [])
-
+    
     const tourData = (props) =>{    //키워드 별 검색 함수
         (async () => {
             const response = await fetch(
@@ -269,22 +272,11 @@ const CreatePlanPage = () => {
     
     const addTour = (el, idx) =>{
         console.log("addTour실행");
-        console.log(dayList[0] + "####" + update)
-        console.log(tourSelect.length);
-
-        if(dayList[0] === ""){  // 처음일때
-            console.log("11111111111111");
-            setDayList([idx, [...tourSelect, el]]); 
-            
-        }else if(dayList[0] === update && tourSelect.length !== 0){ //그 후
-            console.log("22222222222222");
-            setDayList([update, [...tourSelect, el]]);
-        
-        }
-        setTourSelect([...tourSelect, el]); // 이건 dayList[idx, [[여행],[여행]]] 여기서 dayList[1]을 맡음
-        
+        dayList[idx-1][1] = [...dayList[idx-1][1], el];
+        setDayList(dayList);
+        setTourSelect([...tourSelect, el]);
     }
-
+   
     return(
         <>
             <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
@@ -292,7 +284,7 @@ const CreatePlanPage = () => {
             {isModelOpen ? null : 
             <Styles.Wrapper>
                 <Styles.PlanApplyBtn>적용하기</Styles.PlanApplyBtn>
-                <Styles.OpenBtn open={controlOpen} left onClick={() => {setControlOpen(!controlOpen)}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
+                <Styles.OpenBtn open={controlOpen} left onClick={() => {(setControlOpen(!controlOpen))}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
                         <Styles.CloseBtn right onClick={onClose} src="assets/x.png"/>
@@ -306,7 +298,7 @@ const CreatePlanPage = () => {
                                     <Styles.ListItemBox key={idx}>
                                         <Styles.DayTitle>DAY {idx + 1}</Styles.DayTitle>
                                         {/* idx에 해당하는 dayList 뿌려야됨 */}
-                                            {update === (idx + 1) ? dayList[1].map((e, id) => {
+                                            {update === (idx + 1) ? dayList[idx][1].map((e, id) => {
                                                 return(
                                                     <div key={id}>
                                                         <Styles.DayItem>
