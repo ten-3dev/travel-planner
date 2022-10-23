@@ -30,6 +30,7 @@ export const CommentBox = styled.div`
     box-sizing: border-box;
     padding: 0 70px 0 70px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     align-content: space-between;
     margin-bottom: 30px;
@@ -81,7 +82,7 @@ export const ReContent = styled.div`
 
 export const ReDate = styled.div`
     margin-top: 8px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
     font-size: small;   
 `
 

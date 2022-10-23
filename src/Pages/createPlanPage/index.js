@@ -148,11 +148,14 @@ const CreatePlanPage = () => {
             settravelOpen(true);
         }else if(update !== null & update !== idx){
             alert("현재 수정하고 있는 DAY가 있습니다.");
-        }else{
+        }else{                                      //취소 누를 때
             if(idx === dayList[0]){
-                setAllDayList([dayList])  // [[],[],[]] 여기서 idx에 해당하는 곳에 dayList 넣음
+                console.log("onUpdate");
+                console.log(allDayList);
+                console.log(dayList);
+                setAllDayList([...allDayList, dayList])  // [[],[],[]] 여기서 idx에 해당하는 곳에 dayList 넣음
             }
-            setDayList(["",[]]);
+            //setDayList(["",[]]);   
             setTourSelect([]);
             setUpdate(null);
             settravelOpen(false);
@@ -263,7 +266,7 @@ const CreatePlanPage = () => {
         //     [idx, {"여행지"},{"여행지"},{"여행지"},{"여행지"},{"여행지"}],
         //     [idx, {"여행지"},{"여행지"}]
         // ]
-
+    
     const addTour = (el, idx) =>{
         console.log("addTour실행");
         console.log(dayList[0] + "####" + update)
@@ -276,9 +279,10 @@ const CreatePlanPage = () => {
         }else if(dayList[0] === update && tourSelect.length !== 0){ //그 후
             console.log("22222222222222");
             setDayList([update, [...tourSelect, el]]);
-
+        
         }
         setTourSelect([...tourSelect, el]); // 이건 dayList[idx, [[여행],[여행]]] 여기서 dayList[1]을 맡음
+        
     }
 
     return(

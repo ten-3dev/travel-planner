@@ -38,7 +38,7 @@ const Comment = () => {
                             <Styles.ReImage src="assets/myProfile.png"/>
                             <Styles.RefirstBox>
                                 <Styles.ReName>{email}김지수</Styles.ReName>
-                                <Styles.ReDate>2022-09-18-2023-09-18</Styles.ReDate>
+                                <Styles.ReDate>2022-09-18</Styles.ReDate>
                                 <Styles.ReContent>아리아리일닐ㅇㄹ니ㅏ러니ㅏ러니ㅏ</Styles.ReContent>   
                             </Styles.RefirstBox>
                     </Styles.ReviewBox>
