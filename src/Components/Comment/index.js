@@ -16,8 +16,12 @@ const Comment = () => {
     // useEffect (() => {
 
     // })
+    const getcontent = async () => { //조회 아직 ..
+        const data = await axios.get('http://localhost:8080/getComment');
 
-    const writing = async () => {
+    }
+
+    const writing = async () => { //등록아직...
         if(window.confirm("등록하시겠습니까?")){
             try{
                 const data = await axios.post('http://localhost:8080/addComment',{id,content,type});
