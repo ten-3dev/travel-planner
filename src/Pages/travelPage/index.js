@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import Paging from "../../Components/paging";
-import LikeButton from "../../Components/LikeButton/LikeButton";
 import { useNavigate, useLocation } from "react-router-dom";
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import axios from "axios";
 
 const TravelPage = () => {
@@ -16,6 +16,7 @@ const TravelPage = () => {
     const pagingHook = useRef(false)
     const data = useLocation(); //mainPage 받아온 키워드 값
     const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
+    const [like, setLike] = useState([]);
 
     useEffect(() => {
         window.scroll(0,0)
@@ -122,7 +123,19 @@ const TravelPage = () => {
 
     const getLikes = async () => {
         const data = await axios.post("http://localhost:8080/getLikes");
-        console.log(data);
+        setLike(data.data.data);
+    }
+
+    const addLikes = async (id) => {
+        if(like.filter(e => e.id === id).length){
+            //여기 넣으면 됨
+        }
+        try{
+            await axios.post('http://localhost:8080/addLikes', {id: id, type: "T"})
+            getLikes();
+        }catch(e){
+            alert("좋아요 에러");
+        }
     }
 
     return (
@@ -156,7 +169,11 @@ const TravelPage = () => {
                                             </Styles.Tel>
                                         </Styles.Txt>
                                         <Styles.LikeBox>
-                                            <LikeButton like={true} id={tour.contentid}/>
+                                            {like.filter(e => e.id === tour.contentid).length ? 
+                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/> 
+                                                : 
+                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/>
+                                            }
                                             <Styles.Like onClick={() => onDibs(tour)} dibs={
                                                     sessionStorage.getItem("dibs") 
                                                 ?

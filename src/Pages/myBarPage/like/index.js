@@ -4,7 +4,6 @@ import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
-import LikeButton from '../../../Components/LikeButton/LikeButton';
 
 
 const Like = () => {
@@ -38,7 +37,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>
@@ -56,7 +55,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>
@@ -74,7 +73,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>
@@ -98,7 +97,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>
@@ -116,7 +115,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>
@@ -134,7 +133,7 @@ const Like = () => {
                       </Styles.ContentBox2>
                       <Styles.ContentBox2>
                         <Styles.Imgheart>
-                          <LikeButton/>
+                          {/* <LikeButton/> */}
                         </Styles.Imgheart>
                         <Styles.HeartSumText>300</Styles.HeartSumText>
                         <Styles.NameBox>석준혁</Styles.NameBox>

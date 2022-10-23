@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 // import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
-import LikeButton from "../../Components/LikeButton/LikeButton";
 import {useLocation } from "react-router-dom";
 import Map from "../../Components/kakaoMap";
 import Comment from "../../Components/Comment"
@@ -43,7 +42,7 @@ const InformationPage = () => {
             </Styles.TitleBox>
             <Styles.LikeBox>
                 <Styles.Img1>
-                    <LikeButton/>
+                    {/* <LikeButton/> */}
                 </Styles.Img1>
                 <Styles.Like>+찜하기</Styles.Like>
             </Styles.LikeBox>
