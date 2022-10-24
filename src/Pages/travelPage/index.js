@@ -28,9 +28,11 @@ const TravelPage = () => {
         }else{
             tourData(state);
         }
-
-        getLikes();
     },[]);
+
+    useEffect(() => {
+        getLikes();
+    }, [])
 
     useEffect(() => {
         if(pagingHook.current){
@@ -123,15 +125,20 @@ const TravelPage = () => {
 
     const getLikes = async () => {
         const data = await axios.post("http://localhost:8080/getLikes");
-        setLike(data.data.data);
+        if(data === undefined){
+            getLikes();
+        }else{
+            setLike(data.data.data.filter(e => e.type === "T"));
+        }
     }
 
     const addLikes = async (id) => {
-        if(like.filter(e => e.id === id).length){
-            //여기 넣으면 됨
-        }
         try{
-            await axios.post('http://localhost:8080/addLikes', {id: id, type: "T"})
+            if(like.filter(e => e.id === id).length){ // 있으면
+                await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+            }else{
+                await axios.post('http://localhost:8080/addLikes', {id: id, type: "T"})
+            }
             getLikes();
         }catch(e){
             alert("좋아요 에러");
