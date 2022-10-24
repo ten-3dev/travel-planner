@@ -4,6 +4,7 @@ import { MarginTopWrapper } from "../../Common/style";
 // import {HeartOutlined, HeartFilled} from '@ant-design/icons';	
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import axios from "axios";
 
 
@@ -23,6 +24,7 @@ const InformationPage = () => {
     const [content,setContent] = useState("");
     const [comments, setComments] = useState([]);
     const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
+    const [like, setLike] = useState([]);
 
     useEffect(() => {
         console.log(infoData);
@@ -59,6 +61,7 @@ const InformationPage = () => {
 
     useEffect(() => {
         getcontent();
+        getLikes();
     },[])
 
     const getcontent = async () => {
@@ -83,6 +86,30 @@ const InformationPage = () => {
         setDibs(!dibs);
     }
 
+    //좋아요 불러오기
+    const getLikes = async () => {
+        const data = await axios.post("http://localhost:8080/getLikes");
+        if(data === undefined){
+            getLikes();
+        }else{
+            setLike(data.data.data.filter(e => e.type === "T"));
+        }
+    }
+
+    // 좋아요 추가
+    const addLikes = async (id) => {
+        try{
+            if(like.filter(e => e.id === id).length){ // 있으면
+                await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+            }else{
+                await axios.post('http://localhost:8080/addLikes', {id: id, type: "T"})
+            }
+            getLikes();
+        }catch(e){
+            alert("좋아요 에러");
+        }
+    }
+
     
     return(
         <MarginTopWrapper margin>
@@ -93,6 +120,11 @@ const InformationPage = () => {
                 <Styles.Img1>
                     {/* <LikeButton/> */}
                 </Styles.Img1>
+                {like.filter(e => e.id === location.search.split("=")[1]).length ? 
+                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/> 
+                    : 
+                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/>
+                }
                 <Styles.Like onClick={onDibs} dibs={
                         sessionStorage.getItem("dibs") 
                     ?
