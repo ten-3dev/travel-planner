@@ -54,6 +54,7 @@ const MainPage = () => {
     };
     
     const onPreview = async (e) => {
+        setSearchKeyword(e.target.value);   // 밑에 코드 놔두면 한 글자 입력 시 안 넘어가짐
         if(addressData === null){
             const data = await getAddressData();
             setAddressData(data);
@@ -62,7 +63,6 @@ const MainPage = () => {
 
         const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
         setFilterAddressData(filterData);
-        setSearchKeyword(encodeURIComponent(e.target.value));
     }
     
     const handleOnKeyPress = (e) => {
@@ -115,7 +115,7 @@ const MainPage = () => {
                         <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>
-                        <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput} onKeyPress={handleOnKeyPress}/>
+                        <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput} onKeyUp={handleOnKeyPress}/>
                         <Styles.Btn onClick={onSubmit}>
                             <Styles.Img src="assets/search_icon.png"/>
                         </Styles.Btn>

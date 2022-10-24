@@ -5,29 +5,34 @@ import Paging from "../../Components/paging";
 import { useNavigate, useLocation } from "react-router-dom";
 import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import axios from "axios";
+import { set } from "react-hook-form";
 
 const TravelPage = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(1); // 페이지번호
     const [itemsCount] = useState(10);  // 페이지 당 관광지 수
-    const [totalItemsCount, setStotalItemCount] = useState(0); // 총 아이템 개수 설정
+    const [totalItemsCount, setTotalItemCount] = useState(0); // 총 아이템 개수 설정
     const [tours, setTours] = useState([]);
-    const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
+    const [storagetours, setStorageTours] = useState([]);           // 전체 관광지 
+    const [searchKeyword, setSearchKeyword] = useState("");     // 키워드
     const pagingHook = useRef(false)
     const data = useLocation(); //mainPage 받아온 키워드 값
     const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
     const [like, setLike] = useState([]);
-
+    const [rendering, setRendering] = useState(false);
+    const {state} = data;
+    
     useEffect(() => {
-        window.scroll(0,0)
         console.log("최초 useEffect실행@@");
-        const {state} = data;
-        setSearchKeyword(state);
-        if(state == null){
-            tourData2();
-        }else{
-            tourData(state);
+        window.scroll(0,0)
+        if(Array.isArray(tours) && tours.length === 0){
+            if(state === null || state === undefined){
+                tourData();
+            }else{
+                tourData(state);
+            }
         }
+        setSearchKeyword(state);
     },[]);
 
     useEffect(() => {
@@ -44,58 +49,41 @@ const TravelPage = () => {
         }
     }, [page]);
 
-    // 관광타입(contentTypeId) 코드표.
-    // 관광지 12
-    // 문화시설 14
-    // 행사/공연/축제 15
-    // 여행코스 25
-    // 레포츠 28
-    // 숙박 32
-    // 쇼핑 38
-    // 음식점 39
-
-    const tourData = (props) =>{    //키워드 별 검색 함수
-        (async () => {
-            const response = await fetch(
-              `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
-            );
-            console.log("tourData 실행");
-            const json = await response.json();
-            if(json.response.body.items === ""){
-                setTours("");
-            }else{
-                const tourItems = json.response.body.items.item;
-                setStotalItemCount(tourItems.length);
-                setTours(tourItems);
-                setPage(1);
-            }
-          })();
-    }
-
-    const tourData2 = () =>{    // 전체 검색 함수
+    const tourData = (el) =>{    // 전체 검색 함수
+        setRendering(false);
         (async () => {
             const response = await fetch(
                 `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
             );
-            console.log("tourData2 실행")
+            console.log("tourData 실행")
             const json = await response.json();
             const tourItems = json.response.body.items.item;
-            console.log(tourItems);
-                setStotalItemCount(tourItems.length);
+            setStorageTours(tourItems);
+            setPage(1);
+            console.log(state);
+            if(el === undefined || el === null){
                 setTours(tourItems);
-                setPage(1);
+                setTotalItemCount(tourItems.length);
+            }else{
+                let Arr = [];
+                tourItems.filter((el,idx) => {if(el.addr1.indexOf(state) !== -1){Arr = [...Arr,el]}});
+                setTours(Arr);
+                setTotalItemCount(Arr.length);
+            }
+            setRendering(true);
           })();
     }
-    const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
+    const handleOnKeyPress = (e) => {   // 검색 함수
         if (e.key === 'Enter') {
-            const value = encodeURIComponent(e.target.value);
-            setSearchKeyword(value);
-            if(value === "" ){
-                console.log("111111111111");
-                tourData2();
+            setSearchKeyword(e.target.value);
+            setPage(1);
+            if(e.target.value !== ""){
+                let Arr = [];
+                storagetours.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
+                setTours(Arr);
+                setTotalItemCount(Arr.length);
             }else{
-                console.log("2222222222222");
-                tourData(value);
+                setTours(storagetours);
             }
         }
     };
@@ -124,7 +112,6 @@ const TravelPage = () => {
     }
 
     const getLikes = async () => {
-        if(!sessionStorage.getItem("access_token")) return;
         const data = await axios.post("http://localhost:8080/getLikes");
         if(data === undefined){
             getLikes();
@@ -133,11 +120,7 @@ const TravelPage = () => {
         }
     }
 
-    const onLikes = async (id) => {
-        if(!sessionStorage.getItem("access_token")){
-            alert("로그인 후 이용 가능한 서비스입니다.")
-            return;
-        }
+    const addLikes = async (id) => {
         try{
             if(like.filter(e => e.id === id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
@@ -149,20 +132,20 @@ const TravelPage = () => {
             alert("좋아요 에러");
         }
     }
+    // "{searchKeyword}" 에 대한 검색결과가 없습니다.
 
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
                 <Styles.Input placeholder="검색하세요." onKeyUp={handleOnKeyPress}/>
             </Styles.InputBox>
-            <Styles.ListSumBox>{(searchKeyword === null || searchKeyword === "") ? "#전체" : `#${decodeURIComponent(searchKeyword)}` }</Styles.ListSumBox>
+            <Styles.ListSumBox>{(searchKeyword === null || searchKeyword === "") ? "#전체" : `#${searchKeyword}` }</Styles.ListSumBox>
             <Styles.ContentBox>
                 <Styles.TravelListBox>
-                {tours === "" ?
-                     <Styles.Txt>
-                        <Styles.PlaceTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.PlaceTitle>
-                     </Styles.Txt>
-                 : (tours.filter((e,index) => {
+                {!rendering ? 
+                <Styles.Txt><Styles.PlaceTitle>로딩 중...</Styles.PlaceTitle></Styles.Txt> 
+                : tours.length === 0 ? <Styles.Txt><Styles.PlaceTitle>{searchKeyword}" 에 대한 검색결과가 없습니다.</Styles.PlaceTitle></Styles.Txt>
+                : (tours.filter((e,index) => {
                         if((index >= (page-1)*itemsCount) && index < page * itemsCount)return e;
                         }).map( (tour,idx) =>{
                             return(
@@ -182,9 +165,9 @@ const TravelPage = () => {
                                         </Styles.Txt>
                                         <Styles.LikeBox>
                                             {like.filter(e => e.id === tour.contentid).length ? 
-                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => onLikes(tour.contentid)}/> 
+                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/> 
                                                 : 
-                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => onLikes(tour.contentid)}/>
+                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/>
                                             }
                                             <Styles.Like onClick={() => onDibs(tour)} dibs={
                                                     sessionStorage.getItem("dibs") 

@@ -112,7 +112,7 @@ const CreatePlanPage = () => {
 
     // 찜한 여행지 페이지네이션
     const [page2, setPage2] = useState(1);
-    const [totalItemsCount2] = useState(50); // 임시
+    const [totalItemsCount2, setStotalItemCount2] = useState(50); // 임시
 
     useEffect(() => {
         if(dateList !== undefined){
@@ -135,14 +135,11 @@ const CreatePlanPage = () => {
     }, [page2, itemsCount]);
 
     useEffect(() => { // 새로고침 방지 alert
-        //@@ 추가
         console.log("최초 useEffect실행@@");
-        tourData2();
-
+        tourData();
         window.onbeforeunload = function() {
             return true;
         };
-    
         return () => {
             window.onbeforeunload = null;
         };
@@ -175,17 +172,19 @@ const CreatePlanPage = () => {
 
     //@@@@@@@@
     const pagingHook = useRef(false)
-    const [coordinate, setCoordinate] = useState([]);           // 좌표
-    const [tours, setTours] = useState([]);                     // 검색창 관광지
-    const [searchKeyword, setSearchKeyword] = useState("");   // 키워드
-    const [tourMakerSelect, setTourMakerSelect] = useState(); // 여행지 마커 of/off
-    const [tourSelect, setTourSelect] = useState([]);             //해당 일정( EX. DAY 1)에 추가한 여행지
-    const [dayList, setDayList] = useState();// 총 일정목록
+    const [coordinate, setCoordinate] = useState([]);               // 좌표
+    const [storagetours, setStorageTours] = useState([]);           // 전체 관광지 
+    const [tours, setTours] = useState([]);                         // 검색 관광지
+    const [searchKeyword, setSearchKeyword] = useState("");         // 키워드
+    const [tourMakerSelect, setTourMakerSelect] = useState();       // 여행지 마커 of/off
+    // const [tourMakerSelect2, setTourMakerSelect2] = useState();     // 여행지 마커 of/off
+    const [tourSelect, setTourSelect] = useState([]);               // 해당 일정( EX. DAY 1)에 추가한 여행지
+    const [dayList, setDayList] = useState();                       // 총 일정목록
+    const [cart, setCart] = useState([]);
     
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
-            window.scroll(0,0)
             console.log("페이징 키워드 " + searchKeyword);
             setTourMakerSelect(Array(totalItemsCount1).fill(false));
         }else{
@@ -193,67 +192,76 @@ const CreatePlanPage = () => {
         }
     }, [page1]);
 
+    // useEffect(() => {
+    //     if(pagingHook.current){
+    //         console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터" + itemsCount + "까지");
+    //         console.log("페이징 키워드 " + searchKeyword);
+    //         setTourMakerSelect(Array(totalItemsCount2).fill(false));
+    //         // setTourMakerSelect2(Array(totalItemsCount2).fill(false));
+    //     }else{
+    //         pagingHook.current = true;
+    //     }
+    // }, [page2]);
+
     useEffect(() => { // 찜 목록 불러오는 event
         if(sessionStorage.getItem("dibs")){
             const dibs = sessionStorage.getItem("dibs").split(" ");
             dibs.pop(); // 쓰레기 값 제거
-            console.log(dibs);
+            tourData2(dibs).then(value => setCart(value));
         }else{
             console.log("찜한거 없음");
         }
     }, [])
-    
-    const tourData = (props) =>{    //키워드 별 검색 함수
-        (async () => {
-            const response = await fetch(
-              `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
-            );
-            console.log("tourData 실행");
-            const json = await response.json();
-            if(json.response.body.items === ""){
-                setPage1(1);
-                setTours("");
-            }else{
-                const tourItems = json.response.body.items.item;
-                setStotalItemCount1(tourItems.length);
-                setTours(tourItems);
-                setPage1(1);
-                setTourMakerSelect(Array(tourItems.length).fill(false));
-            }
-          })();
-    }
 
-    const tourData2 = () =>{    // 전체 검색 함수
+    const tourData = () =>{    // 전체 검색 함수
         (async () => {
             const response = await fetch(
                 `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
             );
-            console.log("tourData2 실행")
+            console.log("전체 검색 함수 실행")
             const json = await response.json();
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
+            setStorageTours(tourItems);
             setTours(tourItems);
             setPage1(1);
             setTourMakerSelect(Array(tourItems.length).fill(false));
           })();
     }
 
-    const handleOnKeyPress = (e) => {   // 키워드 검색 시 함수
+    const tourData2 = async (idx) =>{    // 찜하기 함수
+        console.log("찜하기 함수 실행")
+        let Arr = [];
+            for(let i=0; i<idx.length; i++){
+                const response = await fetch(
+                    `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${idx[i]}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=N`
+                );
+                const json = await response.json();
+                const tourItems = json.response.body.items.item[0];
+                Arr[i] = tourItems;
+            }
+        setStotalItemCount2(Arr.length);
+        setPage2(1);
+        return Arr;
+    }
+
+    const handleOnKeyPress = (e) => {   // 검색 함수
         if (e.key === 'Enter') {
-            const value = encodeURIComponent(e.target.value);
-            setSearchKeyword(value);
-            if(value === "" ){
-                console.log("111111111111");
-                tourData2();
-            }else{
-                console.log("2222222222222");
-                tourData(value);
+            setSearchKeyword(e.target.value);
+            if(e.target.value !== ""){
+                let Arr = [];
+                storagetours.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
+                setTours(Arr);
+                setStotalItemCount1(Arr.length);
+                setPage1(1);
+                setTourMakerSelect(Array(Arr.length).fill(false));
             }
         }
     };
 
     const moveMapLocation = (e,id) =>{
         const coor = e.target.value.split(',');
+        const num = coor[2];
         const newCoor = {
             lat: coor[0], lon : coor[1]
         }
@@ -262,20 +270,48 @@ const CreatePlanPage = () => {
         setCoordinate(newCoor);
         setTourMakerSelect(newArr);
     }
-    // 적용하기 누를때 대충 이런 형태로 보내야됨
-    // const createPlan = [
-        //     "asdqwe@asdd.com",
-        //     [idx, {"여행지"},{"여행지"},{"여행지"}],
-        //     [idx, {"여행지"},{"여행지"},{"여행지"},{"여행지"},{"여행지"}],
-        //     [idx, {"여행지"},{"여행지"}]
-        // ]
-    
+
     const addTour = (el, idx) =>{
-        console.log("addTour실행");
+        console.log("관광지 추가");
         dayList[idx-1][1] = [...dayList[idx-1][1], el];
         setDayList(dayList);
         setTourSelect([...tourSelect, el]);
     }
+
+    const removeTour = (el, idx) =>{
+        console.log("관광지 삭제");
+
+        for(let i=0; i<dayList[idx-1][1].length; i++){
+            console.log(el.contentid);
+            console.log(dayList[idx-1][1][0].contentid);
+            if(el.contentid === dayList[idx-1][1][i].contentid){
+                console.log("삭제");
+                dayList[idx-1][1] = dayList[idx-1][1].splice(i);
+                setDayList(dayList);
+            }
+        }
+    }
+
+    // {
+    //     "date" : 날짜 (ex 2022.03 21 ~ 2022.05.1) 
+    //     "email" : 사용자 이메일(이건 백에서),
+    //     "title" : 플랜 제목,
+    //     "img" : geegege,
+    //     "plan" : [
+    //                       {
+    //                            "day" : 1,
+    //                            "id" : [광관지 아이디]
+    //                        },
+    //                       {
+    //                            "day" : 2,
+    //                            "id" : [광관지 아이디]
+    //                        },
+    //                       {
+    //                            "day" : 3,
+    //                            "id" : [광관지 아이디]
+    //                        }
+    //                   ]
+    // }
    
     return(
         <>
@@ -305,11 +341,11 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2}/>
                                                             <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{e.title}
-                                                                <Styles.LocationImg />
+                                                                <Styles.LocationImg open={tourMakerSelect[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e,id)}/>   
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.DayItemSubTextBox>
                                                                     <Styles.DayItemText>{e.addr1}</Styles.DayItemText>
-                                                                    <Styles.DayItemRemove>삭제</Styles.DayItemRemove>
+                                                                    <Styles.ItemBtn remove onClick={() => removeTour(e, update)}>삭제</Styles.ItemBtn>
                                                                 </Styles.DayItemSubTextBox>
                                                             </Styles.DayItemTextBox>
                                                         </Styles.DayItem>
@@ -341,6 +377,7 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
+                                {console.log(tours)}
                                 {tours === "" ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
                                 :(tours.filter((e,index) => {
                                         if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
@@ -351,10 +388,10 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
                                                                 <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg open={tourMakerSelect[id]} value={[tour.mapy, tour.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
+                                                                    <Styles.LocationImg open={tourMakerSelect[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e,id)}/>
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.ItemBox>
-                                                                    <Styles.DayItemText>경북 상주시</Styles.DayItemText>
+                                                                    <Styles.DayItemText>{tour.addr1}</Styles.DayItemText>
                                                                     <Styles.ItemBtn onClick={() => addTour(tour, update)}>추가하기</Styles.ItemBtn>
                                                                 </Styles.ItemBox>
                                                             </Styles.DayItemTextBox>
@@ -371,149 +408,26 @@ const CreatePlanPage = () => {
                                 <Styles.ListTitle>찜한 여행지</Styles.ListTitle>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
-                                <Styles.DayItem>
-                                    <Styles.DayItemImg></Styles.DayItemImg>
-                                    <Styles.DayItemTextBox>
-                                        <Styles.DayItemTitle>낙동강 경천대(경천대 전망대)
-                                            <Styles.LocationImg src={"assets/image35.png"} />
-                                        </Styles.DayItemTitle>
-                                        <Styles.ItemBox>
-                                            <Styles.DayItemText>경북 상주시</Styles.DayItemText>
-                                            <Styles.ItemBtn>추가하기</Styles.ItemBtn>
-                                            <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
-                                        </Styles.ItemBox>
-                                    </Styles.DayItemTextBox>
-                                </Styles.DayItem>
+                                {cart.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>찜한 목록이 없습니다.</Styles.DayItemTitle></Styles.DayItem>
+                                :(cart.map((el, idx) => {
+                                    return(
+                                        <div key={idx}>
+                                            <Styles.DayItem>
+                                                <Styles.DayItemImg src={el.firstimage2 === "" ? "assets/logo.png" : el.firstimage2}/>
+                                                    <Styles.DayItemTextBox>
+                                                    <Styles.DayItemTitle>{el.title}
+                                                        {/* <Styles.LocationImg open={tourMakerSelect[idx]} value={[el.mapy, el.mapx, 2]} onClick={(e) => moveMapLocation(e,idx)}/> */}
+                                                    </Styles.DayItemTitle>
+                                                    <Styles.ItemBox>
+                                                        <Styles.DayItemText>{el.addr1}</Styles.DayItemText>
+                                                        <Styles.ItemBtn onClick={() => addTour(el, update)}>추가하기</Styles.ItemBtn>
+                                                        <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
+                                                    </Styles.ItemBox>
+                                                </Styles.DayItemTextBox>
+                                            </Styles.DayItem>
+                                        </div>
+                                    )
+                                }))} 
                             </Styles.ScrollBox>
                             <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount}/>
                         </Styles.ListBox>
