@@ -38,11 +38,14 @@ const InformationPage = () => {
         return null;
     }
 
-    const type="T";
     const writing = async (id) => { //등록아직...
+        if(!sessionStorage.getItem("access_token")){
+            alert("로그인 후 이용해 주세요");
+            return;
+        }
        if( window.confirm("등록하시겠습니까?")){
         try{
-            await axios.post('http://localhost:8080/addComment',{id,content,type});
+            await axios.post('http://localhost:8080/addComment',{id,content,type: "T"});
             getcontent();
             alert("댓글 추가 성공");
             setContent("");
