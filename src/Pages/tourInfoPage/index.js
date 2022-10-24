@@ -20,24 +20,8 @@ const InformationPage = () => {
         }
     }, [])
 
-    const [page, setPage] = useState(1); 
-    const [itemsCount] = useState(10);
-    const [totalItemsCount] = useState(0);
-    // const [email,setEmail] = useState("");
     const [content,setContent] = useState("");
-    // const [name,setName] = useState("");
-    // const [day, setDay] = useState("");
- 
-    
-    // useEffect (() => {
-
-    // })
-    // const getcontent = async () => { //조회 아직 ..
-    //     const data = await axios.get('http://localhost:8080/getComment');
-
-    // }
-    
-
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         console.log(infoData);
@@ -59,7 +43,9 @@ const InformationPage = () => {
        if( window.confirm("등록하시겠습니까?")){
         try{
             await axios.post('http://localhost:8080/addComment',{id,content,type});
+            getcontent();
             alert("댓글 추가 성공");
+            setContent("");
 
         }catch(e){
             alert(e.response.data.msg);
@@ -67,18 +53,15 @@ const InformationPage = () => {
     }
     }
 
-
-    const [email, setEmail] = useState("");
-    useEffect(() => { // 제일 처음에 실행하는 애 
-        getData();
-       
+    useEffect(() => {
+        getcontent();
     },[])
-    const getData = async (id) => { // DB에 있는 회원데이터를 불러옴
-        const data = await axios.get('http://localhost:8080/getComment',{id});
-        
-        console.log(data);
-            
+
+    const getcontent = async () => {
+        const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`)
+        setComments(data.data.data.filter(e => e.type === "T"));
     }
+
     
     return(
         <MarginTopWrapper margin>
@@ -126,21 +109,25 @@ const InformationPage = () => {
             <Styles.Comment1>
                 <Styles.Title1>톡톡</Styles.Title1>
                 <Styles.CommentBox>
-                    <Styles.ReviewBox>
-                            <Styles.ReImage src="assets/myProfile.png"/>
-                            <Styles.RefirstBox>
-                                <Styles.ReName>김지수</Styles.ReName>
-                                <Styles.ReDate>2022-09-18</Styles.ReDate>
-                                <Styles.ReContent>{content}</Styles.ReContent>   
-                            </Styles.RefirstBox>
-                    </Styles.ReviewBox>
-                    <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+                    {comments.map((el, idx) => {
+                        return(
+                            <Styles.ReviewBox key={idx}>
+                                <Styles.ReImage src={el.email.profileImg === "" ? "assets/defaultProfile.png" : el.email.profileImg}/>
+                                <Styles.RefirstBox>
+                                    <Styles.ReName>{el?.email?.name}</Styles.ReName>
+                                    <Styles.ReDate>{el?.date}</Styles.ReDate>
+                                    <Styles.ReContent>{el?.content}</Styles.ReContent>   
+                                </Styles.RefirstBox>
+                            </Styles.ReviewBox>
+                        )
+                    })}
                     <Styles.InputBox>
                         <Styles.ReviewTextBox>
-                            <Styles.ReviewText>리뷰남기기</Styles.ReviewText>
+                            <Styles.ReviewText>댓글 남기기</Styles.ReviewText>
                         </Styles.ReviewTextBox>
+                        {/* api 때려서 넣을거임 */}
                         <Styles.Profile1 src="assets/myProfile.png"/>
-                        <Styles.InputComment placeholder="댓글 입력" onChange={(e) => setContent(e.target.value)}/>
+                        <Styles.InputComment placeholder="댓글 입력" onChange={(e) => setContent(e.target.value)} value={content || ''}/>
                         <Styles.InputBtn onClick={() => { writing(location.search.split("=")[1])}}>등록</Styles.InputBtn>
                     </Styles.InputBox>
                 </Styles.CommentBox>
