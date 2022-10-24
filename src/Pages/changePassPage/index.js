@@ -26,7 +26,7 @@ const ChangePassPage = () => {
         if(isPassword && isPasswordConfirm){
             try{
                 const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
-                await axios.post('http://localhost:8080/passwordChange', { email:data.state, pw:createHashedPassword, pwCheck});
+                await axios.post('http://localhost:8080/passwordChange', { email : data.state, pw : createHashedPassword});
                 navigate('/login');
             }catch(e){
                 alert(e.response.data.msg);
