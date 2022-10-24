@@ -9,17 +9,17 @@ const Comment = () => {
     const [totalItemsCount] = useState(0);
     // const [email,setEmail] = useState("");
     const [content,setContent] = useState("");
-    const [name,setName] = useState("");
-    const [day, setDay] = useState("");
+    // const [name,setName] = useState("");
+    // const [day, setDay] = useState("");
  
     
     // useEffect (() => {
 
     // })
-    const getcontent = async () => { //조회 아직 ..
-        const data = await axios.get('http://localhost:8080/getComment');
+    // const getcontent = async () => { //조회 아직 ..
+    //     const data = await axios.get('http://localhost:8080/getComment');
 
-    }
+    // }
 
     const writing = async () => { //등록아직...
         if(window.confirm("등록하시겠습니까?")){
@@ -46,7 +46,7 @@ const Comment = () => {
                             <Styles.RefirstBox>
                                 <Styles.ReName>김지수</Styles.ReName>
                                 <Styles.ReDate>2022-09-18</Styles.ReDate>
-                                <Styles.ReContent>아리아리일닐ㅇㄹ니ㅏ러니ㅏ러니ㅏ</Styles.ReContent>   
+                                <Styles.ReContent>{content}</Styles.ReContent>   
                             </Styles.RefirstBox>
                     </Styles.ReviewBox>
                     <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
@@ -55,7 +55,7 @@ const Comment = () => {
                             <Styles.ReviewText>리뷰남기기</Styles.ReviewText>
                         </Styles.ReviewTextBox>
                         <Styles.Profile src="assets/myProfile.png"/>
-                        <Styles.InputComment placeholder="댓글 입력" value={content}/>
+                        <Styles.InputComment placeholder="댓글 입력" onChange={(e) => setContent(e.target.value)}/>
                         <Styles.InputBtn onClick={ writing }>등록</Styles.InputBtn>
                     </Styles.InputBox>
                 </Styles.CommentBox>
