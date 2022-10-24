@@ -124,6 +124,7 @@ const TravelPage = () => {
     }
 
     const getLikes = async () => {
+        if(!sessionStorage.getItem("access_token")) return;
         const data = await axios.post("http://localhost:8080/getLikes");
         if(data === undefined){
             getLikes();
@@ -132,7 +133,11 @@ const TravelPage = () => {
         }
     }
 
-    const addLikes = async (id) => {
+    const onLikes = async (id) => {
+        if(!sessionStorage.getItem("access_token")){
+            alert("로그인 후 이용 가능한 서비스입니다.")
+            return;
+        }
         try{
             if(like.filter(e => e.id === id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
@@ -177,9 +182,9 @@ const TravelPage = () => {
                                         </Styles.Txt>
                                         <Styles.LikeBox>
                                             {like.filter(e => e.id === tour.contentid).length ? 
-                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/> 
+                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => onLikes(tour.contentid)}/> 
                                                 : 
-                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(tour.contentid)}/>
+                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => onLikes(tour.contentid)}/>
                                             }
                                             <Styles.Like onClick={() => onDibs(tour)} dibs={
                                                     sessionStorage.getItem("dibs") 
