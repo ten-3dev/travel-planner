@@ -95,6 +95,15 @@ export const KeepDeleteBox = styled.div`
     cursor: pointer;    
 `
 
+export const KeepDeleteBox2 = styled.div`
+    width: 100px;
+    height: 20px;
+    margin-top:50px;
+    margin-left: 100px;
+    margin-right: 30px;
+    text-align: center;
+`
+
 export const ImgBox = styled.img`
     width: 100px;
     height: 100px;

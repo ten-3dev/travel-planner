@@ -4,17 +4,43 @@ import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 
 const Like = () => {
   const [page, setPage] = useState(1);
   const [itemsCount] = useState(6);
   const [totalItemsCount] = useState(50); // 임시
+  const [like, setLike] = useState([]);
 
   useEffect(() => {
     console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
     console.log(itemsCount + "까지");
-}, [page, itemsCount]);
+  }, [page, itemsCount]);
+
+  useEffect(() => {
+    getLikes();
+  }, [])
+
+  const getLikes = async () => {
+    if(!sessionStorage.getItem("access_token")) return;
+    const data = await axios.post("http://localhost:8080/getLikes");
+    if(data === undefined){
+        getLikes();
+    }else{
+        setLike(data.data.data.filter(e => e.type === "T"));
+    }
+  }
+
+  const tourData = async (props) =>{    //키워드 별 검색 함수
+    const response = await fetch(
+      `https://apis.data.go.kr/B551011/KorService/searchKeyword?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&listYN=Y&arrange=C&keyword=${props}`
+    );
+    const json = await response.json();
+    const tourItems = json.response.body.items.item;
+    console.log(tourItems);
+}
 
   return (
     <>
@@ -87,60 +113,32 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              <Styles.LineBox>
-                <Styles.Box2>
-                  <Styles.ImgBox src={`assets/image32.png`}/>
-                    <Styles.ContentBox>
-                      <Styles.ContentBox2>
-                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
-                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
-                      </Styles.ContentBox2>
-                      <Styles.ContentBox2>
-                        <Styles.Imgheart>
-                          {/* <LikeButton/> */}
-                        </Styles.Imgheart>
-                        <Styles.HeartSumText>300</Styles.HeartSumText>
-                        <Styles.NameBox>석준혁</Styles.NameBox>
-                      </Styles.ContentBox2>
-                    </Styles.ContentBox>
-                </Styles.Box2>
-              </Styles.LineBox>
-              <Styles.LineBox>
-                <Styles.Box2>
-                  <Styles.ImgBox src={`assets/image32.png`}/>
-                    <Styles.ContentBox>
-                      <Styles.ContentBox2>
-                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
-                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
-                      </Styles.ContentBox2>
-                      <Styles.ContentBox2>
-                        <Styles.Imgheart>
-                          {/* <LikeButton/> */}
-                        </Styles.Imgheart>
-                        <Styles.HeartSumText>300</Styles.HeartSumText>
-                        <Styles.NameBox>석준혁</Styles.NameBox>
-                      </Styles.ContentBox2>
-                    </Styles.ContentBox>
-                </Styles.Box2>
-              </Styles.LineBox>
-              <Styles.LineBox>
-                <Styles.Box2>
-                  <Styles.ImgBox src={`assets/image32.png`}/>
-                    <Styles.ContentBox>
-                      <Styles.ContentBox2>
-                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
-                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
-                      </Styles.ContentBox2>
-                      <Styles.ContentBox2>
-                        <Styles.Imgheart>
-                          {/* <LikeButton/> */}
-                        </Styles.Imgheart>
-                        <Styles.HeartSumText>300</Styles.HeartSumText>
-                        <Styles.NameBox>석준혁</Styles.NameBox>
-                      </Styles.ContentBox2>
-                    </Styles.ContentBox>
-                </Styles.Box2>
-              </Styles.LineBox>
+              {like.map((el, idx) => {
+                
+                return(
+                  <Styles.LineBox key={idx}>
+                    <Styles.KeepBox3>
+                      <Styles.ImgBox2 src={`assets/image32.png`}/>
+                        <Styles.KeepBox>
+                          <Styles.KeepBox2>
+                            <Styles.ContentText>더베이101</Styles.ContentText>
+                            <Styles.AddressText>부산 해운대구 동백로 52 더베이101</Styles.AddressText>
+                          </Styles.KeepBox2>
+                          <Styles.KeepBox2>
+                            <Styles.KeepContentText>
+                              부산 해운대를 대표하는해양레져 
+                              클럽하우스 화려한 야경과 맛있는 음식을 즐기는
+                              뭐라뭐라뭐라 쏼라쏼라쏼라 등등등등등등등이며 여러가지 뭐가 있을꺼임
+                            </Styles.KeepContentText>
+                            <Styles.KeepDeleteBox2>
+                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}}/>
+                            </Styles.KeepDeleteBox2>
+                          </Styles.KeepBox2>
+                        </Styles.KeepBox>
+                    </Styles.KeepBox3>
+                  </Styles.LineBox>
+                )
+              })}
               <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
             </Styles.SmallBox>
           </Styles.LikesListBox1>
