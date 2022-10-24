@@ -20,7 +20,7 @@ const Comment = () => {
     //     const data = await axios.get('http://localhost:8080/getComment');
 
     // }
-
+    
     const writing = async () => { //등록아직...
         if(window.confirm("등록하시겠습니까?")){
             try{
