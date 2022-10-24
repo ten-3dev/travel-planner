@@ -425,7 +425,9 @@ export const FilterBtn = styled.div`
     }
 `
 
-export const PlanApplyBtn = styled.div`
+export const PlanApplyBtn = styled.button`
+    border:  none;
+    outline: none;
     width: 180px;
     height: 50px;
     background-color: greenyellow;

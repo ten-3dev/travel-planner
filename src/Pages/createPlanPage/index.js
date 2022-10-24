@@ -150,7 +150,6 @@ const CreatePlanPage = () => {
     }, [dateList])
 
     const onUpdate = (idx) => {
-        console.log(idx);
         if(update == null){
             setUpdate(idx);
             settravelOpen(true);
@@ -291,35 +290,44 @@ const CreatePlanPage = () => {
             }
         }
     }
+    
+    const createPlan = () => {
+        let count = 0;
+        for(let i=0; i<dayList.length; i++){
+            count += dayList[i][1].length; 
+        }
+        if(count < 1){
+            alert("플랜생성 시 관광지 하나 이상을 추가하세요");
+        }else{
+            let planTitle = prompt('플랜명을 입력하세요', '');
+            if(planTitle.length < 4){
+                alert("플랜명은 최소 3글자 이상 입력하세요.");
+            }else{
+                let newArr = []
+                for(let i=0; i<dayList.length; i++){
+                    newArr[i] = {"day":i+1,"id":[]};
+                    for(let j=0; j<dayList[i][1].length; j++){
+                        newArr[i].id[j] = dayList[i][1][j].contentid;
+                    }
+                }
+                const travelPlanner = {
+                    "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}-${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
+                    "email" : "User@email.com",
+                    "title" : "ddd",
+                    "plan" : newArr
+                }
+                console.log(JSON.stringify(travelPlanner));
+            }
+        }
+    }
 
-    // {
-    //     "date" : 날짜 (ex 2022.03 21 ~ 2022.05.1) 
-    //     "email" : 사용자 이메일(이건 백에서),
-    //     "title" : 플랜 제목,
-    //     "img" : geegege,
-    //     "plan" : [
-    //                       {
-    //                            "day" : 1,
-    //                            "id" : [광관지 아이디]
-    //                        },
-    //                       {
-    //                            "day" : 2,
-    //                            "id" : [광관지 아이디]
-    //                        },
-    //                       {
-    //                            "day" : 3,
-    //                            "id" : [광관지 아이디]
-    //                        }
-    //                   ]
-    // }
-   
     return(
         <>
             <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
             <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
-                <Styles.PlanApplyBtn>적용하기</Styles.PlanApplyBtn>
+                <Styles.PlanApplyBtn onClick={createPlan}>적용하기</Styles.PlanApplyBtn>
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {(setControlOpen(!controlOpen))}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
@@ -377,7 +385,6 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {console.log(tours)}
                                 {tours === "" ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
                                 :(tours.filter((e,index) => {
                                         if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
