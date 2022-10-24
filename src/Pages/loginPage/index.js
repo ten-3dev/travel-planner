@@ -66,10 +66,6 @@ const LoginPage = () => {
             navigate("/login");
         }
     }
-
-    const onTokenAuth = async () => {
-        await axios.post('http://localhost:8080/tokenAuth', {email, pw});
-    }
     
     return(
         <Styles.Wrapper>
@@ -93,7 +89,6 @@ const LoginPage = () => {
                     <Styles.FindSignText onClick={() => navigate('/findPass')}>비밀번호 찾기</Styles.FindSignText>
                     <div> │ </div>
                     <Styles.FindSignText onClick={() => navigate('/sign')}>회원가입</Styles.FindSignText>
-                    <Styles.FindSignText onClick={onTokenAuth}>tokenAuth</Styles.FindSignText>
                 </Styles.FindSignWrap>
 
             </Styles.ContentBox>
