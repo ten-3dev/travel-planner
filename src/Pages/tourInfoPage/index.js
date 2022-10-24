@@ -74,7 +74,7 @@ const InformationPage = () => {
         if(sessionStorage.getItem("dibs")){ // 세션 스토리지에 찜하기 스토리지가 있으면
             const dibs = sessionStorage.getItem("dibs").split(" ")
             const filterDibs = dibs.filter(id => id === location.search.split("=")[1]);
-            if(filterDibs.length === 0){ // 현제 세션 스토리지 해당 값이 없으면
+            if(filterDibs.length === 0){ // 현제 세션 스토리지 해당 값이 없으면     <<<<<<<<현제 x 현재 ㅎ
                 sessionStorage.setItem("dibs", sessionStorage.getItem("dibs") + location.search.split("=")[1] + " ");
             }else{
                 const dibs = sessionStorage.getItem("dibs");
