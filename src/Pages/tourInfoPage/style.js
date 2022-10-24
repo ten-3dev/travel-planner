@@ -20,7 +20,9 @@ export const LikeBox = styled.div`
 export const Like = styled.button`
     border: 0;
     width: 70px;
-    background: rgba(0, 150, 100, 0.5);
+    background: ${props => {
+        return props.dibs ? "rgba(0, 150, 100, 0.5)" : "rgba(255, 0, 100, 0.5)"
+    }};
     color: white;
     border-radius: 10px;
     margin-left: 15px;

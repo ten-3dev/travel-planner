@@ -22,6 +22,7 @@ const InformationPage = () => {
 
     const [content,setContent] = useState("");
     const [comments, setComments] = useState([]);
+    const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
 
     useEffect(() => {
         console.log(infoData);
@@ -65,6 +66,23 @@ const InformationPage = () => {
         setComments(data.data.data.filter(e => e.type === "T"));
     }
 
+    // 상세 정보용 찜하기 기능
+    const onDibs = () => {
+        if(sessionStorage.getItem("dibs")){ // 세션 스토리지에 찜하기 스토리지가 있으면
+            const dibs = sessionStorage.getItem("dibs").split(" ")
+            const filterDibs = dibs.filter(id => id === location.search.split("=")[1]);
+            if(filterDibs.length === 0){ // 현제 세션 스토리지 해당 값이 없으면
+                sessionStorage.setItem("dibs", sessionStorage.getItem("dibs") + location.search.split("=")[1] + " ");
+            }else{
+                const dibs = sessionStorage.getItem("dibs");
+                sessionStorage.setItem("dibs", dibs.replace(location.search.split("=")[1] + " ", ""));
+            }
+        }else{ // 없으면
+            sessionStorage.setItem("dibs", location.search.split("=")[1] + " ");
+        }
+        setDibs(!dibs);
+    }
+
     
     return(
         <MarginTopWrapper margin>
@@ -75,7 +93,21 @@ const InformationPage = () => {
                 <Styles.Img1>
                     {/* <LikeButton/> */}
                 </Styles.Img1>
-                <Styles.Like>+찜하기</Styles.Like>
+                <Styles.Like onClick={onDibs} dibs={
+                        sessionStorage.getItem("dibs") 
+                    ?
+                        sessionStorage.getItem("dibs").split(" ").filter(id => id === location.search.split("=")[1]).length === 0 ? true : false
+                    :
+                        true
+                    }>
+                    {
+                        sessionStorage.getItem("dibs")
+                    ?
+                        sessionStorage.getItem("dibs").split(" ").filter(id => id === location.search.split("=")[1]).length === 0 ? "+찜하기" : "-찜 취소"
+                    :
+                        "+찜하기"
+                    }
+                </Styles.Like>
             </Styles.LikeBox>
             <Styles.TopBar />
             <Styles.TitleImgBox>
