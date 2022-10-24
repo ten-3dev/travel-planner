@@ -17,6 +17,13 @@ const FindPassPage = () => {
             alert(e.response.data.msg);
         }
     }
+
+    const onKeyPress = (e) =>{
+        if(e.key == 'Enter'){
+            ConfirmEmail();
+        }
+    }
+    
     
 
     return(
@@ -25,7 +32,7 @@ const FindPassPage = () => {
                 <Styles.LoginText>비밀번호 찾기</Styles.LoginText>
 
                 <Styles.LoginText2>이메일
-                        <Styles.Input placeholder="이메일을 입력하세요" onChange={(e) => setEmail(e.target.value)}></Styles.Input>
+                        <Styles.Input placeholder="이메일을 입력하세요" onChange={(e) => setEmail(e.target.value)} onKeyPress={onKeyPress}></Styles.Input>
                 </Styles.LoginText2>
                 
                 <UserBlueBtn onClick={ConfirmEmail}>이메일 확인</UserBlueBtn>

@@ -59,6 +59,13 @@ const ChangePassPage = () => {
             setIsPasswordConfirm(false);
         }
       }
+
+      const onKeyPress = (e) =>{
+        if(e.key == 'Enter'){
+            PasswordChange();
+        }
+    }
+    
     
     return(
         <Styles.Wrapper>
@@ -71,7 +78,7 @@ const ChangePassPage = () => {
                 </Styles.LoginText2>
 
                 <Styles.LoginText2>비밀번호 확인
-                        <Styles.Input type="password" placeholder="비밀번호를 다시 입력하세요" onChange={(e) => onPasswordConfirm(e)}  value={pwCheck || ''}></Styles.Input>
+                        <Styles.Input type="password" placeholder="비밀번호를 다시 입력하세요" onChange={(e) => onPasswordConfirm(e)}  value={pwCheck || ''} onKeyPress={onKeyPress}></Styles.Input>
                         <Styles.WarningMessage check={isPasswordConfirm}>{passwordConfirmMessage}</Styles.WarningMessage>
                 </Styles.LoginText2>
                 
