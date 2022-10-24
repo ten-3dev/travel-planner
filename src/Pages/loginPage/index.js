@@ -55,6 +55,7 @@ const LoginPage = () => {
     const onLogin = async () => {
         let data = null;
         const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
+        
         try{
             data = await axios.post('http://localhost:8080/login', {email, pw :createHashedPassword});
             sessionStorage.setItem("access_token", data.data.data.access_token);
@@ -64,6 +65,12 @@ const LoginPage = () => {
         }catch(e){
             alert(e.response.data.msg);
             navigate("/login");
+        }
+    }
+
+    const onKeyPress = (e) =>{
+        if(e.key == 'Enter'){
+            onLogin();
         }
     }
     
@@ -77,10 +84,10 @@ const LoginPage = () => {
                 </Styles.LoginText2>
 
                 <Styles.LoginText2 htmlFor="pw">비밀번호
-                        <Styles.Input type="password" placeholder="비밀번호를 입력하세요" onChange={(e) => setPw(e.target.value)} />
+                        <Styles.Input type="password" placeholder="비밀번호를 입력하세요" onChange={(e) => setPw(e.target.value)} onKeyPress={onKeyPress} />
                 </Styles.LoginText2>
                 
-                <UserBlueBtn onClick={onLogin}>로그인</UserBlueBtn>
+                <UserBlueBtn onClick={ onLogin}  >로그인</UserBlueBtn>
                 <Styles.KakaoBtn onClick={kakaoLogin}>카카오 로그인</Styles.KakaoBtn>
 
                 <div>---- OR ----</div>
