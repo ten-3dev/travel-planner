@@ -4,16 +4,19 @@ import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
-import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import { HeartFilled } from '@ant-design/icons';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Like = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const [itemsCount] = useState(6);
+  const [itemsCount] = useState(4);
   const [totalItemsCount] = useState(50); // 임시
-  const [like, setLike] = useState([]);
+  const [isLoding, setIsLoding] = useState(false);
   const [tourInfo, setTourInfo] = useState([]);
+
 
   useEffect(() => {
     console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
@@ -21,42 +24,43 @@ const Like = () => {
   }, [page, itemsCount]);
 
   useEffect(() => {
-    getLikes();
-    const getDataTour = async () => {
-      await tourData();
-    }
-    getDataTour();
+    getTourData();
   }, [])
 
-  useEffect(() => {
-  }, [like])
+  const getTourURL = (id) => {
+    return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
+  }
 
-  const getLikes = async () => {
-    if(!sessionStorage.getItem("access_token")) return;
+  const getTourData = async () => {
     const data = await axios.post("http://localhost:8080/getLikes");
-    if(data === undefined){
-        getLikes();
+    if(data !== undefined){
+      const likeData = data.data.data.filter(e => e.type === "T");
+      for(let i = 0; i < likeData.length; i++){
+        const response = await fetch(getTourURL(likeData[i].id));
+        const json = await response.json();
+        const tourItems = json.response.body.items.item;
+        const tourData = tourInfo;
+        tourData.push(tourItems[0])
+        setTourInfo(tourData);
+      }
+      setIsLoding(true);
     }else{
-        setLike(data.data.data.filter(e => e.type === "T"));
+      setTourInfo(tourInfo.length = 0);
+      getTourData();
     }
   }
 
-  const tourData = async () =>{    //키워드 별 검색 함수
-    if(like.length !== 0){
-      for(let i = 0; i < like.length; i++){
-        const response = await fetch(
-          `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${like[i].id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
-        );
-        const json = await response.json();
-        const tourItems = json.response.body.items.item;
-        // setTourInfo(tourInfo.push({...tourItems[0], like: like[i]}))
-        const data = tourInfo;
-        data.push({...tourItems[0]});
-        setTourInfo(data);
-      }
+  const likeCancel = async (id) => {
+    setTourInfo(tourInfo.length = 0);
+    setIsLoding(false);
+    try{
+      await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+      getTourData();
+    }catch(e){
+      alert("좋아요 에러");
+      console.log(e);
     }
-    console.log("tour: ", tourInfo);
-}
+  }
 
   return (
     <>
@@ -129,22 +133,22 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              {tourInfo.map((el, idx) => { 
+              {!isLoding ? "로딩 중..." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
                       <Styles.ImgBox2 src={`assets/image32.png`}/>
                         <Styles.KeepBox>
                           <Styles.KeepBox2>
-                            <Styles.ContentText>{el?.title}</Styles.ContentText>
+                            <Styles.ContentText onClick={() => navigate(`/information?id=${el?.contentid}`)}>{el?.title}</Styles.ContentText>
                             <Styles.AddressText>{el?.addr1 + " " + el?.addr2}</Styles.AddressText>
                           </Styles.KeepBox2>
                           <Styles.KeepBox2>
                             <Styles.KeepContentText>
-                              제목 클릭하여 상세정보 확인
+                              {el?.overview}
                             </Styles.KeepContentText>
                             <Styles.KeepDeleteBox2>
-                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}}/>
+                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}} onClick={() => likeCancel(el?.contentid)}/>
                             </Styles.KeepDeleteBox2>
                           </Styles.KeepBox2>
                         </Styles.KeepBox>
@@ -152,7 +156,9 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
-              <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+              {isLoding && tourInfo.length > itemsCount &&
+                <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+               }
             </Styles.SmallBox>
           </Styles.LikesListBox1>
         </Styles.BigBox>
