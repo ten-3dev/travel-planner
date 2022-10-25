@@ -4,6 +4,7 @@ import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
 import { date } from "yup";
+import axios from 'axios';
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
@@ -95,6 +96,10 @@ const FilterSelector = ({open, setOpen}) => {
 }
 
 const CreatePlanPage = () => {
+
+    // 접속한 유저만 플랜 생성
+    const [email, setEmail] = useState("");
+
     const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
     const [filterOpen, setFilterOpen] = useState(false);
     const [dateList, setDateList] = useState();
@@ -114,62 +119,7 @@ const CreatePlanPage = () => {
     const [page2, setPage2] = useState(1);
     const [totalItemsCount2, setStotalItemCount2] = useState(50); // 임시
 
-    useEffect(() => {
-        if(dateList !== undefined){
-            let arr = [];
-            for(let i=0; i<dateList.length; i++){
-                arr[i] = [i+1,[]]
-            }
-            setDayList(arr);
-        }
-    },[dateList])
-
-    useEffect(() => {
-        console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
-        console.log(itemsCount + "까지");
-    }, [page1, itemsCount]);
-
-    useEffect(() => {
-        console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
-        console.log(itemsCount + "까지");
-    }, [page2, itemsCount]);
-
-    useEffect(() => { // 새로고침 방지 alert
-        console.log("최초 useEffect실행@@");
-        tourData();
-        window.onbeforeunload = function() {
-            return true;
-        };
-        return () => {
-            window.onbeforeunload = null;
-        };
-    }, []);
-
-    useEffect(() => { // 임시. 이따 지우셈
-        // console.log(dateList);
-    }, [dateList])
-
-    const onUpdate = (idx) => {
-        if(update == null){
-            setUpdate(idx);
-            settravelOpen(true);
-        }else if(update !== null & update !== idx){
-            alert("현재 수정하고 있는 DAY가 있습니다.");
-        }else{                       
-            setTourSelect([]);
-            setUpdate(null);
-            settravelOpen(false);
-        }
-    }
-
-    const onClose = () => {
-        if(update !== null){
-            return alert("아직 작업중인 DAY가 있습니다.");
-        }
-        setControlOpen(!controlOpen);
-    }
-
-    //@@@@@@@@
+    // 
     const pagingHook = useRef(false)
     const [coordinate, setCoordinate] = useState([]);               // 좌표
     const [storagetours, setStorageTours] = useState([]);           // 전체 관광지 
@@ -180,7 +130,38 @@ const CreatePlanPage = () => {
     const [tourSelect, setTourSelect] = useState([]);               // 해당 일정( EX. DAY 1)에 추가한 여행지
     const [dayList, setDayList] = useState();                       // 총 일정목록
     const [cart, setCart] = useState([]);
-    
+
+    useEffect(() => { // 새로고침 방지 alert
+        getEmail();
+        tourData();
+        window.onbeforeunload = function() {
+            return true;
+        };
+        return () => {
+            window.onbeforeunload = null;
+        };
+    }, []);
+
+    useEffect(() => { // 찜 목록 불러오는 event
+        if(sessionStorage.getItem("dibs")){
+            const dibs = sessionStorage.getItem("dibs").split(" ");
+            dibs.pop(); // 쓰레기 값 제거
+            tourData2(dibs).then(value => setCart(value));
+        }else{
+            console.log("찜한거 없음");
+        }
+    }, [])
+
+    useEffect(() => {
+        if(dateList !== undefined){
+            let arr = [];
+            for(let i=0; i<dateList.length; i++){
+                arr[i] = [i+1,[]]
+            }
+            setDayList(arr);
+        }
+    },[dateList])
+
     useEffect(() => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
@@ -202,22 +183,56 @@ const CreatePlanPage = () => {
     //     }
     // }, [page2]);
 
-    useEffect(() => { // 찜 목록 불러오는 event
-        if(sessionStorage.getItem("dibs")){
-            const dibs = sessionStorage.getItem("dibs").split(" ");
-            dibs.pop(); // 쓰레기 값 제거
-            tourData2(dibs).then(value => setCart(value));
-        }else{
-            console.log("찜한거 없음");
-        }
-    }, [])
+    useEffect(() => {
+        console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
+        console.log(itemsCount + "까지");
+    }, [page1, itemsCount]);
 
-    const tourData = () =>{    // 전체 검색 함수
+    useEffect(() => {
+        console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
+        console.log(itemsCount + "까지");
+    }, [page2, itemsCount]);
+
+    useEffect(() => { // 임시. 이따 지우셈
+        // console.log(dateList);
+    }, [dateList])
+
+    const onUpdate = (idx) => {
+        if(update == null){
+            setUpdate(idx);
+            settravelOpen(true);
+        }else if(update !== null & update !== idx){
+            alert("현재 수정하고 있는 DAY가 있습니다.");
+        }else{                       
+            setTourSelect([]);
+            setUpdate(null);
+            settravelOpen(false);
+        }
+    }
+
+    const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
+        const data = await axios.get('http://localhost:8080/getUserInfo');
+        console.log(data);
+        if(!data){
+            getEmail();
+        }else{
+            setEmail(data.data.data.email);
+        }
+    }
+
+    const onClose = () => {
+        if(update !== null){
+            return alert("아직 작업중인 DAY가 있습니다.");
+        }
+        setControlOpen(!controlOpen);
+    }
+
+    const tourData = async () =>{    // 전체 검색 함수
         (async () => {
             const response = await fetch(
-                `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
+                `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=30000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
             );
-            console.log("전체 검색 함수 실행")
+            console.log("전체 검색 함수 실행");
             const json = await response.json();
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
@@ -290,8 +305,21 @@ const CreatePlanPage = () => {
             }
         }
     }
+
+    const getPlanData = async (el) => {
+        console.log(el);
+        let data = null;
+        try{
+            data = await axios.post('http://localhost:8080/createPlan', el);
+            navigate('/');
+        }catch(e){
+            alert(e.response.data.msg);
+            navigate("/");
+        }
+
+    }
     
-    const createPlan = () => {
+    const createPlan = async () => {
         let count = 0;
         for(let i=0; i<dayList.length; i++){
             count += dayList[i][1].length; 
@@ -300,7 +328,7 @@ const CreatePlanPage = () => {
             alert("플랜생성 시 관광지 하나 이상을 추가하세요");
         }else{
             let planTitle = prompt('플랜명을 입력하세요', '');
-            if(planTitle.length < 4){
+            if(planTitle === null || planTitle.length < 4){
                 alert("플랜명은 최소 3글자 이상 입력하세요.");
             }else{
                 let newArr = []
@@ -311,12 +339,14 @@ const CreatePlanPage = () => {
                     }
                 }
                 const travelPlanner = {
+                    "email" : email,
+                    "title" : encodeURI(planTitle),
+                    "plan" : JSON.stringify(newArr),
+                    "type" : 1,
                     "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}-${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
-                    "email" : "User@email.com",
-                    "title" : "ddd",
-                    "plan" : newArr
                 }
-                console.log(JSON.stringify(travelPlanner));
+                console.log(typeof(travelPlanner.plan));
+                getPlanData(travelPlanner);
             }
         }
     }

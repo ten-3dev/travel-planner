@@ -132,7 +132,6 @@ const TravelPage = () => {
             alert("좋아요 에러");
         }
     }
-    // "{searchKeyword}" 에 대한 검색결과가 없습니다.
 
     return (
         <MarginTopWrapper margin>
