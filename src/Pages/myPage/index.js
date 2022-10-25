@@ -1,23 +1,54 @@
-import React from "react";
+import React,{useEffect, useState } from "react";
 import * as Styles from './style';
 import { useNavigate } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
+import axios from "axios";
 
 import {
     Nav,
     NavLink,
     NavMenu,
-    NavLink1,
     NavLink2,
     NavLink3,
   } from './style';
 
-  const MyPage = ({myPlanAction,myCommentAction,sharedPlanAction,likeAction}) => {
+  const MyPage = ({myPlanAction,sharedPlanAction,likeAction}) => {
 
     const navigate = useNavigate();
 
     const moveEditMember = () => {
         navigate('/editMember');
+    }
+
+
+    useEffect(() => { // 제일 처음에 실행하는 애 
+        getData();
+    },[])
+    const [email, setEmail] = useState("");
+    const [pw, setPw] = useState("");
+    const [newPw, setNewPw] = useState("");
+    const [newPwConfirm, setNewPwConfirm] = useState("");
+
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [showName, setShowName] = useState("");
+    const [birth, setBirth] = useState("");
+    
+
+    const getData = async () => { // DB에 있는 회원데이터를 불러옴
+        const data = await axios.get('http://localhost:8080/getUserInfo');
+        if(!data){
+            getData();
+        }else{
+            setEmail(data.data.data.email);
+            setPw(data.data.data.pw);
+
+            setName(data.data.data.name);
+            setShowName(data.data.data.name);
+
+            setPhone(data.data.data.tel);
+            setBirth(data.data.data.birth);
+        }
     }
 
     return (
@@ -26,11 +57,11 @@ import {
             <Styles.ProfileBox>
                 <Styles.SettingBox>
                     <Styles.MyProfileBox>
-                    <Styles.Profile src={`assets/기본프로필.png`} />
+                    <Styles.Profile src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"} />
                     <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
                     </Styles.MyProfileBox>
                     <Styles.Box2>
-                        <Styles.Text>닉네임</Styles.Text>
+                        <Styles.Text>{name}</Styles.Text>
                     </Styles.Box2>
                 </Styles.SettingBox>
                 
@@ -39,16 +70,7 @@ import {
         
             <Nav>
                 
-                <NavMenu>
-                    
-                    <NavLink1 to="/myComments"  isaction={myCommentAction}>
-                        <Styles.Box1>
-                            <Styles.Text1>내가 쓴 댓글</Styles.Text1>
-                            <Styles.Text1>3</Styles.Text1>
-                        </Styles.Box1>
-                    </NavLink1>
-                    
-                </NavMenu> 
+             
                 
                 <NavMenu>
                     <NavLink to='/myPlan'  isaction={myPlanAction}>

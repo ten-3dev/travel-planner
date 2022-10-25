@@ -74,10 +74,11 @@ export const Text1 = styled.div`
 `
 
 export const Nav = styled.nav`
-  width: 1200px;
+  width: 980px;
   height: 70px;
   display: flex;
-  margin-left: 157px; 
+  
+  margin-left: 120px; 
 `;
   
 export const NavLink = styled(Link)`
@@ -169,7 +170,7 @@ export const NavLink3 = styled(Link)`
 `;
 
 export const NavMenu = styled.div`
-  width: 200px;
+  width: 300px;
   align-items: center;
   border-radius: 10px;
   margin: 0 30px 0 0;
