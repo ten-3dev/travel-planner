@@ -11,28 +11,52 @@ import { useNavigate } from 'react-router-dom';
 
 const Like = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [itemsCount] = useState(4);
-  const [totalItemsCount] = useState(50); // 임시
+  const [itemsCount] = useState(4); // 화면에 보여줄 아이템 수
+
+  const [tourLikePage, setTourLikePage] = useState(1);
+  const [likeCount, setLikeCount] = useState({
+    tourCount : -1,
+    planCount : -1
+  });
+
   const [isLoding, setIsLoding] = useState(false);
   const [tourInfo, setTourInfo] = useState([]);
 
-
   useEffect(() => {
-    console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
-    console.log(itemsCount + "까지");
-  }, [page, itemsCount]);
-
-  useEffect(() => {
-    getTourData();
-  }, [])
+    if(likeCount.planCount === -1 & likeCount.tourCount === -1){ // 젤 첨이면?
+      console.log("개수 구함");
+      getTourCount(); //개수를 구함
+    }else{
+      console.log("데이터 구함");
+      getTourData();
+    }
+  }, [tourLikePage])
 
   const getTourURL = (id) => {
     return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
   }
 
+  // 페이지네이션을 위한 총 개수 구하기
+  const getTourCount = async () => {
+    const data = await axios.post("http://localhost:8080/getLikesCount");
+    if(data !== undefined){
+      setLikeCount({
+        ...likeCount, 
+        tourCount : data.data.data.filter(e => e.type === "T").length, 
+        planCount : data.data.data.filter(e => e.type === "P").length
+      });
+      getTourData();
+    }else{
+      getTourCount();
+    }
+  }
+
+
+  // 좋아요를 누른 관광지 정보를 가져옴
   const getTourData = async () => {
-    const data = await axios.post("http://localhost:8080/getLikes");
+    setIsLoding(false);
+    setTourInfo(tourInfo.length = 0); // 제거하고 시작
+    const data = await axios.post("http://localhost:8080/getLikesPagination", {offset: tourLikePage === 1 ? 0 : (tourLikePage - 1) * itemsCount, type: "T"});
     if(data !== undefined){
       const likeData = data.data.data.filter(e => e.type === "T");
       for(let i = 0; i < likeData.length; i++){
@@ -45,17 +69,27 @@ const Like = () => {
       }
       setIsLoding(true);
     }else{
-      setTourInfo(tourInfo.length = 0);
       getTourData();
     }
   }
 
   const likeCancel = async (id) => {
-    setTourInfo(tourInfo.length = 0);
-    setIsLoding(false);
     try{
       await axios.delete(`http://localhost:8080/removeLikes/${id}`)
-      getTourData();
+      setLikeCount({...likeCount, tourCount: likeCount.tourCount - 1});
+      console.log(!(likeCount.tourCount * tourLikePage) % itemsCount)
+      if(tourInfo.length === 1){
+        setTourLikePage(tourLikePage - 1);  
+      }else{
+        getTourData();
+      }
+      // if(!(likeCount.tourCount * tourLikePage) % itemsCount){
+      //   console.log("실행 직전22")
+      //   setTourLikePage(tourLikePage - 1);
+      // }else{
+      //   console.log("실행 직전")
+      //   getTourData();
+      // }
     }catch(e){
       alert("좋아요 에러");
       console.log(e);
@@ -127,7 +161,7 @@ const Like = () => {
                     </Styles.ContentBox>
                 </Styles.Box2>
               </Styles.LineBox>
-              <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+              {/* <Paging page={tourLikePage} count={tourLikePageTotalItemsCount} setPage={setTourLikePage} itemsCount={itemsCount}/> */}
             </Styles.SmallBox>
             <Styles.Box>
               <Styles.Text>관광지</Styles.Text>
@@ -137,7 +171,7 @@ const Like = () => {
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
-                      <Styles.ImgBox2 src={`assets/image32.png`}/>
+                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2}/>
                         <Styles.KeepBox>
                           <Styles.KeepBox2>
                             <Styles.ContentText onClick={() => navigate(`/information?id=${el?.contentid}`)}>{el?.title}</Styles.ContentText>
@@ -156,8 +190,8 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
-              {isLoding && tourInfo.length > itemsCount &&
-                <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+              {isLoding && likeCount?.tourCount > itemsCount &&
+                <Paging page={tourLikePage} count={likeCount?.tourCount} setPage={setTourLikePage} itemsCount={itemsCount}/>
                }
             </Styles.SmallBox>
           </Styles.LikesListBox1>
@@ -222,7 +256,7 @@ const Like = () => {
                     </Styles.KeepBox>
                 </Styles.KeepBox3>
               </Styles.LineBox>
-              <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+              {/* <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/> */}
             </Styles.SmallBox2>
           </Styles.LikesListBox>
       </MarginTopWrapper>

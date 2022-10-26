@@ -114,7 +114,7 @@ export const ImgBox = styled.img`
 `
 
 export const ImgBox2 = styled.img`
-    width: 200px;
+    min-width: 200px;
     height: 150px;
     border-radius: 10px;  
     cursor: pointer;
@@ -200,7 +200,8 @@ export const KeepContentText = styled.div`
     height: 70px;
     font-size: 16px;
     margin-left: 20px;
-    margin-top:20px; 
+    margin-top:10px; 
     cursor: pointer;
     overflow: hidden;
+    line-height: 18px;
 `
