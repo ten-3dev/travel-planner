@@ -215,6 +215,8 @@ export const DayItemImg = styled.img`
 `
 export const DayItemSubTextBox = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export const DayItemTextBox = styled.div`

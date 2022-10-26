@@ -3,8 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
-import { date } from "yup";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
@@ -96,7 +96,7 @@ const FilterSelector = ({open, setOpen}) => {
 }
 
 const CreatePlanPage = () => {
-
+    const navigate = useNavigate();
     // 접속한 유저만 플랜 생성
     const [email, setEmail] = useState("");
 
@@ -119,17 +119,22 @@ const CreatePlanPage = () => {
     const [page2, setPage2] = useState(1);
     const [totalItemsCount2, setStotalItemCount2] = useState(50); // 임시
 
-    // 
+    // 페이지 이동 시 마커 삭제
     const pagingHook = useRef(false)
+
+    // 마커 클릭 시 지도
     const [coordinate, setCoordinate] = useState([]);               // 좌표
-    const [storagetours, setStorageTours] = useState([]);           // 전체 관광지 
-    const [tours, setTours] = useState([]);                         // 검색 관광지
+    const [tourMakerSelect0, setTourMakerSelect0] = useState();     // 추가한 관광지 지도 마커
+    const [tourMakerSelect1, setTourMakerSelect1] = useState();     // 전체 관광지 지도 마커
+    const [tourMakerSelect2, setTourMakerSelect2] = useState();     // 찜하기 관광지 지도 마커
+
+    // 관광지
     const [searchKeyword, setSearchKeyword] = useState("");         // 키워드
-    const [tourMakerSelect, setTourMakerSelect] = useState();       // 여행지 마커 of/off
-    // const [tourMakerSelect2, setTourMakerSelect2] = useState();     // 여행지 마커 of/off
-    const [tourSelect, setTourSelect] = useState([]);               // 해당 일정( EX. DAY 1)에 추가한 여행지
+    const [tours, setTours] = useState([]);                         // 키워드 검색 결과 관광지
+    const [cart, setCart] = useState([]);                           // 찜
+    const [tourSelect, setTourSelect] = useState([]);               // 필요없는데 필요함..? 렌더링안됨
     const [dayList, setDayList] = useState();                       // 총 일정목록
-    const [cart, setCart] = useState([]);
+    
 
     useEffect(() => { // 새로고침 방지 alert
         getEmail();
@@ -166,22 +171,21 @@ const CreatePlanPage = () => {
         if(pagingHook.current){
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             console.log("페이징 키워드 " + searchKeyword);
-            setTourMakerSelect(Array(totalItemsCount1).fill(false));
+            setTourMakerSelect1(Array(totalItemsCount1).fill(false));
+            setTourMakerSelect2(Array(totalItemsCount2).fill(false));
         }else{
             pagingHook.current = true;
         }
     }, [page1]);
 
-    // useEffect(() => {
-    //     if(pagingHook.current){
-    //         console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터" + itemsCount + "까지");
-    //         console.log("페이징 키워드 " + searchKeyword);
-    //         setTourMakerSelect(Array(totalItemsCount2).fill(false));
-    //         // setTourMakerSelect2(Array(totalItemsCount2).fill(false));
-    //     }else{
-    //         pagingHook.current = true;
-    //     }
-    // }, [page2]);
+    useEffect(() => {
+        if(pagingHook.current){
+            setTourMakerSelect1(Array(totalItemsCount1).fill(false));
+            setTourMakerSelect2(Array(totalItemsCount2).fill(false));
+        }else{
+            pagingHook.current = true;
+        }
+    }, [page2]);
 
     useEffect(() => {
         console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
@@ -193,9 +197,15 @@ const CreatePlanPage = () => {
         console.log(itemsCount + "까지");
     }, [page2, itemsCount]);
 
-    useEffect(() => { // 임시. 이따 지우셈
-        // console.log(dateList);
-    }, [dateList])
+    const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
+        const data = await axios.get('http://localhost:8080/getUserInfo');
+        console.log(data);
+        if(!data){
+            getEmail();
+        }else{
+            setEmail(data.data.data.email);
+        }
+    }
 
     const onUpdate = (idx) => {
         if(update == null){
@@ -207,16 +217,7 @@ const CreatePlanPage = () => {
             setTourSelect([]);
             setUpdate(null);
             settravelOpen(false);
-        }
-    }
-
-    const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
-        const data = await axios.get('http://localhost:8080/getUserInfo');
-        console.log(data);
-        if(!data){
-            getEmail();
-        }else{
-            setEmail(data.data.data.email);
+            setTourMakerSelect0(Array(dayList[idx-1][1].length).fill(false));   // 취소 클릭 시 마커 초기화
         }
     }
 
@@ -236,10 +237,9 @@ const CreatePlanPage = () => {
             const json = await response.json();
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
-            setStorageTours(tourItems);
             setTours(tourItems);
             setPage1(1);
-            setTourMakerSelect(Array(tourItems.length).fill(false));
+            setTourMakerSelect1(Array(tourItems.length).fill(false));
           })();
     }
 
@@ -253,9 +253,10 @@ const CreatePlanPage = () => {
                 const json = await response.json();
                 const tourItems = json.response.body.items.item[0];
                 Arr[i] = tourItems;
+                setStotalItemCount2(Arr.length);
+                setPage2(1);
+                setTourMakerSelect2(Array(Arr.length).fill(false));
             }
-        setStotalItemCount2(Arr.length);
-        setPage2(1);
         return Arr;
     }
 
@@ -264,54 +265,66 @@ const CreatePlanPage = () => {
             setSearchKeyword(e.target.value);
             if(e.target.value !== ""){
                 let Arr = [];
-                storagetours.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
+                tours.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
                 setTours(Arr);
                 setStotalItemCount1(Arr.length);
                 setPage1(1);
-                setTourMakerSelect(Array(Arr.length).fill(false));
+                setTourMakerSelect1(Array(Arr.length).fill(false));
             }
         }
     };
 
-    const moveMapLocation = (e,id) =>{
+    const moveMapLocation = (e,id) =>{  // 마커 클릭 함수
+        console.log(e);
         const coor = e.target.value.split(',');
+        const newCoor = {lat: coor[0], lon : coor[1]}
         const num = coor[2];
-        const newCoor = {
-            lat: coor[0], lon : coor[1]
+        if(num == 0){
+            const newArr = tourMakerSelect1.fill(false);
+            newArr[id] = true;
+            setTourMakerSelect1(Array(tourMakerSelect1.length).fill(false));
+            setTourMakerSelect2(Array(tourMakerSelect1.length).fill(false));
+            setTourMakerSelect0(newArr);
+        }else if(num == 1){
+            const newArr = tourMakerSelect1.fill(false);
+            newArr[id] = true;
+            setTourMakerSelect0(Array(tourMakerSelect1.length).fill(false));
+            setTourMakerSelect2(Array(tourMakerSelect1.length).fill(false));
+            setTourMakerSelect1(newArr);
+            
+        }else{
+            const newArr = tourMakerSelect2.fill(false);
+            newArr[id] = true;
+            setTourMakerSelect0(Array(tourMakerSelect2.length).fill(false));
+            setTourMakerSelect1(Array(tourMakerSelect2.length).fill(false));
+            setTourMakerSelect2(newArr);
         }
-        const newArr = tourMakerSelect.fill(false);
-        newArr[id] = true;
         setCoordinate(newCoor);
-        setTourMakerSelect(newArr);
     }
 
-    const addTour = (el, idx) =>{
+    const addTour = (el, idx) =>{   // 관광지 추가 함수
         console.log("관광지 추가");
         dayList[idx-1][1] = [...dayList[idx-1][1], el];
         setDayList(dayList);
+        setTourMakerSelect0(Array(dayList[idx-1][1].length).fill(false));
         setTourSelect([...tourSelect, el]);
     }
 
-    const removeTour = (el, idx) =>{
+    const removeTour = (idx, idx2) =>{    // 추가한 관광지 삭제 함수
         console.log("관광지 삭제");
-
-        for(let i=0; i<dayList[idx-1][1].length; i++){
-            console.log(el.contentid);
-            console.log(dayList[idx-1][1][0].contentid);
-            if(el.contentid === dayList[idx-1][1][i].contentid){
-                console.log("삭제");
-                dayList[idx-1][1] = dayList[idx-1][1].splice(i);
+        for(let i=0; i<dayList[idx2-1][1].length; i++){
+            if(idx === i){
+                dayList[idx2-1][1].splice(i,1);
                 setDayList(dayList);
+                setTourSelect([...tourSelect]);
             }
         }
     }
 
-    const getPlanData = async (el) => {
-        console.log(el);
-        let data = null;
+    const postPlanData = async (el) => { // 플랜 
         try{
-            data = await axios.post('http://localhost:8080/createPlan', el);
-            navigate('/');
+            const data = await axios.post('http://localhost:8080/createPlan', el);
+            navigate("/");
         }catch(e){
             alert(e.response.data.msg);
             navigate("/");
@@ -319,36 +332,51 @@ const CreatePlanPage = () => {
 
     }
     
-    const createPlan = async () => {
+    const checkTitle = () => {    // 플랜 확인
+        console.log("체크타이틀 실시");
         let count = 0;
+
         for(let i=0; i<dayList.length; i++){
             count += dayList[i][1].length; 
         }
+
         if(count < 1){
-            alert("플랜생성 시 관광지 하나 이상을 추가하세요");
+            return alert("플랜생성 시 관광지 하나 이상을 추가하세요");
         }else{
             let planTitle = prompt('플랜명을 입력하세요', '');
-            if(planTitle === null || planTitle.length < 4){
-                alert("플랜명은 최소 3글자 이상 입력하세요.");
+            if(planTitle === null){
+                return;
+            }
+            if(planTitle.length === 0 || (planTitle.length < 4 || planTitle.length > 15)){
+                return alert("플랜명은 최소 4글자에서 최대 15글자 입니다.");
             }else{
-                let newArr = []
-                for(let i=0; i<dayList.length; i++){
-                    newArr[i] = {"day":i+1,"id":[]};
-                    for(let j=0; j<dayList[i][1].length; j++){
-                        newArr[i].id[j] = dayList[i][1][j].contentid;
-                    }
-                }
-                const travelPlanner = {
-                    "email" : email,
-                    "title" : encodeURI(planTitle),
-                    "plan" : JSON.stringify(newArr),
-                    "type" : 1,
-                    "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}-${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
-                }
-                console.log(typeof(travelPlanner.plan));
-                getPlanData(travelPlanner);
+                createPlan(planTitle);
+            }            
+        }
+    }
+
+    const createPlan = async (el) => {
+        console.log("플랜생성 실행");
+
+        if(email === "" || email === null || email === undefined){
+            return alert("(임시) 로그인 먼저");
+        }
+
+        let newArr = []
+        for(let i=0; i<dayList.length; i++){
+            newArr[i] = {"day":i+1,"id":[]};
+            for(let j=0; j<dayList[i][1].length; j++){
+                newArr[i].id[j] = dayList[i][1][j].contentid;
             }
         }
+        const travelPlanner = {
+            "email" : email,
+            "title" : el,
+            "plan" : JSON.stringify(newArr),
+            "type" : 1,
+            "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}-${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
+        }
+        postPlanData(travelPlanner);
     }
 
     return(
@@ -357,7 +385,7 @@ const CreatePlanPage = () => {
             <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
-                <Styles.PlanApplyBtn onClick={createPlan}>적용하기</Styles.PlanApplyBtn>
+                <Styles.PlanApplyBtn onClick={checkTitle}>적용하기</Styles.PlanApplyBtn>
                 <Styles.OpenBtn open={controlOpen} left onClick={() => {(setControlOpen(!controlOpen))}}>{controlOpen ? "<<" : ">>"}</Styles.OpenBtn>
                 <Styles.ControlBox open={controlOpen}>
                     <Styles.ContentBox>
@@ -371,7 +399,6 @@ const CreatePlanPage = () => {
                                 <div key={idx}>
                                     <Styles.ListItemBox key={idx}>
                                         <Styles.DayTitle>DAY {idx + 1}</Styles.DayTitle>
-                                        {/* idx에 해당하는 dayList 뿌려야됨 */}
                                             {update === (idx + 1) ? dayList[idx][1].map((e, id) => {
                                                 return(
                                                     <div key={id}>
@@ -379,11 +406,11 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2}/>
                                                             <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{e.title}
-                                                                <Styles.LocationImg open={tourMakerSelect[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e,id)}/>   
+                                                                <Styles.LocationImg open={tourMakerSelect0[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e,id)}/>   
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.DayItemSubTextBox>
-                                                                    <Styles.DayItemText>{e.addr1}</Styles.DayItemText>
-                                                                    <Styles.ItemBtn remove onClick={() => removeTour(e, update)}>삭제</Styles.ItemBtn>
+                                                                    <Styles.DayItemText>{e.addr1.split(" ")[0] + e.addr1.split(" ")[1]}</Styles.DayItemText>
+                                                                    <Styles.ItemBtn remove onClick={() => removeTour(id, update)}>삭제</Styles.ItemBtn>
                                                                 </Styles.DayItemSubTextBox>
                                                             </Styles.DayItemTextBox>
                                                         </Styles.DayItem>
@@ -425,7 +452,7 @@ const CreatePlanPage = () => {
                                                             <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
                                                                 <Styles.DayItemTextBox>
                                                                 <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg open={tourMakerSelect[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e,id)}/>
+                                                                    <Styles.LocationImg open={tourMakerSelect1[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e,id)}/>
                                                                 </Styles.DayItemTitle>
                                                                 <Styles.ItemBox>
                                                                     <Styles.DayItemText>{tour.addr1}</Styles.DayItemText>
@@ -441,9 +468,7 @@ const CreatePlanPage = () => {
                             {tours === "" ? "" : <Paging page={page1} count={totalItemsCount1} setPage={setPage1} itemsCount={itemsCount}/>}
                         </Styles.ListBox>
                         <Styles.ListBox>
-                        <Styles.ListTitleBox>
-                                <Styles.ListTitle>찜한 여행지</Styles.ListTitle>
-                            </Styles.ListTitleBox>
+                            <Styles.ListTitleBox><Styles.ListTitle>찜한 여행지</Styles.ListTitle></Styles.ListTitleBox>
                             <Styles.ScrollBox>
                                 {cart.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>찜한 목록이 없습니다.</Styles.DayItemTitle></Styles.DayItem>
                                 :(cart.map((el, idx) => {
@@ -453,7 +478,7 @@ const CreatePlanPage = () => {
                                                 <Styles.DayItemImg src={el.firstimage2 === "" ? "assets/logo.png" : el.firstimage2}/>
                                                     <Styles.DayItemTextBox>
                                                     <Styles.DayItemTitle>{el.title}
-                                                        {/* <Styles.LocationImg open={tourMakerSelect[idx]} value={[el.mapy, el.mapx, 2]} onClick={(e) => moveMapLocation(e,idx)}/> */}
+                                                        <Styles.LocationImg open={tourMakerSelect2[idx]} value={[el.mapy, el.mapx, 2]} onClick={(e) => moveMapLocation(e,idx)}/>
                                                     </Styles.DayItemTitle>
                                                     <Styles.ItemBox>
                                                         <Styles.DayItemText>{el.addr1}</Styles.DayItemText>
