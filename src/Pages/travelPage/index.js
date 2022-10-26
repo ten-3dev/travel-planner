@@ -129,7 +129,7 @@ const TravelPage = () => {
             }
             getLikes();
         }catch(e){
-            alert("좋아요 에러");
+            alert("로그인 이후 이용 가능합니다.");
         }
     }
 

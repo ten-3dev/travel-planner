@@ -106,7 +106,7 @@ const InformationPage = () => {
             }
             getLikes();
         }catch(e){
-            alert("좋아요 에러");
+            alert("로그인 후 이용해 주세요.");
         }
     }
 
