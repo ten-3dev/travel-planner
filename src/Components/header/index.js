@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Styles from './style';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation,Link } from "react-router-dom";
 import { MarginTopWrapper } from "../../Common/style";
 
 const Header = () => {
@@ -23,6 +23,11 @@ const Header = () => {
         navigate("/login");
     }
 
+    const goCreatePlanPage = () => {
+            alert("로그인 후 이용해 주세요.");
+            navigate("/login");
+      };
+
     return(
         <Styles.Wrapper 
             bg={location.pathname === '/' ? true : false}
@@ -33,7 +38,15 @@ const Header = () => {
                     <Styles.Menu>
                         <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo" onClick={() => {navigate('/')}}/>
                         <Styles.Text onClick={() => {navigate('/travel')}}>여행지</Styles.Text>
-                        <Styles.Text onClick={() => {navigate('/CreatePlanPage')}}>플랜 생성</Styles.Text>
+                        {!sessionStorage.getItem("access_token") ? 
+                        <>
+                        <Styles.Text onClick={ goCreatePlanPage}>플랜 생성</Styles.Text>
+                        </>
+                        :
+                        <>
+                        <Styles.Text onClick={() => {navigate("/CreatePlanPage")}}>플랜 생성</Styles.Text>
+                        </>
+    }
                         <Styles.Text onClick={() => {navigate('/shared')}}>공유된 플랜 보기</Styles.Text>
                     </Styles.Menu>
                     <Styles.LogSign>

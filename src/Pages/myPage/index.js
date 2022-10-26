@@ -24,15 +24,9 @@ import {
     useEffect(() => { // 제일 처음에 실행하는 애 
         getData();
     },[])
-    const [email, setEmail] = useState("");
-    const [pw, setPw] = useState("");
-    const [newPw, setNewPw] = useState("");
-    const [newPwConfirm, setNewPwConfirm] = useState("");
+    
 
     const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [showName, setShowName] = useState("");
-    const [birth, setBirth] = useState("");
     
 
     const getData = async () => { // DB에 있는 회원데이터를 불러옴
@@ -40,14 +34,7 @@ import {
         if(!data){
             getData();
         }else{
-            setEmail(data.data.data.email);
-            setPw(data.data.data.pw);
-
             setName(data.data.data.name);
-            setShowName(data.data.data.name);
-
-            setPhone(data.data.data.tel);
-            setBirth(data.data.data.birth);
         }
     }
 

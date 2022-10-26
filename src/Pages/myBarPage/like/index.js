@@ -13,24 +13,32 @@ const Like = () => {
   const navigate = useNavigate();
   const [itemsCount] = useState(4); // 화면에 보여줄 아이템 수
 
-  const [tourLikePage, setTourLikePage] = useState(1);
-  const [likeCount, setLikeCount] = useState({
+  const [tourLikePage, setTourLikePage] = useState(1); // 현재 페이지 state
+  const [likeCount, setLikeCount] = useState({ // 총 개수 state
     tourCount : -1,
     planCount : -1
   });
 
-  const [isLoding, setIsLoding] = useState(false);
+  const [isLikeLoding, setIsLikeLoding] = useState(false);
   const [tourInfo, setTourInfo] = useState([]);
+
+  const [isDibsLoding, setIsDibsLoding] = useState(false);
+  const [dibsInfo, setDibsInfo] = useState([]);
+
+  const [tourDibsPage, setTourDibsPage] = useState(1); // 현재 페이지 state
+  const [dibsCount, setDibsCount] = useState(-1);// 총 개수 state
 
   useEffect(() => {
     if(likeCount.planCount === -1 & likeCount.tourCount === -1){ // 젤 첨이면?
-      console.log("개수 구함");
       getTourCount(); //개수를 구함
     }else{
-      console.log("데이터 구함");
       getTourData();
     }
   }, [tourLikePage])
+
+  useEffect(() => {
+    getDibsData(tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount);
+  }, [tourDibsPage])
 
   const getTourURL = (id) => {
     return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
@@ -40,10 +48,14 @@ const Like = () => {
   const getTourCount = async () => {
     const data = await axios.post("http://localhost:8080/getLikesCount");
     if(data !== undefined){
+      if(data.data.data.length === 0){
+        setIsLikeLoding(true);
+        return;
+      }
       setLikeCount({
         ...likeCount, 
-        tourCount : data.data.data.filter(e => e.type === "T").length, 
-        planCount : data.data.data.filter(e => e.type === "P").length
+        tourCount : data.data.data.t_like, 
+        planCount : data.data.data.p_like
       });
       getTourData();
     }else{
@@ -54,7 +66,7 @@ const Like = () => {
 
   // 좋아요를 누른 관광지 정보를 가져옴
   const getTourData = async () => {
-    setIsLoding(false);
+    setIsLikeLoding(false);
     setTourInfo(tourInfo.length = 0); // 제거하고 시작
     const data = await axios.post("http://localhost:8080/getLikesPagination", {offset: tourLikePage === 1 ? 0 : (tourLikePage - 1) * itemsCount, type: "T"});
     if(data !== undefined){
@@ -67,19 +79,24 @@ const Like = () => {
         tourData.push(tourItems[0])
         setTourInfo(tourData);
       }
-      setIsLoding(true);
+      setIsLikeLoding(true);
     }else{
       getTourData();
     }
   }
 
+  // 좋아요 제거 함수
   const likeCancel = async (id) => {
     try{
       await axios.delete(`http://localhost:8080/removeLikes/${id}`)
       setLikeCount({...likeCount, tourCount: likeCount.tourCount - 1});
       console.log(!(likeCount.tourCount * tourLikePage) % itemsCount)
       if(tourInfo.length === 1){
-        setTourLikePage(tourLikePage - 1);  
+        if(likeCount.tourCount === 1){
+          getTourData();  
+        }else{
+          setTourLikePage(tourLikePage - 1);  
+        }
       }else{
         getTourData();
       }
@@ -87,6 +104,57 @@ const Like = () => {
       alert("좋아요 에러");
       console.log(e);
     }
+  }
+
+  const getDibsData = async (offset) => {
+    setIsDibsLoding(false);
+    setDibsInfo(dibsInfo.length = 0);
+    console.log(offset);
+    if(sessionStorage.getItem("dibs")){
+      const dibs = sessionStorage.getItem("dibs").split(" ");
+      dibs.pop();
+      setDibsCount(dibs.length);
+
+      let i = 0;
+      while(true){
+        // 페이지네이션 작동하도록 하셈... 그럼 찜하기 끝
+
+        // if((offset + i) - 1 === dibs.length){
+        //   console.log("Asdfsad");
+        //   break;
+        // }
+        i++;
+        console.log(offset, i, dibs.length);
+        const response = await fetch(getTourURL(dibs[offset + i]));
+        const json = await response.json();
+        const dibsItems = json.response.body.items.item;
+        const dibsData = dibsInfo;
+        dibsData.push(dibsItems[0]);
+        setDibsInfo(dibsData);
+        if(i === itemsCount){
+          break;
+        }        
+      }
+      // for(let i = offset; i < dibs.length; i++){
+      //   const response = await fetch(getTourURL(dibs[i]));
+      //   const json = await response.json();
+      //   const dibsItems = json.response.body.items.item;
+      //   const dibsData = dibsInfo;
+      //   dibsData.push(dibsItems[0]);
+      //   setDibsInfo(dibsData);
+      //   if((offset === 0 ? i + 1 : i) === itemsCount){
+      //     break;
+      //   }
+      // }
+      console.log(dibsInfo);
+    }
+    setIsDibsLoding(true);
+  }
+
+  const dibsCancel = async (id) => {
+    const dibs = sessionStorage.getItem("dibs");
+    sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
+    getDibsData();
   }
 
   return (
@@ -160,7 +228,7 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              {!isLoding ? "로딩 중..." : tourInfo.map((el, idx) => { 
+              {!isLikeLoding ? "로딩 중..." : likeCount.tourCount <= 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
@@ -183,7 +251,7 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
-              {isLoding && likeCount?.tourCount > itemsCount &&
+              {isLikeLoding && likeCount?.tourCount > itemsCount &&
                 <Paging page={tourLikePage} count={likeCount?.tourCount} setPage={setTourLikePage} itemsCount={itemsCount}/>
                }
             </Styles.SmallBox>
@@ -192,64 +260,30 @@ const Like = () => {
         <Styles.LikeText>찜 목록</Styles.LikeText>
         <Styles.LikesListBox>
             <Styles.SmallBox2>
-              <Styles.LineBox>
-                <Styles.KeepBox3>
-                  <Styles.ImgBox2 src={`assets/image32.png`}/>
-                    <Styles.KeepBox>
-                      <Styles.KeepBox2>
-                        <Styles.ContentText>더베이101</Styles.ContentText>
-                        <Styles.AddressText>부산 해운대구 동백로 52 더베이101</Styles.AddressText>
-                      </Styles.KeepBox2>
-                      <Styles.KeepBox2>
-                        <Styles.KeepContentText>
-                          부산 해운대를 대표하는해양레져 
-                          클럽하우스 화려한 야경과 맛있는 음식을 즐기는
-                           뭐라뭐라뭐라 쏼라쏼라쏼라 등등등등등등등이며 여러가지 뭐가 있을꺼임
-                        </Styles.KeepContentText>
-                        <Styles.KeepDeleteBox>찜 삭제</Styles.KeepDeleteBox>
-                      </Styles.KeepBox2>
-                    </Styles.KeepBox>
-                </Styles.KeepBox3>
-              </Styles.LineBox>
-              <Styles.LineBox>
-                <Styles.KeepBox3>
-                  <Styles.ImgBox2 src={`assets/image32.png`}/>
-                    <Styles.KeepBox>
-                      <Styles.KeepBox2>
-                        <Styles.ContentText>더베이101</Styles.ContentText>
-                        <Styles.AddressText>부산 해운대구 동백로 52 더베이101</Styles.AddressText>
-                      </Styles.KeepBox2>
-                      <Styles.KeepBox2>
-                        <Styles.KeepContentText>
-                          부산 해운대를 대표하는해양레져 
-                          클럽하우스 화려한 야경과 맛있는 음식을 즐기는
-                           뭐라뭐라뭐라 쏼라쏼라쏼라 등등등등등등등이며 여러가지 뭐가 있을꺼임
-                        </Styles.KeepContentText>
-                        <Styles.KeepDeleteBox>찜 삭제</Styles.KeepDeleteBox>
-                      </Styles.KeepBox2>
-                    </Styles.KeepBox>
-                </Styles.KeepBox3>
-              </Styles.LineBox>
-              <Styles.LineBox>
-                <Styles.KeepBox3>
-                  <Styles.ImgBox2 src={`assets/image32.png`}/>
-                    <Styles.KeepBox>
-                      <Styles.KeepBox2>
-                        <Styles.ContentText>더베이101</Styles.ContentText>
-                        <Styles.AddressText>부산 해운대구 동백로 52 더베이101</Styles.AddressText>
-                      </Styles.KeepBox2>
-                      <Styles.KeepBox2>
-                        <Styles.KeepContentText>
-                          부산 해운대를 대표하는해양레져 
-                          클럽하우스 화려한 야경과 맛있는 음식을 즐기는
-                           뭐라뭐라뭐라 쏼라쏼라쏼라 등등등등등등등이며 여러가지 뭐가 있을꺼임
-                        </Styles.KeepContentText>
-                        <Styles.KeepDeleteBox>찜 삭제</Styles.KeepDeleteBox>
-                      </Styles.KeepBox2>
-                    </Styles.KeepBox>
-                </Styles.KeepBox3>
-              </Styles.LineBox>
-              {/* <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/> */}
+              {!sessionStorage.getItem("dibs") ? "찜하기로 선택된 항목이 없습니다." : !isDibsLoding ? "로딩 중..." : dibsInfo.map((el, idx) => {
+                return(
+                  <Styles.LineBox key={idx}>
+                    <Styles.KeepBox3>
+                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2}/>
+                        <Styles.KeepBox>
+                          <Styles.KeepBox2>
+                            <Styles.ContentText onClick={() => navigate(`/information?id=${el?.contentid}`)}>{el?.title}</Styles.ContentText>
+                            <Styles.AddressText>{el?.addr1 + " " + el?.addr2}</Styles.AddressText>
+                          </Styles.KeepBox2>
+                          <Styles.KeepBox2>
+                            <Styles.KeepContentText>
+                            {el?.overview}
+                            </Styles.KeepContentText>
+                            <Styles.KeepDeleteBox onClick={() => dibsCancel(el?.contentid)}>찜 삭제</Styles.KeepDeleteBox>
+                          </Styles.KeepBox2>
+                        </Styles.KeepBox>
+                    </Styles.KeepBox3>
+                  </Styles.LineBox>
+                )
+              })}
+              {isDibsLoding && dibsCount > itemsCount &&
+                <Paging page={tourDibsPage} count={dibsCount} setPage={setTourDibsPage} itemsCount={itemsCount}/>
+              }
             </Styles.SmallBox2>
           </Styles.LikesListBox>
       </MarginTopWrapper>
