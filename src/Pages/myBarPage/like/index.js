@@ -83,13 +83,6 @@ const Like = () => {
       }else{
         getTourData();
       }
-      // if(!(likeCount.tourCount * tourLikePage) % itemsCount){
-      //   console.log("실행 직전22")
-      //   setTourLikePage(tourLikePage - 1);
-      // }else{
-      //   console.log("실행 직전")
-      //   getTourData();
-      // }
     }catch(e){
       alert("좋아요 에러");
       console.log(e);
