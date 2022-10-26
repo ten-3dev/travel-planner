@@ -24,10 +24,8 @@ const Like = () => {
 
   useEffect(() => {
     if(likeCount.planCount === -1 & likeCount.tourCount === -1){ // 젤 첨이면?
-      console.log("개수 구함");
       getTourCount(); //개수를 구함
     }else{
-      console.log("데이터 구함");
       getTourData();
     }
   }, [tourLikePage])
@@ -40,6 +38,10 @@ const Like = () => {
   const getTourCount = async () => {
     const data = await axios.post("http://localhost:8080/getLikesCount");
     if(data !== undefined){
+      if(data.data.data.length === 0){
+        setIsLoding(true);
+        return;
+      }
       setLikeCount({
         ...likeCount, 
         tourCount : data.data.data.filter(e => e.type === "T").length, 
@@ -79,7 +81,11 @@ const Like = () => {
       setLikeCount({...likeCount, tourCount: likeCount.tourCount - 1});
       console.log(!(likeCount.tourCount * tourLikePage) % itemsCount)
       if(tourInfo.length === 1){
-        setTourLikePage(tourLikePage - 1);  
+        if(likeCount.tourCount === 1){
+          getTourData();  
+        }else{
+          setTourLikePage(tourLikePage - 1);  
+        }
       }else{
         getTourData();
       }
@@ -160,7 +166,7 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              {!isLoding ? "로딩 중..." : tourInfo.map((el, idx) => { 
+              {!isLoding ? "로딩 중..." : likeCount.tourCount <= 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
