@@ -12,9 +12,11 @@ const MainPage = () => {
     const searchInput = useRef("");
     const [searchKeyword, setSearchKeyword] = useState();
     
-    const moveCreatePlan = () => {
-        navigate('/CreatePlanPage');
-    }
+    const goCreatePlanPage = () => {
+        alert("로그인 후 이용해 주세요.");
+        navigate("/login");
+        
+  };
     const moveSharedPlan = () => {
         navigate('/shared');
     }
@@ -155,7 +157,16 @@ const MainPage = () => {
                                 <Styles.BottomContentText>간단하게 원하는 여행지를 찾아보고 간단하게 원하는 계획을 세울 수 있습니다.</Styles.BottomContentText>
                             </Styles.BottomContentWords>
                         </Styles.BottomContentSBox>
-                        <Styles.BottomContentBtn onClick={moveCreatePlan}>플랜 작성하기</Styles.BottomContentBtn>
+                        {!sessionStorage.getItem("access_token") ? 
+                        <>
+                        <Styles.BottomContentBtn onClick={ goCreatePlanPage}>플랜 작성하기</Styles.BottomContentBtn>
+                        </>
+                        :
+                        <>
+                        <Styles.BottomContentBtn onClick={() => {navigate("/CreatePlanPage")}}>플랜 작성하기</Styles.BottomContentBtn>
+                        </>
+                         }
+                        
                     </Styles.BottomContentBox>
                     <Styles.BottomContentBox column paddingBottom="50px">
                         <Styles.CarouselTitle>인기플랜</Styles.CarouselTitle>
