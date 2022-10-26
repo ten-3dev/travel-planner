@@ -197,14 +197,21 @@ const CreatePlanPage = () => {
         console.log(itemsCount + "까지");
     }, [page2, itemsCount]);
 
+    const postPlanData = async (el) => { // 플랜 
+        try{
+            const data = await axios.post('http://localhost:8080/createPlan', el);
+            navigate("/");
+        }catch(e){
+            alert(e.response.data.msg);
+            navigate("/");
+        }
+
+    }
+
     const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
         const data = await axios.get('http://localhost:8080/getUserInfo');
         console.log(data);
-        if(!data){
-            getEmail();
-        }else{
-            setEmail(data.data.data.email);
-        }
+        setEmail(data.data.data.email);
     }
 
     const onUpdate = (idx) => {
@@ -321,17 +328,6 @@ const CreatePlanPage = () => {
         }
     }
 
-    const postPlanData = async (el) => { // 플랜 
-        try{
-            const data = await axios.post('http://localhost:8080/createPlan', el);
-            navigate("/");
-        }catch(e){
-            alert(e.response.data.msg);
-            navigate("/");
-        }
-
-    }
-    
     const checkTitle = () => {    // 플랜 확인
         console.log("체크타이틀 실시");
         let count = 0;
@@ -374,7 +370,7 @@ const CreatePlanPage = () => {
             "title" : el,
             "plan" : JSON.stringify(newArr),
             "type" : 1,
-            "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}-${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
+            "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}~${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
         }
         postPlanData(travelPlanner);
     }
