@@ -31,15 +31,15 @@ const Like = () => {
   const [dibsInfo, setDibsInfo] = useState([]);
 
   useEffect(() => {
-    if(count.planCount === -1 & count.tourCount === -1 & count.dibsCount === -1){ // 젤 첨이면?
-      getCount(); //개수를 구함
-    }else{
-      getTourData();
-    }
+    getCount(); //개수를 구함
+  }, [])
+
+  useEffect(() => {
+    getTourData();
   }, [tourLikePage])
 
   useEffect(() => {
-    getDibsData(tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount);
+    getDibsData();
   }, [tourDibsPage])
 
   const getTourURL = (id) => {
@@ -66,7 +66,7 @@ const Like = () => {
         dibsCount : dibsCount !== -1 ? dibsCount : count.dibsCount
       });
 
-      getTourData();
+      // getTourData();
     }else{
       getCount();
     }
@@ -119,7 +119,8 @@ const Like = () => {
     }
   }
 
-  const getDibsData = async (offset) => {
+  const getDibsData = async () => {
+    const offset = tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount
     setIsDibsLoding(false);
     setDibsInfo(dibsInfo.length = 0);
     if(sessionStorage.getItem("dibs")){
@@ -147,7 +148,8 @@ const Like = () => {
       setCount({...count, dibsCount: count.dibsCount - 1})
       setTourDibsPage(tourDibsPage - 1);
     }else{
-      getDibsData(tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount);
+      setCount({...count, dibsCount: count.dibsCount - 1})
+      getDibsData();
     }
   }
 

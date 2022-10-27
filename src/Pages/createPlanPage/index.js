@@ -369,7 +369,7 @@ const CreatePlanPage = () => {
             "email" : email,
             "title" : el,
             "plan" : JSON.stringify(newArr),
-            "type" : 1,
+            "type" : 0,
             "date" : `${moment(dateList[0]).format("YYYY-MM-DD")}~${moment(dateList[dateList.length -1]).format("YYYY-MM-DD")}`,
         }
         postPlanData(travelPlanner);
