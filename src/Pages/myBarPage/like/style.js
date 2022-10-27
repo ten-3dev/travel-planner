@@ -203,5 +203,5 @@ export const KeepContentText = styled.div`
     margin-top:10px; 
     cursor: pointer;
     overflow: hidden;
-    line-height: 18px;
+    line-height: 17.5px;
 `

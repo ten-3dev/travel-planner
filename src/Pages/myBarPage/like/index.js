@@ -13,24 +13,26 @@ const Like = () => {
   const navigate = useNavigate();
   const [itemsCount] = useState(4); // 화면에 보여줄 아이템 수
 
+  const [tourDibsPage, setTourDibsPage] = useState(1); // 현재 페이지 state
   const [tourLikePage, setTourLikePage] = useState(1); // 현재 페이지 state
-  const [likeCount, setLikeCount] = useState({ // 총 개수 state
+  
+  const [count, setCount] = useState({ // 총 개수 state
     tourCount : -1,
-    planCount : -1
+    planCount : -1,
+    dibsCount : -1
   });
 
+  // 관광지 좋아요 로딩 state
   const [isLikeLoding, setIsLikeLoding] = useState(false);
   const [tourInfo, setTourInfo] = useState([]);
 
+  // 관광지 찜하기 로딩 state
   const [isDibsLoding, setIsDibsLoding] = useState(false);
   const [dibsInfo, setDibsInfo] = useState([]);
 
-  const [tourDibsPage, setTourDibsPage] = useState(1); // 현재 페이지 state
-  const [dibsCount, setDibsCount] = useState(-1);// 총 개수 state
-
   useEffect(() => {
-    if(likeCount.planCount === -1 & likeCount.tourCount === -1){ // 젤 첨이면?
-      getTourCount(); //개수를 구함
+    if(count.planCount === -1 & count.tourCount === -1 & count.dibsCount === -1){ // 젤 첨이면?
+      getCount(); //개수를 구함
     }else{
       getTourData();
     }
@@ -45,21 +47,28 @@ const Like = () => {
   }
 
   // 페이지네이션을 위한 총 개수 구하기
-  const getTourCount = async () => {
+  const getCount = async () => {
     const data = await axios.post("http://localhost:8080/getLikesCount");
+    let dibsCount = -1;
     if(data !== undefined){
       if(data.data.data.length === 0){
         setIsLikeLoding(true);
         return;
       }
-      setLikeCount({
-        ...likeCount, 
-        tourCount : data.data.data.t_like, 
-        planCount : data.data.data.p_like
+      if(sessionStorage.getItem("dibs")){
+        const dibs = sessionStorage.getItem("dibs").split(" ");
+        dibs.pop();
+        dibsCount = dibs.length;
+      }
+      setCount({
+        ...count, 
+        tourCount : data?.data?.data?.t_like,
+        dibsCount : dibsCount !== -1 ? dibsCount : count.dibsCount
       });
+
       getTourData();
     }else{
-      getTourCount();
+      getCount();
     }
   }
 
@@ -68,20 +77,25 @@ const Like = () => {
   const getTourData = async () => {
     setIsLikeLoding(false);
     setTourInfo(tourInfo.length = 0); // 제거하고 시작
-    const data = await axios.post("http://localhost:8080/getLikesPagination", {offset: tourLikePage === 1 ? 0 : (tourLikePage - 1) * itemsCount, type: "T"});
-    if(data !== undefined){
-      const likeData = data.data.data.filter(e => e.type === "T");
-      for(let i = 0; i < likeData.length; i++){
-        const response = await fetch(getTourURL(likeData[i].id));
-        const json = await response.json();
-        const tourItems = json.response.body.items.item;
-        const tourData = tourInfo;
-        tourData.push(tourItems[0])
-        setTourInfo(tourData);
+    try{
+      const data = await axios.post("http://localhost:8080/getLikesPagination", {offset: tourLikePage === 1 ? 0 : (tourLikePage - 1) * itemsCount, type: "T"});
+      if(data !== undefined){
+        const likeData = data.data.data.filter(e => e.type === "T");
+        for(let i = 0; i < likeData.length; i++){
+          const response = await fetch(getTourURL(likeData[i].id));
+          const json = await response.json();
+          const tourItems = json.response.body.items.item;
+          const tourData = tourInfo;
+          tourData.push(tourItems[0])
+          setTourInfo(tourData);
+        }
+        setIsLikeLoding(true);
+      }else{
+        getTourData();
       }
-      setIsLikeLoding(true);
-    }else{
-      getTourData();
+    }catch(e){
+      alert("좋아요 에러");
+      console.log(e);
     }
   }
 
@@ -89,10 +103,9 @@ const Like = () => {
   const likeCancel = async (id) => {
     try{
       await axios.delete(`http://localhost:8080/removeLikes/${id}`)
-      setLikeCount({...likeCount, tourCount: likeCount.tourCount - 1});
-      console.log(!(likeCount.tourCount * tourLikePage) % itemsCount)
+      setCount({...count, tourCount: count.tourCount - 1});
       if(tourInfo.length === 1){
-        if(likeCount.tourCount === 1){
+        if(count.tourCount === 1){
           getTourData();  
         }else{
           setTourLikePage(tourLikePage - 1);  
@@ -109,11 +122,9 @@ const Like = () => {
   const getDibsData = async (offset) => {
     setIsDibsLoding(false);
     setDibsInfo(dibsInfo.length = 0);
-    console.log(offset);
     if(sessionStorage.getItem("dibs")){
       const dibs = sessionStorage.getItem("dibs").split(" ");
       dibs.pop();
-      setDibsCount(dibs.length);
       for(let i = 0; i < 4; i++){
         if(dibs.length === offset + i){
           break;
@@ -124,7 +135,6 @@ const Like = () => {
         const dibsData = dibsInfo;
         dibsData.push(dibsItems[0]);
         setDibsInfo(dibsData);
-        console.log(dibsInfo);
       }
     }
     setIsDibsLoding(true);
@@ -134,6 +144,7 @@ const Like = () => {
     const dibs = sessionStorage.getItem("dibs");
     sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
     if(dibsInfo.length === 1){
+      setCount({...count, dibsCount: count.dibsCount - 1})
       setTourDibsPage(tourDibsPage - 1);
     }else{
       getDibsData(tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount);
@@ -211,7 +222,7 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              {!isLikeLoding ? "로딩 중..." : likeCount.tourCount <= 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
+              {!isLikeLoding ? "로딩 중..." : count.tourCount <= 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
@@ -234,8 +245,8 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
-              {isLikeLoding && likeCount?.tourCount > itemsCount &&
-                <Paging page={tourLikePage} count={likeCount?.tourCount} setPage={setTourLikePage} itemsCount={itemsCount}/>
+              {isLikeLoding && count?.tourCount > itemsCount &&
+                <Paging page={tourLikePage} count={count?.tourCount} setPage={setTourLikePage} itemsCount={itemsCount}/>
                }
             </Styles.SmallBox>
           </Styles.LikesListBox1>
@@ -264,8 +275,8 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
-              {isDibsLoding && dibsCount > itemsCount &&
-                <Paging page={tourDibsPage} count={dibsCount} setPage={setTourDibsPage} itemsCount={itemsCount}/>
+              {isDibsLoding && count?.dibsCount > itemsCount &&
+                <Paging page={tourDibsPage} count={count?.dibsCount} setPage={setTourDibsPage} itemsCount={itemsCount}/>
               }
             </Styles.SmallBox2>
           </Styles.LikesListBox>
