@@ -41,7 +41,7 @@ const Like = () => {
   }, [tourDibsPage])
 
   const getTourURL = (id) => {
-    return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`
+    return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=N&overviewYN=Y`
   }
 
   // 페이지네이션을 위한 총 개수 구하기
@@ -114,39 +114,18 @@ const Like = () => {
       const dibs = sessionStorage.getItem("dibs").split(" ");
       dibs.pop();
       setDibsCount(dibs.length);
-
-      let i = 0;
-      while(true){
-        // 페이지네이션 작동하도록 하셈... 그럼 찜하기 끝
-
-        // if((offset + i) - 1 === dibs.length){
-        //   console.log("Asdfsad");
-        //   break;
-        // }
-        i++;
-        console.log(offset, i, dibs.length);
+      for(let i = 0; i < 4; i++){
+        if(dibs.length === offset + i){
+          break;
+        }
         const response = await fetch(getTourURL(dibs[offset + i]));
         const json = await response.json();
         const dibsItems = json.response.body.items.item;
         const dibsData = dibsInfo;
         dibsData.push(dibsItems[0]);
         setDibsInfo(dibsData);
-        if(i === itemsCount){
-          break;
-        }        
+        console.log(dibsInfo);
       }
-      // for(let i = offset; i < dibs.length; i++){
-      //   const response = await fetch(getTourURL(dibs[i]));
-      //   const json = await response.json();
-      //   const dibsItems = json.response.body.items.item;
-      //   const dibsData = dibsInfo;
-      //   dibsData.push(dibsItems[0]);
-      //   setDibsInfo(dibsData);
-      //   if((offset === 0 ? i + 1 : i) === itemsCount){
-      //     break;
-      //   }
-      // }
-      console.log(dibsInfo);
     }
     setIsDibsLoding(true);
   }
@@ -154,7 +133,11 @@ const Like = () => {
   const dibsCancel = async (id) => {
     const dibs = sessionStorage.getItem("dibs");
     sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
-    getDibsData();
+    if(dibsInfo.length === 1){
+      setTourDibsPage(tourDibsPage - 1);
+    }else{
+      getDibsData(tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount);
+    }
   }
 
   return (
