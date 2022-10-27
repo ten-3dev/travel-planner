@@ -13,8 +13,9 @@ const Like = () => {
   const navigate = useNavigate();
   const [itemsCount] = useState(4); // 화면에 보여줄 아이템 수
 
-  const [tourDibsPage, setTourDibsPage] = useState(1); // 현재 페이지 state
   const [tourLikePage, setTourLikePage] = useState(1); // 현재 페이지 state
+  const [tourDibsPage, setTourDibsPage] = useState(1); // 현재 페이지 state
+  const [planLikePage, setPlanLikePage] = useState(1); // 현재 페이지 state
   
   const [count, setCount] = useState({ // 총 개수 state
     tourCount : -1,
@@ -41,6 +42,10 @@ const Like = () => {
   useEffect(() => {
     getDibsData();
   }, [tourDibsPage])
+
+  useEffect(() => {
+    getDibsData();
+  }, [planLikePage])
 
   const getTourURL = (id) => {
     return `https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=N&catcodeYN=N&addrinfoYN=Y&mapinfoYN=N&overviewYN=Y`
@@ -119,6 +124,7 @@ const Like = () => {
     }
   }
 
+  // 찜하기 목록 가져오는 함수
   const getDibsData = async () => {
     const offset = tourDibsPage === 1 ? 0 : (tourDibsPage - 1) * itemsCount
     setIsDibsLoding(false);
@@ -141,6 +147,7 @@ const Like = () => {
     setIsDibsLoding(true);
   }
 
+  // 찜하기 취소 함수
   const dibsCancel = async (id) => {
     const dibs = sessionStorage.getItem("dibs");
     sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
