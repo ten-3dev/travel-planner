@@ -34,7 +34,7 @@ const MyPlan = () => {
           <Styles.Box>
             <Styles.Text>나의 플랜</Styles.Text>
           </Styles.Box>
-              {/* {plan.map((el, idx => {return e}).map((el, idx) => {
+              {plan === undefined ? "" : (plan.map((el, idx) => {
                 return(
                   <id key={idx}>
                     <Styles.SmallBox>
@@ -42,20 +42,20 @@ const MyPlan = () => {
                       <Styles.ImgBox src={`assets/image32.png`}/>
                       <Styles.ContentBox>
                         <Styles.ContentBox2>
-                          <Styles.ContentText>{el.title}</Styles.ContentText>
-                          <Styles.DayBox>{el.date}</Styles.DayBox>
+                          <Styles.ContentText>{el[1].title}</Styles.ContentText>
+                          <Styles.DayBox>{el[1].date}</Styles.DayBox>
                         </Styles.ContentBox2>
                         <Styles.ContentBox2>
                           <Styles.ModifyDeleteBox>일정 수정</Styles.ModifyDeleteBox>
                           <Styles.ModifyDeleteBox>일정 삭제</Styles.ModifyDeleteBox>
-                          <Styles.NameBox>{el.name}</Styles.NameBox>
+                          <Styles.NameBox>{el[1].name}</Styles.NameBox>
                       </Styles.ContentBox2>
                     </Styles.ContentBox>
                     </Styles.LineBox>
                   </Styles.SmallBox>
                   </id>
                 )
-              }))} */}
+              }))}
           <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </Styles.BigBox>
     </MarginTopWrapper>
