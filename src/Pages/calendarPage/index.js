@@ -34,12 +34,16 @@ const CalendarPage = () =>{
 
     const getUserPlanById = async (id) => { // DB에 있는 플랜데이터 
         const data = await axios.get(`http://localhost:8080/getUserPlanById/${id}`);
-        setDateList(data.data.data);
-        let count = 0;
-        for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
-            count += JSON.parse(data.data.data.plan)[i].list.length;
+        if(data){
+            setDateList(data.data.data);
+            let count = 0;
+            for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
+                count += JSON.parse(data.data.data.plan)[i].list.length;
+            }
+            setMapMarker(Array(count).fill(false));
+        }else{
+            getUserPlanById(id);
         }
-        setMapMarker(Array(count).fill(false));
       }
       
       const infoMove = (e) => {
