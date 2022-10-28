@@ -354,10 +354,6 @@ const CreatePlanPage = () => {
     const createPlan = async (el) => {
         console.log("플랜생성 실행");
 
-        if(email === "" || email === null || email === undefined){
-            return alert("(임시) 로그인 먼저");
-        }
-
         let newArr = []
         for(let i=0; i<dayList.length; i++){
             newArr[i] = {"day":i+1,"list":[]};

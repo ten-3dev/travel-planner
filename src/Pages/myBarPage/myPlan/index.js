@@ -5,33 +5,40 @@ import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { set } from 'react-hook-form';
 
 const MyPlan = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
-  const [itemsCount] = useState(6);
-  const [totalItemsCount] = useState(50); // 임시
   const [plan, setPlan] = useState();
 
   useEffect(() => {
     getUserPlan();
-    console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
-    console.log(itemsCount + "까지");
-}, [page, itemsCount]);
+
+}, []);
 
   const getUserPlan = async () => { // DB에 있는 플랜데이터 
     const data = await axios.get('http://localhost:8080/getUserPlan');
     if(!data){
         getUserPlan();
     }else{
-      console.log(data.data.data);
-      setPlan(Object.entries(data.data.data));
+      const planArr = Object.entries(data.data.data);
+      setPlan(planArr);
+
+        for(let i=0; i<planArr.length; i++){
+          console.log(JSON.parse(planArr[i][1].plan));
+        }
     }
   }
 
-  const infoMove = (e) => {
-    navigate('/calendar', {state : plan})
+  const deleteUserPlan = async (id) => {
+    await axios.delete(`http://localhost:8080/deleteUserPlan/${id}`);
+    getUserPlan();
   }
+
+  const infoMove = (e) => {
+    navigate(`/calendar?id=${e.id}`);
+  }
+
   return (
     <>
     <MyPage myPlanAction="myPlan"/>
@@ -42,10 +49,10 @@ const MyPlan = () => {
           </Styles.Box>
               {plan === undefined ? "" : (plan.map((el, idx) => {
                 return(
-                  <id key={idx}>
+                  <div key={idx}>
                     <Styles.SmallBox>
                       <Styles.LineBox>
-                      <Styles.ImgBox src={`assets/image32.png`}/> 
+                      <Styles.ImgBox src= {"assets/logo.png"}/> 
                       <Styles.ContentBox>
                         <Styles.ContentBox2>
                           <Styles.ContentText>{el[1].title}</Styles.ContentText>
@@ -54,16 +61,15 @@ const MyPlan = () => {
                         <Styles.ContentBox2>
                           <Styles.ModifyDeleteBox onClick={() => {infoMove(el[1])}}>일정 보기</Styles.ModifyDeleteBox>
                           <Styles.ModifyDeleteBox>일정 수정</Styles.ModifyDeleteBox>
-                          <Styles.ModifyDeleteBox>일정 삭제</Styles.ModifyDeleteBox>
+                          <Styles.ModifyDeleteBox onClick={() => {deleteUserPlan(el[1].id)}}>일정 삭제</Styles.ModifyDeleteBox>
                           <Styles.NameBox>{el[1].name}</Styles.NameBox>
                       </Styles.ContentBox2>
                     </Styles.ContentBox>
                     </Styles.LineBox>
                   </Styles.SmallBox>
-                  </id>
+                  </div>
                 )
               }))}
-          <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </Styles.BigBox>
     </MarginTopWrapper>
       

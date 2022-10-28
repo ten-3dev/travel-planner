@@ -4,37 +4,23 @@ import { MarginTopWrapper } from "../../Common/style";
 import Map from "../../Components/kakaoMap";
 import Comment from "../../Components/Comment";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const CalendarPage = () =>{
     const navigate = useNavigate();
     const [dateList, setDateList ] = useState();
-    const [dayList, setDayList] = useState();
     const [coordinate, setCoordinate] = useState([]);
     const [controlOpen, setControlOpen] = useState(false);  // 공개/비공개 on/off
     const [mapMarker, setMapMarker] = useState(false); // 지도 of/off
 
-    const data = useLocation(); //mainPage 받아온 키워드 값
-    const {state} = data;
-
-    //페이징
-    const [page, setPage] = useState(1);
-    const [itemsCount] = useState(6);
-    const [totalItemsCount] = useState(50); // 임시
-    const [tourMakerSelect0, setTourMakerSelect0] = useState();   
     useEffect(() => {
-        const toursData = state[0][1];
-        state === undefined ? navigate('/myPlan') : setDateList(toursData);
-        let count = 0;
-        for(let i=0; i<JSON.parse(toursData.plan).length; i++){
-            count += JSON.parse(toursData.plan)[i].list.length;
+        if(location.search === ""){
+            alert("url이 잘못되었습니다.");
+            history.back();
+        }else{
+            getUserPlanById(location.search.split("=")[1]);
         }
-        setMapMarker(Array(count).fill(false));
     },[])
-
-    useEffect(() => {
-        console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
-        console.log(itemsCount + "까지");
-    }, [page, itemsCount]);
 
     const moveMapLocation = (e, id) =>{
         const coor = e.target.value.split(',');
@@ -46,6 +32,20 @@ const CalendarPage = () =>{
         setCoordinate(newCoor);
         setMapMarker(newArr);
     }
+
+    const getUserPlanById = async (id) => { // DB에 있는 플랜데이터 
+        const data = await axios.get(`http://localhost:8080/getUserPlanById/${id}`);
+        setDateList(data.data.data);
+        let count = 0;
+        for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
+            count += JSON.parse(data.data.data.plan)[i].list.length;
+        }
+        setMapMarker(Array(count).fill(false));
+      }
+      
+      const infoMove = (e) => {
+        navigate(`/information?id=${e}`);
+      }
 
     return(
         <>
@@ -80,12 +80,8 @@ const CalendarPage = () =>{
                                                                                 <Styles.PlaceInfo>
                                                                                 <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2}/>
                                                                                 <Styles.Text>
-                                                                                    <Styles.PlaceTitle>
-                                                                                        {day.title}
-                                                                                    </Styles.PlaceTitle>
-                                                                                    <Styles.Content>
-                                                                                        {day.addr1}
-                                                                                    </Styles.Content> 
+                                                                                    <Styles.PlaceTitle onClick={() => {infoMove(day.contentid)}}>{day.title}</Styles.PlaceTitle>
+                                                                                    <Styles.Content>{day.addr1} </Styles.Content> 
                                                                                 </Styles.Text>
                                                                                 <Styles.MapBtnBox open={mapMarker[id]} value={[day.mapy, day.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
                                                                                 </Styles.PlaceInfo>

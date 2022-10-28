@@ -152,6 +152,7 @@ export const PlaceInfo = styled.div`
 `
 
 export const PlanImage = styled.img`
+    cursor: pointer;
     width: 20%;
     border-radius: 10px;
 `
@@ -166,6 +167,7 @@ export const Text = styled.div`
 `
 
 export const PlaceTitle = styled.div`
+    cursor: pointer;
     overflow: hidden;
     display: inline-block;
     width: 100%;
