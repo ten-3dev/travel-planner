@@ -10,7 +10,6 @@ const CalendarPage = () =>{
     const navigate = useNavigate();
     const [dateList, setDateList ] = useState();
     const [coordinate, setCoordinate] = useState([]);
-    const [controlOpen, setControlOpen] = useState(false);  // 공개/비공개 on/off
     const [mapMarker, setMapMarker] = useState(false); // 지도 of/off
 
     useEffect(() => {
@@ -47,6 +46,16 @@ const CalendarPage = () =>{
         navigate(`/information?id=${e}`);
       }
 
+    const onShareBtn = async () => {
+        try{
+            await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
+            getUserPlanById(location.search.split("=")[1]);
+        }catch(e){
+            alert("공유 버튼 에러");
+            console.log(e);
+        }
+    }
+
     return(
         <>
             {dateList === undefined ? "" : 
@@ -57,7 +66,7 @@ const CalendarPage = () =>{
                         <Styles.IntroText>{dateList.title}</Styles.IntroText>
                         <Styles.IntroDate>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
                     </Styles.IntroTitle>
-                    <Styles.ShareBtn  open={controlOpen} onClick={() => {setControlOpen(!controlOpen)}}></Styles.ShareBtn>
+                    <Styles.ShareBtn  open={dateList.type} onClick={onShareBtn}></Styles.ShareBtn>
                 </Styles.ImageBox>
                 <MarginTopWrapper>
                     <Styles.Wrapper>

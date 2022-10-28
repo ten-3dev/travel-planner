@@ -51,13 +51,13 @@ export const ShareBtn = styled.button`
     border: none;
     cursor: pointer;
     background: ${props => {
-        return (props.open ? "url(/assets/lockon.png) " : "url(/assets/lockoff.png) ") +"no-repeat scroll 0 0 transparent"
+        return (!props.open ? "url(/assets/lockon.png) " : "url(/assets/lockoff.png) ") +"no-repeat scroll 0 0 transparent"
     }};
     background-size: contain ;
     right: 18%;
     bottom: 0;
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
 
 `
 
