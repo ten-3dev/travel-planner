@@ -9,6 +9,11 @@ import { useNavigate } from "react-router-dom";
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
 
+    // 이전 버튼을 눌렀을 때
+    const onBack = () => { 
+        window.history.back();
+    }
+
     const getApply = () => {
         // 클릭을 안했을때 (당일로 여행을 가서 바로 적용을 눌렀을때)
         if(!Array.isArray(value)){
@@ -47,7 +52,7 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
         <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "1", backgroundColor: "white"}}} ariaHideApp={false}>
             <Styles.CalendarCustom onChange={onChange} value={value} selectRange />
             <Styles.BtnBox>
-                <Styles.Btn onClick={() => setOpen(false)}>이전</Styles.Btn>
+                <Styles.Btn onClick={onBack}>이전</Styles.Btn>
                 <Styles.Btn onClick={() => getApply()}>적용하기</Styles.Btn>
             </Styles.BtnBox>
         </Styles.ModalCustom>
