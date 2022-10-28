@@ -4,8 +4,10 @@ import MyPage from '../../myPage';
 import { MarginTopWrapper } from "../../../Common/style";
 import Paging from '../../../Components/paging';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MyPlan = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [itemsCount] = useState(6);
   const [totalItemsCount] = useState(50); // 임시
@@ -26,6 +28,10 @@ const MyPlan = () => {
       setPlan(Object.entries(data.data.data));
     }
   }
+
+  const infoMove = (e) => {
+    navigate('/calendar', {state : plan})
+  }
   return (
     <>
     <MyPage myPlanAction="myPlan"/>
@@ -39,13 +45,14 @@ const MyPlan = () => {
                   <id key={idx}>
                     <Styles.SmallBox>
                       <Styles.LineBox>
-                      <Styles.ImgBox src={`assets/image32.png`}/>
+                      <Styles.ImgBox src={`assets/image32.png`}/> 
                       <Styles.ContentBox>
                         <Styles.ContentBox2>
                           <Styles.ContentText>{el[1].title}</Styles.ContentText>
                           <Styles.DayBox>{el[1].date}</Styles.DayBox>
                         </Styles.ContentBox2>
                         <Styles.ContentBox2>
+                          <Styles.ModifyDeleteBox onClick={() => {infoMove(el[1])}}>일정 보기</Styles.ModifyDeleteBox>
                           <Styles.ModifyDeleteBox>일정 수정</Styles.ModifyDeleteBox>
                           <Styles.ModifyDeleteBox>일정 삭제</Styles.ModifyDeleteBox>
                           <Styles.NameBox>{el[1].name}</Styles.NameBox>

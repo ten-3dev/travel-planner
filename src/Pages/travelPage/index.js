@@ -16,10 +16,10 @@ const TravelPage = () => {
     const [storagetours, setStorageTours] = useState([]);           // 전체 관광지 
     const [searchKeyword, setSearchKeyword] = useState("");     // 키워드
     const pagingHook = useRef(false)
-    const data = useLocation(); //mainPage 받아온 키워드 값
     const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
     const [like, setLike] = useState([]);
     const [rendering, setRendering] = useState(false);
+    const data = useLocation(); //mainPage 받아온 키워드 값
     const {state} = data;
     
     useEffect(() => {

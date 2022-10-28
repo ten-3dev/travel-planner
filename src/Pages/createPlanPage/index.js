@@ -360,9 +360,20 @@ const CreatePlanPage = () => {
 
         let newArr = []
         for(let i=0; i<dayList.length; i++){
-            newArr[i] = {"day":i+1,"id":[]};
+            newArr[i] = {"day":i+1,"list":[]};
             for(let j=0; j<dayList[i][1].length; j++){
-                newArr[i].id[j] = dayList[i][1][j].contentid;
+                newArr[i].list[j] = {
+                    "addr1": dayList[i][1][j].addr1,
+                    "addr2" : dayList[i][1][j].addr2,
+                    "contentid" : dayList[i][1][j].contentid,
+                    "firstimage" : dayList[i][1][j].firstimage,
+                    "firstimage2" : dayList[i][1][j].firstimage2,
+                    "mapx" : dayList[i][1][j].mapx,
+                    "mapy" : dayList[i][1][j].mapy,
+                    "tel" : dayList[i][1][j].tel,
+                    "title" : dayList[i][1][j].title,
+                    "zipcode" : dayList[i][1][j].zipcode
+                };
             }
         }
         const travelPlanner = {

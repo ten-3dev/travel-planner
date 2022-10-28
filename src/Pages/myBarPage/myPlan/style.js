@@ -58,7 +58,7 @@ export const NameBox = styled.div`
 `
 
 export const ModifyDeleteBox = styled.div`
-    width: 100px;
+    width: 150px;
     height: 20px;
     font-size: 12px;
     margin-top:20px;

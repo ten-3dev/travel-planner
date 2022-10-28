@@ -179,18 +179,21 @@ export const PlaceTitle = styled.div`
 `
 
 export const Content = styled.div`
-    width: 100%;
-    padding: 0;
-    display: block;
-    margin-top: 3px;
-    overflow: hidden;
     display: -webkit-box;
-    max-height: 48px;
+    overflow: hidden;
     word-break: keep-all;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    
+    width: 100%;
+    padding: 0;
+    margin-top: 3px;
+    max-height: 48px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #666;
+        
 `
 
 export const MapBtnBox = styled.button`
