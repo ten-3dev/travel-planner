@@ -209,6 +209,7 @@ export const DayItem = styled.div`
 `
 
 export const DayItemImg = styled.img`
+    cursor: pointer;
     height: 100%;
     width: 90px;
     margin-right: 5px;
@@ -222,14 +223,16 @@ export const DayItemSubTextBox = styled.div`
 export const DayItemTextBox = styled.div`
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: ${props => {
+        return props.notcolumn ? "column" : ""
+    }};;
     justify-content: space-between;
 `
 
 export const DayItemTitle = styled.div`
+    cursor: pointer;
     font-size: 13px;
     font-weight: bold;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;

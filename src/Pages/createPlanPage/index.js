@@ -288,12 +288,20 @@ const CreatePlanPage = () => {
         }
     };
 
-    const handleBlur = () => {
-
+    const handleBlur = (e) => {         // input창 벗어 날 시 렌더링
+        setSearchKeyword(e.target.value);
     }
 
-    const onSubmit = () =>{
-
+    const onSubmit = () =>{             // 검색 클릭 함수
+        console.log(searchKeyword);
+        if(searchKeyword !== ""){
+            let Arr = [];
+            tourStorage.filter((el,idx) => {if(el.addr1.indexOf(searchKeyword) !== -1){Arr = [...Arr,el]}});
+            setTours(Arr);
+            setStotalItemCount1(Arr.length);
+            setPage1(1);
+            setTourMakerSelect1(Array(Arr.length).fill(false));
+        }
     }
 
     const moveMapLocation = (e,id) =>{  // 마커 클릭 함수
@@ -421,11 +429,12 @@ const CreatePlanPage = () => {
                                                 return(
                                                     <div key={id}>
                                                         <Styles.DayItem>
-                                                            <Styles.DayItemImg src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2}/>
-                                                            <Styles.DayItemTextBox>
-                                                                <Styles.DayItemTitle>{e.title}
-                                                                <Styles.LocationImg open={tourMakerSelect0[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e,id)}/>   
-                                                                </Styles.DayItemTitle>
+                                                            <Styles.DayItemImg src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2} onClick={() => window.open(`http://localhost:3000/information?id=${e.contentid}`)}/>
+                                                            <Styles.DayItemTextBox notcolumn={true}>
+                                                                <Styles.DayItemTextBox>
+                                                                    <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${e.contentid}`)}>{e.title}</Styles.DayItemTitle>
+                                                                    <Styles.LocationImg open={tourMakerSelect0[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e,id)}/>   
+                                                                </Styles.DayItemTextBox>
                                                                 <Styles.DayItemSubTextBox>
                                                                     <Styles.DayItemText>{e.addr1.split(" ")[0] + e.addr1.split(" ")[1]}</Styles.DayItemText>
                                                                     <Styles.ItemBtn remove onClick={() => removeTour(id, update)}>삭제</Styles.ItemBtn>
@@ -435,9 +444,8 @@ const CreatePlanPage = () => {
                                                     </div>
                                                 )
                                             }) : ""}
-
                                         <Styles.PlanAddBtnBox>
-                                            <Styles.PlanAddBtn updated={update === idx + 1} onClick={() => onUpdate(idx + 1)}>{update === idx + 1 ? "취소" : "일정 수정"}</Styles.PlanAddBtn>
+                                            <Styles.PlanAddBtn updated={update === idx + 1 ? (dayList[idx][1].length !== 0 ? false : true) : false} onClick={() => onUpdate(idx + 1)}>{update === idx + 1 ? (dayList[idx][1].length === 0 ? "취소" : "완료") : "일정 수정"}</Styles.PlanAddBtn>
                                         </Styles.PlanAddBtnBox>
                                     </Styles.ListItemBox>
                                 </div>
@@ -451,7 +459,7 @@ const CreatePlanPage = () => {
                 <Styles.TravelBox open={travelOpen}>
                     <Styles.ContentBox>
                         <Styles.TravelInputBox>
-                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." onBlur={handleBlur} onKeyUp={handleOnKeyPress}/>
+                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." onBlur={(e) => handleBlur(e)} onKeyUp={handleOnKeyPress}/>
                             <Styles.TravelInputBtn onClick={onSubmit}>검색</Styles.TravelInputBtn>
                         </Styles.TravelInputBox>
                         <Styles.ListBox>
@@ -467,15 +475,16 @@ const CreatePlanPage = () => {
                                                 return(
                                                     <div key ={id}>
                                                         <Styles.DayItem>
-                                                            <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}/>
-                                                                <Styles.DayItemTextBox>
-                                                                <Styles.DayItemTitle>{tour.title}
-                                                                    <Styles.LocationImg open={tourMakerSelect1[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e,id)}/>
-                                                                </Styles.DayItemTitle>
-                                                                <Styles.ItemBox>
-                                                                    <Styles.DayItemText>{tour.addr1}</Styles.DayItemText>
-                                                                    <Styles.ItemBtn onClick={() => addTour(tour, update)}>추가하기</Styles.ItemBtn>
-                                                                </Styles.ItemBox>
+                                                            <Styles.DayItemImg src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2} onClick={() => window.open(`http://localhost:3000/information?id=${tour.contentid}`)}/>
+                                                                <Styles.DayItemTextBox notcolumn={true}>
+                                                                    <Styles.DayItemTextBox>
+                                                                        <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${tour.contentid}`)}>{tour.title}</Styles.DayItemTitle>
+                                                                        <Styles.LocationImg open={tourMakerSelect1[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e,id)}/>
+                                                                    </Styles.DayItemTextBox>
+                                                                    <Styles.ItemBox>
+                                                                        <Styles.DayItemText>{tour.addr1}</Styles.DayItemText>
+                                                                        <Styles.ItemBtn onClick={() => addTour(tour, update)}>추가하기</Styles.ItemBtn>
+                                                                    </Styles.ItemBox>
                                                             </Styles.DayItemTextBox>
                                                         </Styles.DayItem>
                                                     </div>
@@ -493,11 +502,12 @@ const CreatePlanPage = () => {
                                     return(
                                         <div key={idx}>
                                             <Styles.DayItem>
-                                                <Styles.DayItemImg src={el.firstimage2 === "" ? "assets/logo.png" : el.firstimage2}/>
+                                                <Styles.DayItemImg src={el.firstimage2 === "" ? "assets/logo.png" : el.firstimage2}  onClick={() => window.open(`http://localhost:3000/information?id=${el.contentid}`)}/>
+                                                    <Styles.DayItemTextBox notcolumn={true}>
                                                     <Styles.DayItemTextBox>
-                                                    <Styles.DayItemTitle>{el.title}
+                                                        <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${el.contentid}`)} >{el.title}</Styles.DayItemTitle>
                                                         <Styles.LocationImg open={tourMakerSelect2[idx]} value={[el.mapy, el.mapx, 2]} onClick={(e) => moveMapLocation(e,idx)}/>
-                                                    </Styles.DayItemTitle>
+                                                    </Styles.DayItemTextBox>
                                                     <Styles.ItemBox>
                                                         <Styles.DayItemText>{el.addr1}</Styles.DayItemText>
                                                         <Styles.ItemBtn onClick={() => addTour(el, update)}>추가하기</Styles.ItemBtn>
