@@ -89,7 +89,6 @@ export const ImgBox = styled.img`
     width: 220px;
     height: 180px;
     border-radius: 10px;
-    cursor: pointer;
     
 `
 export const Imgheart = styled.div`
@@ -118,7 +117,6 @@ export const ContentText = styled.div`
     margin-right: 30px;
     font-weight: bold;
     margin-top:20px;
-    cursor: pointer;
 `
 
 export const PageText = styled.div`
