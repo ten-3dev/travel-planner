@@ -20,8 +20,7 @@ export const SettingBox = styled.div`
 
 export const Box1 = styled.div`
     width: 100%;
-    height: 70px;
-    margin-top: 15px;
+    display: flex;
 `
 export const Box = styled.div`
     width: 1200px;
@@ -71,6 +70,9 @@ export const Text1 = styled.div`
     width: 100%; 
     font-size: 16px;
     font-weight: bold;
+    margin-top: 22.5px;
+    
+    
 `
 
 export const Nav = styled.nav`
