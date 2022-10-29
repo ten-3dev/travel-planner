@@ -31,8 +31,7 @@ const SharedPlanPage = () =>{
       }
 
     return(
-        < >
-        <MarginTopWrapper margin>
+         <MarginTopWrapper margin>
             <Styles.TitleBox>
                 <Styles.Title>
                     공유된 플랜
@@ -44,10 +43,10 @@ const SharedPlanPage = () =>{
                 <Styles.PopularBtn click={clicked === "Popular"} onClick={() => setClicked("Popular")}>인기순</Styles.PopularBtn>
             </Styles.LatestpopularBox>
             <Styles.TopBar/>
+            <Styles.PlanBox>
             {plan === undefined ? "" : (plan.map((el, idx) => {
                  return(
-            <Styles.PlanBox key={idx}>
-                <Styles.PlanContentBox>
+                <Styles.PlanContentBox  key={idx}>
                     <Styles.PlanImg src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
                     <Styles.ContentListBox>
                         <Styles.ContentBox>{el[1].title}</Styles.ContentBox>
@@ -58,17 +57,14 @@ const SharedPlanPage = () =>{
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
                             <Styles.ContentBox>{plan[0][1].email.name}</Styles.ContentBox>
-                            
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>
+                      )
+              }))}
             </Styles.PlanBox>
-                 )
-            }))}
             <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
-            
         </MarginTopWrapper>
-        </>
     )
 }
 export default SharedPlanPage;
