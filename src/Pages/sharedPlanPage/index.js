@@ -3,6 +3,7 @@ import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import Paging from "../../Components/paging";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SharedPlanPage = () =>{
     const [clicked, setClicked] = useState("Latest");
@@ -10,6 +11,7 @@ const SharedPlanPage = () =>{
     const [itemsCount] = useState(6);
     const [totalItemsCount] = useState(50); // 임시
     const [plan, setPlan] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
@@ -29,6 +31,9 @@ const SharedPlanPage = () =>{
           setPlan(Object.entries(data.data.data));
         }
       }
+      const infoMove = (e) => {
+        navigate(`/calendar?id=${e.id}`);
+      }
 
     return(
          <MarginTopWrapper margin>
@@ -47,7 +52,7 @@ const SharedPlanPage = () =>{
             {plan === undefined ? "" : (plan.map((el, idx) => {
                  return(
                 <Styles.PlanContentBox  key={idx}>
-                    <Styles.PlanImg src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
+                    <Styles.PlanImg onClick={() => {infoMove(el[1])}} src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
                     <Styles.ContentListBox>
                         <Styles.ContentBox>{el[1].title}</Styles.ContentBox>
                         <Styles.ContentBox>{el[1].date}</Styles.ContentBox>
