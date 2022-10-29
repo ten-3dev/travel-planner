@@ -135,6 +135,7 @@ const CreatePlanPage = () => {
 
     // 관광지
     const [searchKeyword, setSearchKeyword] = useState("");         // 키워드
+    const [tourStorage, setTourStorage] = useState();               // 전체 관광지
     const [tours, setTours] = useState([]);                         // 키워드 검색 결과 관광지
     const [cart, setCart] = useState([]);                           // 찜
     const [tourSelect, setTourSelect] = useState([]);               // 필요없는데 필요함..? 렌더링안됨
@@ -250,6 +251,7 @@ const CreatePlanPage = () => {
             const tourItems = json.response.body.items.item;
             setStotalItemCount1(tourItems.length);
             setTours(tourItems);
+            setTourStorage(tourItems);
             setPage1(1);
             setTourMakerSelect1(Array(tourItems.length).fill(false));
           })();
@@ -277,7 +279,7 @@ const CreatePlanPage = () => {
             setSearchKeyword(e.target.value);
             if(e.target.value !== ""){
                 let Arr = [];
-                tours.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
+                tourStorage.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
                 setTours(Arr);
                 setStotalItemCount1(Arr.length);
                 setPage1(1);
@@ -285,6 +287,14 @@ const CreatePlanPage = () => {
             }
         }
     };
+
+    const handleBlur = () => {
+
+    }
+
+    const onSubmit = () =>{
+
+    }
 
     const moveMapLocation = (e,id) =>{  // 마커 클릭 함수
         console.log(e);
@@ -332,7 +342,7 @@ const CreatePlanPage = () => {
             }
         }
     }
-
+    
     const checkTitle = () => {    // 플랜 확인
         console.log("체크타이틀 실시");
         let count = 0;
@@ -441,8 +451,8 @@ const CreatePlanPage = () => {
                 <Styles.TravelBox open={travelOpen}>
                     <Styles.ContentBox>
                         <Styles.TravelInputBox>
-                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." onKeyUp={handleOnKeyPress}/>
-                            <Styles.TravelInputBtn>검색</Styles.TravelInputBtn>
+                            <Styles.TravelInput placeholder="검색할 여행지를 입력해주세요." onBlur={handleBlur} onKeyUp={handleOnKeyPress}/>
+                            <Styles.TravelInputBtn onClick={onSubmit}>검색</Styles.TravelInputBtn>
                         </Styles.TravelInputBox>
                         <Styles.ListBox>
                             <Styles.ListTitleBox>
@@ -450,7 +460,7 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {tours === "" ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
+                                {tours.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
                                 :(tours.filter((e,index) => {
                                         if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
                                             }).map((tour,id) => {
