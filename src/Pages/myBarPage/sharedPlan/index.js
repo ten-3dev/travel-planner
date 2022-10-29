@@ -8,6 +8,10 @@ import axios from 'axios';
 const SharedPlan = () => {
   const navigate = useNavigate();
   const [plan, setPlan] = useState();
+  const [dateList, setDateList ] = useState();
+  const [coordinate, setCoordinate] = useState([]);
+
+
   useEffect(() => {
     getUserPlan(); 
 },[]);
@@ -21,9 +25,19 @@ const SharedPlan = () => {
       setPlan(Object.entries(data.data.data));
     }
   }
+
+  const getUserPlanById = async (id) => { // DB에 있는 플랜데이터 
+    const data = await axios.get(`http://localhost:8080/getUserPlanById/${id}`);
+    if(data){
+        setDateList(data.data.data);
+    }else{
+        getUserPlanById(id);
+    }
+  }
+
   const onShareBtn = async () => {
     try{
-        await axios.put('http://localhost:8080/getDeleteShareMyPlan', {id: location.search.split("=")[1]})
+        await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
         getUserPlanById(location.search.split("=")[1]);
     }catch(e){
         alert("공유 버튼 에러");
@@ -53,7 +67,9 @@ const SharedPlan = () => {
                     <Styles.ContentText>{el[1].title}</Styles.ContentText>
                     <Styles.DayBox>{el[1].date}</Styles.DayBox>
                   </Styles.ContentBox3>
+                 
                   <Styles.ModifyDeleteBox open={el[1].type} onClick={onShareBtn}>공유 삭제</Styles.ModifyDeleteBox>
+                
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
                   {/* <Styles.Imgheart>
