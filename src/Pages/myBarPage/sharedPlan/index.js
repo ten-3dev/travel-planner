@@ -59,7 +59,7 @@ const SharedPlan = () => {
                     <Styles.DayBox>{el[1].date}</Styles.DayBox>
                   </Styles.ContentBox3>
                  
-                  <Styles.ModifyDeleteBox open={el[1].type} onClick={onShareBtn}>공유 삭제</Styles.ModifyDeleteBox>
+                  <Styles.ModifyDeleteBox open={el[1].type} onClick={onShareBtn}>공유취소</Styles.ModifyDeleteBox>
                 
                 </Styles.ContentBox2>
                 <Styles.ContentBox2>
