@@ -10,7 +10,7 @@ import { set } from 'react-hook-form';
 const MyPlan = () => {
   const navigate = useNavigate();
   const [plan, setPlan] = useState();
-  const [planArrImg, setPlanArrImg] = useState();
+
   useEffect(() => {
     getUserPlan();
 
@@ -35,6 +35,11 @@ const MyPlan = () => {
     navigate(`/calendar?id=${e.id}`);
   }
 
+  const onPlanEdit = (el) => {
+    console.log(el[1]);
+    navigate('createPlanPage', {state: {updateData : el[1]}})
+  }
+
   return (
     <>
     <MyPage myPlanAction="myPlan"/>
@@ -56,7 +61,7 @@ const MyPlan = () => {
                         </Styles.ContentBox2>
                         <Styles.ContentBox2>
                           <Styles.ModifyDeleteBox onClick={() => {infoMove(el[1])}}>일정 보기</Styles.ModifyDeleteBox>
-                          <Styles.ModifyDeleteBox>일정 수정</Styles.ModifyDeleteBox>
+                          <Styles.ModifyDeleteBox onClick={() => onPlanEdit(el)}>일정 수정</Styles.ModifyDeleteBox>
                           <Styles.ModifyDeleteBox onClick={() => {deleteUserPlan(el[1].id)}}>일정 삭제</Styles.ModifyDeleteBox>
                           <Styles.NameBox>{el[1].name}</Styles.NameBox>
                       </Styles.ContentBox2>
