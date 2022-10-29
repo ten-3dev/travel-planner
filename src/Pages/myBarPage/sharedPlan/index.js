@@ -14,7 +14,8 @@ const SharedPlan = () => {
 
   useEffect(() => {
     getUserPlan(); 
-},[]);
+    
+},[plan]);
 
   const getUserPlan = async () => { // DB에 있는 플랜데이터 
     const data = await axios.get('http://localhost:8080/getShareMyPlan');
@@ -26,19 +27,9 @@ const SharedPlan = () => {
     }
   }
 
-  const getUserPlanById = async (id) => { // DB에 있는 플랜데이터 
-    const data = await axios.get(`http://localhost:8080/getUserPlanById/${id}`);
-    if(data){
-        setDateList(data.data.data);
-    }else{
-        getUserPlanById(id);
-    }
-  }
-
   const onShareBtn = async () => {
     try{
-        await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
-        getUserPlanById(location.search.split("=")[1]);
+        await axios.put('http://localhost:8080/updateSharePlan', {id: plan[0][1].id})
     }catch(e){
         alert("공유 버튼 에러");
         console.log(e);
