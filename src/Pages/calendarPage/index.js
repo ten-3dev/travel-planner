@@ -20,6 +20,7 @@ const CalendarPage = () =>{
             history.back();
         }else{
             getUserPlanById(location.search.split("=")[1]);
+            getcontent();   // 댓글 렌더링
         }
     },[])
 
@@ -33,22 +34,23 @@ const CalendarPage = () =>{
         setCoordinate(newCoor);
         setMapMarker(newArr);
     }
+    
     const writing = async (id) => { //등록아직...
         if(!sessionStorage.getItem("access_token")){
             alert("로그인 후 이용해 주세요");
             return;
         }
-       if( window.confirm("등록하시겠습니까?")){
-        try{
-            await axios.post('http://localhost:8080/addComment',{id,content,type: "P"});
-            getcontent();
-            alert("댓글 추가 성공");
-            setContent("");
+        if( window.confirm("등록하시겠습니까?")){
+            try{
+                await axios.post('http://localhost:8080/addComment',{id,content,type: "P"});
+                getcontent();
+                alert("댓글 추가 성공");
+                setContent("");
 
-        }catch(e){
-            alert(e.response.data.msg);
+            }catch(e){
+                alert(e.response.data.msg);
+            }
         }
-    }
     }
 
     const getcontent = async () => {
@@ -106,14 +108,14 @@ const CalendarPage = () =>{
                                         {JSON.parse(dateList.plan).map((el, idx) => {
                                                 return(
                                                     <div key={idx}>
-                                                        {console.log("day   "  + idx)}
+                                                        {/* {console.log("day   "  + idx)} */}
                                                             <Styles.DayList>
                                                                 <Styles.Day>{"Day" + el.day}</Styles.Day>
                                                                 <Styles.PlanInfoList>
                                                                     {el.list.map( (day,id) =>{
                                                                         return(
                                                                             <div key={id}>
-                                                                                {console.log("id  " +  id)}             
+                                                                                {/* {console.log("id  " +  id)}              */}
                                                                                 <Styles.PlaceInfo>
                                                                                 <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2}/>
                                                                                 <Styles.Text>
