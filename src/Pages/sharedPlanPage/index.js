@@ -57,7 +57,7 @@ const SharedPlanPage = () =>{
                                 <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
-                            <Styles.ContentBox>{plan[0][1].email.email}</Styles.ContentBox>
+                            <Styles.ContentBox>{plan[0][1].email.name}</Styles.ContentBox>
                             
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
