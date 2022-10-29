@@ -13,8 +13,7 @@ const SharedPlan = () => {
 
 
   useEffect(() => {
-    getUserPlan(); 
-    
+    getUserPlan();   
 },[plan]);
 
   const getUserPlan = async () => { // DB에 있는 플랜데이터 
@@ -30,6 +29,7 @@ const SharedPlan = () => {
   const onShareBtn = async () => {
     try{
         await axios.put('http://localhost:8080/updateSharePlan', {id: plan[0][1].id})
+        setPlan(1);
     }catch(e){
         alert("공유 버튼 에러");
         console.log(e);
