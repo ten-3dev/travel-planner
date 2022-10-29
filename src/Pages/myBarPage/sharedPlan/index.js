@@ -67,7 +67,6 @@ const SharedPlan = () => {
                   </Styles.Imgheart>
                   <Styles.HeartSumText>300</Styles.HeartSumText> */}
                   <Styles.NameBox>{el[1].name}</Styles.NameBox>
-                  console.log({el[1].name})
                 </Styles.ContentBox2>
               </Styles.ContentBox>
             </Styles.LineBox>
@@ -77,6 +76,7 @@ const SharedPlan = () => {
           {/* <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/> */}
         </Styles.BigBox>
       </MarginTopWrapper>
+      
     </>
   );
 };

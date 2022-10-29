@@ -26,7 +26,6 @@ const SharedPlanPage = () =>{
             getUserPlan();
         }else{
           console.log(data.data.data);
-         
           setPlan(Object.entries(data.data.data));
         }
       }
@@ -58,7 +57,7 @@ const SharedPlanPage = () =>{
                                 <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
-                            <Styles.ContentBox>{el[1].name}</Styles.ContentBox>
+                            <Styles.ContentBox>{plan[0][1].email.email}</Styles.ContentBox>
                             
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
