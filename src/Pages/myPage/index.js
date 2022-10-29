@@ -63,7 +63,6 @@ import {
                     <NavLink to='/myPlan'  isaction={myPlanAction}>
                         <Styles.Box1>
                             <Styles.Text1>나의 플랜</Styles.Text1>
-                            <Styles.Text1>4</Styles.Text1>
                         </Styles.Box1>
                     </NavLink>
                 </NavMenu> 
@@ -71,7 +70,6 @@ import {
                     <NavLink2 to='/sharedPlan'  isaction={sharedPlanAction}>
                         <Styles.Box1>
                             <Styles.Text1>공유한 플랜</Styles.Text1>
-                            <Styles.Text1>5</Styles.Text1>
                         </Styles.Box1>
                     </NavLink2>
                 </NavMenu> 
@@ -79,7 +77,6 @@ import {
                     <NavLink3 to='/like'  isaction={likeAction}>
                         <Styles.Box1>
                             <Styles.Text1>좋아요 및 찜목록</Styles.Text1>
-                            <Styles.Text1>7</Styles.Text1>
                         </Styles.Box1>
                     </NavLink3>
                     
