@@ -27,8 +27,10 @@ const MyPlan = () => {
   }
 
   const deleteUserPlan = async (id) => {
-    await axios.delete(`http://localhost:8080/deleteUserPlan/${id}`);
-    getUserPlan();
+    if(window.confirm("삭제하시겠습니까?")){
+      await axios.delete(`http://localhost:8080/deleteUserPlan/${id}`);
+      getUserPlan();
+    }
   }
 
   const infoMove = (e) => {

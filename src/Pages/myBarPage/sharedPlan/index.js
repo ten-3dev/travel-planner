@@ -27,13 +27,15 @@ const SharedPlan = () => {
   }
 
   const onShareBtn = async () => {
-    try{
-        await axios.put('http://localhost:8080/updateSharePlan', {id: plan[0][1].id})
-        getUserPlan(); 
-    }catch(e){
-        alert("공유 버튼 에러");
-        console.log(e);
-    }
+    if(window.confirm("공유취소하시겠습니까?")){
+      try{
+          await axios.put('http://localhost:8080/updateSharePlan', {id: plan[0][1].id})
+          getUserPlan(); 
+      }catch(e){
+          alert("공유 버튼 에러");
+          console.log(e);
+      }
+  }
 }
   const infoMove = (e) => {
     navigate('/calendar', {state : plan})
