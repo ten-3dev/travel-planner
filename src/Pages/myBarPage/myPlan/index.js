@@ -10,7 +10,7 @@ import { set } from 'react-hook-form';
 const MyPlan = () => {
   const navigate = useNavigate();
   const [plan, setPlan] = useState();
-
+  const [planArrImg, setPlanArrImg] = useState();
   useEffect(() => {
     getUserPlan();
 
@@ -23,10 +23,6 @@ const MyPlan = () => {
     }else{
       const planArr = Object.entries(data.data.data);
       setPlan(planArr);
-
-        for(let i=0; i<planArr.length; i++){
-          console.log(JSON.parse(planArr[i][1].plan));
-        }
     }
   }
 
@@ -52,7 +48,7 @@ const MyPlan = () => {
                   <div key={idx}>
                     <Styles.SmallBox>
                       <Styles.LineBox>
-                      <Styles.ImgBox src= {"assets/logo.png"}/> 
+                      <Styles.ImgBox src= {JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}/> 
                       <Styles.ContentBox>
                         <Styles.ContentBox2>
                           <Styles.ContentText>{el[1].title}</Styles.ContentText>

@@ -46,7 +46,7 @@ const SharedPlan = () => {
             return(
           <Styles.SmallBox key={idx}>
             <Styles.LineBox>
-              <Styles.ImgBox src={`assets/image32.png`}/>
+              <Styles.ImgBox src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}/>
               <Styles.ContentBox>
                 <Styles.ContentBox2>
                   <Styles.ContentBox3>
