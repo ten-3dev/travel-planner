@@ -17,7 +17,34 @@ export const ImageBox = styled.div`
     margin-top:150px;
     
 `
+export const Profile1 = styled.img`
+    top:0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    margin-right: 60px;
+`
 
+export const Title1 = styled.div`
+    display: inline-block;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: 1px solid #000;
+    border-bottom-width: 2.3px;
+    width: 36%;
+    padding: 25px 0 10px 20px;
+    margin-bottom: 20px;
+`
+export const Comment1 = styled.div`
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 100px;
+    flex: 1;
+    
+`
 export const Image = styled.img`
     width: 100%;
     height: calc(100% - 150px);
@@ -229,7 +256,6 @@ export const Comment = styled.div`
     flex: 1;
     
 `
-
 export const CommentBox = styled.div`
     background-color: #f3f3f3;
     width: 100%;
@@ -237,22 +263,18 @@ export const CommentBox = styled.div`
     border-radius: 20px;
     box-sizing: border-box;
     padding: 0 70px 0 70px;
-    
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     align-content: space-between;
+    margin-bottom: 30px;
 `
 
 export const ReviewBox = styled.div`
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    flex: 1;
-
-
-    
+    border-bottom: 1px solid #9ea4aa;
+    box-sizing: border-box;
 `
 
 export const Review = styled.div`
@@ -267,40 +289,31 @@ export const Review = styled.div`
 `
 
 export const RefirstBox = styled.div` 
-    display: flex;
-    align-items: center;
+    margin-top: 25px;
+    margin-left: 10px;
 `
 
 export const ReImage = styled.img`
-    left: 0;
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50px;
+    margin-top: 20px;
+    box-shadow: 0 3px 6px 0 rgb(29 34 53 / 8%);
 
 `
 
 export const ReName = styled.div`
     left: 70px;
     font-weight: bold;
-
 `
 
 export const ReContent = styled.div`
-    left: 110px;
-    width: 80%;
-    padding: 0;
-    display: block;
-    display: -webkit-box;
-    word-break: keep-all;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 30;
-    -webkit-box-orient: vertical;
-
+    margin-bottom: 10px;
 `
 
 export const ReDate = styled.div`
-    margin-top: 5px;
-    right: 0;
+    margin-top: 8px;
+    margin-bottom: 10px;
     font-size: small;   
 `
 

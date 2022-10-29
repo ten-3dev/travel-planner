@@ -276,7 +276,7 @@ export const ReName = styled.div`
 `
 
 export const ReContent = styled.div`
-    margin-bottom: 10px
+    margin-bottom: 10px;
 `
 
 export const ReDate = styled.div`
