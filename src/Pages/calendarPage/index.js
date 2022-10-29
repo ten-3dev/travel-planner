@@ -80,6 +80,7 @@ const CalendarPage = () =>{
         try{
             await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
             getUserPlanById(location.search.split("=")[1]);
+            console.log(dateList.type);
         }catch(e){
             alert("공유 버튼 에러");
             console.log(e);
@@ -138,6 +139,8 @@ const CalendarPage = () =>{
                                     </Styles.MapBox>
                                 </Styles.Box>
                             </Styles.Menu>
+                            {dateList.type === 0 ? "":
+                            <>
                             <Styles.Comment1>
                                 <Styles.Title1>톡톡</Styles.Title1>
                                 <Styles.CommentBox>
@@ -164,6 +167,7 @@ const CalendarPage = () =>{
                                     </Styles.InputBox>
                                 </Styles.CommentBox>
                             </Styles.Comment1>
+                            </>}
                         </Styles.ContentBox>
                     </Styles.Wrapper>
                 </MarginTopWrapper>
