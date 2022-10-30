@@ -19,13 +19,17 @@ const SharedPlanPage = () =>{
     }, [page, itemsCount]);
 
     useEffect(() => {
-        getPlan(); 
+        getUserPlan(); 
     },[]);
     
-      const getPlan = async () => { // DB에 있는 플랜데이터 
-        const data = await axios.get('http://localhost:8080/getPlan');
-        setPlan(data.data.data.filter(e => e.type === "1"));
-        console.log(setPlan)
+      const getUserPlan = async () => { // DB에 있는 플랜데이터 
+        const data = await axios.get('http://localhost:8080/getPlan?id');
+        if(!data){
+            getUserPlan();
+        }else{
+          console.log(data.data.data);
+          setPlan(Object.entries(data.data.data));
+        }
       }
       const infoMove = (e) => {
         navigate(`/calendar?id=${e.id}`);
