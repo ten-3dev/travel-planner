@@ -23,7 +23,7 @@ const SharedPlanPage = () =>{
     },[]);
     
       const getUserPlan = async () => { // DB에 있는 플랜데이터 
-        const data = await axios.get('http://localhost:8080/getPlan?id');
+        const data = await axios.get('http://localhost:8080/getPlan');
         if(!data){
             getUserPlan();
         }else{

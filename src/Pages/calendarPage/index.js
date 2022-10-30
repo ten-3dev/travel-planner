@@ -19,8 +19,8 @@ const CalendarPage = () =>{
             alert("url이 잘못되었습니다.");
             history.back();
         }else{
-            getUserPlanById(location.search.split("=")[1]);
             getcontent();   // 댓글 렌더링
+            getUserPlanById(location.search.split("=")[1]);
         }
     },[])
 
@@ -58,8 +58,9 @@ const CalendarPage = () =>{
         setComments(data.data.data.filter(e => e.type === "P"));
     }
 
-    const getUserPlanById = async (id) => { // DB에 있는 플랜데이터 
-        const data = await axios.get(`http://localhost:8080/getUserPlanById/${id}`);
+    const getUserPlanById = async (id) => { // DB에 있는 플랜데이터
+        console.log(id);
+        const data = await axios.get(`http://localhost:8080/getPlansById/${id}`);
         if(data){
             setDateList(data.data.data);
             let count = 0;
@@ -70,11 +71,11 @@ const CalendarPage = () =>{
         }else{
             getUserPlanById(id);
         }
-      }
+    }
       
-      const infoMove = (e) => {
-        navigate(`/information?id=${e}`);
-      }
+    const infoMove = (e) => {
+    navigate(`/information?id=${e}`);
+    }
 
     const onShareBtn = async () => {
         try{
