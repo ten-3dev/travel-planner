@@ -56,7 +56,6 @@ const MainPage = () => {
     };
     
     const onPreview = async (e) => {
-        setSearchKeyword(e.target.value);   // 밑에 코드 놔두면 한 글자 입력 시 안 넘어가짐
         if(addressData === null){
             const data = await getAddressData();
             setAddressData(data);
@@ -65,17 +64,19 @@ const MainPage = () => {
 
         const filterData = addressData.filter((el) => el.name.replace(/(\s*)/g,"").includes(e.target.value.replace(/(\s*)/g,"")));
         setFilterAddressData(filterData);
+        setSearchKeyword(e.target.value);
     }
     
     const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
-            navigate('/travel', {state : searchKeyword})
-        }
+            navigate('/travel', {state : searchKeyword});
+        };
     };
 
     const onSubmit = (e) => {
-        navigate('/travel', {state : searchKeyword})
-    }
+        navigate('/travel', {state : (e !== undefined ? e : searchKeyword)});
+    };
+
 
     const fileList = []; // 업로드한 파일들을 저장하는 배열
     
@@ -118,13 +119,13 @@ const MainPage = () => {
                     </Styles.Title>
                     <Styles.InputBox>
                         <Styles.Input placeholder="예: 서울특별시 성동구" onChange={(e) => onPreview(e)} ref={searchInput} onKeyUp={handleOnKeyPress}/>
-                        <Styles.Btn onClick={onSubmit}>
+                        <Styles.Btn onClick={() => {onSubmit()}}>
                             <Styles.Img src="assets/search_icon.png"/>
                         </Styles.Btn>
                         <Styles.InputPreView display={(searchInput.current.value && filterAddressData.length > 0) ? "true" : undefined}>
                             {searchInput.current.value && filterAddressData.map((el, idx) => {
                                 return(
-                                    <Styles.InputPreItem key={idx}>{el.name}</Styles.InputPreItem>
+                                    <Styles.InputPreItem onClick={() => {onSubmit(el.name)}}key={idx}>{el.name}</Styles.InputPreItem>
                                 )
                             })}
                         </Styles.InputPreView>
