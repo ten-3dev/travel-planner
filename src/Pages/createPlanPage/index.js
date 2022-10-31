@@ -4,7 +4,7 @@ import * as Styles from './style';
 import Map from "../../Components/kakaoMap";
 import Paging from "../../Components/paging";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     const [value, onChange] = useState(new Date());
@@ -102,6 +102,7 @@ const FilterSelector = ({open, setOpen}) => {
 
 const CreatePlanPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     // 접속한 유저만 플랜 생성
     const [email, setEmail] = useState("");
 
@@ -140,6 +141,8 @@ const CreatePlanPage = () => {
     const [cart, setCart] = useState([]);                           // 찜
     const [tourSelect, setTourSelect] = useState([]);               // 필요없는데 필요함..? 렌더링안됨
     const [dayList, setDayList] = useState();                       // 총 일정목록
+
+    const [isUpdate, setIsUpdate] = useState(false);
     
 
     useEffect(() => { // 새로고침 방지 alert
@@ -152,6 +155,22 @@ const CreatePlanPage = () => {
             window.onbeforeunload = null;
         };
     }, []);
+
+    // 수정인지 생성인지 구분
+    useEffect(() => {
+        if(location.state){
+            setIsModelOpen(false);
+            setIsUpdate(true);
+            const date = location.state.updateData.date.split("~");
+            const dateArr = [];
+            let firstDate = new Date(date[0]);
+            while(firstDate <= new Date(date[1])){
+                dateArr.push(new Date(firstDate));
+                firstDate.setDate(firstDate.getDate() + 1);
+            }
+            setDateList(dateArr);
+        }
+    }, [])
 
     useEffect(() => { // 찜 목록 불러오는 event
         if(sessionStorage.getItem("dibs")){
@@ -203,9 +222,28 @@ const CreatePlanPage = () => {
         console.log(itemsCount + "까지");
     }, [page2, itemsCount]);
 
+    useEffect(() => {
+        if(dayList && location.state){
+            onUpdateSetDate();
+        }
+    }, [dayList])
+
+    const onUpdateSetDate = () => {
+        const plans = JSON.parse(location.state.updateData.plan);
+        for(let i = 0; i < plans.length; i++){
+            for(let j = 0; j < plans[i].list.length; j++){
+                addTour(plans[i].list[j], plans[i].day);
+            }
+        }
+    }
+
     const postPlanData = async (el) => { // 플랜 
         try{
-            const data = await axios.post('http://localhost:8080/createPlan', el);
+            if(isUpdate){
+                await axios.put('http://localhost:8080/updatePlan', {...el, id: `${location.state.updateData.id}`});
+            }else{
+                await axios.post('http://localhost:8080/createPlan', el);
+            }
             navigate("/");
         }catch(e){
             alert(e.response.data.msg);
@@ -216,8 +254,12 @@ const CreatePlanPage = () => {
 
     const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
         const data = await axios.get('http://localhost:8080/getUserInfo');
-        console.log(data);
-        setEmail(data.data.data.email);
+        if(data){
+            setEmail(data.data.data.email);
+            console.log(data);
+        }else{
+            getEmail();
+        }
     }
 
     const onUpdate = (idx) => {
@@ -334,6 +376,7 @@ const CreatePlanPage = () => {
 
     const addTour = (el, idx) =>{   // 관광지 추가 함수
         console.log("관광지 추가");
+        console.log(dayList);
         dayList[idx-1][1] = [...dayList[idx-1][1], el];
         setDayList(dayList);
         setTourMakerSelect0(Array(dayList[idx-1][1].length).fill(false));
@@ -373,6 +416,7 @@ const CreatePlanPage = () => {
             }            
         }
     }
+    
 
     const createPlan = async (el) => {
         console.log("플랜생성 실행");
@@ -407,7 +451,7 @@ const CreatePlanPage = () => {
 
     return(
         <>
-            <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>
+            {!isUpdate && <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>}
             <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
@@ -418,7 +462,7 @@ const CreatePlanPage = () => {
                         <Styles.CloseBtn right onClick={onClose} src="assets/x.png"/>
                         <Styles.DateBox>
                             <Styles.TravelDate>{`${moment(dateList[0]).format("YYYY-MM-DD")} ~ ${moment(dateList[dateList.length - 1]).format("YYYY-MM-DD")}`}</Styles.TravelDate>
-                            <Styles.TravelCalendar onClick={() => window.location.reload()} src="assets/calendar.png"/>
+                            {!isUpdate && <Styles.TravelCalendar onClick={() => window.location.reload()} src="assets/calendar.png"/>}
                         </Styles.DateBox>
                         {dateList.map((el, idx) => {
                             return(

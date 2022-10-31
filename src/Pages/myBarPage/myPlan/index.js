@@ -38,7 +38,6 @@ const MyPlan = () => {
   }
 
   const onPlanEdit = (el) => {
-    console.log(el);
     navigate('/createPlanPage', {state: {updateData : el[1], date: el[1].date}})
   }
 
