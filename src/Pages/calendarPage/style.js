@@ -86,10 +86,8 @@ export const ShareBtn = styled.button`
         return (!props.open ? "url(/assets/lockon.png) " : "url(/assets/lockoff.png) ") +"no-repeat scroll 0 0 transparent"
     }};
     background-size: contain ;
-    right: 18%;
-    bottom: 0;
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 80px;
+    min-height: 80px;
 
 `
 
