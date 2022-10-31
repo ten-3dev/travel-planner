@@ -127,8 +127,9 @@ const CalendarPage = () =>{
         <>
             {dateList === undefined ? "" : 
             <>
+                {console.log(JSON.parse(dateList.plan)[0].list[0].firstimage)}
                 <Styles.ImageBox>
-                    <Styles.Image src="assets/image32.png"/>
+                    <Styles.Image src={JSON.parse(dateList.plan)[0].list[0].firstimage !== "" ? JSON.parse(dateList.plan)[0].list[0].firstimage : "assets/logo.png"}/>
                     <Styles.IntroTitle>
                         <Styles.IntroText>{dateList.title}</Styles.IntroText>
                         <Styles.IntroDate>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
