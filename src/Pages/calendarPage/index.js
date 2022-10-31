@@ -10,7 +10,8 @@ const CalendarPage = () =>{
     const navigate = useNavigate();
     const [dateList, setDateList ] = useState();
     const [coordinate, setCoordinate] = useState([]);
-    const [mapMarker, setMapMarker] = useState(false); // 지도 of/off
+    const [mapMarker, setMapMarker] = useState([]); // 지도 of/off
+    const [markerId, setMarkerId] = useState([]);
     const [comments, setComments] = useState([]);
     const [content,setContent] = useState("");
     
@@ -52,7 +53,7 @@ const CalendarPage = () =>{
             }
         }
     }
-
+    
     const getcontent = async () => {
         const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`)
         setComments(data.data.data.filter(e => e.type === "P"));
@@ -72,7 +73,7 @@ const CalendarPage = () =>{
             getUserPlanById(id);
         }
     }
-      
+    
     const infoMove = (e) => {
     navigate(`/information?id=${e}`);
     }
@@ -81,10 +82,8 @@ const CalendarPage = () =>{
         try{
             await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
             getUserPlanById(location.search.split("=")[1]);
-            console.log(dateList.type);
         }catch(e){
             alert("공유 버튼 에러");
-            console.log(e);
         }
     }
 
@@ -98,11 +97,11 @@ const CalendarPage = () =>{
                         <Styles.IntroText>{dateList.title}</Styles.IntroText>
                         <Styles.IntroDate>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
                     </Styles.IntroTitle>
-                    <Styles.ShareBtn  open={dateList.type} onClick={onShareBtn}></Styles.ShareBtn>
                 </Styles.ImageBox>
                 <MarginTopWrapper>
                     <Styles.Wrapper>
                         <Styles.ContentBox>
+                            <Styles.ShareBtnBox> <Styles.ShareBtn  open={dateList.type} onClick={onShareBtn}></Styles.ShareBtn></Styles.ShareBtnBox>
                             <Styles.Menu>
                                 <Styles.Title>상세 정보</Styles.Title>
                                 <Styles.Box>
@@ -110,14 +109,16 @@ const CalendarPage = () =>{
                                         {JSON.parse(dateList.plan).map((el, idx) => {
                                                 return(
                                                     <div key={idx}>
-                                                        {/* {console.log("day   "  + idx)} */}
+                                                        {console.log("day   "  + (idx+1))}
                                                             <Styles.DayList>
                                                                 <Styles.Day>{"Day" + el.day}</Styles.Day>
                                                                 <Styles.PlanInfoList>
-                                                                    {el.list.map( (day,id) =>{
+                                                                    {el.list.length === 0 ? <Styles.Text><Styles.PlaceTitle>추가한 관광지가 없습니다.</Styles.PlaceTitle> </Styles.Text>
+                                                                    : el.list.map( (day,id) =>{
                                                                         return(
                                                                             <div key={id}>
-                                                                                {/* {console.log("id  " +  id)}              */}
+                                                                                {console.log(JSON.parse(dateList.plan)[idx-1])}
+                                                                                {console.log("id  " +  (id+1))}     
                                                                                 <Styles.PlaceInfo>
                                                                                 <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2}/>
                                                                                 <Styles.Text>
@@ -140,7 +141,7 @@ const CalendarPage = () =>{
                                     </Styles.MapBox>
                                 </Styles.Box>
                             </Styles.Menu>
-                            {dateList.type === 0 ? "":
+                            {dateList.type === 0 ? <Styles.Comment1></Styles.Comment1>:
                             <>
                             <Styles.Comment1>
                                 <Styles.Title1>톡톡</Styles.Title1>

@@ -13,7 +13,7 @@ export const ImageBox = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    height: 850px;
+    height: 700px;
     margin-top:150px;
     
 `
@@ -47,7 +47,6 @@ export const Comment1 = styled.div`
 `
 export const Image = styled.img`
     width: 100%;
-    height: calc(100% - 150px);
 `
 
 export const IntroTitle = styled.div`
@@ -57,7 +56,7 @@ export const IntroTitle = styled.div`
     flex-wrap: wrap;
     align-content: space-between;
     left: 100px;
-    bottom: 200px;
+    bottom: 50px;
 `
 export const IntroText = styled.div`
     font-size:30px;
@@ -72,8 +71,14 @@ export const IntroDate = styled.div`
 
 `
 
+export const ShareBtnBox = styled.div`
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    
+`
+
 export const ShareBtn = styled.button`
-    position: absolute;
     display: flex;
     border: none;
     cursor: pointer;
@@ -92,7 +97,7 @@ export const ContentBox = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin-top: 200px;
+    /* margin-top: 200px; */
     width: 100%;
     justify-content: space-between;
 `
@@ -149,7 +154,7 @@ export const DayList = styled.div`
     display: flex;
     padding: 10px 0 10px 0;
     border-bottom: 1px solid #eeeeef;
-    padding: 25px 0 23px 0;
+    padding: 20px 0 20px 0;
 
 `
 
@@ -186,6 +191,9 @@ export const PlanImage = styled.img`
 
 export const Text = styled.div`
     display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     width: 65%;
     height: 100%;
     margin-left: 15px;
@@ -194,6 +202,7 @@ export const Text = styled.div`
 `
 
 export const PlaceTitle = styled.div`
+
     cursor: pointer;
     overflow: hidden;
     display: inline-block;

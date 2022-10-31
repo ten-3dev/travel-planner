@@ -195,7 +195,7 @@ export const AddressText = styled.div`
 `
 
 export const KeepContentText = styled.div`
-    width: 650px;
+    width: 650px; 
     height: 70px;
     font-size: 16px;
     margin-left: 20px;
@@ -203,4 +203,10 @@ export const KeepContentText = styled.div`
     cursor: pointer;
     overflow: hidden;
     line-height: 17.5px;
+    display: -webkit-box;
+    overflow: hidden;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 `

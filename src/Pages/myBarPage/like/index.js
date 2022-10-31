@@ -144,7 +144,7 @@ const Like = () => {
                           </Styles.KeepBox2>
                           <Styles.KeepBox2>
                             <Styles.KeepContentText>
-                              {el?.overview}
+                              <div dangerouslySetInnerHTML={{ __html: el?.overview }}></div>
                             </Styles.KeepContentText>
                             <Styles.KeepDeleteBox2>
                               <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer", marginLeft:'50px'}} onClick={() => likeCancel(el?.contentid)}/>
@@ -173,7 +173,7 @@ const Like = () => {
                           </Styles.KeepBox2>
                           <Styles.KeepBox2>
                             <Styles.KeepContentText>
-                            {el?.overview}
+                              <div dangerouslySetInnerHTML={{ __html: el?.overview }}></div>
                             </Styles.KeepContentText>
                             <Styles.KeepDeleteBox onClick={() => dibsCancel(el?.contentid)}>찜 취소</Styles.KeepDeleteBox>
                           </Styles.KeepBox2>
