@@ -27,6 +27,10 @@ const CalendarPage = () =>{
         }
     },[])
 
+    useEffect(() => {
+        getLikes();
+    },[])
+
     const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
         const data = await axios.get('http://localhost:8080/getUserInfo');
         if(!data){
@@ -108,7 +112,7 @@ const CalendarPage = () =>{
 
     const addLikes = async (id) => {
         try{
-            if(like.filter(e => e.id === id).length){ // 있으면
+            if(like.filter(e => e.id == id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
             }else{
                 await axios.post('http://localhost:8080/addLikes', {id: id, type: "P"})
@@ -134,15 +138,16 @@ const CalendarPage = () =>{
                     <Styles.Wrapper>
                         <Styles.ContentBox>
                             <Styles.ShareBtnBox>
-                                {like.filter(e => e.id === dateList.contentid).length ? 
-                                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(dateList.contentid)}/> 
-                                    : 
-                                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(dateList.contentid)}/>
-                                }
+                                {console.log(like)}
                                 {sessionStorage.getItem("access_token") !== null ? 
                                     (email !== dateList.email.email ? <div style={{height:"70px"}}/>
                                     :<Styles.ShareBtn open={dateList.type} onClick={onShareBtn}/>) 
                                 : <div style={{height:"70px"}}/>}
+                                {like.filter(e => e.id == dateList.id).length ? 
+                                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/> 
+                                    : 
+                                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/>
+                                }
                             </Styles.ShareBtnBox>
                             <Styles.Menu>
                                 <Styles.Title>상세 정보</Styles.Title>
@@ -151,7 +156,7 @@ const CalendarPage = () =>{
                                         {JSON.parse(dateList.plan).map((el, idx) => {
                                                 return(
                                                     <div key={idx}>
-                                                        {console.log("day   "  + (idx+1))}
+                                                        {/* {console.log("day   "  + (idx+1))} */}
                                                             <Styles.DayList>
                                                                 <Styles.Day>{"Day" + el.day}</Styles.Day>
                                                                 <Styles.PlanInfoList>
@@ -159,8 +164,8 @@ const CalendarPage = () =>{
                                                                     : el.list.map( (day,id) =>{
                                                                         return(
                                                                             <div key={id}>
-                                                                                {console.log(JSON.parse(dateList.plan)[idx-1])}
-                                                                                {console.log("id  " +  (id+1))}     
+                                                                                {/* {console.log(JSON.parse(dateList.plan)[idx-1])}
+                                                                                {console.log("id  " +  (id+1))}      */}
                                                                                 <Styles.PlaceInfo>
                                                                                 <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2} onClick={() => {infoMove(day.contentid)}}/>
                                                                                 <Styles.Text>
