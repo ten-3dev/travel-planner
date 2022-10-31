@@ -11,20 +11,49 @@ const CalendarPage = () =>{
     const [dateList, setDateList ] = useState();
     const [coordinate, setCoordinate] = useState([]);
     const [mapMarker, setMapMarker] = useState([]); // 지도 of/off
-    const [markerId, setMarkerId] = useState([]);
     const [comments, setComments] = useState([]);
     const [content,setContent] = useState("");
-    
+    const [email, setEmail] = useState();
+
     useEffect(() => {
         if(location.search === ""){
             alert("url이 잘못되었습니다.");
             history.back();
         }else{
+            sessionStorage.getItem("access_token") !== null ? getEmail() : "";  //  비로그인 시 (토큰없음) getEmail() 실행 X
             getcontent();   // 댓글 렌더링
             getUserPlanById(location.search.split("=")[1]);
         }
     },[])
 
+    const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
+        const data = await axios.get('http://localhost:8080/getUserInfo');
+        if(!data){
+            getEmail();
+        }else{
+            setEmail(data.data.data.email);
+        }
+    }
+
+    const getcontent = async () => {
+        const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`)
+        setComments(data.data.data.filter(e => e.type === "P"));
+    }
+
+    const getUserPlanById = async (id) => { // DB에 있는 플랜데이터
+        const data = await axios.get(`http://localhost:8080/getPlansById/${id}`);
+        if(data){
+            setDateList(data.data.data);
+            let count = 0;
+            for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
+                count += JSON.parse(data.data.data.plan)[i].list.length;
+            }
+            setMapMarker(Array(count).fill(false));
+        }else{
+            getUserPlanById(id);
+        }
+    }
+    
     const moveMapLocation = (e, id) =>{
         const coor = e.target.value.split(',');
         const newCoor = {
@@ -51,26 +80,6 @@ const CalendarPage = () =>{
             }catch(e){
                 alert(e.response.data.msg);
             }
-        }
-    }
-    
-    const getcontent = async () => {
-        const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`)
-        setComments(data.data.data.filter(e => e.type === "P"));
-    }
-
-    const getUserPlanById = async (id) => { // DB에 있는 플랜데이터
-        console.log(id);
-        const data = await axios.get(`http://localhost:8080/getPlansById/${id}`);
-        if(data){
-            setDateList(data.data.data);
-            let count = 0;
-            for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
-                count += JSON.parse(data.data.data.plan)[i].list.length;
-            }
-            setMapMarker(Array(count).fill(false));
-        }else{
-            getUserPlanById(id);
         }
     }
     
@@ -101,7 +110,12 @@ const CalendarPage = () =>{
                 <MarginTopWrapper>
                     <Styles.Wrapper>
                         <Styles.ContentBox>
-                            <Styles.ShareBtnBox> <Styles.ShareBtn  open={dateList.type} onClick={onShareBtn}></Styles.ShareBtn></Styles.ShareBtnBox>
+                            <Styles.ShareBtnBox>
+                                {sessionStorage.getItem("access_token") !== null ? 
+                                    (email !== dateList.email.email ? <div style={{height:"70px"}}/>
+                                    :<Styles.ShareBtn open={dateList.type} onClick={onShareBtn}/>) 
+                                : <div style={{height:"70px"}}/>}
+                            </Styles.ShareBtnBox>
                             <Styles.Menu>
                                 <Styles.Title>상세 정보</Styles.Title>
                                 <Styles.Box>

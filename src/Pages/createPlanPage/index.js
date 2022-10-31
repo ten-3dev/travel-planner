@@ -103,8 +103,6 @@ const FilterSelector = ({open, setOpen}) => {
 const CreatePlanPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    // 접속한 유저만 플랜 생성
-    const [email, setEmail] = useState("");
 
     const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
     const [filterOpen, setFilterOpen] = useState(false);
@@ -146,7 +144,6 @@ const CreatePlanPage = () => {
     
 
     useEffect(() => { // 새로고침 방지 alert
-        getEmail();
         tourData();
         window.onbeforeunload = function() {
             return true;
@@ -250,16 +247,6 @@ const CreatePlanPage = () => {
             navigate("/");
         }
 
-    }
-
-    const getEmail = async () => { // DB에 있는 회원데이터를 불러옴
-        const data = await axios.get('http://localhost:8080/getUserInfo');
-        if(data){
-            setEmail(data.data.data.email);
-            console.log(data);
-        }else{
-            getEmail();
-        }
     }
 
     const onUpdate = (idx) => {
@@ -440,7 +427,7 @@ const CreatePlanPage = () => {
             }
         }
         const travelPlanner = {
-            "email" : email,
+            "email" : "",
             "title" : el,
             "plan" : JSON.stringify(newArr),
             "type" : 0,
