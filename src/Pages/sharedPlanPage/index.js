@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 
 const SharedPlanPage = () =>{
     const [clicked, setClicked] = useState("Latest");
-    const [page, setPage] = useState(1);
-    const [itemsCount] = useState(6);
+    const [page, setPage] = useState(1); //현재 페이지
+    const [itemsCount] = useState(6); //페이지당 게시글 수
     const [totalItemsCount] = useState(50); // 임시
-    const [plan, setPlan] = useState();
-    const navigate = useNavigate();
+    const [plan, setPlan] = useState([]);
     const [like, setLike] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터");
@@ -62,7 +62,7 @@ const SharedPlanPage = () =>{
             alert("로그인 후 이용해 주세요.");
         }
     }
-
+    console.log(itemsCount)
     return(
          <MarginTopWrapper margin>
             <Styles.TitleBox>
@@ -77,7 +77,7 @@ const SharedPlanPage = () =>{
             </Styles.LatestpopularBox>
             <Styles.TopBar/>
             <Styles.PlanBox>
-            {plan === undefined ? "" : (plan.map((el, idx) => {
+            {plan === undefined ? "" : (plan.slice((page-1)*6,6).map((el, idx) => {
                  return(
                 <Styles.PlanContentBox  key={idx}>
                     <Styles.PlanImg onClick={() => {infoMove(el[1])}} src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
@@ -93,14 +93,14 @@ const SharedPlanPage = () =>{
                              } 
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
-                            <Styles.ContentBox  onClick={() => {infoMove(el[1])}}>{el[1].email.name}</Styles.ContentBox>
+                            <Styles.ContentBox  onClick={() => {infoMove(el[1])}}>{el[1].email.name}</Styles.ContentBox> 
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>
                       )
               }))}
             </Styles.PlanBox>
-            <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
+            <Paging page={page} count={plan.length} setPage={setPage} itemsCount={itemsCount}/>
         </MarginTopWrapper>
     )
 }
