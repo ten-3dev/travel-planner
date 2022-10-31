@@ -21,20 +21,23 @@ const SharedPlanPage = () =>{
     }, [page, itemsCount]);
 
     useEffect(() => {
-        getUserPlan(); 
+        getPlan(); 
     },[]);
     
     useEffect(() => {
         getLikes();
     }, [])
+
+    useEffect(() =>{
+        console.log(plan);
+    }, [plan])
     
-      const getUserPlan = async () => { // DB에 있는 플랜데이터 
+      const getPlan = async () => { // DB에 있는 플랜데이터 
         const data = await axios.get('http://localhost:8080/getPlan');
         if(!data){
-            getUserPlan();
+            getPlan();
         }else{
-          console.log(data.data.data);
-          setPlan(Object.entries(data.data.data));
+          setPlan(data.data.data);
         }
       }
       const infoMove = (e) => {
@@ -47,7 +50,6 @@ const SharedPlanPage = () =>{
             getLikes();
         }else{
             setLike(data.data.data.filter(e => e.type === "P"));
-            console.log("확인용 : " + setLike )
         }
     }
     const addLikes = async (id) => {
@@ -55,6 +57,7 @@ const SharedPlanPage = () =>{
             if(like.filter(e => e.id === id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
             }else{
+                console.log(id);
                 await axios.post('http://localhost:8080/addLikes', {id: id, type: "P"})
             }
             getLikes();
@@ -77,7 +80,7 @@ const SharedPlanPage = () =>{
             </Styles.LatestpopularBox>
             <Styles.TopBar/>
             <Styles.PlanBox>
-            {plan === undefined ? "" : (plan.map((el, idx) => {
+            {plan === undefined ? "" : plan.map((el, idx) => {
                  return(
                 <Styles.PlanContentBox  key={idx}>
                     <Styles.PlanImg onClick={() => {infoMove(el[1])}} src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
@@ -86,10 +89,10 @@ const SharedPlanPage = () =>{
                         <Styles.ContentBox onClick={() => {infoMove(el[1])}}>{el[1].date}</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
-                            {like.filter(e => e.id === plan.contentid).length ? 
-                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(plan.contentid)}/> 
+                            {like.filter(e => e.id === el.id).length ? 
+                                                <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(el.id)}/> 
                                                 : 
-                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(plan.contentid)}/>                         
+                                                <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(el.id)}/>                         
                              } 
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
@@ -98,7 +101,7 @@ const SharedPlanPage = () =>{
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>
                       )
-              }))}
+              })}
             </Styles.PlanBox>
             <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </MarginTopWrapper>
