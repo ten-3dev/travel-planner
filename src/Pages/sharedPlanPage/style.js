@@ -53,6 +53,7 @@ export const LikefontBox = styled.div`
 `
 export const ContentBox = styled.div`
     font-size: 16px;
+    margin-left: 10px;
     font-weight: bold;
     cursor: pointer;
 `
