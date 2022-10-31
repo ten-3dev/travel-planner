@@ -11,6 +11,7 @@ const CalendarPage = () =>{
     const [dateList, setDateList ] = useState();
     const [coordinate, setCoordinate] = useState([]);
     const [mapMarker, setMapMarker] = useState([]); // 지도 of/off
+    const [tourCount, setTourCount] = useState();
     const [comments, setComments] = useState([]);
     const [content,setContent] = useState("");
     const [email, setEmail] = useState();
@@ -50,9 +51,12 @@ const CalendarPage = () =>{
         if(data){
             setDateList(data.data.data);
             let count = 0;
+            let newArr = []
             for(let i=0; i<JSON.parse(data.data.data.plan).length; i++){
                 count += JSON.parse(data.data.data.plan)[i].list.length;
+                newArr[i] = (JSON.parse(data.data.data.plan)[i].list.length + (newArr[i-1] !== undefined ? newArr[i-1] : 0));
             }
+            setTourCount(newArr);
             setMapMarker(Array(count).fill(false));
         }else{
             getUserPlanById(id);
@@ -127,7 +131,6 @@ const CalendarPage = () =>{
         <>
             {dateList === undefined ? "" : 
             <>
-                {console.log(JSON.parse(dateList.plan)[0].list[0].firstimage)}
                 <Styles.ImageBox>
                     <Styles.Image src={JSON.parse(dateList.plan)[0].list[0].firstimage !== "" ? JSON.parse(dateList.plan)[0].list[0].firstimage : "assets/logo.png"}/>
                     <Styles.IntroTitle>
@@ -139,7 +142,6 @@ const CalendarPage = () =>{
                     <Styles.Wrapper>
                         <Styles.ContentBox>
                             <Styles.ShareBtnBox>
-                                {console.log(like)}
                                 {sessionStorage.getItem("access_token") !== null ? 
                                     (email !== dateList.email.email ? <div style={{height:"70px"}}/>
                                     :<Styles.ShareBtn open={dateList.type} onClick={onShareBtn}/>) 
@@ -156,30 +158,27 @@ const CalendarPage = () =>{
                                     <Styles.PlanInfoList>
                                         {JSON.parse(dateList.plan).map((el, idx) => {
                                                 return(
-                                                    <div key={idx}>
-                                                        {/* {console.log("day   "  + (idx+1))} */}
-                                                            <Styles.DayList>
-                                                                <Styles.Day>{"Day" + el.day}</Styles.Day>
-                                                                <Styles.PlanInfoList>
-                                                                    {el.list.length === 0 ? <Styles.Text><Styles.PlaceTitle>추가한 관광지가 없습니다.</Styles.PlaceTitle> </Styles.Text>
-                                                                    : el.list.map( (day,id) =>{
-                                                                        return(
-                                                                            <div key={id}>
-                                                                                {/* {console.log(JSON.parse(dateList.plan)[idx-1])}
-                                                                                {console.log("id  " +  (id+1))}      */}
-                                                                                <Styles.PlaceInfo>
+                                                    <div key={idx}>                                                    
+                                                        <Styles.DayList>
+                                                            <Styles.Day>{"Day" + el.day}</Styles.Day>
+                                                            <Styles.PlanInfoList>
+                                                                {el.list.length === 0 ? <Styles.Text><Styles.PlaceTitle>추가한 관광지가 없습니다.</Styles.PlaceTitle> </Styles.Text>
+                                                                : el.list.map( (day,id) =>{
+                                                                    return(
+                                                                        <div key={id}>
+                                                                            <Styles.PlaceInfo>
                                                                                 <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2} onClick={() => {infoMove(day.contentid)}}/>
                                                                                 <Styles.Text>
                                                                                     <Styles.PlaceTitle onClick={() => {infoMove(day.contentid)}}>{day.title}</Styles.PlaceTitle>
                                                                                     <Styles.Content>{day.addr1} </Styles.Content> 
                                                                                 </Styles.Text>
-                                                                                <Styles.MapBtnBox open={mapMarker[id]} value={[day.mapy, day.mapx]} onClick={(e) => moveMapLocation(e,id)}/>
-                                                                                </Styles.PlaceInfo>
-                                                                            </div>
-                                                                        )
-                                                                    })}
-                                                                </Styles.PlanInfoList>
-                                                            </Styles.DayList>
+                                                                                <Styles.MapBtnBox open={mapMarker[tourCount[idx-1] !== undefined ? (tourCount[idx-1]+id) : id]} value={[day.mapy, day.mapx]} onClick={(e) => moveMapLocation(e,tourCount[idx-1] !== undefined ? (tourCount[idx-1]+id) : id)}/>
+                                                                            </Styles.PlaceInfo>
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </Styles.PlanInfoList>
+                                                        </Styles.DayList>
                                                     </div>
                                                 )
                                             })}
