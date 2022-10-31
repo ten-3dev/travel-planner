@@ -71,9 +71,32 @@ export const IntroDate = styled.div`
 
 `
 
+export const LikeBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+    margin-top: 150px;
+    height: 25px;
+`
+
+export const Like = styled.button`
+    border: none;
+    background: ${props => {
+        return props.dibs ? "rgba(0, 150, 100, 0.5)" : "rgba(255, 0, 100, 0.5)"
+    }};
+    color: white;
+    border-radius: 10px;
+    margin-left: 15px;
+    cursor: pointer;
+    width: 80px;
+    height: 100%;
+ `
+
 export const ShareBtnBox = styled.div`
     display: flex;
     justify-content: right;
+    align-items: center;
     margin-top: 10px;
     
 `

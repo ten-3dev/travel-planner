@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import * as Styles from './style';
 import { MarginTopWrapper } from "../../Common/style";
 import Map from "../../Components/kakaoMap";
-import Comment from "../../Components/Comment";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 
 const CalendarPage = () =>{
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ const CalendarPage = () =>{
     const [comments, setComments] = useState([]);
     const [content,setContent] = useState("");
     const [email, setEmail] = useState();
+    const [like, setLike] = useState([]);
 
     useEffect(() => {
         if(location.search === ""){
@@ -96,6 +97,28 @@ const CalendarPage = () =>{
         }
     }
 
+    const getLikes = async () => {
+        const data = await axios.post("http://localhost:8080/getLikes");
+        if(data === undefined){
+            getLikes();
+        }else{
+            setLike(data.data.data.filter(e => e.type === "P"));
+        }
+    }
+
+    const addLikes = async (id) => {
+        try{
+            if(like.filter(e => e.id === id).length){ // 있으면
+                await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+            }else{
+                await axios.post('http://localhost:8080/addLikes', {id: id, type: "P"})
+            }
+            getLikes();
+        }catch(e){
+            alert("로그인 후 이용해 주세요.");
+        }
+    }
+
     return(
         <>
             {dateList === undefined ? "" : 
@@ -111,6 +134,11 @@ const CalendarPage = () =>{
                     <Styles.Wrapper>
                         <Styles.ContentBox>
                             <Styles.ShareBtnBox>
+                                {like.filter(e => e.id === dateList.contentid).length ? 
+                                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(dateList.contentid)}/> 
+                                    : 
+                                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(dateList.contentid)}/>
+                                }
                                 {sessionStorage.getItem("access_token") !== null ? 
                                     (email !== dateList.email.email ? <div style={{height:"70px"}}/>
                                     :<Styles.ShareBtn open={dateList.type} onClick={onShareBtn}/>) 
@@ -134,7 +162,7 @@ const CalendarPage = () =>{
                                                                                 {console.log(JSON.parse(dateList.plan)[idx-1])}
                                                                                 {console.log("id  " +  (id+1))}     
                                                                                 <Styles.PlaceInfo>
-                                                                                <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2}/>
+                                                                                <Styles.PlanImage src= {day?.firstimage2 === "" ? "assets/logo.png" : day?.firstimage2} onClick={() => {infoMove(day.contentid)}}/>
                                                                                 <Styles.Text>
                                                                                     <Styles.PlaceTitle onClick={() => {infoMove(day.contentid)}}>{day.title}</Styles.PlaceTitle>
                                                                                     <Styles.Content>{day.addr1} </Styles.Content> 
