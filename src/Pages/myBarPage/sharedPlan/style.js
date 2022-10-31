@@ -28,7 +28,7 @@ export const LineBox = styled.div`
 `
 export const ContentBox = styled.div`
     width: 620px;
-    height: 180px;
+    height: 100px;
     background-color: #ECECEC;
     margin-left: 50px;
     
@@ -73,7 +73,7 @@ export const ModifyDeleteBox = styled.div`
     width: 100px;
     height: 20px;
     font-size: 12px;
-    margin-top:20px;
+    margin-top:35px;
     margin-right: 30px;
     font-weight: bold;
     border-radius: 100px;
@@ -87,7 +87,7 @@ export const ModifyDeleteBox = styled.div`
 
 export const ImgBox = styled.img`
     width: 220px;
-    height: 180px;
+    height: 100px;
     border-radius: 10px;
     
 `

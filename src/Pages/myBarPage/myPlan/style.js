@@ -37,7 +37,7 @@ export const ContentBox = styled.div`
 
 export const ContentBox2 = styled.div`
     width: 100%;
-    height: 50%;
+    height: 60px;
     display: flex;
 `
 
@@ -58,14 +58,14 @@ export const NameBox = styled.div`
 `
 
 export const ModifyDeleteBox = styled.div`
-    width: 150px;
+    width: 300px;
     height: 20px;
     font-size: 12px;
     margin-top:20px;
     margin-left: 90px;
     margin-right: 30px;
     font-weight: bold;
-    border-radius: 100px;
+    border-radius: 90px;
     background-color: #93A6AE;
     text-align: center;
     padding-top: 5px;

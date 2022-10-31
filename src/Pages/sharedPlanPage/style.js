@@ -33,6 +33,7 @@ export const PlanContentBox = styled.div` //첫번째 내용박스
 `
 export const PlanImg = styled.img`
     width: 300px;
+    height: 200px;
     border-radius: 12px;
 `
 export const LikeImg = styled.img`

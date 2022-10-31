@@ -145,7 +145,7 @@ const Like = () => {
                               {el?.overview}
                             </Styles.KeepContentText>
                             <Styles.KeepDeleteBox2>
-                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}} onClick={() => likeCancel(el?.contentid)}/>
+                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer", marginLeft:'50px'}} onClick={() => likeCancel(el?.contentid)}/>
                             </Styles.KeepDeleteBox2>
                           </Styles.KeepBox2>
                         </Styles.KeepBox>

@@ -60,15 +60,7 @@ const SharedPlan = () => {
                     <Styles.ContentText>{el[1].title}</Styles.ContentText>
                     <Styles.DayBox>{el[1].date}</Styles.DayBox>
                   </Styles.ContentBox3>
-                 
                   <Styles.ModifyDeleteBox open={el[1].type} onClick={onShareBtn}>공유취소</Styles.ModifyDeleteBox>
-                
-                </Styles.ContentBox2>
-                <Styles.ContentBox2>
-                  {/* <Styles.Imgheart>
-                  </Styles.Imgheart>
-                  <Styles.HeartSumText>300</Styles.HeartSumText> */}
-                  <Styles.NameBox>{el[1].name}</Styles.NameBox>
                 </Styles.ContentBox2>
               </Styles.ContentBox>
             </Styles.LineBox>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BigBox = styled.div`
-    width: 1100px;
+    width: 100%;
     display: flex; 
 `
 
@@ -23,7 +23,7 @@ export const Box2 = styled.div`
 `
 
 export const SmallBox = styled.div`
-    width: 1000px;
+    width: 100%;
     border-radius: 10px;
     margin-bottom: 30px;
     margin-left: 35px;
@@ -44,7 +44,7 @@ export const LineBox = styled.div`
 `
 
 export const ContentBox = styled.div`
-    width: 1000px;
+    width: 100%;
     height: 120px;
     border-radius: 10px;  
 `
@@ -99,7 +99,7 @@ export const KeepDeleteBox2 = styled.div`
     width: 100px;
     height: 20px;
     margin-top:50px;
-    margin-left: 100px;
+    /* margin-left: 50px; */
     margin-right: 30px;
     text-align: center;
 `
@@ -137,7 +137,7 @@ export const Text = styled.div`
 `
 
 export const ContentText = styled.div`
-    width: 220px; 
+    width: 200px; 
     font-size: 16px;
     margin-left: 20px;
     font-weight: bold;
@@ -164,39 +164,37 @@ export const LikesListBox = styled.div`
 `
 
 export const LikesListBox1 = styled.div`
-    width: 1200px;
+    width: 100%;
     margin-left: 15px;
 `
 
 export const KeepBox = styled.div`
-    width: 1100px;
+    width: 900px;
     height: 120px;
     border-radius: 10px;  
 `
 
 export const KeepBox2 = styled.div`
-    width: 1100px;
-    height: 50%;
+    width: 100%;
+    height: 50px;
     display: flex; 
 `
 export const KeepBox3 = styled.div`
-    width: 1100px;
+    width: 100%;
     background-color: #ECECEC;
     border-radius: 10px; 
     display: flex;
 `
 
 export const AddressText = styled.div`
-    width: 600px;
+    width: 500px;
     font-size: 14px;
     text-align: right;
     margin-top: 20px;
-    margin-left: 30px;
     font-weight: bold;
 `
 
 export const KeepContentText = styled.div`
-    width: 650px; 
     height: 70px;
     font-size: 16px;
     margin-left: 20px;
