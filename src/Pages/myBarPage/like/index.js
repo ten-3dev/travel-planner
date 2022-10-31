@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import * as Styles from './style';
 import MyPage from '../../myPage'; 
 import { MarginTopWrapper } from "../../../Common/style";
-import Paging from '../../../Components/paging';
 import { HeartFilled } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +19,10 @@ const Like = () => {
   const [isDibsLoding, setIsDibsLoding] = useState(false);
   const [dibsInfo, setDibsInfo] = useState([]);
 
+    // 플랜 찜하기 로딩 state
+    const [isPlanLoding, setIsPlanLoding] = useState(false);
+    const [planInfo, setPlanInfo] = useState([]);
+
   useEffect(() => {
     getTourData();
     getDibsData();
@@ -32,24 +35,48 @@ const Like = () => {
   // 좋아요를 누른 관광지 정보를 가져옴
   const getTourData = async () => {
     setIsLikeLoding(false);
+    setIsPlanLoding(false);
     try{
       const data = await axios.post("http://localhost:8080/getLikes");
       if(data){
         setTourInfo(tourInfo.length = 0);
         const likeData = data.data.data.filter(e => e.type === 'T');
+        const likePlanData = data.data.data.filter(e => e.type === 'P');
         if(likeData.length === 0){
           setIsLikeLoding(true);
+        }else{
+          for(let i = 0; i < likeData.length; i++){
+            const response = await fetch(getTourURL(likeData[i].id));
+            const json = await response.json();
+            const tourItems = json.response.body.items.item;
+            const tourData = tourInfo;
+            tourData.push(tourItems[0])
+            setTourInfo(tourData);
+          }
+          setIsLikeLoding(true);
+        }
+        if(likePlanData.length === 0){
+          setIsPlanLoding(true);
           return;  
+        }else{
+          for(let i = 0; i < likePlanData.length; i++){
+            const data = await axios.get(`http://localhost:8080/getPlansById/${likePlanData[i].id}`);
+            const planData = planInfo;
+            if(!data.data.data.type){
+              continue;
+            }
+            planData.push({
+              title: data.data.data.title,
+              author: `${data.data.data.email.name}(${data.data.data.email.email})`,
+              date: data.data.data.date,
+              img: JSON.parse(data.data.data.plan)[0].list[0].firstimage2,
+              id: data.data.data.id
+            })
+            console.log(data);
+            setPlanInfo(planData);
+          }
+          setIsPlanLoding(true);
         }
-        for(let i = 0; i < likeData.length; i++){
-          const response = await fetch(getTourURL(likeData[i].id));
-          const json = await response.json();
-          const tourItems = json.response.body.items.item;
-          const tourData = tourInfo;
-          tourData.push(tourItems[0])
-          setTourInfo(tourData);
-        }
-        setIsLikeLoding(true);
       }else{
         getTourData();
       }
@@ -109,24 +136,28 @@ const Like = () => {
               <Styles.Text>공유한 플랜</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              <Styles.LineBox>
-                <Styles.Box2>
-                  <Styles.ImgBox src={`assets/image32.png`}/>
-                    <Styles.ContentBox>
-                      <Styles.ContentBox2>
-                        <Styles.ContentText>응가의 경북 여행</Styles.ContentText>
-                        <Styles.DayBox>1995-05-09 ~ 2022-10-05</Styles.DayBox>
-                      </Styles.ContentBox2>
-                      <Styles.ContentBox2>
-                        <Styles.Imgheart>
-                        <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}}/>
-                        </Styles.Imgheart>
-                        <Styles.HeartSumText></Styles.HeartSumText>
-                        <Styles.NameBox>석준혁</Styles.NameBox>
-                      </Styles.ContentBox2>
-                    </Styles.ContentBox>
-                </Styles.Box2>
-              </Styles.LineBox>
+              {!isPlanLoding ? `로딩 중...` : planInfo.length === 0 ? "좋아요를 누른 항목이 없습니다." : planInfo.map((el, idx) => {
+                return(
+                  <Styles.LineBox key={idx}>
+                    <Styles.Box2>
+                      <Styles.ImgBox src={el.img ? el.img : "assets/logo.png"}/>
+                        <Styles.ContentBox>
+                          <Styles.ContentBox2>
+                            <Styles.ContentText onClick={() => navigate(`/calendar?id=${el.id}`)}>{el.title}</Styles.ContentText>
+                            <Styles.DayBox>{el.date}</Styles.DayBox>
+                          </Styles.ContentBox2>
+                          <Styles.ContentBox2>
+                            <Styles.Imgheart>
+                            <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}}/>
+                            </Styles.Imgheart>
+                            <Styles.HeartSumText></Styles.HeartSumText>
+                            <Styles.NameBox>{el.author}</Styles.NameBox>
+                          </Styles.ContentBox2>
+                        </Styles.ContentBox>
+                    </Styles.Box2>
+                  </Styles.LineBox>
+                )
+              })}
             </Styles.SmallBox>
             <Styles.Box>
               <Styles.Text>관광지</Styles.Text>
