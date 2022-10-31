@@ -92,21 +92,20 @@ const SharedPlanPage = () => {
                     onClick={() => {
                       infoMove(el[1]);
                     }}
-                    src={JSON.parse(el[1].plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}
-                  ></Styles.PlanImg>
+                    src={
+                      JSON.parse(el[1].plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2
+                    }></Styles.PlanImg>
                   <Styles.ContentListBox>
                     <Styles.ContentBox
                       onClick={() => {
                         infoMove(el[1]);
-                      }}
-                    >
+                      }}>
                       {el[1].title}
                     </Styles.ContentBox>
                     <Styles.ContentBox
                       onClick={() => {
                         infoMove(el[1]);
-                      }}
-                    >
+                      }}>
                       {el[1].date}
                     </Styles.ContentBox>
                     <Styles.LikeListfontBox>
@@ -121,8 +120,7 @@ const SharedPlanPage = () => {
                       <Styles.ContentBox
                         onClick={() => {
                           infoMove(el[1]);
-                        }}
-                      >
+                        }}>
                         {el[1].email.name}
                       </Styles.ContentBox>
                     </Styles.LikeListfontBox>
