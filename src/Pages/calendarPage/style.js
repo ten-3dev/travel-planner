@@ -95,7 +95,8 @@ export const Like = styled.button`
 
 export const ShareBtnBox = styled.div`
     display: flex;
-    justify-content: right;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
     margin-top: 10px;
     
