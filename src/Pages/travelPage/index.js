@@ -191,18 +191,18 @@ const TravelPage = () => {
                 </Styles.TravelListBox>
                 <Styles.TravelFilterBox>
                 <Styles.FilterBoxSticky>
-                    <Styles.Text>필터</Styles.Text>
+                    {/* <Styles.Text>필터</Styles.Text>
                     <Styles.TravelFilterTag>
                         <Styles.TravelFilterTagBox>
                             <Styles.GridTagBoxItem/>
                         </Styles.TravelFilterTagBox>
-                    </Styles.TravelFilterTag>
+                    </Styles.TravelFilterTag> */}
                     <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}/>
                 </Styles.FilterBoxSticky>
                 </Styles.TravelFilterBox>
             </Styles.ContentBox>
-            <Styles.SteamListButtonBox>
-            </Styles.SteamListButtonBox>
+            {/* <Styles.SteamListButtonBox>
+            </Styles.SteamListButtonBox> */}
             <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/>
         </MarginTopWrapper>
       );
