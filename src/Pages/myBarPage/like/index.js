@@ -91,9 +91,11 @@ const Like = () => {
 
   // 찜하기 취소 함수
   const dibsCancel = async (id) => {
-    const dibs = sessionStorage.getItem("dibs");
-    sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
-    getDibsData();
+    if(window.confirm("찜취소하시겠습니까?")){
+      const dibs = sessionStorage.getItem("dibs");
+      sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
+      getDibsData();
+    }
   }
 
   return (
@@ -173,7 +175,7 @@ const Like = () => {
                             <Styles.KeepContentText>
                             {el?.overview}
                             </Styles.KeepContentText>
-                            <Styles.KeepDeleteBox onClick={() => dibsCancel(el?.contentid)}>찜 삭제</Styles.KeepDeleteBox>
+                            <Styles.KeepDeleteBox onClick={() => dibsCancel(el?.contentid)}>찜 취소</Styles.KeepDeleteBox>
                           </Styles.KeepBox2>
                         </Styles.KeepBox>
                     </Styles.KeepBox3>
