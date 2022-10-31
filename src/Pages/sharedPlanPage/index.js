@@ -53,15 +53,15 @@ const SharedPlanPage = () =>{
                  return(
                 <Styles.PlanContentBox  key={idx}>
                     <Styles.PlanImg onClick={() => {infoMove(el[1])}} src={JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}></Styles.PlanImg>
-                    <Styles.ContentListBox onClick={() => {infoMove(el[1])}}>
-                        <Styles.ContentBox>{el[1].title}</Styles.ContentBox>
-                        <Styles.ContentBox>{el[1].date}</Styles.ContentBox>
+                    <Styles.ContentListBox >
+                        <Styles.ContentBox onClick={() => {infoMove(el[1])}}>{el[1].title}</Styles.ContentBox>
+                        <Styles.ContentBox onClick={() => {infoMove(el[1])}}>{el[1].date}</Styles.ContentBox>
                         <Styles.LikeListfontBox>
                             <Styles.LikefontBox>
                                 <Styles.LikeImg src={"assets/heart.png"}></Styles.LikeImg>
                                 <Styles.ContentBox>1</Styles.ContentBox>
                             </Styles.LikefontBox>
-                            <Styles.ContentBox>{el[1].email.name}</Styles.ContentBox>
+                            <Styles.ContentBox  onClick={() => {infoMove(el[1])}}>{el[1].email.name}</Styles.ContentBox>
                         </Styles.LikeListfontBox>
                     </Styles.ContentListBox>
                 </Styles.PlanContentBox>

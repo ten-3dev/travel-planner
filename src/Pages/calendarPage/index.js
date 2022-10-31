@@ -83,7 +83,7 @@ const CalendarPage = () =>{
             await axios.put('http://localhost:8080/updateSharePlan', {id: location.search.split("=")[1]})
             getUserPlanById(location.search.split("=")[1]);
         }catch(e){
-            alert("공유 버튼 에러");
+            alert("사용자 본인만 이용할 수 있는 버튼 입니다.");
         }
     }
 
