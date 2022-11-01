@@ -16,7 +16,7 @@ export const Box = styled.div`
 `
 
 export const Box2 = styled.div`
-    width: 1000px;
+    width: 100%;
     background-color: #ECECEC;
     border-radius: 10px; 
     display: flex;
@@ -24,10 +24,10 @@ export const Box2 = styled.div`
 
 export const SmallBox = styled.div`
     width: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px;
     margin-bottom: 30px;
     margin-left: 35px;
-    margin-right: 35px;
+    margin-right: 35px; */
 `
 export const SmallBox2 = styled.div`
     width: 1100px;
@@ -50,22 +50,25 @@ export const ContentBox = styled.div`
 `
 
 export const ContentBox2 = styled.div`
-    width: 900px;
+    width: 100%;
     height: 50px;
     display: flex; 
 `
 
 export const DayBox = styled.div`
+    width: 450px;
     font-size: 14px;
-    margin-top: 30px;
-    margin-left: 500px;
+    margin-top: 20px;
+    text-align: center;
+    /* margin-left: 600px; */
     font-weight: bold;
 `
 
 export const NameBox = styled.div`
+    width: 400px;
     font-size: 16px;
     margin-top:35px;
-    margin-left: 310px;
+    /* margin-left: 400px; */
     font-weight: bold;  
     text-align :center ;
 `
@@ -119,7 +122,7 @@ export const ImgBox2 = styled.img`
 `
 
 export const Imgheart = styled.div`
-    width: 35px;
+    width: 400px;
     height: 35px;
     margin-left: 25px;
     margin-top: 25px;
@@ -135,7 +138,7 @@ export const Text = styled.div`
 `
 
 export const ContentText = styled.div`
-    width: 200px; 
+    width: 500px; 
     font-size: 16px;
     margin-left: 20px;
     font-weight: bold;
@@ -185,9 +188,9 @@ export const KeepBox3 = styled.div`
 `
 
 export const AddressText = styled.div`
-    width: 500px;
+    width: 300px;
     font-size: 14px;
-    text-align: right;
+    text-align: center;
     margin-top: 20px;
     font-weight: bold;
 `
