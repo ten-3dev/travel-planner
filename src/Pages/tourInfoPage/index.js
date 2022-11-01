@@ -11,12 +11,10 @@ import axios from "axios";
 const InformationPage = () => {
     const [infoData, setInfoData] = useState();
     useEffect(() => {
-        console.log(location);
         if(location.search === ""){
             alert("url이 잘못되었습니다.");
             history.back();
-        }else{
-            console.log(location.search.split("=")[1]);
+        }else{    
             getTravelInfo(location.search.split("=")[1]);
         }
     }, [])
@@ -148,7 +146,7 @@ const InformationPage = () => {
             <Styles.InformationBox>
                 <Styles.InformationTitle>상세정보</Styles.InformationTitle>
                 <Styles.InformationBar />
-                <Styles.InformationContnet>{infoData?.overview}</Styles.InformationContnet>
+                <Styles.InformationContnet><div dangerouslySetInnerHTML={{ __html: infoData?.overview }}></div></Styles.InformationContnet>
                 <Styles.Map>
                     <Map lon = {infoData?.mapx} lat = {infoData?.mapy}/>
                 </Styles.Map>

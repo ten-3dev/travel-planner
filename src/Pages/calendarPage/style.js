@@ -175,6 +175,7 @@ export const PlanInfoList = styled.div`
 export const DayList = styled.div`
     display: flex;
     padding: 10px 0 10px 0;
+    border-top: 1px solid #eeeeef;
     border-bottom: 1px solid #eeeeef;
     padding: 20px 0 20px 0;
 
@@ -265,9 +266,8 @@ export const MapBtnBox = styled.button`
         return (props.open ? "url(/assets/image35_1.png) " : "url(/assets/image35.png) ") + "no-repeat scroll 0 0 transparent"
     }};
     background-size: contain ;
-
-    width: 60px;
-    margin: 10px 15px 0 0;
+    width: 40px;
+    margin: 40px 15px 0 0;
     
 `
 
