@@ -42,8 +42,8 @@ export const ContentBox2 = styled.div`
 `
 
 export const DayBox = styled.div`
-    width: 120px;
-    font-size: 16px;
+    width: 200px;
+    font-size: 13px;
     margin-top:20px;
     margin-bottom: 50px;
     font-weight: bold;
