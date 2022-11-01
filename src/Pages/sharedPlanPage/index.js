@@ -108,7 +108,7 @@ const SharedPlanPage = () => {
       <Styles.PlanBox>
         {!isLoding ? "로딩 중..." : content.length === 0
           ? "플랜이 없음"
-          : content.map((el, idx) => {
+          : content.slice((currentPage - 1) * itemsCount, currentPage * itemsCount).map((el, idx) => {
               return (
                 <Styles.PlanContentBox key={idx}>
                   <Styles.PlanImg
