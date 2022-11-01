@@ -10,7 +10,6 @@ export const Box = styled.div`
     height: 40px;
     background-color: #ECECEC;
     border-radius: 5px;
-    //margin-bottom: 20px;
     margin-left: 35px;
     margin-top: 60px;
 `
@@ -24,10 +23,6 @@ export const Box2 = styled.div`
 
 export const SmallBox = styled.div`
     width: 100%;
-    /* border-radius: 10px;
-    margin-bottom: 30px;
-    margin-left: 35px;
-    margin-right: 35px; */
 `
 export const SmallBox2 = styled.div`
     width: 1100px;
@@ -56,29 +51,24 @@ export const ContentBox2 = styled.div`
 `
 
 export const DayBox = styled.div`
-    width: 450px;
+    width: 550px;
     font-size: 14px;
     margin-top: 20px;
     text-align: center;
-    /* margin-left: 600px; */
     font-weight: bold;
 `
 
 export const NameBox = styled.div`
-    width: 400px;
+    width: 450px;
     font-size: 16px;
     margin-top:35px;
-    /* margin-left: 400px; */
     font-weight: bold;  
     text-align :center ;
 `
 export const HeartSumText = styled.div`
-    width: 100px;
-    font-size: 16px;
-    margin-top:30px;
+    margin-top: 10px;
     font-weight: bold;
-    margin-left: 15px;
-    margin-right: 120px;   
+    font-size: 20px;
 `
 
 export const KeepDeleteBox = styled.div`
@@ -100,7 +90,6 @@ export const KeepDeleteBox2 = styled.div`
     width: 100px;
     height: 20px;
     margin-top:50px;
-    /* margin-left: 50px; */
     margin-right: 30px;
     text-align: center;
 `
@@ -138,7 +127,7 @@ export const Text = styled.div`
 `
 
 export const ContentText = styled.div`
-    width: 500px; 
+    width: 400px; 
     font-size: 16px;
     margin-left: 20px;
     font-weight: bold;
@@ -159,14 +148,9 @@ export const LikeText = styled.div`
     margin-top: 120px;
 `
 
-export const LikesListBox = styled.div`
-    width: 200px;
-    margin-left: 15px;
-`
-
 export const LikesListBox1 = styled.div`
     width: 100%;
-    margin-left: 15px;
+    margin-left: 35px;
 `
 
 export const KeepBox = styled.div`

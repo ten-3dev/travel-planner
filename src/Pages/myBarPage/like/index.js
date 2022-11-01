@@ -154,6 +154,7 @@ const Like = () => {
               <Styles.Text>공유한 플랜</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
+            <Styles.HeartSumText>
               {!isPlanLoding ? `로딩 중...` : planInfo.length === 0 ? "좋아요를 누른 항목이 없습니다." : planInfo.map((el, idx) => {
                 return(
                   <Styles.LineBox key={idx}>
@@ -175,11 +176,13 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
+              </Styles.HeartSumText>
             </Styles.SmallBox>
             <Styles.Box>
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
+            <Styles.HeartSumText>
               {!isLikeLoding ? `로딩 중...` : tourInfo.length === 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
@@ -203,12 +206,13 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
+              </Styles.HeartSumText>
             </Styles.SmallBox>
           </Styles.LikesListBox1>
         </Styles.BigBox>
         <Styles.LikeText>찜 목록</Styles.LikeText>
-        <Styles.LikesListBox>
             <Styles.SmallBox2>
+            <Styles.HeartSumText>
               {!sessionStorage.getItem("dibs") ? "찜하기로 선택된 항목이 없습니다." : !isDibsLoding ? "로딩 중..." : dibsInfo.map((el, idx) => {
                 return(
                   <Styles.LineBox key={idx}>
@@ -230,8 +234,8 @@ const Like = () => {
                   </Styles.LineBox>
                 )
               })}
+              </Styles.HeartSumText>
             </Styles.SmallBox2>
-          </Styles.LikesListBox>
       </MarginTopWrapper>
       
     </>
