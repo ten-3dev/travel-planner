@@ -35,6 +35,7 @@ export const PlanImg = styled.img`
     width: 300px;
     height: 200px;
     border-radius: 12px;
+    cursor: pointer;
 `
 export const LikeImg = styled.img`
     width: 25px;
