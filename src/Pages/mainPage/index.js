@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect,useState, useRef } from "react";
 import * as Styles from './style';
 import { useNavigate } from "react-router-dom";
 import { MarginTopWrapper } from '../../Common/style';
 import { getAddressData } from "../../Data";
 import axios from "axios";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -11,7 +12,31 @@ const MainPage = () => {
     const [filterAddressData, setFilterAddressData] = useState([]);
     const searchInput = useRef("");
     const [searchKeyword, setSearchKeyword] = useState();
-    
+    const [content, setContent] = useState([]);
+    const [like, setLike] = useState([]);
+    const [isLoding, setIsLoding] = useState(false);
+
+    useEffect(() => {
+        reload();
+      }, []);
+
+    const reload = () => {
+        setIsLoding(false);
+        getUserPlan();
+        getLikes();
+        setIsLoding(true);
+      };
+    const getUserPlan = async () => {
+    // DB에 있는 플랜데이터
+    const data = await axios.get("http://localhost:8080/getPlan");
+    if (data) {
+        setContent(data.data.data);
+        console.log(data);
+    } else {
+        getUserPlan();
+    }
+        
+      };
     const goCreatePlanPage = () => {
         alert("로그인 후 이용해 주세요.");
         navigate("/login");
@@ -104,6 +129,38 @@ const MainPage = () => {
         alert("다시 로그인 후 적용됩니다.");
         };
 
+       
+          const getLikes = async () => {
+            const data = await axios.post("http://localhost:8080/getLikes");
+            if (data === undefined) {
+              getLikes();
+            } else {
+              setLike(data.data.data.filter((e) => e.type === "P"));
+        
+              setIsLoding(true);
+            }
+          };
+          const addLikes = async (id) => {
+            console.log(id);
+            try{
+              if(like.filter(e => Number(e.id) === Number(id)).length) {
+                await axios.delete(`http://localhost:8080/removeLikes/${id}`);
+              }else{
+                await axios.post("http://localhost:8080/addLikes", {
+                  id: id,
+                  type: "P",
+                });
+              }
+              reload();
+            }catch(e){
+              alert("로그인 후 이용해 주세요.");
+              console.log(e);
+            }
+       
+          };
+          const infoMove = (e) => {
+            navigate(`/calendar?id=${e.id}`);
+          };
     return(
         <>
             <Styles.Wrapper>
@@ -171,64 +228,54 @@ const MainPage = () => {
                     </Styles.BottomContentBox>
                     <Styles.BottomContentBox column paddingBottom="50px">
                         <Styles.CarouselTitle>인기플랜</Styles.CarouselTitle>
-                            <Styles.SliderCustom {...settings}>
-                                <Styles.SliderBox>
-                                    <Styles.SliderImg src="assets/plan_ex1.png" />
+                        {!isLoding ? "로딩 중..." : content.length === 0
+                            ? "플랜이 없음"
+                            : content.map((el, idx) => {
+                            return (
+                            <Styles.SliderCustom {...settings} >
+                                <Styles.SliderBox   key={idx}>
+                                    <Styles.SliderImg 
+                                    onClick={() => {
+                                        infoMove(el);
+                                     }}
+                                        src={
+                                        JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2
+                                     } />
                                     <Styles.SliderInfo>
-                                        <Styles.SliderInfoText size="18px">JD의 서울 여행</Styles.SliderInfoText>
-                                        <Styles.SliderInfoText>2022-09-24 - 2002-09-26</Styles.SliderInfoText>
+                                        <Styles.SliderInfoText 
+                                        onClick={() => {
+                                            infoMove(el);
+                                         }}>
+                                        {el.title}
+                                        </Styles.SliderInfoText>
+                                        <Styles.SliderInfoText 
+                                        onClick={() => {
+                                            infoMove(el);
+                                        }}>
+                                            {el.date}
+                                        </Styles.SliderInfoText>
                                         <Styles.SliderInfoBottomBox>
                                             <Styles.SliderInfoBox>
-                                                <Styles.SliderInfoImg src="assets/heart.png"/>
+                                            {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
+                                                <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)}/>
+                                                ) : (
+                                                <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)}/>
+                                                )}
                                                 <Styles.SliderInfoText>1</Styles.SliderInfoText>
                                             </Styles.SliderInfoBox>
-                                            <Styles.SliderInfoText>By. JD</Styles.SliderInfoText>
+                                            <Styles.SliderInfoText 
+                                            onClick={() => {
+                                                infoMove(el);
+                                             }}>
+                                                {el.email.name}
+                                            </Styles.SliderInfoText>
                                         </Styles.SliderInfoBottomBox>
                                     </Styles.SliderInfo>
                                 </Styles.SliderBox>
-                                <Styles.SliderBox>
-                                    <Styles.SliderImg src="assets/plan_ex1.png" />
-                                    <Styles.SliderInfo>
-                                        <Styles.SliderInfoText size="18px">JD의 서울 여행</Styles.SliderInfoText>
-                                        <Styles.SliderInfoText>2022-09-24 - 2002-09-26</Styles.SliderInfoText>
-                                        <Styles.SliderInfoBottomBox>
-                                            <Styles.SliderInfoBox>
-                                                <Styles.SliderInfoImg src="assets/heart.png"/>
-                                                <Styles.SliderInfoText>1</Styles.SliderInfoText>
-                                            </Styles.SliderInfoBox>
-                                            <Styles.SliderInfoText>By. JD</Styles.SliderInfoText>
-                                        </Styles.SliderInfoBottomBox>
-                                    </Styles.SliderInfo>
-                                </Styles.SliderBox>
-                                <Styles.SliderBox>
-                                    <Styles.SliderImg src="assets/plan_ex1.png" />
-                                    <Styles.SliderInfo>
-                                        <Styles.SliderInfoText size="18px">JD의 서울 여행</Styles.SliderInfoText>
-                                        <Styles.SliderInfoText>2022-09-24 - 2002-09-26</Styles.SliderInfoText>
-                                        <Styles.SliderInfoBottomBox>
-                                            <Styles.SliderInfoBox>
-                                                <Styles.SliderInfoImg src="assets/heart.png"/>
-                                                <Styles.SliderInfoText>1</Styles.SliderInfoText>
-                                            </Styles.SliderInfoBox>
-                                            <Styles.SliderInfoText>By. JD</Styles.SliderInfoText>
-                                        </Styles.SliderInfoBottomBox>
-                                    </Styles.SliderInfo>
-                                </Styles.SliderBox>
-                                <Styles.SliderBox>
-                                    <Styles.SliderImg src="assets/plan_ex1.png" />
-                                    <Styles.SliderInfo>
-                                        <Styles.SliderInfoText size="18px">JD의 서울 여행</Styles.SliderInfoText>
-                                        <Styles.SliderInfoText>2022-09-24 - 2002-09-26</Styles.SliderInfoText>
-                                        <Styles.SliderInfoBottomBox>
-                                            <Styles.SliderInfoBox>
-                                                <Styles.SliderInfoImg src="assets/heart.png"/>
-                                                <Styles.SliderInfoText>1</Styles.SliderInfoText>
-                                            </Styles.SliderInfoBox>
-                                            <Styles.SliderInfoText>By. JD</Styles.SliderInfoText>
-                                        </Styles.SliderInfoBottomBox>
-                                    </Styles.SliderInfo>
-                                </Styles.SliderBox>
+                    
                             </Styles.SliderCustom>
+                                      );
+                                    })}
                         <Styles.BottomContentBtn onClick={moveSharedPlan}>플랜 모두 보기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                 </Styles.BottomBox>

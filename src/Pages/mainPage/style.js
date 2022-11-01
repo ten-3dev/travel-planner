@@ -202,6 +202,7 @@ export const SliderBox = styled.div`
     box-sizing: border-box;
     padding: 0 25px;
     cursor: pointer;
+    background-color: red;
 `
 
 export const SliderImg = styled.img`
