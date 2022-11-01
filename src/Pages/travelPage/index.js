@@ -191,13 +191,12 @@ const TravelPage = () => {
                 </Styles.TravelListBox>
                 <Styles.TravelFilterBox>
                 <Styles.FilterBoxSticky>
-                    {/* <Styles.Text>필터</Styles.Text>
-                    <Styles.TravelFilterTag>
-                        <Styles.TravelFilterTagBox>
-                            <Styles.GridTagBoxItem/>
-                        </Styles.TravelFilterTagBox>
-                    </Styles.TravelFilterTag> */}
-                    <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}/>
+                    {   sessionStorage.getItem("dibs") 
+                    ?
+                        <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}/>
+                    : 
+                        " "
+                    }
                 </Styles.FilterBoxSticky>
                 </Styles.TravelFilterBox>
             </Styles.ContentBox>
