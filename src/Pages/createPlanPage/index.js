@@ -141,7 +141,8 @@ const CreatePlanPage = () => {
     const [dayList, setDayList] = useState();                       // 총 일정목록
 
     const [isUpdate, setIsUpdate] = useState(false);
-    
+    const [rendering, setRendering] = useState(false);              // 찜 로딩
+    const [rendering2, setRendering2] = useState(false);              // 전체 여행지 로딩
 
     useEffect(() => { // 새로고침 방지 alert
         tourData();
@@ -175,7 +176,7 @@ const CreatePlanPage = () => {
             dibs.pop(); // 쓰레기 값 제거
             tourData2(dibs).then(value => setCart(value));
         }else{
-            console.log("찜한거 없음");
+            setRendering(true);
         }
     }, [])
 
@@ -271,6 +272,7 @@ const CreatePlanPage = () => {
     }
 
     const tourData = async () =>{    // 전체 검색 함수
+        setRendering2(false);
         (async () => {
             const response = await fetch(
                 `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&numOfRows=30000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
@@ -283,10 +285,12 @@ const CreatePlanPage = () => {
             setTourStorage(tourItems);
             setPage1(1);
             setTourMakerSelect1(Array(tourItems.length).fill(false));
+            setRendering2(true);
           })();
     }
 
     const tourData2 = async (idx) =>{    // 찜하기 함수
+        setRendering(false);
         console.log("찜하기 함수 실행")
         let Arr = [];
             for(let i=0; i<idx.length; i++){
@@ -300,7 +304,20 @@ const CreatePlanPage = () => {
                 setPage2(1);
                 setTourMakerSelect2(Array(Arr.length).fill(false));
             }
+            setRendering(true);
         return Arr;
+    }
+
+    const deleteDibs = (el) => {  // 찜 삭제
+        for(let i=0; i<cart.length; i++){
+            if(cart[i].contentid === el.contentid){
+                cart.splice(i,1);
+                setCart(cart);
+                setTourSelect([...tourSelect]); // 렌더링 요정
+                const dibs = sessionStorage.getItem("dibs");
+                sessionStorage.setItem("dibs", dibs.replace(el.contentid + " ", ""));
+            }
+        }
     }
 
     const handleOnKeyPress = (e) => {   // 검색 함수
@@ -311,9 +328,13 @@ const CreatePlanPage = () => {
                 tourStorage.filter((el,idx) => {if(el.addr1.indexOf(e.target.value) !== -1){Arr = [...Arr,el]}});
                 setTours(Arr);
                 setStotalItemCount1(Arr.length);
-                setPage1(1);
                 setTourMakerSelect1(Array(Arr.length).fill(false));
+            }else{
+                setTours(tourStorage);
+                setStotalItemCount1(tourStorage.length);
+                setTourMakerSelect1(Array(tourStorage.length).fill(false));
             }
+            setPage1(1);
         }
     };
 
@@ -376,7 +397,7 @@ const CreatePlanPage = () => {
             if(idx === i){
                 dayList[idx2-1][1].splice(i,1);
                 setDayList(dayList);
-                setTourSelect([...tourSelect]);
+                setTourSelect([...tourSelect]); // 추가하면 렌더링됨 어째서?
             }
         }
     }
@@ -499,7 +520,9 @@ const CreatePlanPage = () => {
                                 <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {tours.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
+                            {!rendering2 ? 
+                            <Styles.DayItemTextBox><Styles.DayItemTitle>로딩 중...</Styles.DayItemTitle></Styles.DayItemTextBox> 
+                            :tours.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>"{decodeURIComponent(searchKeyword)}" 에 대한 검색결과가 없습니다.</Styles.DayItemTitle></Styles.DayItem> 
                                 :(tours.filter((e,index) => {
                                         if((index >= (page1-1)*itemsCount) && index < page1 * itemsCount)return e;
                                             }).map((tour,id) => {
@@ -528,7 +551,9 @@ const CreatePlanPage = () => {
                         <Styles.ListBox>
                             <Styles.ListTitleBox><Styles.ListTitle>찜한 여행지</Styles.ListTitle></Styles.ListTitleBox>
                             <Styles.ScrollBox>
-                                {cart.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>찜한 목록이 없습니다.</Styles.DayItemTitle></Styles.DayItem>
+                            {!rendering ? 
+                            <Styles.DayItemTextBox><Styles.DayItemTitle>로딩 중...</Styles.DayItemTitle></Styles.DayItemTextBox> 
+                            : cart.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>찜한 목록이 없습니다.</Styles.DayItemTitle></Styles.DayItem>
                                 :(cart.map((el, idx) => {
                                     return(
                                         <div key={idx}>
@@ -542,7 +567,7 @@ const CreatePlanPage = () => {
                                                     <Styles.ItemBox>
                                                         <Styles.DayItemText>{el.addr1}</Styles.DayItemText>
                                                         <Styles.ItemBtn onClick={() => addTour(el, update)}>추가하기</Styles.ItemBtn>
-                                                        <Styles.ItemBtn remove>찜 삭제</Styles.ItemBtn>
+                                                        <Styles.ItemBtn remove onClick={() => deleteDibs(el)}>찜 삭제</Styles.ItemBtn>
                                                     </Styles.ItemBox>
                                                 </Styles.DayItemTextBox>
                                             </Styles.DayItem>
