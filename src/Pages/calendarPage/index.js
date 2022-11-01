@@ -118,8 +118,10 @@ const CalendarPage = () =>{
         try{
             if(like.filter(e => e.id == id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+                setDateList({...dateList, likeCount: dateList.likeCount - 1})
             }else{
                 await axios.post('http://localhost:8080/addLikes', {id: id, type: "P"})
+                setDateList({...dateList, likeCount: dateList.likeCount + 1})
             }
             getLikes();
         }catch(e){
@@ -176,11 +178,14 @@ const CalendarPage = () =>{
                                     (email !== dateList.email.email ? <div style={{height:"70px"}}/>
                                     :<Styles.ShareBtn open={dateList.type} onClick={onShareBtn}/>) 
                                 : <div style={{height:"70px"}}/>}
-                                {like.filter(e => e.id == dateList.id).length ? 
-                                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/> 
-                                    : 
-                                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/>
-                                }
+                                <Styles.HeartBox>
+                                    {like.filter(e => e.id == dateList.id).length ? 
+                                        <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/> 
+                                        : 
+                                        <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(dateList.id)}/>
+                                    }
+                                    <Styles.LikeCount>{dateList.likeCount}</Styles.LikeCount>
+                                </Styles.HeartBox>
                             </Styles.ShareBtnBox>
                             <Styles.Menu>
                                 <Styles.Title>상세 정보</Styles.Title>

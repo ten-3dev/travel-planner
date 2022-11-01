@@ -142,6 +142,18 @@ export const ShareBtn = styled.button`
 
 `
 
+export const HeartBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const LikeCount = styled.div`
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 10px;
+`
+
 export const ContentBox = styled.div`
     box-sizing: border-box;
     display: flex;
