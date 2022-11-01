@@ -89,6 +89,7 @@ export const ImgBox = styled.img`
     width: 220px;
     height: 100px;
     border-radius: 10px;
+    cursor: pointer;
     
 `
 export const Imgheart = styled.div`

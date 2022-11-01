@@ -39,7 +39,6 @@ const Like = () => {
     try{
       const data = await axios.post("http://localhost:8080/getLikes");
       if(data){
-        setTourInfo(tourInfo.length = 0);
         const likeData = data.data.data.filter(e => e.type === 'T');
         const likePlanData = data.data.data.filter(e => e.type === 'P');
         if(likeData.length === 0){
@@ -87,10 +86,15 @@ const Like = () => {
   }
 
   // 좋아요 제거 함수
-  const likeCancel = async (id) => {
+  const likeCancel = async (id, type) => {
     try{
       await axios.delete(`http://localhost:8080/removeLikes/${id}`)
-      getTourData();
+      if(type === 'P'){
+        const planData = planInfo;
+        setPlanInfo(planData.filter(e => e.id !== id));
+      }else{
+        setTourInfo(tourInfo.filter(e => e.contentid !== id));
+      }
     }catch(e){
       alert("좋아요 에러");
       console.log(e);
@@ -121,7 +125,8 @@ const Like = () => {
     if(window.confirm("찜취소하시겠습니까?")){
       const dibs = sessionStorage.getItem("dibs");
       sessionStorage.setItem("dibs", dibs.replace(id + " ", ""));
-      getDibsData();
+      const dibsData = dibsInfo;
+      setDibsInfo(dibsData.filter(e => e.contentid !== id));
     }
   }
 
@@ -140,7 +145,7 @@ const Like = () => {
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.Box2>
-                      <Styles.ImgBox src={el.img ? el.img : "assets/logo.png"}/>
+                      <Styles.ImgBox src={el.img ? el.img : "assets/logo.png"} onClick={() => navigate(`/calendar?id=${el.id}`)}/>
                         <Styles.ContentBox>
                           <Styles.ContentBox2>
                             <Styles.ContentText onClick={() => navigate(`/calendar?id=${el.id}`)}>{el.title}</Styles.ContentText>
@@ -148,7 +153,7 @@ const Like = () => {
                           </Styles.ContentBox2>
                           <Styles.ContentBox2>
                             <Styles.Imgheart>
-                            <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}}/>
+                            <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}} onClick={() => likeCancel(el.id, 'P')}/>
                             </Styles.Imgheart>
                             <Styles.HeartSumText></Styles.HeartSumText>
                             <Styles.NameBox>{el.author}</Styles.NameBox>
@@ -163,11 +168,11 @@ const Like = () => {
               <Styles.Text>관광지</Styles.Text>
             </Styles.Box>
             <Styles.SmallBox>
-              {!isLikeLoding ? `로딩 중...` : tourInfo === 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
+              {!isLikeLoding ? `로딩 중...` : tourInfo.length === 0 ? "좋아요를 누른 항목이 없습니다." : tourInfo.map((el, idx) => { 
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
-                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2}/>
+                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2} onClick={() => navigate(`/information?id=${el?.contentid}`)}/>
                         <Styles.KeepBox>
                           <Styles.KeepBox2>
                             <Styles.ContentText onClick={() => navigate(`/information?id=${el?.contentid}`)}>{el?.title}</Styles.ContentText>
@@ -178,7 +183,7 @@ const Like = () => {
                               <div dangerouslySetInnerHTML={{ __html: el?.overview }}></div>
                             </Styles.KeepContentText>
                             <Styles.KeepDeleteBox2>
-                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer", marginLeft:'50px'}} onClick={() => likeCancel(el?.contentid)}/>
+                              <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer", marginLeft:'50px'}} onClick={() => likeCancel(el?.contentid, 'T')}/>
                             </Styles.KeepDeleteBox2>
                           </Styles.KeepBox2>
                         </Styles.KeepBox>
@@ -196,7 +201,7 @@ const Like = () => {
                 return(
                   <Styles.LineBox key={idx}>
                     <Styles.KeepBox3>
-                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2}/>
+                      <Styles.ImgBox2 src={el?.firstimage2 === "" ? "assets/logo.png" : el?.firstimage2} onClick={() => navigate(`/information?id=${el?.contentid}`)}/>
                         <Styles.KeepBox>
                           <Styles.KeepBox2>
                             <Styles.ContentText onClick={() => navigate(`/information?id=${el?.contentid}`)}>{el?.title}</Styles.ContentText>
