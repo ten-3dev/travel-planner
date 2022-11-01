@@ -54,7 +54,7 @@ const MyPlan = () => {
                   <div key={idx}>
                     <Styles.SmallBox>
                       <Styles.LineBox>
-                      <Styles.ImgBox src= {JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2}/> 
+                      <Styles.ImgBox src= {JSON.parse(el[1].plan)[0].list[0].firstimage2  === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2} onClick={() => {infoMove(el[1])}}/> 
                       <Styles.ContentBox>
                         <Styles.ContentBox2>
                           <Styles.ContentText>{el[1].title}</Styles.ContentText>
