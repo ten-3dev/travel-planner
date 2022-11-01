@@ -52,6 +52,7 @@ export const Image = styled.img`
 export const IntroTitle = styled.div`
     position: absolute;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-between;
@@ -59,15 +60,41 @@ export const IntroTitle = styled.div`
     bottom: 50px;
 `
 export const IntroText = styled.div`
-    font-size:30px;
+    font-size:40px;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: ${props => {
+        return props.color ? "white" : "black"
+    }};
 
 `
 
 export const IntroDate = styled.div`
-    font-size: 18px;
-    color: white;
+    font-size: 20px;
+    color: ${props => {
+        return props.color ? "white" : "black"
+    }};
+
+`
+
+export const IntroNE = styled.div`
+    display: flex;
+    justify-content: center;
+
+`
+
+export const IntroName = styled.div`
+    font-size: 25px;
+    color: ${props => {
+        return props.color ? "white" : "black"
+    }};
+
+`
+
+export const IntroEmail = styled.div`
+    font-size: 19px;
+    color: ${props => {
+        return props.color ? "white" : "black"
+    }};
 
 `
 

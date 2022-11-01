@@ -127,16 +127,46 @@ const CalendarPage = () =>{
         }
     }
 
+    const changeName = (author) => {
+        const emailIdStr = author.split("@")
+        if(emailIdStr[0] < 4) return author;
+        else{
+          const emailIdStrArr = [...emailIdStr[0]];
+          emailIdStrArr[1] = "*";
+          emailIdStrArr[2] = "*";
+          const result = "(" + emailIdStrArr.join('') + "@" + emailIdStr[1] + ")";
+          return result
+        }
+    }
+
     return(
         <>
             {dateList === undefined ? "" : 
             <>
                 <Styles.ImageBox>
                     <Styles.Image src={JSON.parse(dateList.plan)[0].list[0].firstimage !== "" ? JSON.parse(dateList.plan)[0].list[0].firstimage : "assets/logo.png"}/>
-                    <Styles.IntroTitle>
-                        <Styles.IntroText>{dateList.title}</Styles.IntroText>
-                        <Styles.IntroDate>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
-                    </Styles.IntroTitle>
+                    {JSON.parse(dateList.plan)[0].list[0].firstimage !== "" ? 
+                        <>
+                            <Styles.IntroTitle>
+                                <Styles.IntroText color={true}>{dateList.title}</Styles.IntroText>
+                                <Styles.IntroDate color={true}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
+                                <Styles.IntroNE>
+                                    <Styles.IntroName color={true}>{dateList?.email.name}</Styles.IntroName>
+                                    <Styles.IntroEmail color={true}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
+                                </Styles.IntroNE>
+                            </Styles.IntroTitle>
+                        </> 
+                    : 
+                        <>
+                            <Styles.IntroTitle>
+                                <Styles.IntroText color={false}>{dateList.title}</Styles.IntroText>
+                                <Styles.IntroDate color={false}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
+                                <Styles.IntroNE>
+                                    <Styles.IntroName color={false}>{dateList?.email.name}</Styles.IntroName>
+                                    <Styles.IntroEmail color={false}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
+                                </Styles.IntroNE>
+                            </Styles.IntroTitle>
+                        </>} 
                 </Styles.ImageBox>
                 <MarginTopWrapper>
                     <Styles.Wrapper>
