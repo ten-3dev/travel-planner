@@ -32,7 +32,8 @@ const InformationPage = () => {
         const response = await fetch(`https://apis.data.go.kr/B551011/KorService/detailCommon?serviceKey=${process.env.REACT_APP_TOUR_API_KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${id}&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`)
         const json = await response.json();
         const data  = json.response.body.items.item;
-        setInfoData(data[0]);
+        const likeCount = await axios.get(`http://localhost:8080/getLikeCount/${data[0].contentid}`)
+        setInfoData({...data[0], likeCount: likeCount.data.data});
     }
 
     if(infoData === null){
@@ -99,8 +100,10 @@ const InformationPage = () => {
         try{
             if(like.filter(e => e.id === id).length){ // 있으면
                 await axios.delete(`http://localhost:8080/removeLikes/${id}`)
+                setInfoData({...infoData, likeCount: infoData.likeCount - 1})
             }else{
                 await axios.post('http://localhost:8080/addLikes', {id: id, type: "T"})
+                setInfoData({...infoData, likeCount: infoData.likeCount + 1})
             }
             getLikes();
         }catch(e){
@@ -118,11 +121,14 @@ const InformationPage = () => {
                 <Styles.Img1>
                     {/* <LikeButton/> */}
                 </Styles.Img1>
-                {like.filter(e => e.id === location.search.split("=")[1]).length ? 
-                    <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/> 
-                    : 
-                    <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/>
-                }
+                <Styles.HeartBox>
+                    {like.filter(e => e.id === location.search.split("=")[1]).length ? 
+                        <HeartFilled style={{ color: 'red', fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/> 
+                        : 
+                        <HeartOutlined  style={{ fontSize: '30px'}} onClick={() => addLikes(location.search.split("=")[1])}/>
+                    }
+                    <Styles.LikeCount>{infoData?.likeCount}</Styles.LikeCount>
+                </Styles.HeartBox>
                 <Styles.Like onClick={onDibs} dibs={
                         sessionStorage.getItem("dibs") 
                     ?

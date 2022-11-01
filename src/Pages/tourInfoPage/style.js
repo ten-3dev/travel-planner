@@ -11,6 +11,20 @@ export const TitleBox = styled.div`
     width: 100%;
     margin-top: 200px;
 `
+
+export const HeartBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const LikeCount = styled.div`
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 5px;
+    margin-right: 15px;
+`
+
 export const LikeBox = styled.div`
     display: flex;
     align-items: center;
