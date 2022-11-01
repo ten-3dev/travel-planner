@@ -113,7 +113,7 @@ const SharedPlanPage = () => {
                 <Styles.PlanContentBox key={idx}>
                   <Styles.PlanImg
                     onClick={() => {
-                      infoMove(el[1]);
+                      infoMove(el);
                     }}
                     src={
                       JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2
