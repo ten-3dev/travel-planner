@@ -11,6 +11,7 @@ const SharedPlanPage = () => {
   const [currentPage, setCurrentPage] = useState(1); //현재 페이지
   const [itemsCount] = useState(6); //페이지당 게시글 수
   const [content, setContent] = useState([]);
+  const [contentStorage, setContentStorage] = useState([]);
   const [like, setLike] = useState([]);
   const [isLoding, setIsLoding] = useState(false);
   const navigate = useNavigate();
@@ -70,25 +71,22 @@ const SharedPlanPage = () => {
       alert("로그인 후 이용해 주세요.");
       console.log(e);
     }
-    // try {
-    //   if (like.filter((e) => e.id === id).length) {
-    //     // 있으면
-    //     await axios.delete(`http://localhost:8080/removeLikes/${id}`);
-    //   } else {
-    //     console.log({
-    //       id: id,
-    //       type: "P",
-    //     });
-    //     await axios.post("http://localhost:8080/addLikes", {
-    //       id: id,
-    //       type: "P",
-    //     });
-    //   }
-    //   getLikes();
-    // } catch (e) {
-    //   alert("로그인 후 이용해 주세요.");
-    // }
   };
+
+  const contentOrder = (e) => {
+    if(clicked === (e.target.innerText === "최신순" ? "Latest" : "Popular")) return;
+    setIsLoding(false);
+    if(e.target.innerText === "인기순"){
+      setContentStorage(content);
+      setContent([...content].sort((a, b) => b.likeCount - a.likeCount));
+      setClicked("Popular");
+    }else {
+      setContent(contentStorage);
+      setClicked("Latest");
+    }
+    setIsLoding(true);
+
+  }
 
   return (
     <MarginTopWrapper margin>
@@ -96,11 +94,11 @@ const SharedPlanPage = () => {
         <Styles.Title>공유된 플랜</Styles.Title>
       </Styles.TitleBox>
       <Styles.LatestpopularBox>
-        <Styles.LatestBtn click={clicked === "Latest"} onClick={() => setClicked("Latest")}>
+        <Styles.LatestBtn click={clicked === "Latest"} onClick={(e) => contentOrder(e)}>
           최신순
         </Styles.LatestBtn>
         <Styles.Sign>|</Styles.Sign>
-        <Styles.PopularBtn click={clicked === "Popular"} onClick={() => setClicked("Popular")}>
+        <Styles.PopularBtn click={clicked === "Popular"} onClick={(e) => contentOrder(e)}>
           인기순
         </Styles.PopularBtn>
       </Styles.LatestpopularBox>
@@ -142,7 +140,7 @@ const SharedPlanPage = () => {
                           // "2"
                           <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)} />
                         )}
-                        <Styles.ContentBox>1</Styles.ContentBox>
+                        <Styles.ContentBox>{el.likeCount}</Styles.ContentBox>
                       </Styles.LikefontBox>
                       <Styles.ContentBox
                         onClick={() => {
