@@ -12,6 +12,7 @@ const SharedPlanPage = () => {
   const [itemsCount] = useState(6); //페이지당 게시글 수
   const [content, setContent] = useState([]);
   const [like, setLike] = useState([]);
+  const [isLoding, setIsLoding] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,21 +21,23 @@ const SharedPlanPage = () => {
   }, [currentPage, itemsCount]);
 
   useEffect(() => {
-    getUserPlan();
+    reload();
   }, []);
 
-  useEffect(() => {
+  const reload = () => {
+    setIsLoding(false);
+    getUserPlan();
     getLikes();
-  }, []);
+    setIsLoding(true);
+  }
 
   const getUserPlan = async () => {
     // DB에 있는 플랜데이터
     const data = await axios.get("http://localhost:8080/getPlan");
-    if (!data) {
-      getUserPlan();
+    if (data) {
+      setContent(data.data.data);
     } else {
-      console.log(data.data.data);
-      setContent(Object.entries(data.data.data));
+      getUserPlan();
     }
   };
   const infoMove = (e) => {
@@ -47,26 +50,46 @@ const SharedPlanPage = () => {
       getLikes();
     } else {
       setLike(data.data.data.filter((e) => e.type === "P"));
-      console.log("확인용 : " + setLike);
+
+      setIsLoding(true);
     }
   };
   const addLikes = async (id) => {
-    try {
-      if (like.filter((e) => e.id === id).length) {
-        // 있으면
+    console.log(id);
+    try{
+      if(like.filter(e => Number(e.id) === Number(id)).length) {
         await axios.delete(`http://localhost:8080/removeLikes/${id}`);
-      } else {
+      }else{
         await axios.post("http://localhost:8080/addLikes", {
           id: id,
           type: "P",
         });
       }
-      getLikes();
-    } catch (e) {
+      reload();
+    }catch(e){
       alert("로그인 후 이용해 주세요.");
+      console.log(e);
     }
+    // try {
+    //   if (like.filter((e) => e.id === id).length) {
+    //     // 있으면
+    //     await axios.delete(`http://localhost:8080/removeLikes/${id}`);
+    //   } else {
+    //     console.log({
+    //       id: id,
+    //       type: "P",
+    //     });
+    //     await axios.post("http://localhost:8080/addLikes", {
+    //       id: id,
+    //       type: "P",
+    //     });
+    //   }
+    //   getLikes();
+    // } catch (e) {
+    //   alert("로그인 후 이용해 주세요.");
+    // }
   };
-  console.log(itemsCount);
+
   return (
     <MarginTopWrapper margin>
       <Styles.TitleBox>
@@ -83,9 +106,9 @@ const SharedPlanPage = () => {
       </Styles.LatestpopularBox>
       <Styles.TopBar />
       <Styles.PlanBox>
-        {content === undefined
-          ? ""
-          : content.slice((currentPage - 1) * itemsCount, currentPage * itemsCount).map((el, idx) => {
+        {!isLoding ? "로딩 중..." : content.length === 0
+          ? "플랜이 없음"
+          : content.map((el, idx) => {
               return (
                 <Styles.PlanContentBox key={idx}>
                   <Styles.PlanImg
@@ -93,35 +116,38 @@ const SharedPlanPage = () => {
                       infoMove(el[1]);
                     }}
                     src={
-                      JSON.parse(el[1].plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el[1].plan)[0].list[0].firstimage2
+                      JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2
                     }></Styles.PlanImg>
                   <Styles.ContentListBox>
                     <Styles.ContentBox
                       onClick={() => {
-                        infoMove(el[1]);
+                        infoMove(el);
                       }}>
-                      {el[1].title}
+                      {el.title}
                     </Styles.ContentBox>
                     <Styles.ContentBox
                       onClick={() => {
-                        infoMove(el[1]);
+                        infoMove(el);
                       }}>
-                      {el[1].date}
+                      {el.date}
                     </Styles.ContentBox>
                     <Styles.LikeListfontBox>
                       <Styles.LikefontBox>
-                        {like.filter((e) => e.id === content.contentid).length ? (
-                          <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(content.contentid)} />
+                        {/* {el.id} */}
+                        {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
+                          // "1"
+                          <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)} />
                         ) : (
-                          <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(content.contentid)} />
+                          // "2"
+                          <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)} />
                         )}
                         <Styles.ContentBox>1</Styles.ContentBox>
                       </Styles.LikefontBox>
                       <Styles.ContentBox
                         onClick={() => {
-                          infoMove(el[1]);
+                          infoMove(el);
                         }}>
-                        {el[1].email.name}
+                        {el.email.name}
                       </Styles.ContentBox>
                     </Styles.LikeListfontBox>
                   </Styles.ContentListBox>
