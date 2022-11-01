@@ -129,6 +129,19 @@ const Like = () => {
       setDibsInfo(dibsData.filter(e => e.contentid !== id));
     }
   }
+  
+  const changeName = (author) => {
+    const nameStr = author.split("(");
+    const emailIdStr = nameStr[1].split("@")
+    if(emailIdStr[0] < 4) return author;
+    else{
+      const emailIdStrArr = [...emailIdStr[0]];
+      emailIdStrArr[1] = "*";
+      emailIdStrArr[2] = "*";
+      const result = nameStr[0] + "(" + emailIdStrArr.join('') + "@" + emailIdStr[1];
+      return result
+    }
+  }
 
   return (
     <>
@@ -155,8 +168,7 @@ const Like = () => {
                             <Styles.Imgheart>
                             <HeartFilled style={{ color: 'red', fontSize: '30px', cursor: "pointer"}} onClick={() => likeCancel(el.id, 'P')}/>
                             </Styles.Imgheart>
-                            <Styles.HeartSumText></Styles.HeartSumText>
-                            <Styles.NameBox>{el.author}</Styles.NameBox>
+                            <Styles.NameBox>{changeName(el?.author)}</Styles.NameBox>
                           </Styles.ContentBox2>
                         </Styles.ContentBox>
                     </Styles.Box2>

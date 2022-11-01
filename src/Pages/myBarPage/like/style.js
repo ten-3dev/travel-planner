@@ -56,7 +56,6 @@ export const ContentBox2 = styled.div`
 `
 
 export const DayBox = styled.div`
-    width: 100px;
     font-size: 14px;
     margin-top: 30px;
     margin-left: 500px;
@@ -64,7 +63,6 @@ export const DayBox = styled.div`
 `
 
 export const NameBox = styled.div`
-    width: 100px;
     font-size: 16px;
     margin-top:35px;
     margin-left: 310px;
