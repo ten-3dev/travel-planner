@@ -38,7 +38,9 @@ const MyPlan = () => {
   }
 
   const onPlanEdit = (el) => {
+    if(window.confirm("수정하시겠습니까?")){
     navigate('/createPlanPage', {state: {updateData : el[1], date: el[1].date}})
+    }
   }
 
   return (

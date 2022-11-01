@@ -97,3 +97,9 @@ export const PopularBtn = styled.button`
 export const Sign = styled.div`
 
 `
+
+export const PlanLodingText = styled.div`
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 20px;
+`
