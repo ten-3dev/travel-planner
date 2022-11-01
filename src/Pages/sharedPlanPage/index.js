@@ -14,12 +14,8 @@ const SharedPlanPage = () => {
   const [contentStorage, setContentStorage] = useState([]);
   const [like, setLike] = useState([]);
   const [isLoding, setIsLoding] = useState(false);
+  const [totalContent, setTotalContent] = useState(1);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log(currentPage === 1 ? 1 : (currentPage - 1) * itemsCount + "부터");
-    console.log(itemsCount + "까지");
-  }, [currentPage, itemsCount]);
 
   useEffect(() => {
     reload();
@@ -30,17 +26,24 @@ const SharedPlanPage = () => {
     getUserPlan();
     getLikes();
     setIsLoding(true);
-  }
+  };
 
-  const getUserPlan = async () => {
+  const getUserPlan = async (pageNumber = 1) => {
     // DB에 있는 플랜데이터
-    const data = await axios.get("http://localhost:8080/getPlan");
+    const data = await axios.get("http://localhost:8080/getPlanWithPagination", { params: { page: pageNumber - 1, size: itemsCount } });
     if (data) {
-      setContent(data.data.data);
+      setTotalContent(data.data.data[0]);
+      setContent(data.data.data[1]);
     } else {
       getUserPlan();
     }
   };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    getUserPlan(pageNumber);
+  };
+
   const infoMove = (e) => {
     navigate(`/calendar?id=${e.id}`);
   };
@@ -56,37 +59,35 @@ const SharedPlanPage = () => {
     }
   };
   const addLikes = async (id) => {
-    console.log(id);
-    try{
-      if(like.filter(e => Number(e.id) === Number(id)).length) {
+    try {
+      if (like.filter((e) => Number(e.id) === Number(id)).length) {
         await axios.delete(`http://localhost:8080/removeLikes/${id}`);
-      }else{
+      } else {
         await axios.post("http://localhost:8080/addLikes", {
           id: id,
           type: "P",
         });
       }
       reload();
-    }catch(e){
+    } catch (e) {
       alert("로그인 후 이용해 주세요.");
       console.log(e);
     }
   };
 
   const contentOrder = (e) => {
-    if(clicked === (e.target.innerText === "최신순" ? "Latest" : "Popular")) return;
+    if (clicked === (e.target.innerText === "최신순" ? "Latest" : "Popular")) return;
     setIsLoding(false);
-    if(e.target.innerText === "인기순"){
+    if (e.target.innerText === "인기순") {
       setContentStorage(content);
       setContent([...content].sort((a, b) => b.likeCount - a.likeCount));
       setClicked("Popular");
-    }else {
+    } else {
       setContent(contentStorage);
       setClicked("Latest");
     }
     setIsLoding(true);
-
-  }
+  };
 
   return (
     <MarginTopWrapper margin>
@@ -103,60 +104,60 @@ const SharedPlanPage = () => {
         </Styles.PopularBtn>
       </Styles.LatestpopularBox>
       <Styles.TopBar />
-        <Styles.PlanLodingText>
+      <Styles.PlanLodingText>
         <Styles.PlanBox>
-        {!isLoding ? "로딩 중..." : content.length === 0
-          ? "공유된 플랜이 없습니다."
-          : content.slice((currentPage - 1) * itemsCount, currentPage * itemsCount).map((el, idx) => {
-              return (
-                <Styles.PlanContentBox key={idx}>
-                  <Styles.PlanImg
-                    onClick={() => {
-                      infoMove(el);
-                    }}
-                    src={
-                      JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2
-                    }></Styles.PlanImg>
-                  <Styles.ContentListBox>
-                    <Styles.ContentBox
+          {!isLoding
+            ? "로딩 중..."
+            : content.length === 0
+            ? "공유된 플랜이 없습니다."
+            : content.map((el, idx) => {
+                return (
+                  <Styles.PlanContentBox key={idx}>
+                    <Styles.PlanImg
                       onClick={() => {
                         infoMove(el);
-                      }}>
-                      {el.title}
-                    </Styles.ContentBox>
-                    <Styles.ContentBox
-                      onClick={() => {
-                        infoMove(el);
-                      }}>
-                      {el.date}
-                    </Styles.ContentBox>
-                    <Styles.LikeListfontBox>
-                      <Styles.LikefontBox>
-                        {/* {el.id} */}
-                        {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
-                          // "1"
-                          <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)} />
-                        ) : (
-                          // "2"
-                          <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)} />
-                        )}
-                        <Styles.ContentBox>{el.likeCount}</Styles.ContentBox>
-                      </Styles.LikefontBox>
+                      }}
+                      src={JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2}></Styles.PlanImg>
+                    <Styles.ContentListBox>
                       <Styles.ContentBox
                         onClick={() => {
                           infoMove(el);
                         }}>
-                        {el.email.name}
+                        {el.title}
                       </Styles.ContentBox>
-                    </Styles.LikeListfontBox>
-                  </Styles.ContentListBox>
-                </Styles.PlanContentBox>
-              );
-            })}
-            </Styles.PlanBox>
-          </Styles.PlanLodingText>
-      
-      <Paging page={currentPage} count={content.length} setPage={setCurrentPage} itemsCount={itemsCount} />
+                      <Styles.ContentBox
+                        onClick={() => {
+                          infoMove(el);
+                        }}>
+                        {el.date}
+                      </Styles.ContentBox>
+                      <Styles.LikeListfontBox>
+                        <Styles.LikefontBox>
+                          {/* {el.id} */}
+                          {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
+                            // "1"
+                            <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)} />
+                          ) : (
+                            // "2"
+                            <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)} />
+                          )}
+                          <Styles.ContentBox>{el.likeCount}</Styles.ContentBox>
+                        </Styles.LikefontBox>
+                        <Styles.ContentBox
+                          onClick={() => {
+                            infoMove(el);
+                          }}>
+                          {el.email.name}
+                        </Styles.ContentBox>
+                      </Styles.LikeListfontBox>
+                    </Styles.ContentListBox>
+                  </Styles.PlanContentBox>
+                );
+              })}
+        </Styles.PlanBox>
+      </Styles.PlanLodingText>
+
+      <Paging page={currentPage} count={totalContent} setPage={handlePageChange} itemsCount={itemsCount} />
     </MarginTopWrapper>
   );
 };
