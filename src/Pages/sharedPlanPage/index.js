@@ -105,8 +105,8 @@ const SharedPlanPage = () => {
         </Styles.PopularBtn>
       </Styles.LatestpopularBox>
       <Styles.TopBar />
-      <Styles.PlanBox>
         <Styles.PlanLodingText>
+        <Styles.PlanBox>
         {!isLoding ? "로딩 중..." : content.length === 0
           ? "공유된 플랜이 없습니다."
           : content.slice((currentPage - 1) * itemsCount, currentPage * itemsCount).map((el, idx) => {
@@ -155,8 +155,9 @@ const SharedPlanPage = () => {
                 </Styles.PlanContentBox>
               );
             })}
-            </Styles.PlanLodingText>
-      </Styles.PlanBox>
+            </Styles.PlanBox>
+          </Styles.PlanLodingText>
+      
       <Paging page={currentPage} count={content.length} setPage={setCurrentPage} itemsCount={itemsCount} />
     </MarginTopWrapper>
   );
