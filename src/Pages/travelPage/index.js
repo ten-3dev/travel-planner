@@ -195,7 +195,7 @@ const TravelPage = () => {
                     ?
                         <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}/>
                     : 
-                        " "
+                        null
                     }
                 </Styles.FilterBoxSticky>
                 </Styles.TravelFilterBox>
