@@ -150,22 +150,22 @@ const CalendarPage = () =>{
                     {JSON.parse(dateList.plan)[0].list[0].firstimage !== "" ? 
                         <>
                             <Styles.IntroTitle>
-                                <Styles.IntroText color={true}>{dateList.title}</Styles.IntroText>
-                                <Styles.IntroDate color={true}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
+                                <Styles.IntroText color={'true'}>{dateList.title}</Styles.IntroText>
+                                <Styles.IntroDate color={'true'}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
                                 <Styles.IntroNE>
-                                    <Styles.IntroName color={true}>{dateList?.email.name}</Styles.IntroName>
-                                    <Styles.IntroEmail color={true}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
+                                    <Styles.IntroName color={'true'}>{dateList?.email.name}</Styles.IntroName>
+                                    <Styles.IntroEmail color={'true'}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
                                 </Styles.IntroNE>
                             </Styles.IntroTitle>
                         </> 
                     : 
                         <>
                             <Styles.IntroTitle>
-                                <Styles.IntroText color={false}>{dateList.title}</Styles.IntroText>
-                                <Styles.IntroDate color={false}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
+                                <Styles.IntroText color={'false'}>{dateList.title}</Styles.IntroText>
+                                <Styles.IntroDate color={'false'}>{dateList.date.split("~")[0]+" - " + dateList.date.split("~")[1]}</Styles.IntroDate>
                                 <Styles.IntroNE>
-                                    <Styles.IntroName color={false}>{dateList?.email.name}</Styles.IntroName>
-                                    <Styles.IntroEmail color={false}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
+                                    <Styles.IntroName color={'false'}>{dateList?.email.name}</Styles.IntroName>
+                                    <Styles.IntroEmail color={'false'}>{changeName(dateList?.email.email)}</Styles.IntroEmail>
                                 </Styles.IntroNE>
                             </Styles.IntroTitle>
                         </>} 

@@ -63,7 +63,7 @@ export const IntroText = styled.div`
     font-size:40px;
     font-family: Arial, Helvetica, sans-serif;
     color: ${props => {
-        return props.color ? "white" : "black"
+        return props.color === 'true' ? "white" : "black"
     }};
 
 `
@@ -71,7 +71,7 @@ export const IntroText = styled.div`
 export const IntroDate = styled.div`
     font-size: 20px;
     color: ${props => {
-        return props.color ? "white" : "black"
+        return props.color === 'true' ? "white" : "black"
     }};
 
 `
@@ -85,7 +85,7 @@ export const IntroNE = styled.div`
 export const IntroName = styled.div`
     font-size: 25px;
     color: ${props => {
-        return props.color ? "white" : "black"
+        return props.color === 'true' ? "white" : "black"
     }};
 
 `
@@ -93,7 +93,7 @@ export const IntroName = styled.div`
 export const IntroEmail = styled.div`
     font-size: 19px;
     color: ${props => {
-        return props.color ? "white" : "black"
+        return props.color === 'true' ? "white" : "black"
     }};
 
 `
