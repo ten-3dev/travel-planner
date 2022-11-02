@@ -133,6 +133,11 @@ const TravelPage = () => {
         }
     }
 
+    const goCreatePlanPage = () => {
+        alert("로그인 후 이용해 주세요.");
+        navigate("/login");
+  };
+
     return (
         <MarginTopWrapper margin>
             <Styles.InputBox>
@@ -191,9 +196,17 @@ const TravelPage = () => {
                 </Styles.TravelListBox>
                 <Styles.TravelFilterBox>
                 <Styles.FilterBoxSticky>
-                    {   sessionStorage.getItem("dibs") 
+                    {!rendering ? null:
+                    sessionStorage.getItem("dibs") 
                     ?
-                        <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}/>
+                    !sessionStorage.getItem("access_token") ? 
+                    <>  
+                        <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}  onClick={ goCreatePlanPage} />
+                    </>
+                    :
+                    <>
+                         <Styles.SteamListButtonImg src={"assets/SteamListButton.png"}  onClick={() => {navigate("/CreatePlanPage")}} />
+                    </>
                     : 
                         null
                     }
