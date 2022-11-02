@@ -30,8 +30,7 @@ const MainPage = () => {
     // DB에 있는 플랜데이터
     const data = await axios.get("http://localhost:8080/getPlan");
     if (data) {
-        setContent(data.data.data);
-        console.log(data);
+        setContent(data.data.data.sort((a, b) => b.likeCount - a.likeCount));
     } else {
         getUserPlan();
     }
@@ -127,40 +126,42 @@ const MainPage = () => {
         
         axios.post('http://localhost:8080/uploadFile', formData);
         alert("다시 로그인 후 적용됩니다.");
-        };
+    };
 
        
-          const getLikes = async () => {
-            const data = await axios.post("http://localhost:8080/getLikes");
-            if (data === undefined) {
-              getLikes();
-            } else {
-              setLike(data.data.data.filter((e) => e.type === "P"));
-        
-              setIsLoding(true);
-            }
-          };
-          const addLikes = async (id) => {
-            console.log(id);
-            try{
-              if(like.filter(e => Number(e.id) === Number(id)).length) {
-                await axios.delete(`http://localhost:8080/removeLikes/${id}`);
-              }else{
-                await axios.post("http://localhost:8080/addLikes", {
-                  id: id,
-                  type: "P",
-                });
-              }
-              reload();
-            }catch(e){
-              alert("로그인 후 이용해 주세요.");
-              console.log(e);
-            }
-       
-          };
-          const infoMove = (e) => {
-            navigate(`/calendar?id=${e.id}`);
-          };
+    const getLikes = async () => {
+        const data = await axios.post("http://localhost:8080/getLikes");
+        if (data === undefined) {
+        getLikes();
+      } else {
+        setLike(data.data.data.filter((e) => e.type === "P"));
+
+        setIsLoding(true);
+        }
+    };
+    const addLikes = async (id) => {
+      console.log(id);
+      try{
+        if(like.filter(e => Number(e.id) === Number(id)).length) {
+          await axios.delete(`http://localhost:8080/removeLikes/${id}`);
+        }else{
+          await axios.post("http://localhost:8080/addLikes", {
+            id: id,
+            type: "P",
+          });
+        }
+        reload();
+      }catch(e){
+        alert("로그인 후 이용해 주세요.");
+        console.log(e);
+      }
+
+    };
+
+    const infoMove = (e) => {
+      navigate(`/calendar?id=${e.id}`);
+    };
+
     return(
         <>
             <Styles.Wrapper>
@@ -217,7 +218,7 @@ const MainPage = () => {
                         </Styles.BottomContentSBox>
                         {!sessionStorage.getItem("access_token") ? 
                         <>
-                        <Styles.BottomContentBtn onClick={ goCreatePlanPage}>플랜 작성하기</Styles.BottomContentBtn>
+                        <Styles.BottomContentBtn onClick={goCreatePlanPage}>플랜 작성하기</Styles.BottomContentBtn>
                         </>
                         :
                         <>
@@ -228,54 +229,36 @@ const MainPage = () => {
                     </Styles.BottomContentBox>
                     <Styles.BottomContentBox column paddingBottom="50px">
                         <Styles.CarouselTitle>인기플랜</Styles.CarouselTitle>
-                        {!isLoding ? "로딩 중..." : content.length === 0
-                            ? "플랜이 없음"
-                            : content.map((el, idx) => {
-                            return (
+                            {content.length < 3 && "현재 플랜이 3개 이상이 되지 않습니다."}
                             <Styles.SliderCustom {...settings} >
-                                <Styles.SliderBox   key={idx}>
-                                    <Styles.SliderImg 
-                                    onClick={() => {
-                                        infoMove(el);
-                                     }}
-                                        src={
-                                        JSON.parse(el.plan)[0].list[0].firstimage2 === "" ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2
-                                     } />
-                                    <Styles.SliderInfo>
-                                        <Styles.SliderInfoText 
-                                        onClick={() => {
-                                            infoMove(el);
-                                         }}>
-                                        {el.title}
-                                        </Styles.SliderInfoText>
-                                        <Styles.SliderInfoText 
-                                        onClick={() => {
-                                            infoMove(el);
-                                        }}>
-                                            {el.date}
-                                        </Styles.SliderInfoText>
-                                        <Styles.SliderInfoBottomBox>
-                                            <Styles.SliderInfoBox>
-                                            {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
-                                                <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)}/>
-                                                ) : (
-                                                <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)}/>
-                                                )}
-                                                <Styles.SliderInfoText>1</Styles.SliderInfoText>
-                                            </Styles.SliderInfoBox>
-                                            <Styles.SliderInfoText 
-                                            onClick={() => {
-                                                infoMove(el);
-                                             }}>
-                                                {el.email.name}
-                                            </Styles.SliderInfoText>
-                                        </Styles.SliderInfoBottomBox>
-                                    </Styles.SliderInfo>
-                                </Styles.SliderBox>
-                    
+                                {content.length < 3 ? null : content.map((el, idx) => {
+                                    return(
+                                        <Styles.SliderBox key={idx}>
+                                            <Styles.SliderImg 
+                                                src={!JSON.parse(el.plan)[0].list[0].firstimage2 ? "assets/logo.png" : JSON.parse(el.plan)[0].list[0].firstimage2} 
+                                                onClick={() => infoMove(el)}
+                                            />
+                                            <Styles.SliderInfo>
+                                                <Styles.SliderInfoText onClick={() => infoMove(el)}>{el.title}</Styles.SliderInfoText>
+                                                <Styles.SliderInfoText>{el.date}</Styles.SliderInfoText>
+                                                <Styles.SliderInfoBottomBox>
+                                                    <Styles.SliderInfoBox>
+                                                        {like.filter((e) => Number(e.id) === Number(el.id)).length ? (
+                                                            <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(el.id)} />
+                                                        ) : (
+                                                            <HeartOutlined style={{ fontSize: "30px" }} onClick={() => addLikes(el.id)} />
+                                                        )}
+                                                        <Styles.SliderInfoText>{el.likeCount}</Styles.SliderInfoText>
+                                                    </Styles.SliderInfoBox>
+                                                    <Styles.SliderInfoText >
+                                                        {el.email.name}
+                                                    </Styles.SliderInfoText>
+                                                </Styles.SliderInfoBottomBox>
+                                            </Styles.SliderInfo>
+                                        </Styles.SliderBox>
+                                    )
+                                })}
                             </Styles.SliderCustom>
-                                      );
-                                    })}
                         <Styles.BottomContentBtn onClick={moveSharedPlan}>플랜 모두 보기</Styles.BottomContentBtn>
                     </Styles.BottomContentBox>
                 </Styles.BottomBox>

@@ -202,7 +202,6 @@ export const SliderBox = styled.div`
     box-sizing: border-box;
     padding: 0 25px;
     cursor: pointer;
-    background-color: red;
 `
 
 export const SliderImg = styled.img`
@@ -227,7 +226,8 @@ export const SliderInfoText = styled.div`
     font-weight: bold;
     font-size: ${props => {
         return props.size ? props.size : "16px"
-    }}
+    }};
+    margin-left: 5px;
 `
 
 export const SliderInfoBottomBox = styled.div`
