@@ -59,53 +59,11 @@ const CreatePlanCalendar = ({open, setOpen, setDateList}) => { // 팝업
     )
 }
 
-const FilterSelector = ({open, setOpen}) => {
-    const [filterData, setFilterData] = useState([
-        {text: "동물1", state: false},
-        {text: "동물2", state: false},
-        {text: "동물3", state: false},
-        {text: "동물4", state: false},
-        {text: "동물5", state: false},
-        {text: "동물6", state: false},
-        {text: "동물7", state: false},
-        {text: "동물8", state: false},
-        {text: "동물9", state: false},
-    ]);
-
-
-    const filterClick = (idx) => {
-        const changeArr = filterData.map((el, index) => {
-            return idx === index ? {...el, state: !el.state} : el;
-        })
-
-        setFilterData(changeArr);
-    }
-
-    return(
-        <Styles.ModalCustom isOpen={open} style={{overlay: {zIndex: "2"}}} ariaHideApp={false} filter>
-            <Styles.FilterBox>
-                {filterData.map((el, idx) => {
-                    return(
-                        <Styles.FilterItemBox key={idx} onClick={() => filterClick(idx)}>
-                            <Styles.FilterCheckBox type="checkbox" readOnly checked={el.state || false}/>
-                            <Styles.FilterItemText>{el.text}</Styles.FilterItemText>
-                        </Styles.FilterItemBox>
-                    )
-                })}
-            </Styles.FilterBox>
-            <Styles.FilterBtnBox>
-                <Styles.FilterBtn onClick={() => setOpen(false)}>닫기</Styles.FilterBtn>
-            </Styles.FilterBtnBox>
-        </Styles.ModalCustom>
-    )
-}
-
 const CreatePlanPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const [isModelOpen, setIsModelOpen] = useState(true); //날짜 모달
-    const [filterOpen, setFilterOpen] = useState(false);
     const [dateList, setDateList] = useState();
     
     //박스를 움직이게 하는 state
@@ -460,7 +418,6 @@ const CreatePlanPage = () => {
     return(
         <>
             {!isUpdate && <CreatePlanCalendar open={isModelOpen} setOpen={setIsModelOpen} setDateList={setDateList}/>}
-            <FilterSelector open={filterOpen} setOpen={setFilterOpen}/>
             {isModelOpen ? null : 
             <Styles.Wrapper>
                 <Styles.PlanApplyBtn onClick={checkTitle}>적용하기</Styles.PlanApplyBtn>
@@ -517,7 +474,6 @@ const CreatePlanPage = () => {
                         <Styles.ListBox>
                             <Styles.ListTitleBox>
                                 <Styles.ListTitle>전체 여행지</Styles.ListTitle>
-                                <Styles.ListFilter onClick={() => setFilterOpen(true)}>필터</Styles.ListFilter>
                             </Styles.ListTitleBox>
                             <Styles.ScrollBox>
                             {!rendering2 ? 
