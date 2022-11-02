@@ -30,7 +30,7 @@ const MainPage = () => {
     // DB에 있는 플랜데이터
     const data = await axios.get("http://localhost:8080/getPlan");
     if (data) {
-        setContent(data.data.data.sort((a, b) => b.likeCount - a.likeCount));
+        setContent((data.data.data.sort((a, b) => b.likeCount - a.likeCount)).slice(0, data.data.data.length < 5 ? data.data.data.length : 5));
     } else {
         getUserPlan();
     }
