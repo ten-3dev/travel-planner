@@ -195,7 +195,7 @@ const MainPage = () => {
                     <Styles.BottomContentBox padding="120px">
                         <Styles.BottomContentWords>
                             <Styles.BottonContentTitle>다양한 관광지 데이터</Styles.BottonContentTitle>
-                            <Styles.BottomContentText>다양한 관광지 데이터를 통해 어쩌구 저쩌구 어쩌구 저쩌구 수 있습니다.</Styles.BottomContentText>
+                            <Styles.BottomContentText>다양한 관광지 데이터를 통해 쉽게 찾아보고 여행 계획을 세우실 수 있습니다.</Styles.BottomContentText>
                         </Styles.BottomContentWords>
                         <Styles.BottomContentImg src="assets/main_img1.png"/>
                     </Styles.BottomContentBox>
@@ -203,7 +203,7 @@ const MainPage = () => {
                         <Styles.BottomContentImg src="assets/main_img2.png"/>
                         <Styles.BottomContentWords>
                             <Styles.BottonContentTitle>좋아요 찜 기능</Styles.BottonContentTitle>
-                            <Styles.BottomContentText>다양한 관광지 데이터를 통해 어쩌구 저쩌구 어쩌꾸 할 수 있습니다.</Styles.BottomContentText>
+                            <Styles.BottomContentText>다양한 관광지 데이터를 통해 좋았던 관광지를 추천 할 수 있고 가고 싶은 여행지를 담아 둘 수 있습니다.</Styles.BottomContentText>
                         </Styles.BottomContentWords>
                     </Styles.BottomContentBox> 
                 </Styles.BottomBox>
