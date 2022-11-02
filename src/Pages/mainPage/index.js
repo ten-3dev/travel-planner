@@ -101,34 +101,6 @@ const MainPage = () => {
         navigate('/travel', {state : (e !== undefined ? e : searchKeyword)});
     };
 
-
-    const fileList = []; // 업로드한 파일들을 저장하는 배열
-    
-    const onSaveFiles = (e) => {
-        const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
-    
-        uploadFiles.forEach((uploadFile) => {
-            fileList.push(uploadFile);
-        });
-    };
-    
-    const onFileUpload = () => {
-        const formData = new FormData();
-    
-        fileList.forEach((file) => {
-                // 파일 데이터 저장
-            formData.append('multipartFiles', file);
-        });
-
-        fileList.forEach((f) => {
-            console.log(f);
-        })
-        
-        axios.post('http://localhost:8080/uploadFile', formData);
-        alert("다시 로그인 후 적용됩니다.");
-    };
-
-       
     const getLikes = async () => {
         const data = await axios.post("http://localhost:8080/getLikes");
         if (data === undefined) {
@@ -171,8 +143,6 @@ const MainPage = () => {
                 <Styles.ContentBox>
                     <Styles.Title>
                         TRAVEL PLANNER
-                        <input type="file" onChange={onSaveFiles}/>
-                        <button onClick={onFileUpload}>파일 업로드</button>
                         <Styles.ColorBar />
                     </Styles.Title>
                     <Styles.InputBox>

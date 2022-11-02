@@ -183,7 +183,7 @@ const InformationPage = () => {
                     {comments.map((el, idx) => {
                         return(
                             <Styles.ReviewBox key={idx}>
-                                <Styles.ReImage src={el.email.profileImg === "" ? "assets/defaultProfile.png" : el.email.profileImg}/>
+                                <Styles.ReImage src={el.email.profileImg === ""  ? "assets/defaultProfile.png" : `http://localhost:8080/image/view?value=${el.email.profileImg}`}/>
                                 <Styles.RefirstBox>
                                     <Styles.ReName>{el?.email?.name}</Styles.ReName>
                                     <Styles.ReDate>{el?.date}</Styles.ReDate>
@@ -197,7 +197,7 @@ const InformationPage = () => {
                             <Styles.ReviewText>댓글 남기기</Styles.ReviewText>
                         </Styles.ReviewTextBox>
                         {/* api 때려서 넣을거임 */}
-                        <Styles.Profile1 src="assets/myProfile.png"/>
+                        <Styles.Profile1 src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"}/>
                         <Styles.InputComment placeholder="댓글 입력" onChange={(e) => setContent(e.target.value)} value={content || ''}/>
                         <Styles.InputBtn onClick={() => { writing(location.search.split("=")[1])}}>등록</Styles.InputBtn>
                     </Styles.InputBox>

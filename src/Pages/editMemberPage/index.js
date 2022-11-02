@@ -158,13 +158,40 @@ export const EditmemberPage = () => {
             setIsPhone(false)
         }
     }
+    
+    const onSaveFiles = (e) => {
+        const fileList = [];
+        const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
+    
+        uploadFiles.forEach((uploadFile) => {
+            fileList.push(uploadFile);
+        });
+
+        onFileUpload(fileList);
+    };
+
+    const onFileUpload = (fileList) => {
+        const formData = new FormData();
+    
+        fileList.forEach((file) => {
+                // 파일 데이터 저장
+            formData.append('multipartFiles', file);
+        });
+
+        fileList.forEach((f) => {
+            console.log(f);
+        })
+        
+        axios.post('http://localhost:8080/uploadFile', formData);
+        alert("다시 로그인 후 적용됩니다.");
+    };
 
     return(
         <MarginTopWrapper margin>
             <Styles.EditTitle>나의 정보 관리</Styles.EditTitle>
             <Styles.ProfileBox>
                 <Styles.LeftProfileBox>
-                    <Styles.ProfileImg src={"assets/기본프로필.png"}></Styles.ProfileImg>
+                    <Styles.ProfileImg src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"} />
                     <Styles.MemberName>{showName}</Styles.MemberName>
                     <Styles.Memberemail >{email}</Styles.Memberemail>
                     <Styles.TitleBar/>
@@ -207,7 +234,7 @@ export const EditmemberPage = () => {
                 <Styles.MyProfileBox id="Profile">
                     <Styles.BasicInformation>기본정보</Styles.BasicInformation>
                     <Styles.BasicInformationBox>
-                        <Styles.BasicInformationImg src={"assets/기본프로필.png"}></Styles.BasicInformationImg>
+                        <Styles.BasicInformationImg src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"} />
                         <Styles.BasicInformationEamilBox>
                             <Styles.BasicInformationName>{showName}</Styles.BasicInformationName>
                             <Styles.BasicInformationEamil>{birth}</Styles.BasicInformationEamil>
@@ -215,8 +242,8 @@ export const EditmemberPage = () => {
                         </Styles.BasicInformationEamilBox>
                     </Styles.BasicInformationBox>
                     <Styles.LabelBox htmlFor="ex_file" >
-                            <Styles.ProfileImgChange src={"assets/카메라.png"} ></Styles.ProfileImgChange>
-                            <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" ></Styles.ProfileImgInput>
+                            <Styles.ProfileImgChange src={"assets/카메라.png"}></Styles.ProfileImgChange>
+                            <Styles.ProfileImgInput type="file" id="ex_file" accept="image/jpg, image/png, image/jpeg" onChange={onSaveFiles}/>
                     </Styles.LabelBox>
 
 

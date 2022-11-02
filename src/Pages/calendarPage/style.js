@@ -23,6 +23,7 @@ export const Profile1 = styled.img`
     width: 100px;
     height: 100px;
     margin-right: 60px;
+    border-radius: 50px;
 `
 
 export const Title1 = styled.div`
