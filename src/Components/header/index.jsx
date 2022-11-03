@@ -36,7 +36,7 @@ const Header = () => {
             <MarginTopWrapper>
                 <Styles.Header>
                     <Styles.Menu>
-                        <Styles.Img src={process.env.PUBLIC_URL + `assets/logo.png`} alt="logo" onClick={() => {navigate('/')}}/>
+                        <Styles.Img src={'assets/logo.png'} alt="logo" onClick={() => {navigate('/')}}/>
                         <Styles.Text onClick={() => {navigate('/travel')}}>여행지</Styles.Text>
                         {!sessionStorage.getItem("access_token") ? 
                         <>

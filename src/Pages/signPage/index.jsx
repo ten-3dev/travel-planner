@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Styles from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import * as crypto from "crypto";
+import crypto from "crypto-js";
 
 const SignPage = () => {
   const location = useLocation();
