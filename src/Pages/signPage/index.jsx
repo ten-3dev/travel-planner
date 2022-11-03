@@ -42,7 +42,7 @@ const SignPage = () => {
   const signUp = async () => {
     if (isEmail & isPassword & isPasswordConfirm & isName & isPhone & isBirth) {
       try {
-        const createHashedPassword = crypto.createHash("sha256").update(password).digest("base64");
+        const createHashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
         const createHashedPasswordConfirm = crypto.createHash("sha256").update(passwordCheck).digest("base64");
         const data = await axios.post("http://192.168.52.16:8080/register", {
           email,
