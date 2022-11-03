@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Styles from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import * as crypto from "crypto";
+import CryptoJS from "crypto-js";
 
 const SignPage = () => {
   const location = useLocation();
@@ -42,9 +42,9 @@ const SignPage = () => {
   const signUp = async () => {
     if (isEmail & isPassword & isPasswordConfirm & isName & isPhone & isBirth) {
       try {
-        const createHashedPassword = crypto.createHash("sha256").update(password).digest("base64");
-        const createHashedPasswordConfirm = crypto.createHash("sha256").update(passwordCheck).digest("base64");
-        const data = await axios.post("http://192.168.52.16:8080/register", {
+        const createHashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
+        const createHashedPasswordConfirm = CryptoJS.SHA256(passwordCheck).toString(CryptoJS.enc.Base64);
+        const data = await axios.post("http://localhost:8080/register", {
           email,
           password: createHashedPassword,
           passwordCheck: createHashedPasswordConfirm,

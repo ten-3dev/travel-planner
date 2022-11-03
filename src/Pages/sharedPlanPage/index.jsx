@@ -30,13 +30,13 @@ const SharedPlanPage = () => {
 
   const getUserPlan = async (pageNumber = 1) => {
     // DB에 있는 플랜데이터
-    const data = await axios.get("http://192.168.52.16:8080/getPlanWithPagination", { params: { page: pageNumber - 1, size: itemsCount } });
+    const data = await axios.get("http://localhost:8080/getPlanWithPagination", { params: { page: pageNumber - 1, size: itemsCount } });
     if (data) {
       setTotalContent(data.data.data[0]);
-      if(clicked === 'Popular'){
+      if (clicked === "Popular") {
         setContentStorage(data.data.data[1]);
         setContent([...data.data.data[1]].sort((a, b) => b.likeCount - a.likeCount));
-      }else{
+      } else {
         setContent(data.data.data[1]);
       }
     } else {
@@ -54,7 +54,7 @@ const SharedPlanPage = () => {
   };
 
   const getLikes = async () => {
-    const data = await axios.post("http://192.168.52.16:8080/getLikes");
+    const data = await axios.post("http://localhost:8080/getLikes");
     if (data === undefined) {
       getLikes();
     } else {
@@ -66,9 +66,9 @@ const SharedPlanPage = () => {
   const addLikes = async (id) => {
     try {
       if (like.filter((e) => Number(e.id) === Number(id)).length) {
-        await axios.delete(`http://192.168.52.16:8080/removeLikes/${id}`);
+        await axios.delete(`http://localhost:8080/removeLikes/${id}`);
       } else {
-        await axios.post("http://192.168.52.16:8080/addLikes", {
+        await axios.post("http://localhost:8080/addLikes", {
           id: id,
           type: "P",
         });

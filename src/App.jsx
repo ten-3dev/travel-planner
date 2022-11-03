@@ -63,13 +63,8 @@ const MainLayout = () => {
     </>
   );
 };
-const App = () => {
-  // useEffect(()=> {
-  //   const script = document.createElement("script");
-  //   script.src=`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.REACT_APP_KAKAO_MAP_API_KEY}&libraries=services`
-  //   document.body.prepend(script);
-  // },[]);
 
+const App = () => {
   return (
       <BrowserRouter>
         <ScrollToTop/>
