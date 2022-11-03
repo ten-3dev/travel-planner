@@ -58,7 +58,7 @@ const Header = () => {
                         : 
                         <>
                             <Styles.MyProfile onClick={() => setIsOpenList(!isOpenList)}>
-                                <Styles.MyProfileImg src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"}/>
+                                <Styles.MyProfileImg src={sessionStorage.getItem("profileImg") ? `http://192.168.52.16:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"}/>
                                 <Styles.MyProfileListBox clicked={isOpenList}>
                                     <Styles.MyProfileItem onClick={() => navigate('/myPlan')}>MY PAGE</Styles.MyProfileItem>
                                     <Styles.MyProfileItem last onClick={logout}>LOGOUT</Styles.MyProfileItem>

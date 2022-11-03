@@ -17,7 +17,7 @@ const LoginPage = ({setLoginOpen, setSignOpen}) => {
     }
 
     const kakaoLogin = async () => {
-        // window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://localhost:8080/kakaoCallback&response_type=code';
+        // window.location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://192.168.52.16:8080/kakaoCallback&response_type=code';
         // const code = new URL(window.location.href).searchParams.get("code");
     }
     

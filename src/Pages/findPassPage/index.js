@@ -10,7 +10,7 @@ const FindPassPage = () => {
 
     const ConfirmEmail = async () => {
         try{
-            await axios.post('http://localhost:8080/checkEmail', {email});
+            await axios.post('http://192.168.52.16:8080/checkEmail', {email});
             
             navigate('/changePass',{state : email});
         }catch(e){

@@ -27,7 +27,7 @@ const LoginPage = () => {
         if(code !== null){
             try{
                 const token = await axios.get('https://kauth.kakao.com/oauth/token', {params:  params, headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
-                const userInfo = await axios.get('http://localhost:8080/kakaoLogin', { params: { token: token.data.access_token } });
+                const userInfo = await axios.get('http://192.168.52.16:8080/kakaoLogin', { params: { token: token.data.access_token } });
                 if(userInfo.status == 200){
                     if(userInfo.data.data.isUser === "N"){ // 현재 DB에 회원이 없음
                         navigate('/sign', {state: {email: userInfo.data.data.email}})
@@ -57,7 +57,7 @@ const LoginPage = () => {
         const createHashedPassword = crypto.createHash("sha256").update(pw).digest("base64");
         
         try{
-            data = await axios.post('http://localhost:8080/login', {email, pw :createHashedPassword});
+            data = await axios.post('http://192.168.52.16:8080/login', {email, pw :createHashedPassword});
             sessionStorage.setItem("access_token", data.data.data.access_token);
             sessionStorage.setItem("profileImg", data.data.data.profileImg);
             localStorage.setItem("refresh_token", data.data.data.refresh_token);

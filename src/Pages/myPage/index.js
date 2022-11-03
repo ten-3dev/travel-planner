@@ -30,7 +30,7 @@ import {
     
 
     const getData = async () => { // DB에 있는 회원데이터를 불러옴
-        const data = await axios.get('http://localhost:8080/getUserInfo');
+        const data = await axios.get('http://192.168.52.16:8080/getUserInfo');
         if(!data){
             getData();
         }else{
@@ -44,7 +44,7 @@ import {
             <Styles.ProfileBox>
                 <Styles.SettingBox>
                     <Styles.MyProfileBox>
-                    <Styles.Profile src={sessionStorage.getItem("profileImg") ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"} />
+                    <Styles.Profile src={sessionStorage.getItem("profileImg") ? `http://192.168.52.16:8080/image/view?value=${sessionStorage.getItem("profileImg")}` : "assets/defaultProfile.png"} />
                     <Styles.SettingsImg src={`assets/settings.png`} onClick={moveEditMember} />
                     </Styles.MyProfileBox>
                     <Styles.Box2>

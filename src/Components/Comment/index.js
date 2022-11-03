@@ -17,14 +17,14 @@ const Comment = () => {
 
     // })
     // const getcontent = async () => { //조회 아직 ..
-    //     const data = await axios.get('http://localhost:8080/getComment');
+    //     const data = await axios.get('http://192.168.52.16:8080/getComment');
 
     // }
     
     const writing = async () => { //등록아직...
         if(window.confirm("등록하시겠습니까?")){
             try{
-                const data = await axios.post('http://localhost:8080/addComment',{id,content,type});
+                const data = await axios.post('http://192.168.52.16:8080/addComment',{id,content,type});
                 alert(data.data.msg);
                 console.log("적히나")
             }catch(e){

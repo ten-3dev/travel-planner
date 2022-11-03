@@ -196,9 +196,9 @@ const CreatePlanPage = () => {
     const postPlanData = async (el) => { // 플랜 
         try{
             if(isUpdate){
-                await axios.put('http://localhost:8080/updatePlan', {...el, id: `${location.state.updateData.id}`});
+                await axios.put('http://192.168.52.16:8080/updatePlan', {...el, id: `${location.state.updateData.id}`});
             }else{
-                await axios.post('http://localhost:8080/createPlan', el);
+                await axios.post('http://192.168.52.16:8080/createPlan', el);
             }
             navigate("/");
         }catch(e){
