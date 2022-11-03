@@ -33,7 +33,12 @@ const SharedPlanPage = () => {
     const data = await axios.get("http://192.168.52.16:8080/getPlanWithPagination", { params: { page: pageNumber - 1, size: itemsCount } });
     if (data) {
       setTotalContent(data.data.data[0]);
-      setContent(data.data.data[1]);
+      if(clicked === 'Popular'){
+        setContentStorage(data.data.data[1]);
+        setContent([...data.data.data[1]].sort((a, b) => b.likeCount - a.likeCount));
+      }else{
+        setContent(data.data.data[1]);
+      }
     } else {
       getUserPlan();
     }
