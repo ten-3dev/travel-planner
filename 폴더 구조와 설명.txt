@@ -1,0 +1,19 @@
+src/App.js : 리액트는 가장 먼저 App.js를 보기 때문에 페이지(html, css)들이 들어가지 않고 라우터 설정이나 전역으로 필요한 것들을 적어야함
+src/Components : 공용으로 사용되는 컴포넌트를 담는 폴더     예) 헤더, 푸터, 입력창 등
+src/Pages : 프로젝트에 페이지들을 담는 폴더
+
+
+
+- 페이지를 만들때 주위할 규칙
+
+* 무조건 Pages 폴더 안에 페이지 이름으로 된 폴더를 생성할 것     예) registerPage, loginPage 등
+* 폴더를 만들고 난 후 index.js와 styles.js 를 생성
+    * index.js 는 태그들과 상황에 따라 필요한 이벤트(?)를 적음     예) state, useEffect 등
+        * index.js 함수 이름은 폴더의 이름에서 앞쪽을 대문자로     예) registerPage(폴더 이름) ==> RegisterPage
+    * style.js 는 styled-Components 라이브러리를 활용해서 미리 생성 후 index에서 사용
+
+* 테스트로 만들어놨으니깐 확인해보세염 ( src/Pages/testPage )
+
+
+
+현재는 퍼블리싱만 하기 때문에 DATA 관련한 폴더 구조는 나중에 생성할꺼
