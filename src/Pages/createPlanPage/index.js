@@ -79,6 +79,7 @@ const CreatePlanPage = () => {
 
     // 찜한 여행지 페이지네이션
     const [page2, setPage2] = useState(1);
+    const [itemsCount2] = useState(6);
     const [totalItemsCount2, setStotalItemCount2] = useState(50); // 임시
 
     // 페이지 이동 시 마커 삭제
@@ -153,11 +154,20 @@ const CreatePlanPage = () => {
             console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
             console.log("페이징 키워드 " + searchKeyword);
             setTourMakerSelect1(Array(totalItemsCount1).fill(false));
-            setTourMakerSelect2(Array(totalItemsCount2).fill(false));
+            
         }else{
             pagingHook.current = true;
         }
     }, [page1]);
+
+    useEffect(() => {
+        if(pagingHook.current){
+            console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount2 + "부터" + itemsCount2 + "까지");
+            setTourMakerSelect2(Array(totalItemsCount2).fill(false));
+        }else{
+            pagingHook.current = true;
+        }
+    }, [page2]);
 
     useEffect(() => {
         if(pagingHook.current){
@@ -174,15 +184,16 @@ const CreatePlanPage = () => {
     }, [page1, itemsCount]);
 
     useEffect(() => {
-        console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
+        console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount2 + "부터");
         console.log(itemsCount + "까지");
-    }, [page2, itemsCount]);
+    }, [page2, itemsCount2]);
 
     useEffect(() => {
         if(dayList && location.state){
             onUpdateSetDate();
         }
     }, [dayList])
+  
 
     const onUpdateSetDate = () => {
         const plans = JSON.parse(location.state.updateData.plan);
@@ -274,6 +285,7 @@ const CreatePlanPage = () => {
                 setTourSelect([...tourSelect]); // 렌더링 요정
                 const dibs = sessionStorage.getItem("dibs");
                 sessionStorage.setItem("dibs", dibs.replace(el.contentid + " ", ""));
+                setStotalItemCount2(totalItemsCount2-1);
             }
         }
     }
@@ -510,7 +522,9 @@ const CreatePlanPage = () => {
                             {!rendering ? 
                             <Styles.DayItemTextBox><Styles.DayItemTitle>로딩 중...</Styles.DayItemTitle></Styles.DayItemTextBox> 
                             : cart.length === 0 ? <Styles.DayItem><Styles.DayItemTitle>찜한 목록이 없습니다.</Styles.DayItemTitle></Styles.DayItem>
-                                :(cart.map((el, idx) => {
+                                :(cart.filter((e,index) => {
+                                    if((index >= (page2-1)*itemsCount2) && index < page2 * itemsCount2)return e;
+                                        }).map((el, idx) => {
                                     return(
                                         <div key={idx}>
                                             <Styles.DayItem>
@@ -531,7 +545,7 @@ const CreatePlanPage = () => {
                                     )
                                 }))} 
                             </Styles.ScrollBox>
-                            <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount}/>
+                            {cart.length === 0 ? null : <Paging page={page2} count={totalItemsCount2} setPage={setPage2} itemsCount={itemsCount2}/>}
                         </Styles.ListBox>
                     </Styles.ContentBox>
                 </Styles.TravelBox>
