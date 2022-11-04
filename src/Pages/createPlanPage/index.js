@@ -288,7 +288,9 @@ const CreatePlanPage = () => {
                 setStotalItemCount2(totalItemsCount2-1);
             }
         }
-        setPage2(Math.ceil(cart.length / itemsCount2));
+        if(!Math.ceil(cart.length / itemsCount2) - 1 === page2){
+            setPage2(Math.ceil(cart.length / itemsCount2));
+        }
     }
 
     const handleOnKeyPress = (e) => {   // 검색 함수
