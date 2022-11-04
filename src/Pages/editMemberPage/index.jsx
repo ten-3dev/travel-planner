@@ -175,11 +175,13 @@ export const EditmemberPage = () => {
 
     fileList.forEach((file) => {
       // 파일 데이터 저장
-      formData.append("multipartFiles", file);
+      formData.append("file", file);
     });
 
 
-    axios.post("http://localhost:8080/uploadFile", formData);
+    axios.post("http://localhost:8080/uploadFile", formData, {
+      headers: {"Content-Type": "multipart/form-data"}
+    });
     alert("다시 로그인 후 적용됩니다.");
   };
 
