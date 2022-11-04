@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as Styles from './style';
 import Paging from "../paging"
 import axios from "axios";
@@ -7,21 +7,9 @@ const Comment = () => {
     const [page, setPage] = useState(1); 
     const [itemsCount] = useState(10);
     const [totalItemsCount] = useState(0);
-    // const [email,setEmail] = useState("");
     const [content,setContent] = useState("");
-    // const [name,setName] = useState("");
-    // const [day, setDay] = useState("");
- 
     
-    // useEffect (() => {
-
-    // })
-    // const getcontent = async () => { //조회 아직 ..
-    //     const data = await axios.get('http://localhost:8080/getComment');
-
-    // }
-    
-    const writing = async () => { //등록아직...
+    const writing = async () => {
         if(window.confirm("등록하시겠습니까?")){
             try{
                 const data = await axios.post('http://localhost:8080/addComment',{id,content,type});

@@ -32,9 +32,18 @@ export const IconBox = styled.div`
     margin: 20px 0;
 `
 
+export const IconItem = styled.div`
+    text-align: center;
+`
+
 export const Icon = styled.img`
     width: 60px;
     border-radius: 30px;
     cursor: pointer;
     margin: 0 10px;
+`
+
+export const IconText = styled.div`
+    color: whitesmoke;
+    font-size: 10px;
 `
