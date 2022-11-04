@@ -8,11 +8,11 @@ const MyComments = () => {
   // 공유한 플랜 댓글
   const [page1, setPage1] = useState(1);
   const [itemsCount] = useState(6);
-  const [totalItemsCount1] = useState(50); // 임시
+  const [totalItemsCount1] = useState(50);
 
   // 관광지 댓글
   const [page2, setPage2] = useState(1);
-  const [totalItemsCount2] = useState(50); // 임시
+  const [totalItemsCount2] = useState(50);
 
   useEffect(() => {
     

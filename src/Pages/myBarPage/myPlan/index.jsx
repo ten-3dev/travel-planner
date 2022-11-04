@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as Styles from "./style";
 import MyPage from "../../myPage";
 import { MarginTopWrapper } from "../../../Common/style";
-import Paging from "../../../Components/paging";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
 
 const MyPlan = () => {
   const navigate = useNavigate();

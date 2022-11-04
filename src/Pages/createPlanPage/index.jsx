@@ -77,12 +77,12 @@ const CreatePlanPage = () => {
   // 추천 여행지 페이지네이션
   const [page1, setPage1] = useState(1);
   const [itemsCount] = useState(6);
-  const [totalItemsCount1, setStotalItemCount1] = useState(50); // 임시    //@@set추가
+  const [totalItemsCount1, setStotalItemCount1] = useState(50); 
 
   // 찜한 여행지 페이지네이션
   const [page2, setPage2] = useState(1);
   const [itemsCount2] = useState(6);
-  const [totalItemsCount2, setStotalItemCount2] = useState(50); // 임시
+  const [totalItemsCount2, setStotalItemCount2] = useState(50); 
 
   // 페이지 이동 시 마커 삭제
   const pagingHook = useRef(false);
@@ -155,8 +155,6 @@ const CreatePlanPage = () => {
 
   useEffect(() => {
     if (pagingHook.current) {
-      console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터" + itemsCount + "까지");
-      console.log("페이징 키워드 " + searchKeyword);
       setTourMakerSelect1(Array(totalItemsCount1).fill(false));
     } else {
       pagingHook.current = true;
@@ -165,7 +163,6 @@ const CreatePlanPage = () => {
 
   useEffect(() => {
     if (pagingHook.current) {
-      console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount2 + "부터" + itemsCount2 + "까지");
       setTourMakerSelect2(Array(totalItemsCount2).fill(false));
     } else {
       pagingHook.current = true;
@@ -182,13 +179,11 @@ const CreatePlanPage = () => {
   }, [page2]);
 
   useEffect(() => {
-    console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
-    console.log(itemsCount + "까지");
+
   }, [page1, itemsCount]);
 
   useEffect(() => {
-    console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount2 + "부터");
-    console.log(itemsCount + "까지");
+
   }, [page2, itemsCount2]);
 
   useEffect(() => {
@@ -249,7 +244,6 @@ const CreatePlanPage = () => {
       const response = await fetch(
         `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.VITE_TOUR_API_KEY}&numOfRows=30000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
       );
-      console.log("전체 검색 함수 실행");
       const json = await response.json();
       const tourItems = json.response.body.items.item;
       setStotalItemCount1(tourItems.length);
@@ -264,7 +258,6 @@ const CreatePlanPage = () => {
   const tourData2 = async (idx) => {
     // 찜하기 함수
     setRendering(false);
-    console.log("찜하기 함수 실행");
     let Arr = [];
     for (let i = 0; i < idx.length; i++) {
       const response = await fetch(
@@ -287,13 +280,12 @@ const CreatePlanPage = () => {
       if (cart[i].contentid === el.contentid) {
         cart.splice(i, 1);
         setCart(cart);
-        setTourSelect([...tourSelect]); // 렌더링 요정
+        setTourSelect([...tourSelect]); // 렌더링 요청
         const dibs = sessionStorage.getItem("dibs");
         sessionStorage.setItem("dibs", dibs.replace(el.contentid + " ", ""));
         setStotalItemCount2(totalItemsCount2 - 1);
       }
     }
-    console.log(Math.ceil(cart.length / itemsCount2) - 1);
     if(!Math.ceil(cart.length / itemsCount2) - 1 === page2 || Math.ceil(cart.length / itemsCount2) - 1 === 0){
       setPage2(Math.ceil(cart.length / itemsCount2));
     }
@@ -329,10 +321,9 @@ const CreatePlanPage = () => {
 
   const onSubmit = () => {
     // 검색 클릭 함수
-    console.log(searchKeyword);
     if (searchKeyword !== "") {
       let Arr = [];
-      tourStorage.filter((el, idx) => {
+      tourStorage.filter((el) => {
         if (el.addr1.indexOf(searchKeyword) !== -1) {
           Arr = [...Arr, el];
         }
@@ -346,7 +337,6 @@ const CreatePlanPage = () => {
 
   const moveMapLocation = (e, id) => {
     // 마커 클릭 함수
-    console.log(e);
     const coor = e.target.value.split(",");
     const newCoor = { lat: coor[0], lon: coor[1] };
     const num = coor[2];
@@ -374,8 +364,6 @@ const CreatePlanPage = () => {
 
   const addTour = (el, idx) => {
     // 관광지 추가 함수
-    console.log("관광지 추가");
-    console.log(dayList);
     dayList[idx - 1][1] = [...dayList[idx - 1][1], el];
     setDayList(dayList);
     setTourMakerSelect0(Array(dayList[idx - 1][1].length).fill(false));
@@ -384,19 +372,17 @@ const CreatePlanPage = () => {
 
   const removeTour = (idx, idx2) => {
     // 추가한 관광지 삭제 함수
-    console.log("관광지 삭제");
     for (let i = 0; i < dayList[idx2 - 1][1].length; i++) {
       if (idx === i) {
         dayList[idx2 - 1][1].splice(i, 1);
         setDayList(dayList);
-        setTourSelect([...tourSelect]); // 추가하면 렌더링됨 어째서?
+        setTourSelect([...tourSelect]);
       }
     }
   };
 
   const checkTitle = () => {
     // 플랜 확인
-    console.log("체크타이틀 실시");
     let count = 0;
 
     for (let i = 0; i < dayList.length; i++) {
@@ -419,8 +405,6 @@ const CreatePlanPage = () => {
   };
 
   const createPlan = async (el) => {
-    console.log("플랜생성 실행");
-
     let newArr = [];
     for (let i = 0; i < dayList.length; i++) {
       newArr[i] = { day: i + 1, list: [] };

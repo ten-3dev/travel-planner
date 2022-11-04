@@ -138,7 +138,7 @@ const SignPage = () => {
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
-      OnClick(); // Enter 입력이 되면 클릭 이벤트 실행// 온클릭 이벤트도 따로 만들어줘야함 나중에하거나 안하거나
+      OnClick(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
 

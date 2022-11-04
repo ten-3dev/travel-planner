@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as Styles from "./style";
 import { MarginTopWrapper } from "../../Common/style";
 import Map from "../../Components/kakaoMap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
@@ -78,7 +78,6 @@ const CalendarPage = () => {
   };
 
   const writing = async (id) => {
-    //등록아직...
     if (!sessionStorage.getItem("access_token")) {
       alert("로그인 후 이용해 주세요");
       return;
@@ -279,7 +278,6 @@ const CalendarPage = () => {
                           <Styles.ReviewTextBox>
                             <Styles.ReviewText>댓글 남기기</Styles.ReviewText>
                           </Styles.ReviewTextBox>
-                          {/* api 때려서 넣을거임 */}
                           <Styles.Profile1
                             src={
                               sessionStorage.getItem("profileImg")

@@ -3,7 +3,6 @@ import * as Styles from "./style";
 import { UserBlueBtn } from "../../Common/style";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import * as crypto from "crypto";
 
 const ChangePassPage = () => {
   const data = useLocation();

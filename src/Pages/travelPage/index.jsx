@@ -5,7 +5,7 @@ import Paging from "../../Components/paging";
 import { useNavigate, useLocation } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import axios from "axios";
-import { set } from "react-hook-form";
+
 
 const TravelPage = () => {
   const navigate = useNavigate();
@@ -106,7 +106,7 @@ const TravelPage = () => {
       const dibs = sessionStorage.getItem("dibs").split(" ");
       const filterDibs = dibs.filter((id) => id === tour.contentid);
       if (filterDibs.length === 0) {
-        // 현제 세션 스토리지 해당 값이 없으면
+        // 현재 세션 스토리지 해당 값이 없으면
         sessionStorage.setItem("dibs", sessionStorage.getItem("dibs") + tour.contentid + " ");
       } else {
         const dibs = sessionStorage.getItem("dibs");
@@ -232,8 +232,6 @@ const TravelPage = () => {
           </Styles.FilterBoxSticky>
         </Styles.TravelFilterBox>
       </Styles.ContentBox>
-      {/* <Styles.SteamListButtonBox>
-            </Styles.SteamListButtonBox> */}
       <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount} />
     </MarginTopWrapper>
   );

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Styles from "./style";
 import { MarginTopWrapper } from "../../Common/style";
-// import {HeartOutlined, HeartFilled} from '@ant-design/icons';
 import Map from "../../Components/kakaoMap";
-import Paging from "../../Components/paging";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import axios from "axios";
 
@@ -42,7 +40,6 @@ const InformationPage = () => {
   }
 
   const writing = async (id) => {
-    //등록아직...
     if (!sessionStorage.getItem("access_token")) {
       alert("로그인 후 이용해 주세요");
       return;
@@ -76,7 +73,7 @@ const InformationPage = () => {
       const dibs = sessionStorage.getItem("dibs").split(" ");
       const filterDibs = dibs.filter((id) => id === location.search.split("=")[1]);
       if (filterDibs.length === 0) {
-        // 현제 세션 스토리지 해당 값이 없으면     <<<<<<<<현제 x 현재 ㅎ
+        // 현재 세션 스토리지 해당 값이 없으면 
         sessionStorage.setItem("dibs", sessionStorage.getItem("dibs") + location.search.split("=")[1] + " ");
       } else {
         const dibs = sessionStorage.getItem("dibs");
@@ -122,7 +119,7 @@ const InformationPage = () => {
         <Styles.Title>{infoData?.title}</Styles.Title>
       </Styles.TitleBox>
       <Styles.LikeBox>
-        <Styles.Img1>{/* <LikeButton/> */}</Styles.Img1>
+        <Styles.Img1></Styles.Img1>
         <Styles.HeartBox>
           {like.filter((e) => e.id === location.search.split("=")[1]).length ? (
             <HeartFilled style={{ color: "red", fontSize: "30px" }} onClick={() => addLikes(location.search.split("=")[1])} />
@@ -210,7 +207,6 @@ const InformationPage = () => {
             <Styles.ReviewTextBox>
               <Styles.ReviewText>댓글 남기기</Styles.ReviewText>
             </Styles.ReviewTextBox>
-            {/* api 때려서 넣을거임 */}
             <Styles.Profile1
               src={
                 sessionStorage.getItem("profileImg")

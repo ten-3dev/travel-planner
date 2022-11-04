@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import * as Styles from "./style";
 import MyPage from "../../myPage";
 import { MarginTopWrapper } from "../../../Common/style";
-import Paging from "../../../Components/paging";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const SharedPlan = () => {
   const navigate = useNavigate();
   const [plan, setPlan] = useState();
-  const [dateList, setDateList] = useState();
-  const [coordinate, setCoordinate] = useState([]);
+
 
   useEffect(() => {
     getUserPlan();
@@ -72,7 +71,6 @@ const SharedPlan = () => {
                   </Styles.SmallBox>
                 );
               })}
-          {/* <Paging page={page} count={totalItemsCount} setPage={setPage} itemsCount={itemsCount}/> */}
         </Styles.BigBox>
       </MarginTopWrapper>
     </>
