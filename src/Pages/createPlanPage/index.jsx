@@ -293,7 +293,8 @@ const CreatePlanPage = () => {
         setStotalItemCount2(totalItemsCount2 - 1);
       }
     }
-    if(!Math.ceil(cart.length / itemsCount2) - 1 === page2){
+    console.log(Math.ceil(cart.length / itemsCount2) - 1);
+    if(!Math.ceil(cart.length / itemsCount2) - 1 === page2 || Math.ceil(cart.length / itemsCount2) - 1 === 0){
       setPage2(Math.ceil(cart.length / itemsCount2));
     }
   };
