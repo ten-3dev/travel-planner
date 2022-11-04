@@ -37,7 +37,7 @@ export const EditmemberPage = () => {
 
   const getData = async () => {
     // DB에 있는 회원데이터를 불러옴
-    const data = await axios.get("http://localhost:8080/getUserInfo");
+    const data = await axios.get("http://35.216.50.89:8080/getUserInfo");
     if (!data) {
       getData();
     } else {
@@ -57,7 +57,7 @@ export const EditmemberPage = () => {
     if (window.confirm("수정하시겠습니까?")) {
       if (isName & isPhone) {
         try {
-          const data = await axios.post("http://localhost:8080/getUserUpdate", { name, tel: phone });
+          const data = await axios.post("http://35.216.50.89:8080/getUserUpdate", { name, tel: phone });
           getData(); // 변경된 데이터를 다시 불러오기
           alert(data.data.msg);
         } catch (e) {
@@ -76,7 +76,7 @@ export const EditmemberPage = () => {
         try {
           const createHashedPw = CryptoJS.SHA256(pw).toString(CryptoJS.enc.Base64);
           const createHashedNewPw = CryptoJS.SHA256(newPw).toString(CryptoJS.enc.Base64);
-          await axios.post("http://localhost:8080/getUserUpdatePw", { pw: createHashedPw, newPw: createHashedNewPw });
+          await axios.post("http://35.216.50.89:8080/getUserUpdatePw", { pw: createHashedPw, newPw: createHashedNewPw });
           alert("비밀번호 변경 성공");
         } catch (e) {
           alert(e.response.data.msg);
@@ -94,7 +94,7 @@ export const EditmemberPage = () => {
   const userDelete = async () => {
     if (window.confirm("정말로 탈퇴하시겠습니까??")) {
       try {
-        const data = await axios.delete("http://localhost:8080/userDelete");
+        const data = await axios.delete("http://35.216.50.89:8080/userDelete");
         alert(data.data.msg);
         localStorage.clear();
         sessionStorage.clear();
@@ -179,7 +179,7 @@ export const EditmemberPage = () => {
     });
 
 
-    axios.post("http://localhost:8080/uploadFile", formData, {
+    axios.post("http://35.216.50.89:8080/uploadFile", formData, {
       headers: {"Content-Type": "multipart/form-data"}
     });
     alert("다시 로그인 후 적용됩니다.");
@@ -193,7 +193,7 @@ export const EditmemberPage = () => {
           <Styles.ProfileImg
             src={
               sessionStorage.getItem("profileImg")
-                ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                 : "assets/defaultProfile.png"
             }
           />
@@ -242,7 +242,7 @@ export const EditmemberPage = () => {
               <Styles.BasicInformationImg
                 src={
                   sessionStorage.getItem("profileImg")
-                    ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                    ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                     : "assets/defaultProfile.png"
                 }
               />

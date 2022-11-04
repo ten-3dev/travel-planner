@@ -15,7 +15,7 @@ const MyPlan = () => {
 
   const getUserPlan = async () => {
     // DB에 있는 플랜데이터
-    const data = await axios.get("http://localhost:8080/getUserPlan");
+    const data = await axios.get("http://35.216.50.89:8080/getUserPlan");
     if (!data) {
       getUserPlan();
     } else {
@@ -26,7 +26,7 @@ const MyPlan = () => {
 
   const deleteUserPlan = async (id) => {
     if (window.confirm("삭제하시겠습니까?")) {
-      await axios.delete(`http://localhost:8080/deleteUserPlan/${id}`);
+      await axios.delete(`http://35.216.50.89:8080/deleteUserPlan/${id}`);
       getUserPlan();
     }
   };

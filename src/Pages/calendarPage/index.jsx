@@ -34,7 +34,7 @@ const CalendarPage = () => {
 
   const getEmail = async () => {
     // DB에 있는 회원데이터를 불러옴
-    const data = await axios.get("http://localhost:8080/getUserInfo");
+    const data = await axios.get("http://35.216.50.89:8080/getUserInfo");
     if (!data) {
       getEmail();
     } else {
@@ -43,13 +43,13 @@ const CalendarPage = () => {
   };
 
   const getcontent = async () => {
-    const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`);
+    const data = await axios.get(`http://35.216.50.89:8080/getComment?id=${location.search.split("=")[1]}`);
     setComments(data.data.data.filter((e) => e.type === "P"));
   };
 
   const getUserPlanById = async (id) => {
     // DB에 있는 플랜데이터
-    const data = await axios.get(`http://localhost:8080/getPlansById/${id}`);
+    const data = await axios.get(`http://35.216.50.89:8080/getPlansById/${id}`);
     if (data) {
       setDateList(data.data.data);
       let count = 0;
@@ -84,7 +84,7 @@ const CalendarPage = () => {
     }
     if (window.confirm("등록하시겠습니까?")) {
       try {
-        await axios.post("http://localhost:8080/addComment", { id, content, type: "P" });
+        await axios.post("http://35.216.50.89:8080/addComment", { id, content, type: "P" });
         getcontent();
         alert("댓글 추가 성공");
         setContent("");
@@ -100,7 +100,7 @@ const CalendarPage = () => {
 
   const onShareBtn = async () => {
     try {
-      await axios.put("http://localhost:8080/updateSharePlan", { id: location.search.split("=")[1] });
+      await axios.put("http://35.216.50.89:8080/updateSharePlan", { id: location.search.split("=")[1] });
       getUserPlanById(location.search.split("=")[1]);
     } catch (e) {
       alert("사용자 본인만 이용할 수 있는 버튼 입니다.");
@@ -108,7 +108,7 @@ const CalendarPage = () => {
   };
 
   const getLikes = async () => {
-    const data = await axios.post("http://localhost:8080/getLikes");
+    const data = await axios.post("http://35.216.50.89:8080/getLikes");
     if (data === undefined) {
       getLikes();
     } else {
@@ -120,10 +120,10 @@ const CalendarPage = () => {
     try {
       if (like.filter((e) => e.id == id).length) {
         // 있으면
-        await axios.delete(`http://localhost:8080/removeLikes/${id}`);
+        await axios.delete(`http://35.216.50.89:8080/removeLikes/${id}`);
         setDateList({ ...dateList, likeCount: dateList.likeCount - 1 });
       } else {
-        await axios.post("http://localhost:8080/addLikes", { id: id, type: "P" });
+        await axios.post("http://35.216.50.89:8080/addLikes", { id: id, type: "P" });
         setDateList({ ...dateList, likeCount: dateList.likeCount + 1 });
       }
       getLikes();
@@ -264,7 +264,7 @@ const CalendarPage = () => {
                           return (
                             <Styles.ReviewBox key={idx}>
                               <Styles.ReImage
-                                src={el.email.profileImg === "" ? "assets/defaultProfile.png" : `http://localhost:8080/image/view?value=${el.email.profileImg}`}
+                                src={el.email.profileImg === "" ? "assets/defaultProfile.png" : `http://35.216.50.89:8080/image/view?value=${el.email.profileImg}`}
                               />
                               <Styles.RefirstBox>
                                 <Styles.ReName>{el?.email?.name}</Styles.ReName>
@@ -281,7 +281,7 @@ const CalendarPage = () => {
                           <Styles.Profile1
                             src={
                               sessionStorage.getItem("profileImg")
-                                ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                                ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                                 : "assets/defaultProfile.png"
                             }
                           />
