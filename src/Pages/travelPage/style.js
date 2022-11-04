@@ -94,7 +94,7 @@ export const TravelWrapper = styled.div`
     border-bottom: 1px solid #9ea4ad ;
 `
 export const Image = styled.img`
-    width: 200;
+    width: 200px;
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
