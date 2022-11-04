@@ -138,9 +138,7 @@ const MainPage = () => {
         <>
             <Styles.Wrapper>
                 <Styles.Video controls={false} muted autoPlay loop>
-                    {/* 집에서 할땐 서버 키고 http://localhost:8000/video
-                    학교에서 할땐 http://192.168.52.16:8000/video  */}
-                    <source src="http://localhost:8000/video" type="video/mp4" />
+                    <source src="http://35.216.50.89:8000/video" type="video/mp4" />
                 </Styles.Video>
                 <Styles.ContentBox>
                     <Styles.Title>
