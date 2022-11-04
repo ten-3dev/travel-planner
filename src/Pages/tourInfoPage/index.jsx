@@ -24,7 +24,7 @@ const InformationPage = () => {
   const [like, setLike] = useState([]);
 
   useEffect(() => {
-    console.log(infoData);
+
   }, [infoData]);
 
   const getTravelInfo = async (id) => {

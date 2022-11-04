@@ -15,13 +15,11 @@ const MyComments = () => {
   const [totalItemsCount2] = useState(50); // 임시
 
   useEffect(() => {
-    console.log(page1 === 1 ? 1 : (page1 - 1) * itemsCount + "부터");
-    console.log(itemsCount + "까지");
+    
 }, [page1, itemsCount]);
 
 useEffect(() => {
-  console.log(page2 === 1 ? 1 : (page2 - 1) * itemsCount + "부터");
-  console.log(itemsCount + "까지");
+
 }, [page2, itemsCount]);
   return (
     < >

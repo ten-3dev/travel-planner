@@ -23,7 +23,6 @@ const TravelPage = () => {
   const { state } = data;
 
   useEffect(() => {
-    console.log("최초 useEffect실행@@");
     window.scroll(0, 0);
     if (Array.isArray(tours) && tours.length === 0) {
       if (state === null || state === undefined) {
@@ -41,9 +40,7 @@ const TravelPage = () => {
 
   useEffect(() => {
     if (pagingHook.current) {
-      console.log(page === 1 ? 1 : (page - 1) * itemsCount + "부터" + itemsCount + "까지");
       window.scroll(0, 0);
-      console.log("페이징 키워드 " + searchKeyword);
     } else {
       pagingHook.current = true;
     }
@@ -56,12 +53,10 @@ const TravelPage = () => {
       const response = await fetch(
         `https://apis.data.go.kr/B551011/KorService/areaBasedSyncList?serviceKey=${process.env.VITE_TOUR_API_KEY}&numOfRows=100000&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12`
       );
-      console.log("tourData 실행");
       const json = await response.json();
       const tourItems = json.response.body.items.item;
       setStorageTours(tourItems);
       setPage(1);
-      console.log(state);
       if (el === undefined || el === null) {
         setTours(tourItems);
         setTotalItemCount(tourItems.length);
@@ -100,13 +95,11 @@ const TravelPage = () => {
 
   const infoMove = async (e) => {
     //상세정보 함수
-    console.log("상세정보함수");
     navigate(`/information?id=${e}`);
   };
 
   // 찜하기 이벤트
   const onDibs = (tour) => {
-    console.log(sessionStorage.getItem("dibs"));
     setDibs(!dibs);
     if (sessionStorage.getItem("dibs")) {
       // 세션 스토리지에 찜하기 스토리지가 있으면

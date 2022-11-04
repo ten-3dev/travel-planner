@@ -69,7 +69,6 @@ const Like = () => {
               img: JSON.parse(data.data.data.plan)[0].list[0].firstimage2,
               id: data.data.data.id,
             });
-            console.log(data);
             setPlanInfo(planData);
           }
           setIsPlanLoding(true);

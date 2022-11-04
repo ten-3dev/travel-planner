@@ -36,7 +36,6 @@ const SignPage = () => {
     if (state !== null) {
       setEmail(state.email);
     }
-    console.log(state);
   }, []);
 
   const signUp = async () => {

@@ -21,7 +21,6 @@ const SharedPlan = () => {
     if (!data) {
       getUserPlan();
     } else {
-      console.log(data.data.data);
       setPlan(Object.entries(data.data.data));
     }
   };
