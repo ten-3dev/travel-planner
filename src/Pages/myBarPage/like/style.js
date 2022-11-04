@@ -67,8 +67,6 @@ export const NameBox = styled.div`
 `
 export const HeartSumText = styled.div`
     margin-top: 10px;
-    font-weight: bold;
-    font-size: 20px;
 `
 
 export const KeepDeleteBox = styled.div`
@@ -182,10 +180,9 @@ export const AddressText = styled.div`
 export const KeepContentText = styled.div`
     width: 650px; 
     height: 70px;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 20px;
     margin-top:10px; 
-    cursor: pointer;
     overflow: hidden;
     line-height: 17.5px;
     display: -webkit-box;
