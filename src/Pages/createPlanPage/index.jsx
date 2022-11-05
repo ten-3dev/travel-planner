@@ -468,11 +468,11 @@ const CreatePlanPage = () => {
                                 <Styles.DayItem>
                                   <Styles.DayItemImg
                                     src={e.firstimage2 === "" ? "assets/logo.png" : e.firstimage2}
-                                    onClick={() => window.open(`http://35.216.50.89:3000/information?id=${e.contentid}`)}
+                                    onClick={() => window.open(`http://localhost:3000/information?id=${e.contentid}`)}
                                   />
                                   <Styles.DayItemTextBox notcolumn={true}>
                                     <Styles.DayItemTextBox>
-                                      <Styles.DayItemTitle onClick={() => window.open(`http://35.216.50.89:3000/information?id=${e.contentid}`)}>
+                                      <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${e.contentid}`)}>
                                         {e.title}
                                       </Styles.DayItemTitle>
                                       <Styles.LocationImg open={tourMakerSelect0[id]} value={[e.mapy, e.mapx, 0]} onClick={(e) => moveMapLocation(e, id)} />
@@ -535,11 +535,11 @@ const CreatePlanPage = () => {
                             <Styles.DayItem>
                               <Styles.DayItemImg
                                 src={tour.firstimage2 === "" ? "assets/logo.png" : tour.firstimage2}
-                                onClick={() => window.open(`http://35.216.50.89:3000/information?id=${tour.contentid}`)}
+                                onClick={() => window.open(`http://localhost:3000/information?id=${tour.contentid}`)}
                               />
                               <Styles.DayItemTextBox notcolumn={true}>
                                 <Styles.DayItemTextBox>
-                                  <Styles.DayItemTitle onClick={() => window.open(`http://35.216.50.89:3000/information?id=${tour.contentid}`)}>
+                                  <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${tour.contentid}`)}>
                                     {tour.title}
                                   </Styles.DayItemTitle>
                                   <Styles.LocationImg open={tourMakerSelect1[id]} value={[tour.mapy, tour.mapx, 1]} onClick={(e) => moveMapLocation(e, id)} />
@@ -581,11 +581,11 @@ const CreatePlanPage = () => {
                             <Styles.DayItem>
                               <Styles.DayItemImg
                                 src={el.firstimage2 === "" ? "assets/logo.png" : el.firstimage2}
-                                onClick={() => window.open(`http://35.216.50.89:3000/information?id=${el.contentid}`)}
+                                onClick={() => window.open(`http://localhost:3000/information?id=${el.contentid}`)}
                               />
                               <Styles.DayItemTextBox notcolumn={true}>
                                 <Styles.DayItemTextBox>
-                                  <Styles.DayItemTitle onClick={() => window.open(`http://35.216.50.89:3000/information?id=${el.contentid}`)}>
+                                  <Styles.DayItemTitle onClick={() => window.open(`http://localhost:3000/information?id=${el.contentid}`)}>
                                     {el.title}
                                   </Styles.DayItemTitle>
                                   <Styles.LocationImg open={tourMakerSelect2[idx]} value={[el.mapy, el.mapx, 2]} onClick={(e) => moveMapLocation(e, idx)} />

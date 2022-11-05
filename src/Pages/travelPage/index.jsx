@@ -19,19 +19,22 @@ const TravelPage = () => {
   const [dibs, setDibs] = useState(false); // 찜 이벤트를 할때마다 렌더링이 되지 않아 업데이트가 안됨 따라서 생성
   const [like, setLike] = useState([]);
   const [rendering, setRendering] = useState(false);
-  const data = useLocation(); //mainPage 받아온 키워드 값
-  const { state } = data;
+  const location = useLocation(); //mainPage 받아온 키워드 값
+  const { state } = location;
 
   useEffect(() => {
+    const search = location.search.split("="); // url 에 있는 search 를 가져옴
     window.scroll(0, 0);
     if (Array.isArray(tours) && tours.length === 0) {
-      if (state === null || state === undefined) {
+      if (search[0] === '' || search[0] !== '?search') {
         tourData();
       } else {
-        tourData(state);
+        if(search[0] === '?search'){
+          tourData(decodeURI(search[1]));
+        }
       }
     }
-    setSearchKeyword(state);
+    setSearchKeyword(search[1] === undefined ? '전체' : decodeURI(search[1]));
   }, []);
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const TravelPage = () => {
     }
   }, [page]);
 
-  const tourData = (el) => {
+  const tourData = (search) => {
     // 전체 검색 함수
     setRendering(false);
     (async () => {
@@ -57,13 +60,13 @@ const TravelPage = () => {
       const tourItems = json.response.body.items.item;
       setStorageTours(tourItems);
       setPage(1);
-      if (el === undefined || el === null) {
+      if (search === undefined || search === null) {
         setTours(tourItems);
         setTotalItemCount(tourItems.length);
       } else {
         let Arr = [];
         tourItems.filter((el, idx) => {
-          if (el.addr1.indexOf(state) !== -1) {
+          if (el.addr1.indexOf(search) !== -1) {
             Arr = [...Arr, el];
           }
         });
@@ -76,20 +79,7 @@ const TravelPage = () => {
   const handleOnKeyPress = (e) => {
     // 검색 함수
     if (e.key === "Enter") {
-      setSearchKeyword(e.target.value);
-      setPage(1);
-      if (e.target.value !== "") {
-        let Arr = [];
-        storagetours.filter((el, idx) => {
-          if (el.addr1.indexOf(e.target.value) !== -1) {
-            Arr = [...Arr, el];
-          }
-        });
-        setTours(Arr);
-        setTotalItemCount(Arr.length);
-      } else {
-        setTours(storagetours);
-      }
+      window.open(`http://localhost:3000/travel?search=${e.target.value}`, '_self');
     }
   };
 

@@ -12,6 +12,7 @@ const MainPage = () => {
   const [filterAddressData, setFilterAddressData] = useState([]);
   const searchInput = useRef("");
   const [searchKeyword, setSearchKeyword] = useState();
+  const [searcWord, setSearchWord] = useState();
   const [content, setContent] = useState([]);
   const [like, setLike] = useState([]);
   const [isLoding, setIsLoding] = useState(false);
@@ -64,6 +65,7 @@ const MainPage = () => {
   };
 
   const onPreview = async (e) => {
+    setSearchWord(e.target.value);
     if (addressData === null) {
       const data = await getAddressData();
       setAddressData(data);
@@ -77,12 +79,21 @@ const MainPage = () => {
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate("/travel", { state: searchKeyword });
+      console.log(e);
+      if(e.target.value){
+        navigate(`/travel?search=${e.target.value}`);  
+      }else{
+        navigate(`/travel`);
+      }
     }
   };
 
   const onSubmit = (e) => {
-    navigate("/travel", { state: e !== undefined ? e : searchKeyword });
+    if(e === undefined){ // 돋보기 버튼을 눌렀을때
+      navigate(`/travel?search=${searcWord}`);
+    }else{
+      navigate(`/travel?search=${e}`);
+    }
   };
 
   const getLikes = async () => {
