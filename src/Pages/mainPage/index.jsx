@@ -79,7 +79,6 @@ const MainPage = () => {
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
-      console.log(e);
       if(e.target.value){
         navigate(`/travel?search=${e.target.value}`);  
       }else{
@@ -90,7 +89,7 @@ const MainPage = () => {
 
   const onSubmit = (e) => {
     if(e === undefined){ // 돋보기 버튼을 눌렀을때
-      navigate(`/travel?search=${searcWord}`);
+      navigate(`/travel?search=${searcWord !== undefined ? searcWord : ""}`);
     }else{
       navigate(`/travel?search=${e}`);
     }
