@@ -45,7 +45,7 @@ export const ColorBar = styled.div`
     width: 270px;
     height: 7px;
     background-color: rgba(91,189,220,0.9);
-    top: 8px;
+    top: 1px;
     right: 0;
 
 `
