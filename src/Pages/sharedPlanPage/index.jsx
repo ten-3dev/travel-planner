@@ -76,7 +76,6 @@ const SharedPlanPage = () => {
       reload();
     } catch (e) {
       alert("로그인 후 이용해 주세요.");
-      console.log(e);
     }
   };
 

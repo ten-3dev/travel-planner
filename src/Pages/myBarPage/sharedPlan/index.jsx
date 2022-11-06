@@ -31,7 +31,6 @@ const SharedPlan = () => {
         getUserPlan();
       } catch (e) {
         alert("공유 버튼 에러");
-        console.log(e);
       }
     }
   };

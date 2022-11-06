@@ -100,7 +100,8 @@ export const EditmemberPage = () => {
         sessionStorage.clear();
         navigate("/");
       } catch (e) {
-        console.log("탈퇴 실패", e);
+        alert("탈퇴 실패! 잠시 후 다시 시도해주세요.");
+        // console.log("탈퇴 실패", e);
       }
     }
   };

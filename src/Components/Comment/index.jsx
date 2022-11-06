@@ -14,7 +14,6 @@ const Comment = () => {
             try{
                 const data = await axios.post('http://35.216.50.89:8080/addComment',{id,content,type});
                 alert(data.data.msg);
-                console.log("적히나")
             }catch(e){
                 alert(e.response.data.msg);
             }

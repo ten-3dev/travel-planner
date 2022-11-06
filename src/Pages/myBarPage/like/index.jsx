@@ -78,7 +78,6 @@ const Like = () => {
       }
     } catch (e) {
       alert("좋아요 에러");
-      console.log(e);
     }
   };
 
@@ -94,7 +93,6 @@ const Like = () => {
       }
     } catch (e) {
       alert("좋아요 에러");
-      console.log(e);
     }
   };
 

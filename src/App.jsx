@@ -25,19 +25,17 @@ import axios from "axios";
 
 axios.interceptors.response.use(
   response => {
-    console.log("interceptors: ", response);
+    // console.log("interceptors: ", response);
     return response;
   },
   async error => {
-    console.log(error);
     if(error.response.status === 401){
       try{
         await getAccessToken();
-
         await axios.request(error.config);
         return;
       }catch(e){
-        console.log(e);
+        // console.log(e);
       }
     }
     return Promise.reject(error);
@@ -49,7 +47,7 @@ axios.interceptors.request.use(
       return config;
     },
     error => {
-        console.log(error);
+        // console.log(error);
         return Promise.reject(error);
     }
 );
