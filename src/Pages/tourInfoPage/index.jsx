@@ -31,7 +31,7 @@ const InformationPage = () => {
     );
     const json = await response.json();
     const data = json.response.body.items.item;
-    const likeCount = await axios.get(`http://localhost:8080/getLikeCount/${data[0].contentid}`);
+    const likeCount = await axios.get(`http://35.216.50.89:8080/getLikeCount/${data[0].contentid}`);
     setInfoData({ ...data[0], likeCount: likeCount.data.data });
   };
 
@@ -46,7 +46,7 @@ const InformationPage = () => {
     }
     if (window.confirm("등록하시겠습니까?")) {
       try {
-        await axios.post("http://localhost:8080/addComment", { id, content, type: "T" });
+        await axios.post("http://35.216.50.89:8080/addComment", { id, content, type: "T" });
         getcontent();
         alert("댓글 추가 성공");
         setContent("");
@@ -62,7 +62,7 @@ const InformationPage = () => {
   }, []);
 
   const getcontent = async () => {
-    const data = await axios.get(`http://localhost:8080/getComment?id=${location.search.split("=")[1]}`);
+    const data = await axios.get(`http://35.216.50.89:8080/getComment?id=${location.search.split("=")[1]}`);
     setComments(data.data.data.filter((e) => e.type === "T"));
   };
 
@@ -88,7 +88,7 @@ const InformationPage = () => {
 
   //좋아요 불러오기
   const getLikes = async () => {
-    const data = await axios.post("http://localhost:8080/getLikes");
+    const data = await axios.post("http://35.216.50.89:8080/getLikes");
     if (data === undefined) {
       getLikes();
     } else {
@@ -101,10 +101,10 @@ const InformationPage = () => {
     try {
       if (like.filter((e) => e.id === id).length) {
         // 있으면
-        await axios.delete(`http://localhost:8080/removeLikes/${id}`);
+        await axios.delete(`http://35.216.50.89:8080/removeLikes/${id}`);
         setInfoData({ ...infoData, likeCount: infoData.likeCount - 1 });
       } else {
-        await axios.post("http://localhost:8080/addLikes", { id: id, type: "T" });
+        await axios.post("http://35.216.50.89:8080/addLikes", { id: id, type: "T" });
         setInfoData({ ...infoData, likeCount: infoData.likeCount + 1 });
       }
       getLikes();
@@ -193,7 +193,7 @@ const InformationPage = () => {
             return (
               <Styles.ReviewBox key={idx}>
                 <Styles.ReImage
-                  src={el.email.profileImg === "" ? "assets/defaultProfile.png" : `http://localhost:8080/image/view?value=${el.email.profileImg}`}
+                  src={el.email.profileImg === "" ? "assets/defaultProfile.png" : `http://35.216.50.89:8080/image/view?value=${el.email.profileImg}`}
                 />
                 <Styles.RefirstBox>
                   <Styles.ReName>{el?.email?.name}</Styles.ReName>
@@ -210,7 +210,7 @@ const InformationPage = () => {
             <Styles.Profile1
               src={
                 sessionStorage.getItem("profileImg")
-                  ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                  ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                   : "assets/defaultProfile.png"
               }
             />
