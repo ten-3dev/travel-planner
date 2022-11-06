@@ -12,14 +12,14 @@ const LoginPage = () => {
 
   const kakaoLogin = async () => {
     window.location.href =
-      "https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://35.216.50.89:3000/login&response_type=code";
+      "https://kauth.kakao.com/oauth/authorize?client_id=0a61f9efbdac3933e6a14ed6f553bd00&redirect_uri=http://35.216.50.89:80/login&response_type=code";
   };
 
   const getToken = async () => {
     const code = new URL(window.location.href).searchParams.get("code");
     const params = {
       client_id: "0a61f9efbdac3933e6a14ed6f553bd00",
-      redirect_uri: "http://35.216.50.89:3000/login",
+      redirect_uri: "http://35.216.50.89:80/login",
       client_secret: "K2uqygqk3ddG8UFgrIFdE76bKg9SpEwT",
       code: code,
       grant_type: "authorization_code",
