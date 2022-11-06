@@ -35,7 +35,7 @@ const Like = () => {
     setIsLikeLoding(false);
     setIsPlanLoding(false);
     try {
-      const data = await axios.post("http://35.216.50.89:8080/getLikes");
+      const data = await axios.post("http://localhost:8080/getLikes");
       if (data) {
         const likeData = data.data.data.filter((e) => e.type === "T");
         const likePlanData = data.data.data.filter((e) => e.type === "P");
@@ -57,7 +57,7 @@ const Like = () => {
           return;
         } else {
           for (let i = 0; i < likePlanData.length; i++) {
-            const data = await axios.get(`http://35.216.50.89:8080/getPlansById/${likePlanData[i].id}`);
+            const data = await axios.get(`http://localhost:8080/getPlansById/${likePlanData[i].id}`);
             const planData = planInfo;
             if (!data.data.data.type) {
               continue;
@@ -85,7 +85,7 @@ const Like = () => {
   // 좋아요 제거 함수
   const likeCancel = async (id, type) => {
     try {
-      await axios.delete(`http://35.216.50.89:8080/removeLikes/${id}`);
+      await axios.delete(`http://localhost:8080/removeLikes/${id}`);
       if (type === "P") {
         const planData = planInfo;
         setPlanInfo(planData.filter((e) => e.id !== id));

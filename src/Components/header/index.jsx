@@ -79,7 +79,7 @@ const Header = () => {
                   <Styles.MyProfileImg
                     src={
                       sessionStorage.getItem("profileImg")
-                        ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                        ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                         : "assets/defaultProfile.png"
                     }
                   />

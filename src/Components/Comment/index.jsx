@@ -12,7 +12,7 @@ const Comment = () => {
     const writing = async () => {
         if(window.confirm("등록하시겠습니까?")){
             try{
-                const data = await axios.post('http://35.216.50.89:8080/addComment',{id,content,type});
+                const data = await axios.post('http://localhost:8080/addComment',{id,content,type});
                 alert(data.data.msg);
                 console.log("적히나")
             }catch(e){

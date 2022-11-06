@@ -16,7 +16,7 @@ const SharedPlan = () => {
 
   const getUserPlan = async () => {
     // DB에 있는 플랜데이터
-    const data = await axios.get("http://35.216.50.89:8080/getShareMyPlan");
+    const data = await axios.get("http://localhost:8080/getShareMyPlan");
     if (!data) {
       getUserPlan();
     } else {
@@ -27,7 +27,7 @@ const SharedPlan = () => {
   const onShareBtn = async () => {
     if (window.confirm("공유취소하시겠습니까?")) {
       try {
-        await axios.put("http://35.216.50.89:8080/updateSharePlan", { id: plan[0][1].id });
+        await axios.put("http://localhost:8080/updateSharePlan", { id: plan[0][1].id });
         getUserPlan();
       } catch (e) {
         alert("공유 버튼 에러");

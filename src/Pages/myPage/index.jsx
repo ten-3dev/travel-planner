@@ -22,7 +22,7 @@ const MyPage = ({ myPlanAction, sharedPlanAction, likeAction }) => {
 
   const getData = async () => {
     // DB에 있는 회원데이터를 불러옴
-    const data = await axios.get("http://35.216.50.89:8080/getUserInfo");
+    const data = await axios.get("http://localhost:8080/getUserInfo");
     if (!data) {
       getData();
     } else {
@@ -39,7 +39,7 @@ const MyPage = ({ myPlanAction, sharedPlanAction, likeAction }) => {
               <Styles.Profile
                 src={
                   sessionStorage.getItem("profileImg")
-                    ? `http://35.216.50.89:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
+                    ? `http://localhost:8080/image/view?value=${sessionStorage.getItem("profileImg")}`
                     : "assets/defaultProfile.png"
                 }
               />

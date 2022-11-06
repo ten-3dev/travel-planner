@@ -109,7 +109,7 @@ const TravelPage = () => {
   };
 
   const getLikes = async () => {
-    const data = await axios.post("http://35.216.50.89:8080/getLikes");
+    const data = await axios.post("http://localhost:8080/getLikes");
     if (data === undefined) {
       getLikes();
     } else {
@@ -121,9 +121,9 @@ const TravelPage = () => {
     try {
       if (like.filter((e) => e.id === id).length) {
         // 있으면
-        await axios.delete(`http://35.216.50.89:8080/removeLikes/${id}`);
+        await axios.delete(`http://localhost:8080/removeLikes/${id}`);
       } else {
-        await axios.post("http://35.216.50.89:8080/addLikes", { id: id, type: "T" });
+        await axios.post("http://localhost:8080/addLikes", { id: id, type: "T" });
       }
       getLikes();
     } catch (e) {
